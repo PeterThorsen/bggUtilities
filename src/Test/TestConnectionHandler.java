@@ -1,7 +1,7 @@
 package Test;
 
-import Containers.BoardGameCollection;
-import Main.ConnectionHandler;
+import Main.Containers.BoardGameCollection;
+import Main.Network.ConnectionHandler;
 import org.junit.*;
 
 import static junit.framework.TestCase.*;

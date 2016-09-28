@@ -1,6 +1,6 @@
-package Main;
+package Main.Network;
 
-import Containers.BoardGameCollection;
+import Main.Containers.BoardGameCollection;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
