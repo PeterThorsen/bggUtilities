@@ -1,4 +1,4 @@
-package Test;
+package Test.Network;
 
 import Main.Containers.BoardGameCollection;
 import Main.Network.ConnectionHandler;

@@ -10,7 +10,7 @@ import java.net.URL;
 /**
  * Created by Peter on 27/09/16.
  */
-public class ConnectionHandler {
+public class ConnectionHandler implements IConnectionHandler {
   private String baseURL = "https://www.boardgamegeek.com/xmlapi/";
 
   /**
@@ -19,6 +19,7 @@ public class ConnectionHandler {
    * @param username is the username used to create the account on bgg
    * @return a boardgame collection class containing the interpreted xml or null if no user exists by this id
    */
+  @Override
   public Document getCollection(String username) {
     String url = buildURL("collection", username);
     Document xmlResponseInDocument = sendRequest(url);
@@ -28,6 +29,11 @@ public class ConnectionHandler {
       return null;
     }
     return xmlResponseInDocument;
+  }
+
+  @Override
+  public Document getGame(String gameID) {
+    return null;
   }
 
   /**
