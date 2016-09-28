@@ -19,13 +19,15 @@ public class ConnectionHandler {
    * @param username is the username used to create the account on bgg
    * @return a boardgame collection class containing the interpreted xml or null if no user exists by this id
    */
-  public BoardGameCollection getCollection(String username) {
+  public Document getCollection(String username) {
     String url = buildURL("collection", username);
     Document xmlResponseInDocument = sendRequest(url);
 
-
-    BoardGameCollection collection = new BoardGameCollection();
-    return collection;
+    if(xmlResponseInDocument.getElementsByTagName("error").getLength() > 0) {
+      // Invalid user id, remember to check for null on receiving end
+      return null;
+    }
+    return xmlResponseInDocument;
   }
 
   /**
@@ -54,6 +56,7 @@ public class ConnectionHandler {
       // or if you prefer DOM:
       DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
       DocumentBuilder db = dbf.newDocumentBuilder();
+      URL url = new URL(urlString);
       Document document = db.parse(new URL(urlString).openStream());
       return document;
 

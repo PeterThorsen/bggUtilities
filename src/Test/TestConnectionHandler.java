@@ -2,7 +2,10 @@ package Test;
 
 import Main.Containers.BoardGameCollection;
 import Main.Network.ConnectionHandler;
+import com.sun.source.tree.AssertTree;
 import org.junit.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 
 import static junit.framework.TestCase.*;
 
@@ -10,33 +13,29 @@ import static junit.framework.TestCase.*;
  * Created by Peter on 27/09/16.
  */
 public class TestConnectionHandler {
-
-  // Run once, e.g. Database connection, connection pool
-  @BeforeClass
-  public static void runOnceBeforeClass() {
-    // TODO
-    // get URL once from server after having tested it below
-  }
-
-  @Before
-  public void setUp() {
-
-  }
+  private String user = "cwaq";
 
   @Test
-  public void shouldReturnCollectionOnValidURL() {
-    String user = "cwaq";
+  public void shouldReturnDocumentOnValidURL() {
     ConnectionHandler connectionHandler = new ConnectionHandler();
-    BoardGameCollection collection = connectionHandler.getCollection(user);
-    assertNotNull(collection);
+    Document document = connectionHandler.getCollection(user);
+    assertNotNull(document);
   }
 
   @Test
-  public void shouldNotReturnCollectionOnInvalidURL() {
+  public void returnedDocumentShouldContainAtLeastOneItem() {
+    ConnectionHandler connectionHandler = new ConnectionHandler();
+    Document document = connectionHandler.getCollection(user);
+    NodeList list = document.getElementsByTagName("item");
+    assertTrue(list.getLength() > 0);
+  }
+
+  @Test
+  public void shouldReturnNullInvalidURL() {
     String invalidUser = "notanusername";
     ConnectionHandler connectionHandler = new ConnectionHandler();
-    BoardGameCollection collection = connectionHandler.getCollection(invalidUser);
-    assertNull(collection);
+    Document document = connectionHandler.getCollection(invalidUser);
+    assertNull(document);
   }
 
 }
