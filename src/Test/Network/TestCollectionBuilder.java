@@ -124,7 +124,7 @@ public class TestCollectionBuilder {
   }
 
   @Test
-  public void HiveShouldHaveUniqueID2655() {
+  public void hiveShouldHaveUniqueID2655() {
     BoardGameCollection collection = collectionBuilder.getCollection("cwaq");
     ArrayList<Boardgame> games = collection.getGames();
     int uniqueID = 0;
@@ -135,6 +135,32 @@ public class TestCollectionBuilder {
       }
     }
     assertEquals(2655, uniqueID);
+  }
+
+  @Test
+  public void agricolaShouldHaveMinPlayers1() {
+    BoardGameCollection collection = collectionBuilder.getCollection("cwaq");
+    ArrayList<Boardgame> games = collection.getGames();
+    int minPlayers = 0;
+    for(Boardgame game : games) {
+      if(game.getName().equals("Agricola")) {
+        minPlayers = game.getMinPlayers();
+      }
+    }
+    assertEquals(1, minPlayers);
+  }
+
+  @Test
+  public void hiveShouldHaveMinPlayers2() {
+    BoardGameCollection collection = collectionBuilder.getCollection("cwaq");
+    ArrayList<Boardgame> games = collection.getGames();
+    int minPlayers = 0;
+    for(Boardgame game : games) {
+      if(game.getName().equals("Hive")) {
+        minPlayers = game.getMinPlayers();
+      }
+    }
+    assertEquals(2, minPlayers);
   }
 
 }

@@ -58,12 +58,13 @@ public class ConnectionHandler implements IConnectionHandler {
    * @return a document containing xml
    */
   private Document sendRequest(String urlString) {
+    Document document = null;
     try {
       // or if you prefer DOM:
       DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
       DocumentBuilder db = dbf.newDocumentBuilder();
       URL url = new URL(urlString);
-      Document document = db.parse(new URL(urlString).openStream());
+      document = db.parse(new URL(urlString).openStream());
       return document;
 
       /**
@@ -75,8 +76,7 @@ public class ConnectionHandler implements IConnectionHandler {
        */
 
     } catch (Exception e) {
-      e.printStackTrace();
     }
-    return null;
+    return document;
   }
 }

@@ -12,7 +12,8 @@ public class Driver {
   }
 
   public Driver() {
-    url = "https://www.boardgamegeek.com/xmlapi/collection/user";
+    url = "https://www.boardgamegeek.com/xmlapi/collection/cwaq";
+    //https://www.boardgamegeek.com/xmlapi2/plays?username=cwaq
 
   }
 }
