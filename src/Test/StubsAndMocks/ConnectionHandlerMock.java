@@ -14,15 +14,11 @@ public class ConnectionHandlerMock implements Main.Network.IConnectionHandler {
   @Override
   public Document getCollection(String username) {
     try {
-      System.out.println("before file");
       File file = new File("res/bggCollectionData.xml");
-      System.out.println("after file");
-
       DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory
               .newInstance();
       DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
       Document document = documentBuilder.parse(file);
-      System.out.println("returning doc");
 
       return document;
     }

@@ -31,7 +31,22 @@ public class CollectionBuilder implements ICollectionBuilder {
     for(int i = 0; i< nodeList.getLength(); i++) {
 
     } */
-    BoardGameCollection collection = new BoardGameCollection();
+    
+    ArrayList<Boardgame> games = buildCollection(document);
+    BoardGameCollection collection = new BoardGameCollection(games);
     return collection;
+  }
+
+  private ArrayList<Boardgame> buildCollection(Document document) {
+    NodeList nodeList = document.getElementsByTagName("item");
+    ArrayList<Boardgame> games = new ArrayList<>();
+    for(int i = 0; i<nodeList.getLength(); i++) {
+      String name = nodeList.item(i).getChildNodes().item(1).getTextContent();
+      String uniqueIDString = nodeList.item(i).getAttributes().item(1).getTextContent();
+      int uniqueID = Integer.valueOf(uniqueIDString);
+      Boardgame game = new Boardgame(name, uniqueID);
+      games.add(game);
+    }
+    return games;
   }
 }
