@@ -50,12 +50,44 @@ public class CollectionBuilder implements ICollectionBuilder {
     NodeList nodeList = document.getElementsByTagName("item");
     ArrayList<Boardgame> games = new ArrayList<>();
     for(int i = 0; i<nodeList.getLength(); i++) {
+
+      // Name
       String name = nodeList.item(i).getChildNodes().item(1).getTextContent();
+
+      // Unique id
       String uniqueIDString = nodeList.item(i).getAttributes().item(1).getTextContent();
       int uniqueID = Integer.valueOf(uniqueIDString);
-      int minPlayers;
 
-      Boardgame game = new Boardgame(name, uniqueID, 1);
+      // Minimum players
+      int minPlayers;
+      String minPlayersString = nodeList.item(i).getChildNodes().item(9).getAttributes().item(2).getTextContent();
+      minPlayers = Integer.valueOf(minPlayersString);
+
+      // Max players
+      int maxPlayers;
+      String maxPlayersString = nodeList.item(i).getChildNodes().item(9).getAttributes().item(0).getTextContent();
+      maxPlayers = Integer.valueOf(maxPlayersString);
+
+      // Min playtime
+      int minPlaytime;
+      String minPlaytimeString = nodeList.item(i).getChildNodes().item(9).getAttributes().item(3).getTextContent();
+      minPlaytime = Integer.valueOf(minPlaytimeString);
+
+      // Max playtime
+      int maxPlaytime;
+      String maxPlaytimeString = nodeList.item(i).getChildNodes().item(9).getAttributes().item(1).getTextContent();
+      maxPlaytime = Integer.valueOf(maxPlaytimeString);
+
+      // Personal rating
+      String personalRatingString = nodeList.item(i).getChildNodes().item(9).getChildNodes().item(1).getAttributes().getNamedItem("value").getTextContent();
+      // Returning string as value might be N/A
+
+      // Number of plays
+      int numPlays;
+      String numPlaysString = nodeList.item(i).getChildNodes().item(13).getTextContent();
+      numPlays = Integer.valueOf(numPlaysString);
+
+      Boardgame game = new Boardgame(name, uniqueID, minPlayers, maxPlayers, minPlaytime, maxPlaytime, personalRatingString, numPlays);
       games.add(game);
     }
     return games;

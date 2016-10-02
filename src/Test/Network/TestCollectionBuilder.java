@@ -19,13 +19,18 @@ import static junit.framework.TestCase.*;
 public class TestCollectionBuilder {
   IConnectionHandler connectionHandler;
   ICollectionBuilder collectionBuilder;
+  BoardGameCollection collection;
+  ArrayList<Boardgame> games;
 
   @Before
   public void setUp() {
     connectionHandler = new ConnectionHandlerMock();
     collectionBuilder = new CollectionBuilder(connectionHandler);
+    collection = collectionBuilder.getCollection("cwaq");
+    games = collection.getGames();
   }
 
+  @Ignore // To avoid spamming bgg. Can be removed for tests.
   @Test
   public void shouldReturnBoardGameCollectionOnValidUsername() {
     connectionHandler = new ConnectionHandler();
@@ -35,6 +40,7 @@ public class TestCollectionBuilder {
     assertNotNull(collection);
   }
 
+  @Ignore // To avoid spamming bgg. Can be removed for tests.
   @Test
   public void shouldReturnNullOnInvalidUsername() {
     String invalidUser = "notanusername";
@@ -46,32 +52,25 @@ public class TestCollectionBuilder {
 
   @Test
   public void connectionHandlerMockShouldWork() {
-    BoardGameCollection collection = collectionBuilder.getCollection("cwaq");
     assertNotNull(collection);
   }
 
   @Test
   public void collectionShouldContainArrayListOfBoardgames() {
-    BoardGameCollection collection = collectionBuilder.getCollection("cwaq");
-    ArrayList<Boardgame> games = collection.getGames();
     assertNotNull(games);
   }
 
   @Test
   public void collectionShouldContainNonEmptyListOfBoardGames() {
-    BoardGameCollection collection = collectionBuilder.getCollection("cwaq");
-    ArrayList<Boardgame> games = collection.getGames();
     assertTrue(games.size() > 0);
   }
 
   @Test
   public void collectionShouldContainAgricola() {
-    BoardGameCollection collection = collectionBuilder.getCollection("cwaq");
-    ArrayList<Boardgame> games = collection.getGames();
     boolean agricolaExists = false;
 
-    for(Boardgame game : games) {
-      if(game.getName().equals("Agricola")) {
+    for (Boardgame game : games) {
+      if (game.getName().equals("Agricola")) {
         agricolaExists = true;
         break;
       }
@@ -81,12 +80,10 @@ public class TestCollectionBuilder {
 
   @Test
   public void collectionShouldContainHive() {
-    BoardGameCollection collection = collectionBuilder.getCollection("cwaq");
-    ArrayList<Boardgame> games = collection.getGames();
     boolean hiveExists = false;
 
-    for(Boardgame game : games) {
-      if(game.getName().equals("Hive")) {
+    for (Boardgame game : games) {
+      if (game.getName().equals("Hive")) {
         hiveExists = true;
         break;
       }
@@ -96,12 +93,10 @@ public class TestCollectionBuilder {
 
   @Test
   public void collectionShouldNotContainMonopoly() {
-    BoardGameCollection collection = collectionBuilder.getCollection("cwaq");
-    ArrayList<Boardgame> games = collection.getGames();
     boolean monopolyExists = false;
 
-    for(Boardgame game : games) {
-      if(game.getName().equals("Monopoly")) {
+    for (Boardgame game : games) {
+      if (game.getName().equals("Monopoly")) {
         monopolyExists = true;
         break;
       }
@@ -111,56 +106,103 @@ public class TestCollectionBuilder {
 
   @Test
   public void agricolaShouldHaveUniqueID31260() {
-    BoardGameCollection collection = collectionBuilder.getCollection("cwaq");
-    ArrayList<Boardgame> games = collection.getGames();
     int uniqueID = 0;
-
-    for(Boardgame game : games) {
-      if(game.getName().equals("Agricola")) {
-        uniqueID = game.getID();
-      }
-    }
+    Boardgame game = games.get(0);
+    uniqueID = game.getID();
     assertEquals(31260, uniqueID);
   }
 
   @Test
   public void hiveShouldHaveUniqueID2655() {
-    BoardGameCollection collection = collectionBuilder.getCollection("cwaq");
-    ArrayList<Boardgame> games = collection.getGames();
     int uniqueID = 0;
-
-    for(Boardgame game : games) {
-      if(game.getName().equals("Hive")) {
-        uniqueID = game.getID();
-      }
-    }
+    Boardgame game = games.get(20);
+    uniqueID = game.getID();
     assertEquals(2655, uniqueID);
   }
 
   @Test
   public void agricolaShouldHaveMinPlayers1() {
-    BoardGameCollection collection = collectionBuilder.getCollection("cwaq");
-    ArrayList<Boardgame> games = collection.getGames();
     int minPlayers = 0;
-    for(Boardgame game : games) {
-      if(game.getName().equals("Agricola")) {
-        minPlayers = game.getMinPlayers();
-      }
-    }
+    Boardgame game = games.get(0);
+    minPlayers = game.getMinPlayers();
     assertEquals(1, minPlayers);
   }
 
   @Test
   public void hiveShouldHaveMinPlayers2() {
-    BoardGameCollection collection = collectionBuilder.getCollection("cwaq");
-    ArrayList<Boardgame> games = collection.getGames();
     int minPlayers = 0;
-    for(Boardgame game : games) {
-      if(game.getName().equals("Hive")) {
-        minPlayers = game.getMinPlayers();
-      }
-    }
+    Boardgame game = games.get(20);
+    minPlayers = game.getMinPlayers();
     assertEquals(2, minPlayers);
   }
+
+  @Test
+  public void hiveShouldHaveMaxPlayers2() {
+    int maxPlayers = 0;
+    Boardgame game = games.get(20);
+    maxPlayers = game.getMaxPlayers();
+    assertEquals(2, maxPlayers);
+  }
+
+  @Test
+  public void agricolaShouldHaveMaxPlayers5() {
+    int maxPlayers = 0;
+    Boardgame game = games.get(0);
+    maxPlayers = game.getMaxPlayers();
+    assertEquals(5, maxPlayers);
+  }
+
+  @Test
+  public void agricolaShouldHaveMinPlaytime30Min() {
+    int minPlaytime = 0;
+    Boardgame game = games.get(0);
+    minPlaytime = game.getMinPlaytime();
+    assertEquals(30, minPlaytime);
+  }
+
+  @Test
+  public void agricolaShouldHaveMaxPlaytime150Min() {
+    int maxPlaytime = 0;
+    Boardgame game = games.get(0);
+    maxPlaytime = game.getMaxPlaytime();
+    assertEquals(150, maxPlaytime);
+  }
+
+  @Test
+  public void agricolaShouldHavePersonalRating8() {
+    String personalRating = "8";
+    Boardgame game = games.get(0);
+    personalRating = game.getPersonalRating();
+    int rating = Integer.valueOf(personalRating);
+    assertEquals(8, rating);
+  }
+
+  @Test
+  public void hiveShouldHavePersonalRating10() {
+    String personalRating = "";
+    Boardgame game = games.get(20);
+    personalRating = game.getPersonalRating();
+    int rating = Integer.valueOf(personalRating);
+    assertEquals(10, rating);
+  }
+
+  @Test
+  public void agricolaShouldHaveNumPlays0() {
+    int numPlays = -5;
+    Boardgame game = games.get(0);
+    numPlays = game.getNumberOfPlays();
+    assertEquals(0, numPlays);
+
+  }
+
+  @Test
+  public void hiveShouldHaveNumPlays1() {
+    int numPlays = 0;
+    Boardgame game = games.get(20);
+    numPlays = game.getNumberOfPlays();
+    assertEquals(1, numPlays);
+  }
+
+
 
 }
