@@ -192,7 +192,6 @@ public class TestCollectionBuilder {
     Boardgame game = games.get(0);
     numPlays = game.getNumberOfPlays();
     assertEquals(0, numPlays);
-
   }
 
   @Test
@@ -203,6 +202,19 @@ public class TestCollectionBuilder {
     assertEquals(1, numPlays);
   }
 
+  @Test
+  public void hiveShouldHaveComplexityBetween2And3() {
+    double complexity = 0;
+    Boardgame game = games.get(20);
+    complexity = game.getComplexity();
+    assertTrue(complexity > 2.0 && complexity < 3.0);
+  }
 
-
+  @Test
+  public void agricolaShouldHaveComplexityBetween3And4() {
+    double complexity = 0;
+    Boardgame game = games.get(0);
+    complexity = game.getComplexity();
+    assertTrue(complexity > 3.0 && complexity < 4.0);
+  }
 }

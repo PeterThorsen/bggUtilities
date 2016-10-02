@@ -7,5 +7,5 @@ import org.w3c.dom.Document;
  */
 public interface IConnectionHandler {
   Document getCollection(String username);
-  Document getGame(int gameID);
+  Document getGames(int[] gameIDArray);
 }

@@ -12,6 +12,7 @@ public class Boardgame {
   private final String name;
   private final String personalRating;
   private final int numPlays;
+  private double complexity = 0.0;
 
   public Boardgame(String name, int uniqueID, int minPlayers, int maxPlayers, int minPlaytime,
                    int maxPlaytime, String personalRating, int numberOfPlays) {
@@ -23,6 +24,10 @@ public class Boardgame {
     this.maxPlaytime = maxPlaytime;
     this.personalRating = personalRating;
     numPlays = numberOfPlays;
+  }
+
+  public void addComplexity(double complexity) {
+    this.complexity = complexity;
   }
 
   public String getName() {
@@ -60,5 +65,9 @@ public class Boardgame {
   @Override
   public String toString(){
     return name;
+  }
+
+  public double getComplexity() {
+    return complexity;
   }
 }

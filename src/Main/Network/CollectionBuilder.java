@@ -5,7 +5,9 @@ import Main.Containers.Boardgame;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
+import javax.print.Doc;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Peter on 28/09/16.
@@ -49,6 +51,8 @@ public class CollectionBuilder implements ICollectionBuilder {
   private ArrayList<Boardgame> buildCollection(Document document) {
     NodeList nodeList = document.getElementsByTagName("item");
     ArrayList<Boardgame> games = new ArrayList<>();
+    int[] uniqueIDArray = new int[nodeList.getLength()];
+    HashMap<Integer, Boardgame> idToGameMap = new HashMap<>();
     for(int i = 0; i<nodeList.getLength(); i++) {
 
       // Name
@@ -57,6 +61,7 @@ public class CollectionBuilder implements ICollectionBuilder {
       // Unique id
       String uniqueIDString = nodeList.item(i).getAttributes().item(1).getTextContent();
       int uniqueID = Integer.valueOf(uniqueIDString);
+      uniqueIDArray[i] = uniqueID;
 
       // Minimum players
       int minPlayers;
@@ -80,7 +85,7 @@ public class CollectionBuilder implements ICollectionBuilder {
 
       // Personal rating
       String personalRatingString = nodeList.item(i).getChildNodes().item(9).getChildNodes().item(1).getAttributes().getNamedItem("value").getTextContent();
-      // Returning string as value might be N/A
+      // Returning string, as value might be N/A
 
       // Number of plays
       int numPlays;
@@ -89,7 +94,24 @@ public class CollectionBuilder implements ICollectionBuilder {
 
       Boardgame game = new Boardgame(name, uniqueID, minPlayers, maxPlayers, minPlaytime, maxPlaytime, personalRatingString, numPlays);
       games.add(game);
+      game.addComplexity(2.5);
+
+      idToGameMap.put(uniqueID, game);
     }
+
+    // Complexity
+    /**System.out.println("!!!");
+    games = getGamesInfo(games, uniqueIDArray, idToGameMap);
+    System.out.println(games);
+    System.out.println("!!!!"); */
+    return games;
+  }
+
+  private ArrayList<Boardgame> getGamesInfo(ArrayList<Boardgame> games, int[] uniqueIDArray, HashMap<Integer, Boardgame> idToGameMap) {
+    Document gamesInfo = connectionHandler.getGames(uniqueIDArray);
+    System.out.println(gamesInfo);
+    //NodeList gamesList = gamesInfo.getElementsByTagName("item");
+    //System.out.println("list length: " + gamesList.getLength());
     return games;
   }
 }

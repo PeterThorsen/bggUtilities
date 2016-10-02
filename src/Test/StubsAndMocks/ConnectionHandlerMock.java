@@ -28,7 +28,7 @@ public class ConnectionHandlerMock implements Main.Network.IConnectionHandler {
   }
 
   @Override
-  public Document getGame(int gameID) {
+  public Document getGames(int[] gameIDArray) {
     return null;
   }
 }
