@@ -21,14 +21,14 @@ public class TestConnectionHandler {
     connectionHandler = new ConnectionHandler();
   }
 
-  //@Ignore
+  @Ignore
   @Test
   public void collection_shouldReturnDocumentOnValidURL() {
     Document document = connectionHandler.getCollection(user);
     assertNotNull(document);
   }
 
-  //@Ignore
+  @Ignore
   @Test
   public void collection_returnedDocumentShouldContainAtLeastOneItem() {
     Document document = connectionHandler.getCollection(user);
@@ -36,7 +36,7 @@ public class TestConnectionHandler {
     assertTrue(list.getLength() > 0);
   }
 
-  //@Ignore
+  @Ignore
   @Test
   public void collection_shouldReturnNullInvalidURL() {
     String invalidUser = "notanusername";
@@ -51,7 +51,6 @@ public class TestConnectionHandler {
     assertNull(document);
   }
 
- @Ignore
   @Test
   public void game_shouldReturnDocumentOnValidID() {
     final int validID = 2655;

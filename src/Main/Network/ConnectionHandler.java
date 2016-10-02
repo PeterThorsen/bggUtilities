@@ -1,6 +1,7 @@
 package Main.Network;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -32,24 +33,39 @@ public class ConnectionHandler implements IConnectionHandler {
 
   @Override
   public Document getGame(int gameID) {
-    return null;
+    String url = buildURLForGames(String.valueOf(gameID));
+    Document xmlResponseInDocument = sendRequest(url);
+    if(xmlResponseInDocument.getElementsByTagName("item").getLength() == 0) {
+      return null;
+    }
+    return xmlResponseInDocument;
   }
 
   /**
-   * Used to build the bgg url to avoid errors
+   * Used to build the bgg url to avoid errors. Works for collection and plays.
    *
-   * @param arg1 describes the category and can be:
+   * @param category describes the category and can be:
    *             collection
-   *             boardgame
-   * @param arg2 specifies specific entries in this category and can be:
-   *             username
-   *             boardgame BGG id, can be found in it's url or inside it's entry in a users collection
+   *             plays
+   * @param username is the username for which the collection or plays should be fetched.
    * @return built url
    */
-  private String buildURL(String arg1, String arg2) {
+  private String buildURL(String category, String username) {
     //String url = String.format("https://www.boardgamegeek.com/xmlapi/%s/%s", arg1, arg2);
 
-    String url = String.format("https://www.boardgamegeek.com/xmlapi2/%s?username=%s", arg1, arg2);
+    String url = String.format("https://www.boardgamegeek.com/xmlapi2/%s?username=%s", category, username);
+    return url;
+  }
+
+  /**
+   * Used to build the bgg url to avoid errors. Works for "things" which is the bgg name for games.
+   * Always returns a game including the stats section.
+
+   * @param gameID is the unique ID for the game on bgg.
+   * @return built url
+   */
+  private String buildURLForGames(String gameID) {
+    String url = String.format("https://www.boardgamegeek.com/xmlapi2/thing?id=%s&stats=1", gameID);
     return url;
   }
 
