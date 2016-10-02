@@ -1,6 +1,5 @@
 package Main.Network;
 
-import Main.Containers.BoardGameCollection;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -32,7 +31,7 @@ public class ConnectionHandler implements IConnectionHandler {
   }
 
   @Override
-  public Document getGame(String gameID) {
+  public Document getGame(int gameID) {
     return null;
   }
 
@@ -48,7 +47,9 @@ public class ConnectionHandler implements IConnectionHandler {
    * @return built url
    */
   private String buildURL(String arg1, String arg2) {
-    String url = String.format("https://www.boardgamegeek.com/xmlapi/%s/%s", arg1, arg2);
+    //String url = String.format("https://www.boardgamegeek.com/xmlapi/%s/%s", arg1, arg2);
+
+    String url = String.format("https://www.boardgamegeek.com/xmlapi2/%s?username=%s", arg1, arg2);
     return url;
   }
 

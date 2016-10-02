@@ -30,7 +30,7 @@ public class TestCollectionBuilder {
     games = collection.getGames();
   }
 
-  @Ignore // To avoid spamming bgg. Can be removed for tests.
+  //@Ignore // To avoid spamming bgg. Can be removed for tests.
   @Test
   public void shouldReturnBoardGameCollectionOnValidUsername() {
     connectionHandler = new ConnectionHandler();
@@ -40,7 +40,7 @@ public class TestCollectionBuilder {
     assertNotNull(collection);
   }
 
-  @Ignore // To avoid spamming bgg. Can be removed for tests.
+  //@Ignore // To avoid spamming bgg. Can be removed for tests.
   @Test
   public void shouldReturnNullOnInvalidUsername() {
     String invalidUser = "notanusername";

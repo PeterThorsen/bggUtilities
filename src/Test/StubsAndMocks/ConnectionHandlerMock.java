@@ -1,6 +1,5 @@
 package Test.StubsAndMocks;
 
-import Main.Containers.BoardGameCollection;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -29,7 +28,7 @@ public class ConnectionHandlerMock implements Main.Network.IConnectionHandler {
   }
 
   @Override
-  public Document getGame(String gameID) {
+  public Document getGame(int gameID) {
     return null;
   }
 }
