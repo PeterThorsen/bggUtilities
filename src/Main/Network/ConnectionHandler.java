@@ -91,7 +91,6 @@ public class ConnectionHandler implements IConnectionHandler {
 
     } catch (Exception e) {
     }
-    System.out.println("!!");
     return document;
   }
 }

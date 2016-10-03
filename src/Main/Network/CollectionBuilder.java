@@ -3,6 +3,7 @@ package Main.Network;
 import Main.Containers.BoardGameCollection;
 import Main.Containers.Boardgame;
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import javax.print.Doc;
@@ -53,6 +54,7 @@ public class CollectionBuilder implements ICollectionBuilder {
     ArrayList<Boardgame> games = new ArrayList<>();
     int[] uniqueIDArray = new int[nodeList.getLength()];
     HashMap<Integer, Boardgame> idToGameMap = new HashMap<>();
+
     for(int i = 0; i<nodeList.getLength(); i++) {
 
       // Name
@@ -100,18 +102,24 @@ public class CollectionBuilder implements ICollectionBuilder {
     }
 
     // Complexity
-    /**System.out.println("!!!");
-    games = getGamesInfo(games, uniqueIDArray, idToGameMap);
-    System.out.println(games);
-    System.out.println("!!!!"); */
-    return games;
-  }
+    Document gamesDoc = connectionHandler.getGames(uniqueIDArray);
+    NodeList gamesList = gamesDoc.getElementsByTagName("item");
+    for(int i = 0; i<gamesList.getLength(); i++) {
+      Node item = gamesList.item(i);
+      int uniqueID = Integer.valueOf(item.getAttributes().getNamedItem("id").getNodeValue());
 
-  private ArrayList<Boardgame> getGamesInfo(ArrayList<Boardgame> games, int[] uniqueIDArray, HashMap<Integer, Boardgame> idToGameMap) {
-    Document gamesInfo = connectionHandler.getGames(uniqueIDArray);
-    System.out.println(gamesInfo);
-    //NodeList gamesList = gamesInfo.getElementsByTagName("item");
-    //System.out.println("list length: " + gamesList.getLength());
+      // Finding the averageWeight node and its corresponding value
+      NodeList subNodes = item.getChildNodes();
+      int lengthOfSubNodes = subNodes.getLength();
+      Node statisticsNode = subNodes.item(lengthOfSubNodes-2);
+      Node ratingsNode = statisticsNode.getChildNodes().item(1);
+      Node averageWeightNode = ratingsNode.getChildNodes().item(25);
+      double complexity = Double.valueOf(averageWeightNode.getAttributes().item(0).getNodeValue());
+
+      // Add complexity to the game
+      Boardgame game = idToGameMap.get(uniqueID);
+      game.addComplexity(complexity);
+    }
     return games;
   }
 }

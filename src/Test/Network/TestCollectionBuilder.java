@@ -162,7 +162,7 @@ public class TestCollectionBuilder {
 
   @Test
   public void agricolaShouldHaveMaxPlaytime150Min() {
-    int maxPlaytime = 0;
+    int maxPlaytime;
     Boardgame game = games.get(0);
     maxPlaytime = game.getMaxPlaytime();
     assertEquals(150, maxPlaytime);
@@ -170,7 +170,7 @@ public class TestCollectionBuilder {
 
   @Test
   public void agricolaShouldHavePersonalRating8() {
-    String personalRating = "8";
+    String personalRating;
     Boardgame game = games.get(0);
     personalRating = game.getPersonalRating();
     int rating = Integer.valueOf(personalRating);
@@ -179,7 +179,7 @@ public class TestCollectionBuilder {
 
   @Test
   public void hiveShouldHavePersonalRating10() {
-    String personalRating = "";
+    String personalRating;
     Boardgame game = games.get(20);
     personalRating = game.getPersonalRating();
     int rating = Integer.valueOf(personalRating);
@@ -188,7 +188,7 @@ public class TestCollectionBuilder {
 
   @Test
   public void agricolaShouldHaveNumPlays0() {
-    int numPlays = -5;
+    int numPlays;
     Boardgame game = games.get(0);
     numPlays = game.getNumberOfPlays();
     assertEquals(0, numPlays);
@@ -196,7 +196,7 @@ public class TestCollectionBuilder {
 
   @Test
   public void hiveShouldHaveNumPlays1() {
-    int numPlays = 0;
+    int numPlays;
     Boardgame game = games.get(20);
     numPlays = game.getNumberOfPlays();
     assertEquals(1, numPlays);
@@ -204,7 +204,7 @@ public class TestCollectionBuilder {
 
   @Test
   public void hiveShouldHaveComplexityBetween2And3() {
-    double complexity = 0;
+    double complexity;
     Boardgame game = games.get(20);
     complexity = game.getComplexity();
     assertTrue(complexity > 2.0 && complexity < 3.0);
@@ -212,7 +212,7 @@ public class TestCollectionBuilder {
 
   @Test
   public void agricolaShouldHaveComplexityBetween3And4() {
-    double complexity = 0;
+    double complexity;
     Boardgame game = games.get(0);
     complexity = game.getComplexity();
     assertTrue(complexity > 3.0 && complexity < 4.0);

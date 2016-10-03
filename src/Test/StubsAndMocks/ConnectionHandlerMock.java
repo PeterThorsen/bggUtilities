@@ -1,5 +1,7 @@
 package Test.StubsAndMocks;
 
+import Main.Network.ConnectionHandler;
+import Main.Network.IConnectionHandler;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -10,6 +12,7 @@ import java.io.File;
  * Created by Peter on 28/09/16.
  */
 public class ConnectionHandlerMock implements Main.Network.IConnectionHandler {
+
   @Override
   public Document getCollection(String username) {
     try {
@@ -29,6 +32,16 @@ public class ConnectionHandlerMock implements Main.Network.IConnectionHandler {
 
   @Override
   public Document getGames(int[] gameIDArray) {
-    return null;
+    try {
+      File file = new File("res/thingData.xml");
+      DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+      DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+      Document document = documentBuilder.parse(file);
+      return document;
+    }
+    catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 }
