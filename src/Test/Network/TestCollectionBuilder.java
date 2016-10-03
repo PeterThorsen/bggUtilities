@@ -7,7 +7,7 @@ import Main.Network.CollectionBuilder;
 import Main.Network.ConnectionHandler;
 import Main.Network.ICollectionBuilder;
 import Main.Network.IConnectionHandler;
-import Test.StubsAndMocks.ConnectionHandlerMock;
+import Test.StubsAndMocks.ConnectionHandlerStub;
 import org.junit.*;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class TestCollectionBuilder {
 
   @Before
   public void setUp() {
-    connectionHandler = new ConnectionHandlerMock();
+    connectionHandler = new ConnectionHandlerStub();
     collectionBuilder = new CollectionBuilder(connectionHandler);
     collection = collectionBuilder.getCollection("cwaq");
     games = collection.getGames();
@@ -52,7 +52,7 @@ public class TestCollectionBuilder {
   }
 
   @Test
-  public void connectionHandlerMockShouldWork() {
+  public void connectionHandlerStubShouldWork() {
     assertNotNull(collection);
   }
 

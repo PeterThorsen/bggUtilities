@@ -12,7 +12,7 @@ import java.io.File;
 /**
  * Created by Peter on 28/09/16.
  */
-public class ConnectionHandlerMock implements Main.Network.IConnectionHandler {
+public class ConnectionHandlerStub implements Main.Network.IConnectionHandler {
 
   @Override
   public Document getCollection(String username) {
