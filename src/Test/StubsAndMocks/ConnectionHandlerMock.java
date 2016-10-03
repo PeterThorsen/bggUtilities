@@ -3,6 +3,7 @@ package Test.StubsAndMocks;
 import Main.Network.ConnectionHandler;
 import Main.Network.IConnectionHandler;
 import org.w3c.dom.Document;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -43,5 +44,10 @@ public class ConnectionHandlerMock implements Main.Network.IConnectionHandler {
       e.printStackTrace();
       return null;
     }
+  }
+
+  @Override
+  public Document getPlays(String username) {
+    throw new NotImplementedException();
   }
 }

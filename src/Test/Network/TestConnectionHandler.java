@@ -13,6 +13,7 @@ import static junit.framework.TestCase.*;
 /**
  * Created by Peter on 27/09/16.
  */
+@Ignore // Remove for verifying, but avoid spamming bgg
 public class TestConnectionHandler {
   private String user = "cwaq";
   private ConnectionHandler connectionHandler;
@@ -22,14 +23,12 @@ public class TestConnectionHandler {
     connectionHandler = new ConnectionHandler();
   }
 
-  @Ignore
   @Test
   public void collection_shouldReturnDocumentOnValidURL() {
     Document document = connectionHandler.getCollection(user);
     assertNotNull(document);
   }
 
-  @Ignore
   @Test
   public void collection_returnedDocumentShouldContainAtLeastOneItem() {
     Document document = connectionHandler.getCollection(user);
@@ -37,7 +36,6 @@ public class TestConnectionHandler {
     assertTrue(list.getLength() > 0);
   }
 
-  @Ignore
   @Test
   public void collection_shouldReturnNullInvalidURL() {
     String invalidUser = "notanusername";
@@ -86,6 +84,27 @@ public class TestConnectionHandler {
     Document document = connectionHandler.getGames(array);
     NodeList list = document.getElementsByTagName("item");
     assertEquals(2, list.getLength());
+  }
+
+  @Test
+  public void plays_invalidUsernameShouldReturnNull() {
+    String username = "notanusername";
+    Document document = connectionHandler.getPlays(username);
+    assertNull(document);
+  }
+
+  @Test
+  public void plays_validUsernameShouldReturnDocument() {
+    String username = "cwaq";
+    Document document = connectionHandler.getPlays(username);
+    assertNotNull(document);
+  }
+
+  @Test
+  public void plays_validUsernameShouldReturnDocumentWithLengthMoreThan0() {
+    String username = "cwaq";
+    Document document = connectionHandler.getPlays(username);
+    assertTrue(document.getElementsByTagName("play").getLength() > 0);
   }
 
 }

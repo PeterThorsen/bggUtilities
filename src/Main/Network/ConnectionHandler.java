@@ -41,6 +41,17 @@ public class ConnectionHandler implements IConnectionHandler {
     return xmlResponseInDocument;
   }
 
+  @Override
+  public Document getPlays(String username) {
+    String url = buildURL("plays", username);
+    Document xmlResponseInDocument = sendRequest(url);
+    if(xmlResponseInDocument.getElementsByTagName("play").getLength() == 0) {
+      // No plays found for username. Either because of wrong username or no plays logged.
+      return null;
+    }
+    return xmlResponseInDocument;
+  }
+
   /**
    * Used to build the bgg url to avoid errors. Works for collection and plays.
    *
