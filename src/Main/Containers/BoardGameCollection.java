@@ -7,12 +7,12 @@ import java.util.ArrayList;
  */
 public class BoardGameCollection {
 
-  private ArrayList<Boardgame> games;
+  private ArrayList<BoardGame> games;
 
-  public BoardGameCollection(ArrayList<Boardgame> games) {
+  public BoardGameCollection(ArrayList<BoardGame> games) {
     this.games = games;
   }
-  public ArrayList<Boardgame> getGames() {
+  public ArrayList<BoardGame> getGames() {
     return games;
   }
 }

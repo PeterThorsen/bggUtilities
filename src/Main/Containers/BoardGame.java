@@ -1,9 +1,11 @@
 package Main.Containers;
 
+import java.util.ArrayList;
+
 /**
  * Created by Peter on 28/09/16.
  */
-public class Boardgame {
+public class BoardGame {
   private final int maxPlaytime;
   private final int minPlaytime;
   private final int max;
@@ -13,8 +15,9 @@ public class Boardgame {
   private final String personalRating;
   private final int numPlays;
   private double complexity = 0.0;
+  private ArrayList<Play> allPlays;
 
-  public Boardgame(String name, int uniqueID, int minPlayers, int maxPlayers, int minPlaytime,
+  public BoardGame(String name, int uniqueID, int minPlayers, int maxPlayers, int minPlaytime,
                    int maxPlaytime, String personalRating, int numberOfPlays) {
     this.name = name;
     id = uniqueID;
@@ -24,10 +27,15 @@ public class Boardgame {
     this.maxPlaytime = maxPlaytime;
     this.personalRating = personalRating;
     numPlays = numberOfPlays;
+    allPlays = new ArrayList<>();
   }
 
   public void addComplexity(double complexity) {
     this.complexity = complexity;
+  }
+
+  public void addPlay(Play play) {
+    allPlays.add(play);
   }
 
   public String getName() {
@@ -69,5 +77,9 @@ public class Boardgame {
 
   public double getComplexity() {
     return complexity;
+  }
+
+  public ArrayList<Play> getPlays() {
+    return allPlays;
   }
 }

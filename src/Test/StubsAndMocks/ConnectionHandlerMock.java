@@ -18,14 +18,8 @@ public class ConnectionHandlerMock implements Main.Network.IConnectionHandler {
   public Document getCollection(String username) {
     try {
       File file = new File("res/bggCollectionData.xml");
-      DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory
-              .newInstance();
-      DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-      Document document = documentBuilder.parse(file);
-
-      return document;
-    }
-    catch (Exception e) {
+      return buildDoc(file);
+    } catch (Exception e) {
       e.printStackTrace();
       return null;
     }
@@ -35,12 +29,8 @@ public class ConnectionHandlerMock implements Main.Network.IConnectionHandler {
   public Document getGames(int[] gameIDArray) {
     try {
       File file = new File("res/thingData.xml");
-      DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-      DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-      Document document = documentBuilder.parse(file);
-      return document;
-    }
-    catch (Exception e) {
+      return buildDoc(file);
+    } catch (Exception e) {
       e.printStackTrace();
       return null;
     }
@@ -48,6 +38,24 @@ public class ConnectionHandlerMock implements Main.Network.IConnectionHandler {
 
   @Override
   public Document getPlays(String username) {
-    throw new NotImplementedException();
+    try {
+      File file = new File("res/playsData.xml");
+      return buildDoc(file);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  private Document buildDoc(File file) {
+    try {
+      DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+      DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+      Document document = documentBuilder.parse(file);
+      return document;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 }

@@ -1,7 +1,8 @@
 package Test.Network;
 
 import Main.Containers.BoardGameCollection;
-import Main.Containers.Boardgame;
+import Main.Containers.BoardGame;
+import Main.Containers.Play;
 import Main.Network.CollectionBuilder;
 import Main.Network.ConnectionHandler;
 import Main.Network.ICollectionBuilder;
@@ -20,7 +21,7 @@ public class TestCollectionBuilder {
   IConnectionHandler connectionHandler;
   ICollectionBuilder collectionBuilder;
   BoardGameCollection collection;
-  ArrayList<Boardgame> games;
+  ArrayList<BoardGame> games;
 
   @Before
   public void setUp() {
@@ -69,7 +70,7 @@ public class TestCollectionBuilder {
   public void collectionShouldContainAgricola() {
     boolean agricolaExists = false;
 
-    for (Boardgame game : games) {
+    for (BoardGame game : games) {
       if (game.getName().equals("Agricola")) {
         agricolaExists = true;
         break;
@@ -82,7 +83,7 @@ public class TestCollectionBuilder {
   public void collectionShouldContainHive() {
     boolean hiveExists = false;
 
-    for (Boardgame game : games) {
+    for (BoardGame game : games) {
       if (game.getName().equals("Hive")) {
         hiveExists = true;
         break;
@@ -95,7 +96,7 @@ public class TestCollectionBuilder {
   public void collectionShouldNotContainMonopoly() {
     boolean monopolyExists = false;
 
-    for (Boardgame game : games) {
+    for (BoardGame game : games) {
       if (game.getName().equals("Monopoly")) {
         monopolyExists = true;
         break;
@@ -107,7 +108,7 @@ public class TestCollectionBuilder {
   @Test
   public void agricolaShouldHaveUniqueID31260() {
     int uniqueID = 0;
-    Boardgame game = games.get(0);
+    BoardGame game = games.get(0);
     uniqueID = game.getID();
     assertEquals(31260, uniqueID);
   }
@@ -115,7 +116,7 @@ public class TestCollectionBuilder {
   @Test
   public void hiveShouldHaveUniqueID2655() {
     int uniqueID = 0;
-    Boardgame game = games.get(20);
+    BoardGame game = games.get(20);
     uniqueID = game.getID();
     assertEquals(2655, uniqueID);
   }
@@ -123,7 +124,7 @@ public class TestCollectionBuilder {
   @Test
   public void agricolaShouldHaveMinPlayers1() {
     int minPlayers = 0;
-    Boardgame game = games.get(0);
+    BoardGame game = games.get(0);
     minPlayers = game.getMinPlayers();
     assertEquals(1, minPlayers);
   }
@@ -131,7 +132,7 @@ public class TestCollectionBuilder {
   @Test
   public void hiveShouldHaveMinPlayers2() {
     int minPlayers = 0;
-    Boardgame game = games.get(20);
+    BoardGame game = games.get(20);
     minPlayers = game.getMinPlayers();
     assertEquals(2, minPlayers);
   }
@@ -139,7 +140,7 @@ public class TestCollectionBuilder {
   @Test
   public void hiveShouldHaveMaxPlayers2() {
     int maxPlayers = 0;
-    Boardgame game = games.get(20);
+    BoardGame game = games.get(20);
     maxPlayers = game.getMaxPlayers();
     assertEquals(2, maxPlayers);
   }
@@ -147,7 +148,7 @@ public class TestCollectionBuilder {
   @Test
   public void agricolaShouldHaveMaxPlayers5() {
     int maxPlayers = 0;
-    Boardgame game = games.get(0);
+    BoardGame game = games.get(0);
     maxPlayers = game.getMaxPlayers();
     assertEquals(5, maxPlayers);
   }
@@ -155,7 +156,7 @@ public class TestCollectionBuilder {
   @Test
   public void agricolaShouldHaveMinPlaytime30Min() {
     int minPlaytime = 0;
-    Boardgame game = games.get(0);
+    BoardGame game = games.get(0);
     minPlaytime = game.getMinPlaytime();
     assertEquals(30, minPlaytime);
   }
@@ -163,7 +164,7 @@ public class TestCollectionBuilder {
   @Test
   public void agricolaShouldHaveMaxPlaytime150Min() {
     int maxPlaytime;
-    Boardgame game = games.get(0);
+    BoardGame game = games.get(0);
     maxPlaytime = game.getMaxPlaytime();
     assertEquals(150, maxPlaytime);
   }
@@ -171,7 +172,7 @@ public class TestCollectionBuilder {
   @Test
   public void agricolaShouldHavePersonalRating8() {
     String personalRating;
-    Boardgame game = games.get(0);
+    BoardGame game = games.get(0);
     personalRating = game.getPersonalRating();
     int rating = Integer.valueOf(personalRating);
     assertEquals(8, rating);
@@ -180,7 +181,7 @@ public class TestCollectionBuilder {
   @Test
   public void hiveShouldHavePersonalRating10() {
     String personalRating;
-    Boardgame game = games.get(20);
+    BoardGame game = games.get(20);
     personalRating = game.getPersonalRating();
     int rating = Integer.valueOf(personalRating);
     assertEquals(10, rating);
@@ -189,7 +190,7 @@ public class TestCollectionBuilder {
   @Test
   public void agricolaShouldHaveNumPlays0() {
     int numPlays;
-    Boardgame game = games.get(0);
+    BoardGame game = games.get(0);
     numPlays = game.getNumberOfPlays();
     assertEquals(0, numPlays);
   }
@@ -197,7 +198,7 @@ public class TestCollectionBuilder {
   @Test
   public void hiveShouldHaveNumPlays1() {
     int numPlays;
-    Boardgame game = games.get(20);
+    BoardGame game = games.get(20);
     numPlays = game.getNumberOfPlays();
     assertEquals(1, numPlays);
   }
@@ -205,7 +206,7 @@ public class TestCollectionBuilder {
   @Test
   public void hiveShouldHaveComplexityBetween2And3() {
     double complexity;
-    Boardgame game = games.get(20);
+    BoardGame game = games.get(20);
     complexity = game.getComplexity();
     assertTrue(complexity > 2.0 && complexity < 3.0);
   }
@@ -213,8 +214,75 @@ public class TestCollectionBuilder {
   @Test
   public void agricolaShouldHaveComplexityBetween3And4() {
     double complexity;
-    Boardgame game = games.get(0);
+    BoardGame game = games.get(0);
     complexity = game.getComplexity();
     assertTrue(complexity > 3.0 && complexity < 4.0);
+  }
+
+  @Test
+  public void hivePlayShouldBeOnDate_2016_09_14() {
+    BoardGame game = games.get(20);
+    ArrayList<Play> plays = game.getPlays();
+    boolean correctDateFound = false;
+
+    for (Play play : plays) {
+      String date = play.getDate();
+      if (date.equals("2016-09-14")) {
+        correctDateFound = true;
+      }
+    }
+    assertTrue(correctDateFound);
+  }
+
+  @Test
+  public void dixitShouldHavePlayOnDate_2016_09_09() {
+    BoardGame game = games.get(13);
+    ArrayList<Play> plays = game.getPlays();
+    boolean correctDateFound = false;
+
+    for (Play play : plays) {
+      String date = play.getDate();
+      if (date.equals("2016-09-09")) {
+        correctDateFound = true;
+      }
+    }
+    assertTrue(correctDateFound);
+  }
+
+  @Test
+  public void dixitShouldHave2PlaysOnDate_2016_09_09() {
+    BoardGame game = games.get(13);
+    ArrayList<Play> plays = game.getPlays();
+    boolean correctNoOfPlaysFound = false;
+
+    for (Play play : plays) {
+      String date = play.getDate();
+      if (date.equals("2016-09-09")) {
+        if (play.noOfPlays() == 2) {
+          correctNoOfPlaysFound = true;
+        }
+      }
+    }
+    assertTrue(correctNoOfPlaysFound);
+  }
+
+  @Test
+  public void dixitShouldHavePlayerNameMartinOnDate_2016_09_09() {
+    BoardGame game = games.get(13);
+    ArrayList<Play> plays = game.getPlays();
+    boolean correctNameFound = false;
+
+    for (Play play : plays) {
+      String date = play.getDate();
+      if (date.equals("2016-09-09")) {
+        String[] players = play.getPlayers();
+        for (String player : players) {
+          if (player.equals("Martin")) {
+            correctNameFound = true;
+          }
+        }
+      }
+    }
+    assertTrue(correctNameFound);
   }
 }

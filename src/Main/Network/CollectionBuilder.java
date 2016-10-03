@@ -1,12 +1,13 @@
 package Main.Network;
 
 import Main.Containers.BoardGameCollection;
-import Main.Containers.Boardgame;
+import Main.Containers.BoardGame;
+import Main.Containers.Play;
 import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -15,47 +16,50 @@ import java.util.HashMap;
  */
 public class CollectionBuilder implements ICollectionBuilder {
   private IConnectionHandler connectionHandler;
+  private String username;
+
   public CollectionBuilder(IConnectionHandler connectionHandler) {
     this.connectionHandler = connectionHandler;
   }
 
   /**
    * For xml:
-   *    nodeList.item(i).getChildNodes().item(1).getTextContent();
+   * nodeList.item(i).getChildNodes().item(1).getTextContent();
    * gives us the game name,
-   *    nodeList.item(i).getChildNodes().item(9).getNodeName()
+   * nodeList.item(i).getChildNodes().item(9).getNodeName()
    * gives us the stats section,
-   *    nodeList.item(i).getChildNodes().item(11).getAttributes().getNamedItem("own").getNodeValue()
+   * nodeList.item(i).getChildNodes().item(11).getAttributes().getNamedItem("own").getNodeValue()
    * gives us the "own" attribute (1 if owned) and
-   *    nodeList.item(i).getChildNodes().item(13).getNodeName()
+   * nodeList.item(i).getChildNodes().item(13).getNodeName()
    * gives us numPlays.
-   *
    *
    * @param username for the bgg user
    * @return a boardGameCollection containing a list of games including features for the games
    */
   @Override
   public BoardGameCollection getCollection(String username) {
+    this.username = username;
 
     Document document = connectionHandler.getCollection(username);
 
-    if(document == null) {
+    if (document == null) {
       // Invalid user
       return null;
     }
-    
-    ArrayList<Boardgame> games = buildCollection(document);
+
+    ArrayList<BoardGame> games = buildCollection(document);
     BoardGameCollection collection = new BoardGameCollection(games);
     return collection;
   }
 
-  private ArrayList<Boardgame> buildCollection(Document document) {
+  private ArrayList<BoardGame> buildCollection(Document document) {
     NodeList nodeList = document.getElementsByTagName("item");
-    ArrayList<Boardgame> games = new ArrayList<>();
+    ArrayList<BoardGame> games = new ArrayList<>();
     int[] uniqueIDArray = new int[nodeList.getLength()];
-    HashMap<Integer, Boardgame> idToGameMap = new HashMap<>();
+    HashMap<Integer, BoardGame> idToGameMap = new HashMap<>();
 
-    for(int i = 0; i<nodeList.getLength(); i++) {
+    // Creating games with basic information
+    for (int i = 0; i < nodeList.getLength(); i++) {
 
       // Name
       String name = nodeList.item(i).getChildNodes().item(1).getTextContent();
@@ -94,7 +98,7 @@ public class CollectionBuilder implements ICollectionBuilder {
       String numPlaysString = nodeList.item(i).getChildNodes().item(13).getTextContent();
       numPlays = Integer.valueOf(numPlaysString);
 
-      Boardgame game = new Boardgame(name, uniqueID, minPlayers, maxPlayers, minPlaytime, maxPlaytime, personalRatingString, numPlays);
+      BoardGame game = new BoardGame(name, uniqueID, minPlayers, maxPlayers, minPlaytime, maxPlaytime, personalRatingString, numPlays);
       games.add(game);
       game.addComplexity(2.5);
 
@@ -104,22 +108,61 @@ public class CollectionBuilder implements ICollectionBuilder {
     // Complexity
     Document gamesDoc = connectionHandler.getGames(uniqueIDArray);
     NodeList gamesList = gamesDoc.getElementsByTagName("item");
-    for(int i = 0; i<gamesList.getLength(); i++) {
+    for (int i = 0; i < gamesList.getLength(); i++) {
       Node item = gamesList.item(i);
       int uniqueID = Integer.valueOf(item.getAttributes().getNamedItem("id").getNodeValue());
 
       // Finding the averageWeight node and its corresponding value
       NodeList subNodes = item.getChildNodes();
       int lengthOfSubNodes = subNodes.getLength();
-      Node statisticsNode = subNodes.item(lengthOfSubNodes-2);
+      Node statisticsNode = subNodes.item(lengthOfSubNodes - 2);
       Node ratingsNode = statisticsNode.getChildNodes().item(1);
       Node averageWeightNode = ratingsNode.getChildNodes().item(25);
       double complexity = Double.valueOf(averageWeightNode.getAttributes().item(0).getNodeValue());
 
       // Add complexity to the game
-      Boardgame game = idToGameMap.get(uniqueID);
+      BoardGame game = idToGameMap.get(uniqueID);
       game.addComplexity(complexity);
     }
+
+    // Adding specific plays
+    Document playsDoc = connectionHandler.getPlays(username);
+    NodeList playsList = playsDoc.getElementsByTagName("play");
+    for (int i = 0; i < playsList.getLength(); i++) {
+      Node playNode = playsList.item(i);
+      NodeList playChildren = playNode.getChildNodes();
+      Node gameInfo = playChildren.item(1);
+
+      // Get board game
+      int uniqueID = Integer.valueOf(gameInfo.getAttributes().getNamedItem("objectid").getNodeValue());
+      BoardGame game = idToGameMap.get(uniqueID);
+
+      // Get date and quantity
+      NamedNodeMap playAttributes = playNode.getAttributes();
+      String date = playAttributes.getNamedItem("date").getNodeValue();
+      int quantity = Integer.valueOf(playAttributes.getNamedItem("quantity").getNodeValue());
+
+      // Get players
+      Node playerInfo = playChildren.item(3);
+      NodeList playersNode = playerInfo.getChildNodes();
+      int j = 1;
+      String[] playerNames = new String[(playersNode.getLength()-1)/2];
+      int arrayPos = 0;
+      while (j < playersNode.getLength()) {
+        Node playerJ = playersNode.item(j);
+        String playerJName = playerJ.getAttributes().getNamedItem("name").getNodeValue();
+        playerNames[arrayPos] = playerJName;
+        arrayPos++;
+        j += 2;
+      }
+
+      // Adding the plays
+      Play play = new Play(date, playerNames, quantity);
+      game.addPlay(play);
+
+
+    }
+
     return games;
   }
 }
