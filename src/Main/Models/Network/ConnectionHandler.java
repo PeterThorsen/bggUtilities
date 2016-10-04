@@ -1,7 +1,6 @@
-package Main.Network;
+package Main.Models.Network;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -21,7 +20,7 @@ public class ConnectionHandler implements IConnectionHandler {
    */
   @Override
   public Document getCollection(String username) {
-    String url = buildURL("collection", username);
+    String url = buildCollectionURL(username);
     Document xmlResponseInDocument = sendRequest(url);
 
     if (xmlResponseInDocument.getElementsByTagName("error").getLength() > 0) {
@@ -43,7 +42,7 @@ public class ConnectionHandler implements IConnectionHandler {
 
   @Override
   public Document getPlays(String username) {
-    String url = buildURL("plays", username);
+    String url = buildPlaysURL(username);
     Document xmlResponseInDocument = sendRequest(url);
     if(xmlResponseInDocument.getElementsByTagName("play").getLength() == 0) {
       // No plays found for username. Either because of wrong username or no plays logged.
@@ -55,14 +54,22 @@ public class ConnectionHandler implements IConnectionHandler {
   /**
    * Used to build the bgg url to avoid errors. Works for collection and plays.
    *
-   * @param category describes the category and can be:
-   *                 collection
-   *                 plays
    * @param username is the username for which the collection or plays should be fetched.
    * @return built url
    */
-  private String buildURL(String category, String username) {
-    String url = String.format("https://www.boardgamegeek.com/xmlapi2/%s?username=%s", category, username);
+  private String buildPlaysURL(String username) {
+    String url = String.format("https://www.boardgamegeek.com/xmlapi2/plays?username=%s", username);
+    return url;
+  }
+
+  /**
+   * Used to build the bgg url to avoid errors. Works for collection and plays.
+   *
+   * @param username is the username for which the collection or plays should be fetched.
+   * @return built url
+   */
+  private String buildCollectionURL(String username) {
+    String url = String.format("https://www.boardgamegeek.com/xmlapi2/collection?stats=1&username=%s", username);
     return url;
   }
 

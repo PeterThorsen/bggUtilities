@@ -1,4 +1,4 @@
-package Main.Network;
+package Main.Models.Storage;
 
 import Main.Containers.BoardGameCollection;
 

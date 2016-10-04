@@ -1,8 +1,9 @@
-package Main.Network;
+package Main.Models.Storage;
 
 import Main.Containers.BoardGameCollection;
 import Main.Containers.BoardGame;
 import Main.Containers.Play;
+import Main.Models.Network.IConnectionHandler;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;

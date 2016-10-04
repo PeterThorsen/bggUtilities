@@ -3,10 +3,8 @@ package Main.Controllers;
 import Main.Containers.BoardGame;
 import Main.Containers.BoardGameCollection;
 import Main.Containers.Play;
-import Main.Network.ICollectionBuilder;
-import Main.Network.IConnectionHandler;
+import Main.Models.Storage.ICollectionBuilder;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**

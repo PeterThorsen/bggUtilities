@@ -4,10 +4,8 @@ import Main.Containers.BoardGame;
 import Main.Containers.BoardGameCollection;
 import Main.Containers.Play;
 import Main.Controllers.DataDisplayController;
-import Main.Network.ICollectionBuilder;
-import Main.Network.IConnectionHandler;
-import Test.StubsAndMocks.CollectionBuilderStub;
-import Test.StubsAndMocks.ConnectionHandlerStub;
+import Main.Models.Storage.ICollectionBuilder;
+import Test.Models.StubsAndMocks.CollectionBuilderStub;
 import org.junit.Before;
 import org.junit.Test;
 

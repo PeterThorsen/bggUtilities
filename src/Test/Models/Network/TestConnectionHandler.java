@@ -1,11 +1,8 @@
-package Test.Network;
+package Test.Models.Network;
 
-import Main.Containers.BoardGameCollection;
-import Main.Network.ConnectionHandler;
-import com.sun.source.tree.AssertTree;
+import Main.Models.Network.ConnectionHandler;
 import org.junit.*;
 import org.w3c.dom.Document;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import static junit.framework.TestCase.*;
@@ -13,7 +10,7 @@ import static junit.framework.TestCase.*;
 /**
  * Created by Peter on 27/09/16.
  */
-@Ignore // Remove for verifying, but avoid spamming bgg
+//@Ignore // Remove for verifying, but avoid spamming bgg
 public class TestConnectionHandler {
   private String user = "cwaq";
   private ConnectionHandler connectionHandler;

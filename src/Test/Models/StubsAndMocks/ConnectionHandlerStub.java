@@ -1,9 +1,6 @@
-package Test.StubsAndMocks;
+package Test.Models.StubsAndMocks;
 
-import Main.Network.ConnectionHandler;
-import Main.Network.IConnectionHandler;
 import org.w3c.dom.Document;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -12,7 +9,7 @@ import java.io.File;
 /**
  * Created by Peter on 28/09/16.
  */
-public class ConnectionHandlerStub implements Main.Network.IConnectionHandler {
+public class ConnectionHandlerStub implements Main.Models.Network.IConnectionHandler {
 
   @Override
   public Document getCollection(String username) {

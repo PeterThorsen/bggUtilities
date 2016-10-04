@@ -1,13 +1,12 @@
-package Test.Network;
+package Test.Models.Storage;
 
 import Main.Containers.BoardGameCollection;
 import Main.Containers.BoardGame;
 import Main.Containers.Play;
-import Main.Network.CollectionBuilder;
-import Main.Network.ConnectionHandler;
-import Main.Network.ICollectionBuilder;
-import Main.Network.IConnectionHandler;
-import Test.StubsAndMocks.ConnectionHandlerStub;
+import Main.Models.Storage.CollectionBuilder;
+import Main.Models.Storage.ICollectionBuilder;
+import Main.Models.Network.IConnectionHandler;
+import Test.Models.StubsAndMocks.ConnectionHandlerStub;
 import org.junit.*;
 
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ import static junit.framework.TestCase.*;
 /**
  * Created by Peter on 28/09/16.
  */
-public class TestCollectionBuilder {
+public class TestCollectionBuilder_WithStub {
   IConnectionHandler connectionHandler;
   ICollectionBuilder collectionBuilder;
   BoardGameCollection collection;
@@ -29,26 +28,6 @@ public class TestCollectionBuilder {
     collectionBuilder = new CollectionBuilder(connectionHandler);
     collection = collectionBuilder.getCollection("cwaq");
     games = collection.getGames();
-  }
-
-  @Ignore // To avoid spamming bgg. Can be removed for tests.
-  @Test
-  public void shouldReturnBoardGameCollectionOnValidUsername() {
-    connectionHandler = new ConnectionHandler();
-    collectionBuilder = new CollectionBuilder(connectionHandler);
-    String user = "cwaq";
-    BoardGameCollection collection = collectionBuilder.getCollection(user);
-    assertNotNull(collection);
-  }
-
-  @Ignore // To avoid spamming bgg. Can be removed for tests.
-  @Test
-  public void shouldReturnNullOnInvalidUsername() {
-    String invalidUser = "notanusername";
-    connectionHandler = new ConnectionHandler();
-    collectionBuilder = new CollectionBuilder(connectionHandler);
-    BoardGameCollection collection = collectionBuilder.getCollection(invalidUser);
-    assertNull(collection);
   }
 
   @Test
