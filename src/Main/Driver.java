@@ -1,5 +1,11 @@
 package Main;
 
+import Main.Views.StartView;
+import Main.Views.WelcomeView;
+
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * Created by Peter on 12/09/16.
  */
@@ -12,9 +18,17 @@ public class Driver {
   }
 
   public Driver() {
-    url = "https://www.boardgamegeek.com/xmlapi/collection/cwaq";
-    //https://www.boardgamegeek.com/xmlapi2/plays?username=cwaq
-    //https://www.boardgamegeek.com/xmlapi2/thing?stats=1&id=2655a
+    JFrame frame = new JFrame("bggUtilities");
+    frame.setContentPane(new StartView(this).panelMain);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+    frame.pack();
+    frame.setVisible(true);
+    frame.setLocationRelativeTo(null);
+
+  }
+
+  public void hi() {
+    System.out.println("hi");
   }
 }
