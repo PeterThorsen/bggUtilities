@@ -12,32 +12,30 @@ import java.util.ArrayList;
  * Will be used for connection to the model (ICollectionBuilder) and the view.
  */
 public class DataDisplayController {
-  private ArrayList<BoardGame> games;
-
+  BoardGameCollection collection;
   public DataDisplayController(ICollectionBuilder collectionBuilder, String username) {
-    BoardGameCollection collection = collectionBuilder.getCollection(username);
-    games = collection.getGames();
+    collection = collectionBuilder.getCollection(username);
   }
 
   public String[] getGameNames() {
-    String[] names = new String[games.size()];
+    String[] names = new String[collection.getGames().size()];
 
-    for(int i = 0; i<games.size(); i++) {
-      names[i] = games.get(i).getName();
+    for(int i = 0; i<collection.getGames().size(); i++) {
+      names[i] = collection.getGames().get(i).getName();
     }
     return names;
   }
 
   public int getNumberOfGames() {
-    return games.size();
+    return collection.getGames().size();
   }
 
   public ArrayList<BoardGame> getAllGames() {
-    return games;
+    return collection.getGames();
   }
 
   public ArrayList<Play> getPlays(int uniqueID) {
-    for(BoardGame game : games) {
+    for(BoardGame game : collection.getGames()) {
       if(game.getID() == uniqueID) {
         return game.getPlays();
       }
@@ -46,11 +44,15 @@ public class DataDisplayController {
   }
 
   public ArrayList<Play> getPlays(String name) {
-    for(BoardGame game : games) {
+    for(BoardGame game : collection.getGames()) {
       if(game.getName().equals(name)) {
         return game.getPlays();
       }
     }
     return new ArrayList<Play>();
+  }
+
+  public boolean verifyUser() {
+    return true;
   }
 }

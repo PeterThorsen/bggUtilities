@@ -22,7 +22,8 @@ public class StartView {
     connectButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        caller.hi();
+        String givenUsername = usernameField.getText();
+        caller.login(givenUsername);
       }
     });
   }
