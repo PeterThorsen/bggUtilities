@@ -1,7 +1,7 @@
 package Main.Models.Storage;
 
-import Main.Containers.BoardGameCollection;
 import Main.Containers.BoardGame;
+import Main.Containers.BoardGameCollection;
 import Main.Containers.Play;
 import Main.Models.Network.IConnectionHandler;
 import org.w3c.dom.Document;
@@ -18,6 +18,7 @@ import java.util.HashMap;
 public class CollectionBuilder implements ICollectionBuilder {
   private IConnectionHandler connectionHandler;
   private String username;
+  private Document collectionDocument;
 
   public CollectionBuilder(IConnectionHandler connectionHandler) {
     this.connectionHandler = connectionHandler;
@@ -41,16 +42,27 @@ public class CollectionBuilder implements ICollectionBuilder {
   public BoardGameCollection getCollection(String username) {
     this.username = username;
 
-    Document document = connectionHandler.getCollection(username);
+    if(collectionDocument == null) {
+      collectionDocument = connectionHandler.getCollection(username);
 
-    if (document == null) {
-      // Invalid user
-      return null;
+      if (collectionDocument == null) {
+        // Invalid user
+        return null;
+      }
     }
 
-    ArrayList<BoardGame> games = buildCollection(document);
+    ArrayList<BoardGame> games = buildCollection(collectionDocument);
     BoardGameCollection collection = new BoardGameCollection(games);
     return collection;
+  }
+
+  @Override
+  public boolean verifyUser(String username) {
+    collectionDocument = connectionHandler.getCollection(username);
+    if(collectionDocument == null) {
+      return false;
+    }
+    return true;
   }
 
   private ArrayList<BoardGame> buildCollection(Document document) {

@@ -1,13 +1,14 @@
 package Test.Models.Storage;
 
-import Main.Containers.BoardGameCollection;
 import Main.Containers.BoardGame;
+import Main.Containers.BoardGameCollection;
 import Main.Containers.Play;
+import Main.Models.Network.IConnectionHandler;
 import Main.Models.Storage.CollectionBuilder;
 import Main.Models.Storage.ICollectionBuilder;
-import Main.Models.Network.IConnectionHandler;
 import Test.Models.StubsAndMocks.ConnectionHandlerStub;
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.ArrayList;
 

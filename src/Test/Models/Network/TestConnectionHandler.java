@@ -1,7 +1,8 @@
 package Test.Models.Network;
 
 import Main.Models.Network.ConnectionHandler;
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 

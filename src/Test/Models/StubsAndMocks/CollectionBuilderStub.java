@@ -33,4 +33,9 @@ public class CollectionBuilderStub implements ICollectionBuilder {
     BoardGameCollection collection = new BoardGameCollection(games);
     return collection;
   }
+
+  @Override
+  public boolean verifyUser(String username) {
+    return false;
+  }
 }

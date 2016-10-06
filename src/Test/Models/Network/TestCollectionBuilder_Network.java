@@ -1,13 +1,15 @@
 package Test.Models.Network;
 
 import Main.Containers.BoardGameCollection;
-import Main.Models.Storage.CollectionBuilder;
 import Main.Models.Network.ConnectionHandler;
-import Main.Models.Storage.ICollectionBuilder;
 import Main.Models.Network.IConnectionHandler;
-import org.junit.*;
+import Main.Models.Storage.CollectionBuilder;
+import Main.Models.Storage.ICollectionBuilder;
+import org.junit.Before;
+import org.junit.Test;
 
-import static junit.framework.TestCase.*;
+import static junit.framework.TestCase.assertNotNull;
+import static junit.framework.TestCase.assertNull;
 
 /**
  * Created by Peter on 28/09/16.

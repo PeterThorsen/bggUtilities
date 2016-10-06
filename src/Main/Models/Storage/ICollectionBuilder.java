@@ -7,4 +7,6 @@ import Main.Containers.BoardGameCollection;
  */
 public interface ICollectionBuilder {
   BoardGameCollection getCollection(String username);
+
+  boolean verifyUser(String username);
 }

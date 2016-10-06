@@ -52,7 +52,4 @@ public class DataDisplayController {
     return new ArrayList<Play>();
   }
 
-  public boolean verifyUser() {
-    return true;
-  }
 }
