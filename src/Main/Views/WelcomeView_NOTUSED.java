@@ -6,12 +6,12 @@ import java.awt.*;
 /**
  * Created by Peter on 04/10/16.
  */
-public class WelcomeView extends JFrame {
+public class WelcomeView_NOTUSED extends JFrame {
   private JButton connectButton  = new JButton("Connect!");
   JLabel label = new JLabel("Some info");
   JPanel panel = new JPanel();
 
-  public WelcomeView() {
+  public WelcomeView_NOTUSED() {
     setTitle("bggUtilities");
 
     pack();

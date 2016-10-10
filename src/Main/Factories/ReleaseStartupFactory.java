@@ -7,7 +7,7 @@ import Main.Models.Storage.ICollectionBuilder;
 /**
  * Created by Peter on 05/10/2016.
  */
-public class ReleaseFactory implements IFactory {
+public class ReleaseStartupFactory implements IStartupFactory {
 
   @Override
   public ICollectionBuilder getCollectionBuilder() {

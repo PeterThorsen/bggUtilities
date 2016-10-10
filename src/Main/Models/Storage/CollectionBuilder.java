@@ -42,7 +42,7 @@ public class CollectionBuilder implements ICollectionBuilder {
   public BoardGameCollection getCollection(String username) {
     this.username = username;
 
-    if(collectionDocument == null) {
+    if (collectionDocument == null) {
       collectionDocument = connectionHandler.getCollection(username);
 
       if (collectionDocument == null) {
@@ -59,7 +59,7 @@ public class CollectionBuilder implements ICollectionBuilder {
   @Override
   public boolean verifyUser(String username) {
     collectionDocument = connectionHandler.getCollection(username);
-    if(collectionDocument == null) {
+    if (collectionDocument == null) {
       return false;
     }
     return true;
@@ -118,6 +118,10 @@ public class CollectionBuilder implements ICollectionBuilder {
       idToGameMap.put(uniqueID, game);
     }
 
+    if(uniqueIDArray.length == 0) {
+      return games;
+    }
+
     // Complexity
     Document gamesDoc = connectionHandler.getGames(uniqueIDArray);
     NodeList gamesList = gamesDoc.getElementsByTagName("item");
@@ -137,6 +141,7 @@ public class CollectionBuilder implements ICollectionBuilder {
       BoardGame game = idToGameMap.get(uniqueID);
       game.addComplexity(complexity);
     }
+
 
     // Adding specific plays
     Document playsDoc = connectionHandler.getPlays(username);
@@ -159,7 +164,7 @@ public class CollectionBuilder implements ICollectionBuilder {
       Node playerInfo = playChildren.item(3);
       NodeList playersNode = playerInfo.getChildNodes();
       int j = 1;
-      String[] playerNames = new String[(playersNode.getLength()-1)/2];
+      String[] playerNames = new String[(playersNode.getLength() - 1) / 2];
       int arrayPos = 0;
       while (j < playersNode.getLength()) {
         Node playerJ = playersNode.item(j);

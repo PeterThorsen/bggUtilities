@@ -1,13 +1,9 @@
 package Main;
 
-import Main.Controllers.DataDisplayController;
 import Main.Controllers.FacadeController;
 import Main.Controllers.LoginController;
-import Main.Factories.ReleaseFactory;
-import Main.Models.Network.ConnectionHandler;
-import Main.Models.Network.IConnectionHandler;
-import Main.Models.Storage.CollectionBuilder;
-import Main.Models.Storage.ICollectionBuilder;
+import Main.Factories.ReleaseStartupFactory;
+import Main.Views.MainView;
 import Main.Views.StartView;
 
 import javax.swing.*;
@@ -17,16 +13,17 @@ import javax.swing.*;
  */
 public class Driver {
 
-  LoginController loginController;
+  private LoginController loginController;
   private FacadeController mainController;
+  private JFrame frame;
 
   public static void main(String[] args) {
     new Driver();
   }
 
   public Driver() {
-    loginController = new LoginController(new ReleaseFactory());
-    JFrame frame = new JFrame("bggUtilities");
+    loginController = new LoginController(new ReleaseStartupFactory());
+    frame = new JFrame("bggUtilities");
     frame.setContentPane(new StartView(this).panelMain);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -39,11 +36,17 @@ public class Driver {
     mainController = loginController.verifyUser(givenUsername);
     if(mainController == null) {
       // Error message
-      System.out.println("A");
       return;
     }
-    System.out.println("B");
+    startMainView();
 
     // Start new view with mainController sent as parameter in constructor
+  }
+
+  private void startMainView() {
+    MainView mainView = new MainView();
+
+    frame.setContentPane(new MainView().panel1);
+    frame.pack();
   }
 }

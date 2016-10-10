@@ -1,8 +1,8 @@
 package Test.Controllers.Network;
 
 import Main.Controllers.LoginController;
-import Main.Factories.IFactory;
-import Main.Factories.ReleaseFactory;
+import Main.Factories.IStartupFactory;
+import Main.Factories.ReleaseStartupFactory;
 import Main.Models.Storage.ICollectionBuilder;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +20,7 @@ public class TestLoginController {
 
   @Before
   public void setUp() {
-    IFactory factory = new ReleaseFactory();
+    IStartupFactory factory = new ReleaseStartupFactory();
     controller = new LoginController(factory);
   }
 

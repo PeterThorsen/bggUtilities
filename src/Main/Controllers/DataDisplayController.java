@@ -11,12 +11,19 @@ import java.util.ArrayList;
  * Created by Peter on 03/10/16.
  * Will be used for connection to the model (ICollectionBuilder) and the view.
  */
-public class DataDisplayController {
+public class DataDisplayController implements IDataDisplayController {
   BoardGameCollection collection;
+
   public DataDisplayController(ICollectionBuilder collectionBuilder, String username) {
     collection = collectionBuilder.getCollection(username);
   }
 
+  @Override
+  public ArrayList<BoardGame> getAllGames() {
+    return collection.getGames();
+  }
+
+  @Override
   public String[] getGameNames() {
     String[] names = new String[collection.getGames().size()];
 
@@ -28,10 +35,6 @@ public class DataDisplayController {
 
   public int getNumberOfGames() {
     return collection.getGames().size();
-  }
-
-  public ArrayList<BoardGame> getAllGames() {
-    return collection.getGames();
   }
 
   public ArrayList<Play> getPlays(int uniqueID) {

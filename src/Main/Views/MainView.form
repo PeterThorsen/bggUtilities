@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Main.Views.MainView">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="59745" class="javax.swing.JTable" binding="table1" default-binding="true">
+        <constraints/>
+        <properties/>
+      </component>
+    </children>
+  </grid>
+</form>
