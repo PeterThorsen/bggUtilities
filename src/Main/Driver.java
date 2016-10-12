@@ -16,6 +16,7 @@ public class Driver {
   private LoginController loginController;
   private FacadeController mainController;
   private JFrame frame;
+  private JPanel panelMain;
 
   public static void main(String[] args) {
     new Driver();
@@ -24,29 +25,40 @@ public class Driver {
   public Driver() {
     loginController = new LoginController(new ReleaseStartupFactory());
     frame = new JFrame("bggUtilities");
-    frame.setContentPane(new StartView(this).panelMain);
+    StartView startView = new StartView(this);
+    panelMain = startView.panelMain;
+    frame.setContentPane(panelMain);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     frame.pack();
     frame.setVisible(true);
     frame.setLocationRelativeTo(null);
+    frame.setResizable(false);
 
   }
-  public void login(String givenUsername) {
-    mainController = loginController.verifyUser(givenUsername);
-    if(mainController == null) {
-      // Error message
-      return;
-    }
-    startMainView();
+  public void tryLogin(String givenUsername) {
+    Thread t = new Thread(new Runnable() {
+      @Override
+      public void run() {
+        // panelMain button!
+        mainController = loginController.verifyUser(givenUsername);
+        if(mainController == null) {
+          // Error message
+          return;
+        }
+        startMainView();
+      }
+    });
 
-    // Start new view with mainController sent as parameter in constructor
+    t.start();
   }
 
   private void startMainView() {
     MainView mainView = new MainView();
-
-    frame.setContentPane(new MainView().panel1);
+    frame.setContentPane(mainView.panel1);
     frame.pack();
+    frame.setLocationRelativeTo(null);
+    mainView.textArea1.setText(mainController.getAllGames().get(0).getName());
   }
+
 }

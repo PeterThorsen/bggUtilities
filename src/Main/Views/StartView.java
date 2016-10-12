@@ -22,7 +22,7 @@ public class StartView {
       @Override
       public void actionPerformed(ActionEvent e) {
         String givenUsername = usernameField.getText();
-        caller.login(givenUsername);
+        caller.tryLogin(givenUsername);
       }
     });
   }

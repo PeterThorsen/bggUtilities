@@ -11,5 +11,4 @@ public interface IDataDisplayController {
 
   ArrayList<BoardGame> getAllGames();
 
-  String[] getGameNames();
 }

@@ -23,7 +23,6 @@ public class DataDisplayController implements IDataDisplayController {
     return collection.getGames();
   }
 
-  @Override
   public String[] getGameNames() {
     String[] names = new String[collection.getGames().size()];
 
