@@ -27,4 +27,40 @@ public class TestFacadeController {
   public void shouldReturnListOfGames() {
     assertTrue(facadeController.getAllGames().size() > 0);
   }
+
+  @Test
+  public void shouldReturnSizeOfGamesList() {
+    int size = facadeController.getNumberOfGames();
+    assertEquals(2, size);
+  }
+
+
+  @Test
+  public void shouldReturnAllGameNames() {
+    String[] gameNames = facadeController.getGameNames();
+    assertEquals("Agricola", gameNames[0]);
+    assertEquals("Hive", gameNames[1]);
+  }
+
+  @Test
+  public void shouldReturnAllMinimumLengths() {
+    int[] minLengths = facadeController.getMinLengths();
+    assertEquals(30, minLengths[0]);
+    assertEquals(20, minLengths[1]);
+  }
+
+  @Test
+  public void shouldReturnAllMaximumLengths() {
+    int[] minLengths = facadeController.getMaxLengths();
+    assertEquals(150, minLengths[0]);
+    assertEquals(20, minLengths[1]);
+  }
+
+  @Test
+  public void shouldReturnAllComplexities() {
+    double[] minLengths = facadeController.getComplexities();
+    assertEquals(2.3453, minLengths[0]);
+    assertEquals(3.6298, minLengths[1]);
+  }
+
 }

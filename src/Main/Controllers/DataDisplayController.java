@@ -32,6 +32,33 @@ public class DataDisplayController implements IDataDisplayController {
     return names;
   }
 
+  @Override
+  public double[] getComplexities() {
+    double[] complexities = new double[collection.getGames().size()];
+    for (int i = 0; i < complexities.length; i++) {
+      complexities[i] = collection.getGames().get(i).getComplexity();
+    }
+    return complexities;
+  }
+
+  @Override
+  public int[] getMaxLengths() {
+    int[] maxLengths = new int[collection.getGames().size()];
+    for (int i = 0; i < maxLengths.length; i++) {
+      maxLengths[i] = collection.getGames().get(i).getMaxPlaytime();
+    }
+    return maxLengths;
+  }
+
+  @Override
+  public int[] getMinLengths() {
+    int[] minLengths = new int[collection.getGames().size()];
+    for (int i = 0; i < minLengths.length; i++) {
+      minLengths[i] = collection.getGames().get(i).getMinPlaytime();
+    }
+    return minLengths;
+  }
+
   public int getNumberOfGames() {
     return collection.getGames().size();
   }

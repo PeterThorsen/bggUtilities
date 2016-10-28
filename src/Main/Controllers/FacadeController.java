@@ -21,4 +21,23 @@ public class FacadeController {
     return dataDisplayController.getAllGames();
   }
 
+  public int getNumberOfGames() {
+    return dataDisplayController.getNumberOfGames();
+  }
+
+  public String[] getGameNames() {
+    return dataDisplayController.getGameNames();
+  }
+
+  public int[] getMinLengths() {
+    return dataDisplayController.getMinLengths();
+  }
+
+  public int[] getMaxLengths() {
+    return dataDisplayController.getMaxLengths();
+  }
+
+  public double[] getComplexities() {
+    return dataDisplayController.getComplexities();
+  }
 }

@@ -11,4 +11,13 @@ public interface IDataDisplayController {
 
   ArrayList<BoardGame> getAllGames();
 
+  int getNumberOfGames();
+
+  String[] getGameNames();
+
+  double[] getComplexities();
+
+  int[] getMaxLengths();
+
+  int[] getMinLengths();
 }

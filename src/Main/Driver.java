@@ -54,11 +54,15 @@ public class Driver {
   }
 
   private void startMainView() {
-    MainView mainView = new MainView();
+    MainView mainView = new MainView(mainController);
     frame.setContentPane(mainView.panel1);
     frame.pack();
     frame.setLocationRelativeTo(null);
-    mainView.textArea1.setText(mainController.getAllGames().get(0).getName());
+
+
+
+
+    //mainView.textArea1.setText(mainController.getAllGames().get(0).getName());
   }
 
 }
