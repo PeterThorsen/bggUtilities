@@ -23,6 +23,7 @@ public class Driver {
   }
 
   public Driver() {
+    // git test
     loginController = new LoginController(new ReleaseStartupFactory());
     frame = new JFrame("bggUtilities");
     StartView startView = new StartView(this);
