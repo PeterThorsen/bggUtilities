@@ -21,33 +21,14 @@ public class MainView {
     facadeController = controller;
     // make the frame half the height and width
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    int height = screenSize.height;
     int width = screenSize.width;
-    //setSize(width/2, height/2);
+    int height = screenSize.height;
+    panel1.setPreferredSize(new Dimension(width/2, height/2));
 
     fillTable();
   }
 
   public void fillTable() {
-    String[] columnNames = {"First Name",
-            "Last Name",
-            "Sport",
-            "# of Years",
-            "Vegetarian"};
-
-    Object[][] data = {
-            {"Kathy", "Smith",
-                    "Snowboarding", new Integer(5), new Boolean(false)},
-            {"John", "Doe",
-                    "Rowing", new Integer(3), new Boolean(true)},
-            {"Sue", "Black",
-                    "Knitting", new Integer(2), new Boolean(false)},
-            {"Jane", "White",
-                    "Speed reading", new Integer(20), new Boolean(true)},
-            {"Joe", "Brown",
-                    "Pool", new Integer(10), new Boolean(false)}
-    };
-
     TableModel dataModel = new
             AbstractTableModel() {
 

@@ -7,6 +7,7 @@ import Main.Views.MainView;
 import Main.Views.StartView;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created by Peter on 12/09/16.
@@ -60,11 +61,7 @@ public class Driver {
     frame.setContentPane(mainView.panel1);
     frame.pack();
     frame.setLocationRelativeTo(null);
-
-
-
-
-    //mainView.textArea1.setText(mainController.getAllGames().get(0).getName());
+    mainView.panel1.setSize(Toolkit.getDefaultToolkit().getScreenSize().width/2, Toolkit.getDefaultToolkit().getScreenSize().height/2);
   }
 
 }
