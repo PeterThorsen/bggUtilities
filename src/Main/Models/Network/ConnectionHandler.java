@@ -10,7 +10,6 @@ import java.net.URL;
  * Created by Peter on 27/09/16.
  */
 public class ConnectionHandler implements IConnectionHandler {
-  private String baseURL = "https://www.boardgamegeek.com/xmlapi/";
 
   /**
    * Used for returning a users boardgame collection for manipulation in other classes.

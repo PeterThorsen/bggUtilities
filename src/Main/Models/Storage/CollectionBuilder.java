@@ -9,6 +9,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -50,7 +51,6 @@ public class CollectionBuilder implements ICollectionBuilder {
         return null;
       }
     }
-
     ArrayList<BoardGame> games = buildCollection(collectionDocument);
     BoardGameCollection collection = new BoardGameCollection(games);
     return collection;
@@ -84,31 +84,61 @@ public class CollectionBuilder implements ICollectionBuilder {
 
       // Minimum players
       int minPlayers;
-      String minPlayersString = nodeList.item(i).getChildNodes().item(9).getAttributes().item(2).getTextContent();
-      minPlayers = Integer.valueOf(minPlayersString);
+      try {
+        String minPlayersString = nodeList.item(i).getChildNodes().item(9).getAttributes().getNamedItem("minplayers").getTextContent();
+        minPlayers = Integer.valueOf(minPlayersString);
+      }
+      catch (NullPointerException e) {
+        minPlayers = 0;
+      }
 
       // Max players
       int maxPlayers;
-      String maxPlayersString = nodeList.item(i).getChildNodes().item(9).getAttributes().item(0).getTextContent();
-      maxPlayers = Integer.valueOf(maxPlayersString);
+      try {
+        String maxPlayersString = nodeList.item(i).getChildNodes().item(9).getAttributes().getNamedItem("maxplayers").getTextContent();
+        maxPlayers = Integer.valueOf(maxPlayersString);
+
+        // If only maxPlayers was filled on bgg by game creator
+        if(minPlayers == 0) {
+          minPlayers = maxPlayers;
+        }
+      }
+      catch (NullPointerException e) {
+        maxPlayers = minPlayers;
+      }
 
       // Min playtime
       int minPlaytime;
-      String minPlaytimeString = nodeList.item(i).getChildNodes().item(9).getAttributes().item(3).getTextContent();
-      minPlaytime = Integer.valueOf(minPlaytimeString);
+      try {
+        String minPlaytimeString = nodeList.item(i).getChildNodes().item(9).getAttributes().getNamedItem("minplaytime").getTextContent();
+        minPlaytime = Integer.valueOf(minPlaytimeString);
+      }
+      catch (NullPointerException e) {
+        minPlaytime = 0;
+      }
 
       // Max playtime
       int maxPlaytime;
-      String maxPlaytimeString = nodeList.item(i).getChildNodes().item(9).getAttributes().item(1).getTextContent();
-      maxPlaytime = Integer.valueOf(maxPlaytimeString);
+      try {
+        String maxPlaytimeString = nodeList.item(i).getChildNodes().item(9).getAttributes().getNamedItem("maxplaytime").getTextContent();
+        maxPlaytime = Integer.valueOf(maxPlaytimeString);
+
+        // If only maxPlaytime was filled on bgg by game creator
+        if(minPlaytime == 0) {
+          minPlaytime = maxPlaytime;
+        }
+      }
+      catch (NullPointerException e) {
+        maxPlaytime = minPlaytime;
+      }
 
       // Personal rating
-      String personalRatingString = nodeList.item(i).getChildNodes().item(9).getChildNodes().item(1).getAttributes().getNamedItem("value").getTextContent();
+      String personalRatingString = nodeList.item(i).getChildNodes().item(9).getChildNodes().item(1).getAttributes().getNamedItem("value").getTextContent(); // // TODO: 29-Oct-16  
       // Returning string, as value might be N/A
 
       // Number of plays
       int numPlays;
-      String numPlaysString = nodeList.item(i).getChildNodes().item(13).getTextContent();
+      String numPlaysString = nodeList.item(i).getChildNodes().item(13).getTextContent(); // // TODO: 29-Oct-16
       numPlays = Integer.valueOf(numPlaysString);
 
       BoardGame game = new BoardGame(name, uniqueID, minPlayers, maxPlayers, minPlaytime, maxPlaytime, personalRatingString, numPlays);
@@ -145,6 +175,11 @@ public class CollectionBuilder implements ICollectionBuilder {
 
     // Adding specific plays
     Document playsDoc = connectionHandler.getPlays(username);
+
+    // If no plays are registered
+    if(playsDoc == null) {
+      return games;
+    }
     NodeList playsList = playsDoc.getElementsByTagName("play");
     for (int i = 0; i < playsList.getLength(); i++) {
       Node playNode = playsList.item(i);
@@ -177,8 +212,6 @@ public class CollectionBuilder implements ICollectionBuilder {
       // Adding the plays
       Play play = new Play(date, playerNames, quantity);
       game.addPlay(play);
-
-
     }
 
     return games;

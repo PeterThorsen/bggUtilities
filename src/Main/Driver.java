@@ -23,7 +23,6 @@ public class Driver {
   }
 
   public Driver() {
-    // git test
     loginController = new LoginController(new ReleaseStartupFactory());
     frame = new JFrame("bggUtilities");
     StartView startView = new StartView(this);
@@ -38,10 +37,12 @@ public class Driver {
 
   }
   public void tryLogin(String givenUsername) {
+
     Thread t = new Thread(new Runnable() {
       @Override
       public void run() {
         // panelMain button!
+
         mainController = loginController.verifyUser(givenUsername);
         if(mainController == null) {
           // Error message
