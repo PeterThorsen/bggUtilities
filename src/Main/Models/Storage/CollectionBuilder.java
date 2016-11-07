@@ -136,9 +136,7 @@ public class CollectionBuilder implements ICollectionBuilder {
       String numPlaysString = nodeList.item(i).getChildNodes().item(13).getTextContent(); // TODO: 31/10/2016 what if numplays = 0?
       numPlays = Integer.valueOf(numPlaysString);
 
-      double averageRating = 1;
-      String averageRatingString = nodeList.item(i).getChildNodes().item(9).getChildNodes().item(1).getChildNodes().item(3).getAttributes().getNamedItem("value").getTextContent();
-      averageRating = Double.valueOf(averageRatingString);
+      String averageRating = nodeList.item(i).getChildNodes().item(9).getChildNodes().item(1).getChildNodes().item(3).getAttributes().getNamedItem("value").getTextContent();
 
       BoardGame game = new BoardGame(name, uniqueID, minPlayers, maxPlayers, minPlaytime, maxPlaytime, personalRatingString, numPlays, averageRating);
       games.add(game);

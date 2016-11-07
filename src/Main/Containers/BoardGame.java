@@ -14,12 +14,12 @@ public class BoardGame {
   private final String name;
   private final String personalRating;
   private final int numPlays;
-  private double averageRating;
+  private String averageRating;
   private double complexity = 0.0;
   private ArrayList<Play> allPlays;
 
   public BoardGame(String name, int uniqueID, int minPlayers, int maxPlayers, int minPlaytime,
-                   int maxPlaytime, String personalRating, int numberOfPlays, double averageRating) {
+                   int maxPlaytime, String personalRating, int numberOfPlays, String averageRating) {
     this.name = name;
     id = uniqueID;
     minimum = minPlayers;
@@ -85,7 +85,7 @@ public class BoardGame {
     return allPlays;
   }
 
-  public double getAverageRating() {
+  public String getAverageRating() {
     return averageRating;
   }
 }

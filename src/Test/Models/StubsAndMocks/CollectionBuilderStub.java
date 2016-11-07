@@ -15,10 +15,10 @@ public class CollectionBuilderStub implements ICollectionBuilder {
   public BoardGameCollection getCollection(String username) {
 
     // Build games
-    BoardGame game1 = new BoardGame("Agricola",31260,1,5,30,150,String.valueOf(8),0, 5.0);
+    BoardGame game1 = new BoardGame("Agricola",31260,1,5,30,150,String.valueOf(8),0, "8.07978");
     game1.addComplexity(2.3453);
 
-    BoardGame game2 = new BoardGame("Hive",2655,2,2,20,20,String.valueOf(10),1, 5.0);
+    BoardGame game2 = new BoardGame("Hive",2655,2,2,20,20,String.valueOf(10),1, "7.34394");
     game2.addComplexity(3.6298);
     String[] names = new String[1];
     names[0] = "Martin";

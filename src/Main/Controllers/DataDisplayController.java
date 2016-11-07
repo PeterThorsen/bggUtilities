@@ -87,12 +87,21 @@ public class DataDisplayController implements IDataDisplayController {
   }
 
   @Override
-  public String[] getPersonalRating() {
+  public String[] getPersonalRatings() {
     String[] personalRatings = new String[collection.getGames().size()];
     for (int i = 0; i < personalRatings.length; i++) {
       personalRatings[i] = collection.getGames().get(i).getPersonalRating();
     }
     return personalRatings;
+  }
+
+  @Override
+  public String[] getAverageRatings() {
+    String[] averageRatings = new String[collection.getGames().size()];
+    for (int i = 0; i < averageRatings.length; i++) {
+      averageRatings[i] = collection.getGames().get(i).getAverageRating();
+    }
+    return averageRatings;
   }
 
   public int getNumberOfGames() {

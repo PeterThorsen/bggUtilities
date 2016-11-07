@@ -27,5 +27,7 @@ public interface IDataDisplayController {
 
   int[] getNumberOfPlays();
 
-  String[] getPersonalRating();
+  String[] getPersonalRatings();
+
+  String[] getAverageRatings();
 }

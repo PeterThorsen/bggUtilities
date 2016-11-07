@@ -6,7 +6,8 @@ import Test.Models.StubsAndMocks.CollectionBuilderStub;
 import org.junit.Before;
 import org.junit.Test;
 
-import static junit.framework.TestCase.*;
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 
 
 /**
@@ -89,6 +90,13 @@ public class TestFacadeController {
     String[] personalRating = facadeController.getAllPersonalRatings();
     assertEquals(8, Integer.parseInt(personalRating[0]));
     assertEquals(10, Integer.parseInt(personalRating[1]));
+  }
+
+  @Test
+  public void shouldReturnAverageRating() {
+    String[] averageRatings = facadeController.getAllAverageRatings();
+    assertEquals(8.07978, Double.parseDouble(averageRatings[0]));
+    assertEquals(7.34394, Double.parseDouble(averageRatings[1]));
   }
 
 }

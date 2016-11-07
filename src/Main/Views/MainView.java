@@ -46,6 +46,7 @@ public class MainView {
               int[] numPlays = facadeController.getAllNumberOfPlays();
               String[] personalRatings = facadeController.getAllPersonalRatings();
               double[] complexities = facadeController.getAllComplexities();
+              String[] averageRatings = facadeController.getAllAverageRatings();
               public int getColumnCount() {
                 return 7;
               }
@@ -82,10 +83,10 @@ public class MainView {
                  if(col == 5) {
                   return personalRatings[row];
                 }
-                /**
+
                 if(col == 6) {
-                  // geek rating
-                } */
+                  return averageRatings[row];
+                }
                 else {
                   return "Rest";
                 }
@@ -100,7 +101,7 @@ public class MainView {
                   case 3: return "Players";
                   case 4: return "Plays";
                   case 5: return "Your rating";
-                  case 6: return "Geek rating";
+                  case 6: return "Average rating";
                   default: return "REST";
                 }
               }

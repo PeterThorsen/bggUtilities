@@ -54,6 +54,10 @@ public class FacadeController {
   }
 
   public String[] getAllPersonalRatings() {
-    return dataDisplayController.getPersonalRating();
+    return dataDisplayController.getPersonalRatings();
+  }
+
+  public String[] getAllAverageRatings() {
+    return dataDisplayController.getAverageRatings();
   }
 }
