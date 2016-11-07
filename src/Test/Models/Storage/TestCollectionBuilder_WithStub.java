@@ -265,4 +265,10 @@ public class TestCollectionBuilder_WithStub {
     }
     assertTrue(correctNameFound);
   }
+
+  @Test
+  public void dixitShouldHaveAverageRating7Dot82605() {
+    BoardGame game = games.get(13);
+    assertEquals(7.82605, game.getAverageRating());
+  }
 }

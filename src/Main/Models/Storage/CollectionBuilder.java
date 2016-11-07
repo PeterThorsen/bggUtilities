@@ -9,7 +9,6 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -133,15 +132,20 @@ public class CollectionBuilder implements ICollectionBuilder {
       }
 
       // Personal rating
-      String personalRatingString = nodeList.item(i).getChildNodes().item(9).getChildNodes().item(1).getAttributes().getNamedItem("value").getTextContent(); // // TODO: 29-Oct-16  
+      String personalRatingString = nodeList.item(i).getChildNodes().item(9).getChildNodes().item(1).getAttributes().getNamedItem("value").getTextContent();
       // Returning string, as value might be N/A
 
       // Number of plays
       int numPlays;
-      String numPlaysString = nodeList.item(i).getChildNodes().item(13).getTextContent(); // // TODO: 29-Oct-16
+      String numPlaysString = nodeList.item(i).getChildNodes().item(13).getTextContent(); // TODO: 31/10/2016 what if numplays = 0?
       numPlays = Integer.valueOf(numPlaysString);
 
-      BoardGame game = new BoardGame(name, uniqueID, minPlayers, maxPlayers, minPlaytime, maxPlaytime, personalRatingString, numPlays);
+      double averageRating = 1;
+      //String averageRatingString = nodeList.item(i).getChildNodes().item(9).getChildNodes().item(1).getAttributes().getNamedItem("average value").getTextContent();
+      System.out.println(nodeList.item(i).getChildNodes().item(9).getChildNodes().item(1).getAttributes().item(0).getTextContent());
+      //averageRating = Double.valueOf(averageRatingString);
+
+      BoardGame game = new BoardGame(name, uniqueID, minPlayers, maxPlayers, minPlaytime, maxPlaytime, personalRatingString, numPlays, averageRating);
       games.add(game);
       game.addComplexity(2.5);
 

@@ -20,4 +20,12 @@ public interface IDataDisplayController {
   int[] getMaxLengths();
 
   int[] getMinLengths();
+
+  int[] getMinPlayers();
+
+  int[] getMaxPlayers();
+
+  int[] getNumberOfPlays();
+
+  String[] getPersonalRating();
 }

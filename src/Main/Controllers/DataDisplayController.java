@@ -59,6 +59,42 @@ public class DataDisplayController implements IDataDisplayController {
     return minLengths;
   }
 
+  @Override
+  public int[] getMinPlayers() {
+    int[] minPlayers = new int[collection.getGames().size()];
+    for (int i = 0; i < minPlayers.length; i++) {
+      minPlayers[i] = collection.getGames().get(i).getMinPlayers();
+    }
+    return minPlayers;
+  }
+
+  @Override
+  public int[] getMaxPlayers() {
+    int[] maxPlayers = new int[collection.getGames().size()];
+    for (int i = 0; i < maxPlayers.length; i++) {
+      maxPlayers[i] = collection.getGames().get(i).getMaxPlayers();
+    }
+    return maxPlayers;
+  }
+
+  @Override
+  public int[] getNumberOfPlays() {
+    int[] playsArray = new int[collection.getGames().size()];
+    for (int i = 0; i < playsArray.length; i++) {
+      playsArray[i] = collection.getGames().get(i).getNumberOfPlays();
+    }
+    return playsArray;
+  }
+
+  @Override
+  public String[] getPersonalRating() {
+    String[] personalRatings = new String[collection.getGames().size()];
+    for (int i = 0; i < personalRatings.length; i++) {
+      personalRatings[i] = collection.getGames().get(i).getPersonalRating();
+    }
+    return personalRatings;
+  }
+
   public int getNumberOfGames() {
     return collection.getGames().size();
   }

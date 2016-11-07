@@ -14,11 +14,12 @@ public class BoardGame {
   private final String name;
   private final String personalRating;
   private final int numPlays;
+  private double averageRating;
   private double complexity = 0.0;
   private ArrayList<Play> allPlays;
 
   public BoardGame(String name, int uniqueID, int minPlayers, int maxPlayers, int minPlaytime,
-                   int maxPlaytime, String personalRating, int numberOfPlays) {
+                   int maxPlaytime, String personalRating, int numberOfPlays, double averageRating) {
     this.name = name;
     id = uniqueID;
     minimum = minPlayers;
@@ -27,6 +28,7 @@ public class BoardGame {
     this.maxPlaytime = maxPlaytime;
     this.personalRating = personalRating;
     numPlays = numberOfPlays;
+    this.averageRating = averageRating;
     allPlays = new ArrayList<>();
   }
 
@@ -81,5 +83,9 @@ public class BoardGame {
 
   public ArrayList<Play> getPlays() {
     return allPlays;
+  }
+
+  public double getAverageRating() {
+    return averageRating;
   }
 }

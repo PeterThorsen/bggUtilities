@@ -37,30 +37,58 @@ public class TestFacadeController {
 
   @Test
   public void shouldReturnAllGameNames() {
-    String[] gameNames = facadeController.getGameNames();
+    String[] gameNames = facadeController.getAllGameNames();
     assertEquals("Agricola", gameNames[0]);
     assertEquals("Hive", gameNames[1]);
   }
 
   @Test
   public void shouldReturnAllMinimumLengths() {
-    int[] minLengths = facadeController.getMinLengths();
+    int[] minLengths = facadeController.getAllMinLengths();
     assertEquals(30, minLengths[0]);
     assertEquals(20, minLengths[1]);
   }
 
   @Test
   public void shouldReturnAllMaximumLengths() {
-    int[] minLengths = facadeController.getMaxLengths();
+    int[] minLengths = facadeController.getAllMaxLengths();
     assertEquals(150, minLengths[0]);
     assertEquals(20, minLengths[1]);
   }
 
   @Test
   public void shouldReturnAllComplexities() {
-    double[] minLengths = facadeController.getComplexities();
+    double[] minLengths = facadeController.getAllComplexities();
     assertEquals(2.3453, minLengths[0]);
     assertEquals(3.6298, minLengths[1]);
+  }
+
+  @Test
+  public void shouldReturnAllMinPlayers() {
+    int[] minPlayers = facadeController.getAllMinPlayers();
+    assertEquals(1, minPlayers[0]);
+    assertEquals(2, minPlayers[1]);
+  }
+
+  @Test
+  public void shouldReturnAllMaxPlayers() {
+    int[] maxPlayers = facadeController.getAllMaxPlayers();
+    assertEquals(5, maxPlayers[0]);
+    assertEquals(2, maxPlayers[1]);
+  }
+
+  @Test
+  public void shouldReturnNumPlays() {
+    int[] numPlays = facadeController.getAllNumberOfPlays();
+    assertEquals(0, numPlays[0]);
+    assertEquals(1, numPlays[1]);
+  }
+
+  @Test
+  public void shouldReturnPersonalRating() {
+    String[] personalRating = facadeController.getAllPersonalRatings();
+    assertEquals(8, Integer.parseInt(personalRating[0]));
+    assertEquals(10, Integer.parseInt(personalRating[1]));
   }
 
 }
