@@ -86,8 +86,7 @@ public class CollectionBuilder implements ICollectionBuilder {
       try {
         String minPlayersString = nodeList.item(i).getChildNodes().item(9).getAttributes().getNamedItem("minplayers").getTextContent();
         minPlayers = Integer.valueOf(minPlayersString);
-      }
-      catch (NullPointerException e) {
+      } catch (NullPointerException e) {
         minPlayers = 0;
       }
 
@@ -98,11 +97,10 @@ public class CollectionBuilder implements ICollectionBuilder {
         maxPlayers = Integer.valueOf(maxPlayersString);
 
         // If only maxPlayers was filled on bgg by game creator
-        if(minPlayers == 0) {
+        if (minPlayers == 0) {
           minPlayers = maxPlayers;
         }
-      }
-      catch (NullPointerException e) {
+      } catch (NullPointerException e) {
         maxPlayers = minPlayers;
       }
 
@@ -111,8 +109,7 @@ public class CollectionBuilder implements ICollectionBuilder {
       try {
         String minPlaytimeString = nodeList.item(i).getChildNodes().item(9).getAttributes().getNamedItem("minplaytime").getTextContent();
         minPlaytime = Integer.valueOf(minPlaytimeString);
-      }
-      catch (NullPointerException e) {
+      } catch (NullPointerException e) {
         minPlaytime = 0;
       }
 
@@ -123,11 +120,10 @@ public class CollectionBuilder implements ICollectionBuilder {
         maxPlaytime = Integer.valueOf(maxPlaytimeString);
 
         // If only maxPlaytime was filled on bgg by game creator
-        if(minPlaytime == 0) {
+        if (minPlaytime == 0) {
           minPlaytime = maxPlaytime;
         }
-      }
-      catch (NullPointerException e) {
+      } catch (NullPointerException e) {
         maxPlaytime = minPlaytime;
       }
 
@@ -141,9 +137,8 @@ public class CollectionBuilder implements ICollectionBuilder {
       numPlays = Integer.valueOf(numPlaysString);
 
       double averageRating = 1;
-      //String averageRatingString = nodeList.item(i).getChildNodes().item(9).getChildNodes().item(1).getAttributes().getNamedItem("average value").getTextContent();
-      System.out.println(nodeList.item(i).getChildNodes().item(9).getChildNodes().item(1).getAttributes().item(0).getTextContent());
-      //averageRating = Double.valueOf(averageRatingString);
+      String averageRatingString = nodeList.item(i).getChildNodes().item(9).getChildNodes().item(1).getChildNodes().item(3).getAttributes().getNamedItem("value").getTextContent();
+      averageRating = Double.valueOf(averageRatingString);
 
       BoardGame game = new BoardGame(name, uniqueID, minPlayers, maxPlayers, minPlaytime, maxPlaytime, personalRatingString, numPlays, averageRating);
       games.add(game);
@@ -152,7 +147,7 @@ public class CollectionBuilder implements ICollectionBuilder {
       idToGameMap.put(uniqueID, game);
     }
 
-    if(uniqueIDArray.length == 0) {
+    if (uniqueIDArray.length == 0) {
       return games;
     }
 
@@ -181,7 +176,7 @@ public class CollectionBuilder implements ICollectionBuilder {
     Document playsDoc = connectionHandler.getPlays(username);
 
     // If no plays are registered
-    if(playsDoc == null) {
+    if (playsDoc == null) {
       return games;
     }
     NodeList playsList = playsDoc.getElementsByTagName("play");

@@ -267,8 +267,8 @@ public class TestCollectionBuilder_WithStub {
   }
 
   @Test
-  public void dixitShouldHaveAverageRating7Dot82605() {
+  public void dixitShouldHaveAverageRating7Dot54402() {
     BoardGame game = games.get(13);
-    assertEquals(7.82605, game.getAverageRating());
+    assertEquals(7.54402, game.getAverageRating());
   }
 }

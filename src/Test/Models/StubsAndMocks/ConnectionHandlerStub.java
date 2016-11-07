@@ -14,7 +14,7 @@ public class ConnectionHandlerStub implements Main.Models.Network.IConnectionHan
   @Override
   public Document getCollection(String username) {
     try {
-      File file = new File("res/bggCollectionData.xml");
+      File file = new File("src/Test/res/bggCollectionData.xml");
       return buildDoc(file);
     } catch (Exception e) {
       e.printStackTrace();
@@ -25,7 +25,7 @@ public class ConnectionHandlerStub implements Main.Models.Network.IConnectionHan
   @Override
   public Document getGames(int[] gameIDArray) {
     try {
-      File file = new File("res/thingData.xml");
+      File file = new File("src/Test/res/thingData.xml");
       return buildDoc(file);
     } catch (Exception e) {
       e.printStackTrace();
@@ -36,7 +36,7 @@ public class ConnectionHandlerStub implements Main.Models.Network.IConnectionHan
   @Override
   public Document getPlays(String username) {
     try {
-      File file = new File("res/playsData.xml");
+      File file = new File("src/Test/res/playsData.xml");
       return buildDoc(file);
     } catch (Exception e) {
       e.printStackTrace();
