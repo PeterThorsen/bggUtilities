@@ -72,4 +72,8 @@ public class Plays {
     }
     return new ArrayList<>();
   }
+
+  public HashMap<String,Integer> getPlayerToPlaysMap() {
+    return allPlayers;
+  }
 }

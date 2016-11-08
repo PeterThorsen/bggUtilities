@@ -3,6 +3,7 @@ package Main.Controllers;
 import Main.Containers.BoardGame;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Peter on 06/10/2016.
@@ -32,4 +33,8 @@ public interface IDataDisplayController {
   String[] getAverageRatings();
 
   String[] getPlayerNames();
+
+  HashMap<String,Integer> getNumberOfPlaysByPlayers();
+
+  int getNumberOfPlayers();
 }

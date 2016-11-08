@@ -6,6 +6,8 @@ import Test.Models.StubsAndMocks.CollectionBuilderStub;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.HashMap;
+
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
@@ -103,6 +105,19 @@ public class TestFacadeController {
   public void shouldReturnAllPlayers() {
     String[] playerNames = facadeController.getPlayerNames();
     assertEquals("Martin", playerNames[0]);
+  }
+
+  @Test
+  public void shouldReturnPlayerMapContaining2PlaysByMartin() {
+    HashMap<String, Integer> map = facadeController.getNumberOfPlaysByPlayers();
+    int playsByMartin = map.get("Martin");
+    assertEquals(2, playsByMartin);
+  }
+
+  @Test
+  public void shouldReturn1WhenCalledGetNumberOfPlayers() {
+    int players = facadeController.getNumberOfPlayers();
+    assertEquals(1, players);
   }
 
 }

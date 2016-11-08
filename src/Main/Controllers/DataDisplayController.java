@@ -7,6 +7,7 @@ import Main.Containers.Plays;
 import Main.Models.Storage.ICollectionBuilder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Peter on 03/10/16.
@@ -111,6 +112,16 @@ public class DataDisplayController implements IDataDisplayController {
   public String[] getPlayerNames() {
     String[] names = plays.getPlayerNames();
     return names;
+  }
+
+  @Override
+  public HashMap<String, Integer> getNumberOfPlaysByPlayers() {
+    return plays.getPlayerToPlaysMap();
+  }
+
+  @Override
+  public int getNumberOfPlayers() {
+    return plays.getNumberOfPlayers();
   }
 
   public int getNumberOfGames() {

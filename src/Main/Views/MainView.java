@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
+import java.util.HashMap;
 
 /**
  * Created by Peter on 10/10/2016.
@@ -116,12 +117,13 @@ public class MainView {
             AbstractTableModel() {
 
               String[] playerNames = facadeController.getPlayerNames();
+              HashMap<String, Integer> noOfPlaysByPlayer = facadeController.getNumberOfPlaysByPlayers();
               public int getColumnCount() {
-                return 1;
+                return 2;
               }
 
               public int getRowCount() {
-                return facadeController.getNumberOfGames();
+                return facadeController.getNumberOfPlayers();
               }
 
               public Object getValueAt(int row, int col) {
@@ -129,6 +131,9 @@ public class MainView {
                 // Name
                 if(col == 0) {
                   return playerNames[row];
+                }
+                if(col == 1) {
+                  return noOfPlaysByPlayer.get(playerNames[row]);
                 }
                 else {
                   return "Rest";
@@ -139,6 +144,7 @@ public class MainView {
               public String getColumnName(int column) {
                 switch (column){
                   case 0: return "Name";
+                  case 1: return "# Plays";
                   default: return "REST";
                 }
               }

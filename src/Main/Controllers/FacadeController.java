@@ -4,6 +4,7 @@ import Main.Containers.BoardGame;
 import Main.Models.Storage.ICollectionBuilder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Peter on 05/10/2016.
@@ -63,5 +64,13 @@ public class FacadeController {
 
   public String[] getPlayerNames() {
     return dataDisplayController.getPlayerNames();
+  }
+
+  public HashMap<String,Integer> getNumberOfPlaysByPlayers() {
+    return dataDisplayController.getNumberOfPlaysByPlayers();
+  }
+
+  public int getNumberOfPlayers() {
+    return dataDisplayController.getNumberOfPlayers();
   }
 }
