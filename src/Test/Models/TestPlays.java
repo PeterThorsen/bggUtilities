@@ -1,6 +1,8 @@
 package Test.Models;
 
+import Main.Containers.BoardGame;
 import Main.Containers.BoardGameCollection;
+import Main.Containers.Play;
 import Main.Containers.Plays;
 import Main.Models.Network.IConnectionHandler;
 import Main.Models.Storage.CollectionBuilder;
@@ -8,6 +10,8 @@ import Main.Models.Storage.ICollectionBuilder;
 import Test.Models.StubsAndMocks.ConnectionHandlerStub;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertTrue;
 
@@ -17,6 +21,7 @@ import static org.junit.Assert.assertTrue;
 public class TestPlays {
   Plays plays;
   BoardGameCollection collection;
+  private ArrayList<BoardGame> games;
 
   @Before
   public void setup() {
@@ -24,6 +29,7 @@ public class TestPlays {
     ICollectionBuilder collectionBuilder = new CollectionBuilder(connectionHandler);
     String username = "cwaq";
     collection = collectionBuilder.getCollection(username);
+    games = collection.getGames();
     plays = collectionBuilder.getPlays();
   }
 
@@ -32,7 +38,7 @@ public class TestPlays {
 
     boolean exists = false;
     for (String player : plays.getPlayerNames()) {
-      if(player.equals("Martin")) {
+      if (player.equals("Martin")) {
         exists = true;
         break;
       }
@@ -40,76 +46,61 @@ public class TestPlays {
     assertTrue(exists);
   }
 
-
-
-  ///
-/**
   @Test
   public void hivePlayShouldBeOnDate_2016_09_14() {
-
-
-    BoardGame game = games.get(20);
-    ArrayList<Play> plays = game.getPlays();
-    boolean correctDateFound = false;
-
-    for (Play play : plays) {
-      String date = play.getDate();
-      if (date.equals("2016-09-14")) {
-        correctDateFound = true;
+    ArrayList<Play> hivePLays = plays.getPlays("Hive");
+    boolean exists = false;
+    for (Play play : hivePLays) {
+      if (play.getDate().equals("2016-09-14")) {
+        exists = true;
+        break;
       }
     }
-    assertTrue(correctDateFound);
+    assertTrue(exists);
+
   }
 
   @Test
   public void dixitShouldHavePlayOnDate_2016_09_09() {
-    BoardGame game = games.get(13);
-    ArrayList<Play> plays = game.getPlays();
-    boolean correctDateFound = false;
-
-    for (Play play : plays) {
-      String date = play.getDate();
-      if (date.equals("2016-09-09")) {
-        correctDateFound = true;
+    ArrayList<Play> dixitPlays = plays.getPlays("Dixit Odyssey");
+    boolean exists = false;
+    for (Play play : dixitPlays) {
+      if (play.getDate().equals("2016-09-09")) {
+        exists = true;
+        break;
       }
     }
-    assertTrue(correctDateFound);
+    assertTrue(exists);
   }
 
   @Test
   public void dixitShouldHave2PlaysOnDate_2016_09_09() {
-    BoardGame game = games.get(13);
-    ArrayList<Play> plays = game.getPlays();
-    boolean correctNoOfPlaysFound = false;
+    ArrayList<Play> dixitPlays = plays.getPlays(92828);
+    boolean exists = false;
+    for (Play play : dixitPlays) {
+      if (play.getDate().equals("2016-09-09") && play.getQuantity() == 2) {
+        exists = true;
+        break;
 
-    for (Play play : plays) {
-      String date = play.getDate();
-      if (date.equals("2016-09-09")) {
-        if (play.noOfPlays() == 2) {
-          correctNoOfPlaysFound = true;
-        }
       }
     }
-    assertTrue(correctNoOfPlaysFound);
+    assertTrue(exists);
   }
 
   @Test
   public void dixitShouldHavePlayerNameMartinOnDate_2016_09_09() {
-    BoardGame game = games.get(13);
-    ArrayList<Play> plays = game.getPlays();
-    boolean correctNameFound = false;
-
-    for (Play play : plays) {
-      String date = play.getDate();
-      if (date.equals("2016-09-09")) {
-        String[] players = play.getPlayers();
-        for (String player : players) {
-          if (player.equals("Martin")) {
-            correctNameFound = true;
+    ArrayList<Play> dixitPlays = plays.getPlays(92828);
+    boolean exists = false;
+    for (Play play : dixitPlays) {
+      if (play.getDate().equals("2016-09-09")) {
+        for (String name : play.getPlayers()) {
+          if(name.equals("Martin")) {
+            exists = true;
+            break;
           }
         }
       }
     }
-    assertTrue(correctNameFound);
-  } */
+    assertTrue(exists);
+  }
 }

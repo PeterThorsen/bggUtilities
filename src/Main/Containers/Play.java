@@ -24,7 +24,7 @@ public class Play {
     return playerNames;
   }
 
-  public int noOfPlays() {
+  public int getQuantity() {
     return noOfPlays;
   }
 

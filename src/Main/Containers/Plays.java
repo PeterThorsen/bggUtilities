@@ -45,9 +45,10 @@ public class Plays {
     String gameName = game.getName();
     nameToIDMap.put(gameName, id); // For getPlays with name
 
-    if(allPlays.containsKey(gameName)) {
-      ArrayList<Play> plays = allPlays.get(gameName);
+    if(allPlays.containsKey(id)) {
+      ArrayList<Play> plays = allPlays.get(id);
       plays.add(play);
+      allPlays.put(id, plays);
     }
     else {
       ArrayList<Play> plays = new ArrayList<>();
