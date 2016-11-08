@@ -98,7 +98,7 @@ public class MainView {
                   case 0: return "Title";
                   case 1: return "Playtime";
                   case 2: return "Complexity";
-                  case 3: return "Players";
+                  case 3: return "Plays";
                   case 4: return "Plays";
                   case 5: return "Your rating";
                   case 6: return "Average rating";
@@ -112,6 +112,39 @@ public class MainView {
   }
 
   private void fillPlayersTable() {
+    TableModel dataModel = new
+            AbstractTableModel() {
 
+              String[] playerNames = facadeController.getPlayerNames();
+              public int getColumnCount() {
+                return 1;
+              }
+
+              public int getRowCount() {
+                return facadeController.getNumberOfGames();
+              }
+
+              public Object getValueAt(int row, int col) {
+
+                // Name
+                if(col == 0) {
+                  return playerNames[row];
+                }
+                else {
+                  return "Rest";
+                }
+              }
+
+
+              public String getColumnName(int column) {
+                switch (column){
+                  case 0: return "Name";
+                  default: return "REST";
+                }
+              }
+
+            };
+
+    playersTable.setModel(dataModel);
   }
 }

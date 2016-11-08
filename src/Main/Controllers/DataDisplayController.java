@@ -3,6 +3,7 @@ package Main.Controllers;
 import Main.Containers.BoardGame;
 import Main.Containers.BoardGameCollection;
 import Main.Containers.Play;
+import Main.Containers.Plays;
 import Main.Models.Storage.ICollectionBuilder;
 
 import java.util.ArrayList;
@@ -13,9 +14,11 @@ import java.util.ArrayList;
  */
 public class DataDisplayController implements IDataDisplayController {
   BoardGameCollection collection;
+  Plays plays;
 
   public DataDisplayController(ICollectionBuilder collectionBuilder, String username) {
     collection = collectionBuilder.getCollection(username);
+    plays = collectionBuilder.getPlays();
   }
 
   @Override
@@ -104,26 +107,22 @@ public class DataDisplayController implements IDataDisplayController {
     return averageRatings;
   }
 
+  @Override
+  public String[] getPlayerNames() {
+    String[] names = plays.getPlayerNames();
+    return names;
+  }
+
   public int getNumberOfGames() {
     return collection.getGames().size();
   }
 
   public ArrayList<Play> getPlays(int uniqueID) {
-    for(BoardGame game : collection.getGames()) {
-      if(game.getID() == uniqueID) {
-        return game.getPlays();
-      }
-    }
-    return new ArrayList<Play>();
+    return plays.getPlays(uniqueID);
   }
 
   public ArrayList<Play> getPlays(String name) {
-    for(BoardGame game : collection.getGames()) {
-      if(game.getName().equals(name)) {
-        return game.getPlays();
-      }
-    }
-    return new ArrayList<Play>();
+    return plays.getPlays(name);
   }
 
 }

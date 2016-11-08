@@ -4,7 +4,6 @@ import Main.Containers.BoardGame;
 import Main.Containers.BoardGameCollection;
 import Main.Containers.Play;
 import Main.Controllers.DataDisplayController;
-import Main.Factories.IStartupFactory;
 import Main.Models.Storage.ICollectionBuilder;
 import Test.Models.StubsAndMocks.CollectionBuilderStub;
 import org.junit.Before;
@@ -12,7 +11,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static com.sun.xml.internal.ws.dump.LoggingDumpTube.Position.Before;
 import static junit.framework.TestCase.*;
 
 /**
@@ -96,15 +94,29 @@ public class TestDataDisplayController {
   }
 
   @Test
-  public void controllerShouldReturnZeroPlaysOfAgricolaGivenID() {
+  public void controllerShouldReturnOnePlayOfAgricolaGivenID() {
     int uniqueID = 31260;
+    ArrayList<Play> plays = controller.getPlays(uniqueID);
+    assertTrue(plays.size() == 1);
+  }
+
+  @Test
+  public void controllerShouldReturnOnePlayOfAgricolaGivenName() {
+    String name = "Agricola";
+    ArrayList<Play> plays = controller.getPlays(name);
+    assertTrue(plays.size() == 1);
+  }
+
+  @Test
+  public void givenUnusedID_ReturnZeroPlays() {
+    int uniqueID = 1;
     ArrayList<Play> plays = controller.getPlays(uniqueID);
     assertTrue(plays.size() == 0);
   }
 
   @Test
-  public void controllerShouldReturnZeroPlaysOfAgricolaGivenName() {
-    String name = "Agricola";
+  public void givenUnusedName_ReturnZeroPlays() {
+    String name = "NotAGameName";
     ArrayList<Play> plays = controller.getPlays(name);
     assertTrue(plays.size() == 0);
   }

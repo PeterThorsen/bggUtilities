@@ -200,75 +200,8 @@ public class TestCollectionBuilder_WithStub {
   }
 
   @Test
-  public void hivePlayShouldBeOnDate_2016_09_14() {
-    BoardGame game = games.get(20);
-    ArrayList<Play> plays = game.getPlays();
-    boolean correctDateFound = false;
-
-    for (Play play : plays) {
-      String date = play.getDate();
-      if (date.equals("2016-09-14")) {
-        correctDateFound = true;
-      }
-    }
-    assertTrue(correctDateFound);
-  }
-
-  @Test
-  public void dixitShouldHavePlayOnDate_2016_09_09() {
-    BoardGame game = games.get(13);
-    ArrayList<Play> plays = game.getPlays();
-    boolean correctDateFound = false;
-
-    for (Play play : plays) {
-      String date = play.getDate();
-      if (date.equals("2016-09-09")) {
-        correctDateFound = true;
-      }
-    }
-    assertTrue(correctDateFound);
-  }
-
-  @Test
-  public void dixitShouldHave2PlaysOnDate_2016_09_09() {
-    BoardGame game = games.get(13);
-    ArrayList<Play> plays = game.getPlays();
-    boolean correctNoOfPlaysFound = false;
-
-    for (Play play : plays) {
-      String date = play.getDate();
-      if (date.equals("2016-09-09")) {
-        if (play.noOfPlays() == 2) {
-          correctNoOfPlaysFound = true;
-        }
-      }
-    }
-    assertTrue(correctNoOfPlaysFound);
-  }
-
-  @Test
-  public void dixitShouldHavePlayerNameMartinOnDate_2016_09_09() {
-    BoardGame game = games.get(13);
-    ArrayList<Play> plays = game.getPlays();
-    boolean correctNameFound = false;
-
-    for (Play play : plays) {
-      String date = play.getDate();
-      if (date.equals("2016-09-09")) {
-        String[] players = play.getPlayers();
-        for (String player : players) {
-          if (player.equals("Martin")) {
-            correctNameFound = true;
-          }
-        }
-      }
-    }
-    assertTrue(correctNameFound);
-  }
-
-  @Test
   public void dixitShouldHaveAverageRating7Dot54402() {
     BoardGame game = games.get(13);
-    assertEquals(7.54402, game.getAverageRating());
+    assertEquals(7.54402, Double.valueOf(game.getAverageRating()));
   }
 }

@@ -30,4 +30,6 @@ public interface IDataDisplayController {
   String[] getPersonalRatings();
 
   String[] getAverageRatings();
+
+  String[] getPlayerNames();
 }

@@ -99,4 +99,10 @@ public class TestFacadeController {
     assertEquals(7.34394, Double.parseDouble(averageRatings[1]));
   }
 
+  @Test
+  public void shouldReturnAllPlayers() {
+    String[] playerNames = facadeController.getPlayerNames();
+    assertEquals("Martin", playerNames[0]);
+  }
+
 }

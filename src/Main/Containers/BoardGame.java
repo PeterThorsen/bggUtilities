@@ -1,7 +1,5 @@
 package Main.Containers;
 
-import java.util.ArrayList;
-
 /**
  * Created by Peter on 28/09/16.
  */
@@ -16,7 +14,6 @@ public class BoardGame {
   private final int numPlays;
   private String averageRating;
   private double complexity = 0.0;
-  private ArrayList<Play> allPlays;
 
   public BoardGame(String name, int uniqueID, int minPlayers, int maxPlayers, int minPlaytime,
                    int maxPlaytime, String personalRating, int numberOfPlays, String averageRating) {
@@ -29,15 +26,10 @@ public class BoardGame {
     this.personalRating = personalRating;
     numPlays = numberOfPlays;
     this.averageRating = averageRating;
-    allPlays = new ArrayList<>();
   }
 
   public void addComplexity(double complexity) {
     this.complexity = complexity;
-  }
-
-  public void addPlay(Play play) {
-    allPlays.add(play);
   }
 
   public String getName() {
@@ -79,10 +71,6 @@ public class BoardGame {
 
   public double getComplexity() {
     return complexity;
-  }
-
-  public ArrayList<Play> getPlays() {
-    return allPlays;
   }
 
   public String getAverageRating() {

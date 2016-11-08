@@ -3,6 +3,7 @@ package Main.Models.Storage;
 import Main.Containers.BoardGame;
 import Main.Containers.BoardGameCollection;
 import Main.Containers.Play;
+import Main.Containers.Plays;
 import Main.Models.Network.IConnectionHandler;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -19,9 +20,11 @@ public class CollectionBuilder implements ICollectionBuilder {
   private IConnectionHandler connectionHandler;
   private String username;
   private Document collectionDocument;
+  private Plays plays;
 
   public CollectionBuilder(IConnectionHandler connectionHandler) {
     this.connectionHandler = connectionHandler;
+    plays = new Plays();
   }
 
   /**
@@ -64,6 +67,10 @@ public class CollectionBuilder implements ICollectionBuilder {
     return true;
   }
 
+  public Plays getPlays() {
+    return plays;
+  }
+
   private ArrayList<BoardGame> buildCollection(Document document) {
     NodeList nodeList = document.getElementsByTagName("item");
     ArrayList<BoardGame> games = new ArrayList<>();
@@ -81,7 +88,7 @@ public class CollectionBuilder implements ICollectionBuilder {
       int uniqueID = Integer.valueOf(uniqueIDString);
       uniqueIDArray[i] = uniqueID;
 
-      // Minimum players
+      // Minimum plays
       int minPlayers;
       try {
         String minPlayersString = nodeList.item(i).getChildNodes().item(9).getAttributes().getNamedItem("minplayers").getTextContent();
@@ -90,7 +97,7 @@ public class CollectionBuilder implements ICollectionBuilder {
         minPlayers = 0;
       }
 
-      // Max players
+      // Max plays
       int maxPlayers;
       try {
         String maxPlayersString = nodeList.item(i).getChildNodes().item(9).getAttributes().getNamedItem("maxplayers").getTextContent();
@@ -192,7 +199,7 @@ public class CollectionBuilder implements ICollectionBuilder {
       String date = playAttributes.getNamedItem("date").getNodeValue();
       int quantity = Integer.valueOf(playAttributes.getNamedItem("quantity").getNodeValue());
 
-      // Get players
+      // Get plays
       Node playerInfo = playChildren.item(3);
       NodeList playersNode = playerInfo.getChildNodes();
       int j = 1;
@@ -207,8 +214,8 @@ public class CollectionBuilder implements ICollectionBuilder {
       }
 
       // Adding the plays
-      Play play = new Play(date, playerNames, quantity);
-      game.addPlay(play);
+      Play play = new Play(game, date, playerNames, quantity);
+      plays.addPlay(play);
     }
 
     return games;

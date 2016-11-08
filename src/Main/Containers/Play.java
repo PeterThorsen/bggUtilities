@@ -5,10 +5,12 @@ package Main.Containers;
  */
 public class Play {
   private final String[] playerNames;
+  private BoardGame game;
   private final String date;
   private final int noOfPlays;
 
-  public Play(String date, String[] playerNames, int noOfPlays) {
+  public Play(BoardGame game, String date, String[] playerNames, int noOfPlays) {
+    this.game = game;
     this.date = date;
     this.playerNames = playerNames;
     this.noOfPlays = noOfPlays;
@@ -24,5 +26,9 @@ public class Play {
 
   public int noOfPlays() {
     return noOfPlays;
+  }
+
+  public BoardGame getGame() {
+    return game;
   }
 }

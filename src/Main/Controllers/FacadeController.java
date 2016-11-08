@@ -60,4 +60,8 @@ public class FacadeController {
   public String[] getAllAverageRatings() {
     return dataDisplayController.getAverageRatings();
   }
+
+  public String[] getPlayerNames() {
+    return dataDisplayController.getPlayerNames();
+  }
 }
