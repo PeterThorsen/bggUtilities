@@ -73,4 +73,8 @@ public class FacadeController {
   public int getNumberOfPlayers() {
     return dataDisplayController.getNumberOfPlayers();
   }
+
+  public HashMap<String,String> getMostPlayedGamesByPlayers() {
+    return dataDisplayController.getMostPlayedGamesByPlayers();
+  }
 }

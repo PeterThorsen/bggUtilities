@@ -37,4 +37,6 @@ public interface IDataDisplayController {
   HashMap<String,Integer> getNumberOfPlaysByPlayers();
 
   int getNumberOfPlayers();
+
+  HashMap<String,String> getMostPlayedGamesByPlayers();
 }

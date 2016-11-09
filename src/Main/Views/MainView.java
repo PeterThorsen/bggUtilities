@@ -118,8 +118,9 @@ public class MainView {
 
               String[] playerNames = facadeController.getPlayerNames();
               HashMap<String, Integer> noOfPlaysByPlayer = facadeController.getNumberOfPlaysByPlayers();
+              HashMap<String, String> favoriteGames = facadeController.getMostPlayedGamesByPlayers();
               public int getColumnCount() {
-                return 2;
+                return 4;
               }
 
               public int getRowCount() {
@@ -145,6 +146,8 @@ public class MainView {
                 switch (column){
                   case 0: return "Name";
                   case 1: return "# Plays";
+                  case 2: return "Favorite game";
+                  case 3: return "Last play";
                   default: return "REST";
                 }
               }

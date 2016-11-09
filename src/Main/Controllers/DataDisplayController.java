@@ -124,6 +124,11 @@ public class DataDisplayController implements IDataDisplayController {
     return plays.getNumberOfPlayers();
   }
 
+  @Override
+  public HashMap<String, String> getMostPlayedGamesByPlayers() {
+    return plays.getMostPlayedGamesByPlayers();
+  }
+
   public int getNumberOfGames() {
     return collection.getGames().size();
   }

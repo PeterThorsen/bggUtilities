@@ -120,4 +120,10 @@ public class TestFacadeController {
     assertEquals(1, players);
   }
 
+  @Test
+  public void shouldReturnMostPlayedGames() {
+    HashMap<String, String> mostPlayed = facadeController.getMostPlayedGamesByPlayers();
+    assertEquals("Hive", mostPlayed.get("Martin"));
+  }
+
 }
