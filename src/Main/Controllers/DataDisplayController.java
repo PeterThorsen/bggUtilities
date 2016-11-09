@@ -137,6 +137,11 @@ public class DataDisplayController implements IDataDisplayController {
     return lastPlayDates;
   }
 
+  @Override
+  public Play[] getAllPlaysSorted() {
+    return plays.getAllPlaysSorted();
+  }
+
   public int getNumberOfGames() {
     return collection.getGames().size();
   }

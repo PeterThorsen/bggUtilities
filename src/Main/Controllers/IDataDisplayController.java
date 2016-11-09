@@ -2,6 +2,7 @@ package Main.Controllers;
 
 import Main.Containers.BoardGame;
 import Main.Containers.GameNameAndPlayHolder;
+import Main.Containers.Play;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,4 +43,6 @@ public interface IDataDisplayController {
   HashMap<String, GameNameAndPlayHolder> getMostPlayedGamesByPlayers();
 
   HashMap<String,String> getDateOfLastPlayForEachPlayer();
+
+  Play[] getAllPlaysSorted();
 }

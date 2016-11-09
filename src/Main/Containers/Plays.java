@@ -1,5 +1,7 @@
 package Main.Containers;
 
+import Main.InsertionSortStrings;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -182,4 +184,38 @@ public class Plays {
     }
     return mostRecentGame;
   }
+
+  public Play[] getAllPlaysSorted() {
+    ArrayList<Play> unsortedPlays = new ArrayList<>();
+    for (int key : allPlays.keySet()) {
+      unsortedPlays.addAll(allPlays.get(key));
+    }
+    Play[] sortedPlays = new Play[unsortedPlays.size()];
+    for (int i = 0; i < sortedPlays.length; i++) {
+      sortedPlays[i] = unsortedPlays.get(i);
+    }
+
+    sortedPlays = insertionSort(sortedPlays);
+
+    return sortedPlays;
+  }
+
+  private Play[] insertionSort(Play[] sortedPlays) {
+    int j;                     // the number of items sorted so far
+    Play key;                // the item to be inserted
+    int i;
+
+    for (j = 1; j < sortedPlays.length; j++)    // Start with 1 (not 0)
+    {
+      key = sortedPlays[j];
+      for(i = j - 1; (i >= 0) && (sortedPlays[i].getDate().compareTo(key.getDate()) < 0); i--)   // Smaller values are moving up
+      {
+        sortedPlays[ i+1 ] = sortedPlays[i];
+      }
+      sortedPlays[ i+1 ] = key;    // Put the key in its proper location
+    }
+    return sortedPlays;
+  }
+
+
 }

@@ -2,6 +2,7 @@ package Main.Controllers;
 
 import Main.Containers.BoardGame;
 import Main.Containers.GameNameAndPlayHolder;
+import Main.Containers.Play;
 import Main.Models.Storage.ICollectionBuilder;
 
 import java.util.ArrayList;
@@ -81,5 +82,9 @@ public class FacadeController {
 
   public HashMap<String,String> getDateOfLastPlayForEachPlayer() {
     return dataDisplayController.getDateOfLastPlayForEachPlayer();
+  }
+
+  public Play[] getAllPlaysSorted() {
+    return dataDisplayController.getAllPlaysSorted();
   }
 }

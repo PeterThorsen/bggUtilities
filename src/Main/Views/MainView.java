@@ -1,12 +1,15 @@
 package Main.Views;
 
 import Main.Containers.GameNameAndPlayHolder;
+import Main.Containers.Play;
 import Main.Controllers.FacadeController;
+import Main.InsertionSortStrings;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -33,8 +36,8 @@ public class MainView {
 
     fillGamesTable();
     fillPlayersTable();
+    fillPlaysTable();
   }
-
 
   public void fillGamesTable() {
     TableModel dataModel = new
@@ -114,10 +117,14 @@ public class MainView {
   }
 
   private void fillPlayersTable() {
+    String[] playerNames = facadeController.getPlayerNames();
+    playerNames = InsertionSortStrings.sort(playerNames);
+
+    String[] finalPlayerNames = playerNames;
     TableModel dataModel = new
             AbstractTableModel() {
 
-              String[] playerNames = facadeController.getPlayerNames();
+
               HashMap<String, Integer> noOfPlaysByPlayer = facadeController.getNumberOfPlaysByPlayers();
               HashMap<String, GameNameAndPlayHolder> favoriteGames = facadeController.getMostPlayedGamesByPlayers();
               HashMap<String, String> lastPlayDates = facadeController.getDateOfLastPlayForEachPlayer();
@@ -133,17 +140,17 @@ public class MainView {
 
                 // Name
                 if(col == 0) {
-                  return playerNames[row];
+                  return finalPlayerNames[row];
                 }
                 if(col == 1) {
-                  return noOfPlaysByPlayer.get(playerNames[row]);
+                  return noOfPlaysByPlayer.get(finalPlayerNames[row]);
                 }
                 if(col == 2) {
-                  GameNameAndPlayHolder holder = favoriteGames.get(playerNames[row]);
+                  GameNameAndPlayHolder holder = favoriteGames.get(finalPlayerNames[row]);
                   return holder.gameName + " (" + holder.plays + " plays)";
                 }
                 if(col == 3) {
-                  return lastPlayDates.get(playerNames[row]);
+                  return lastPlayDates.get(finalPlayerNames[row]);
                 }
                 else {
                   return "Rest";
@@ -164,5 +171,60 @@ public class MainView {
             };
 
     playersTable.setModel(dataModel);
+  }
+
+
+  private void fillPlaysTable() {
+    TableModel dataModel = new
+            AbstractTableModel() {
+
+              Play[] allPlaysSorted = facadeController.getAllPlaysSorted();
+              public int getColumnCount() {
+                return 4;
+              }
+
+              public int getRowCount() {
+                return allPlaysSorted.length;
+              }
+
+              public Object getValueAt(int row, int col) {
+
+                // Name
+                if(col == 0) {
+                  return allPlaysSorted[row].getGame().getName();
+                }
+                if(col == 1) {
+                  return allPlaysSorted[row].getQuantity();
+                }
+                if(col == 2) {
+                  return allPlaysSorted[row].getDate();
+                }
+                if(col == 3) {
+                  String[] players = allPlaysSorted[row].getPlayers();
+                  players = InsertionSortStrings.sort(players);
+                  String printValue = players[0];
+                  for (int i = 1; i < players.length-1; i++) {
+                    printValue = printValue.concat(", " + players[i]);
+                  }
+                  printValue = printValue.concat(" and " + players[players.length-1] + ".");
+                  return printValue;
+                }
+                else {
+                  return "Rest";
+                }
+              }
+
+              public String getColumnName(int column) {
+                switch (column){
+                  case 0: return "Name";
+                  case 1: return "Quantity";
+                  case 2: return "Date";
+                  case 3: return "Players";
+                  default: return "REST";
+                }
+              }
+            };
+
+    playsTable.setModel(dataModel);
   }
 }

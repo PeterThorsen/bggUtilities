@@ -1,12 +1,14 @@
 package Test.Controllers;
 
 import Main.Containers.GameNameAndPlayHolder;
+import Main.Containers.Play;
 import Main.Controllers.FacadeController;
 import Main.Models.Storage.ICollectionBuilder;
 import Test.Models.StubsAndMocks.CollectionBuilderStub;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static junit.framework.TestCase.assertEquals;
@@ -132,6 +134,13 @@ public class TestFacadeController {
   public void shouldReturnLastPlayOfPlayer() {
     HashMap<String, String> lastPlayDates = facadeController.getDateOfLastPlayForEachPlayer();
     assertEquals("Agricola", lastPlayDates.get("Martin"));
+  }
+
+  @Test
+  public void shouldReturnListOfAllPlaysSorted() {
+    Play[] allPlays = facadeController.getAllPlaysSorted();
+    assertEquals("2016-09-14", allPlays[0].getDate());
+    assertEquals("2016-09-13", allPlays[1].getDate());
   }
 
 }
