@@ -99,8 +99,8 @@ public class Plays {
     return allPlayers;
   }
 
-  public HashMap<String, String> getMostPlayedGamesByPlayers() {
-    HashMap<String, String> maxPlays = new HashMap<>();
+  public HashMap<String, GameNameAndPlayHolder> getMostPlayedGamesByPlayers() {
+    HashMap<String, GameNameAndPlayHolder> maxPlays = new HashMap<>();
 
     // Go through each player
     for (String player : playsByPerson.keySet()) {
@@ -120,8 +120,66 @@ public class Plays {
           maxName = gameName;
         }
       }
-      maxPlays.put(player, maxName);
+      GameNameAndPlayHolder holder = new GameNameAndPlayHolder(maxName, maxGamePlays);
+      maxPlays.put(player, holder);
     }
     return maxPlays;
+  }
+
+  public String getLastPlayedGame(String name) {
+    int mostRecentYear = 0;
+    int mostRecentMonth = 0;
+    int mostRecentDay = 0;
+    String mostRecentGame = "";
+
+    for (int key : allPlays.keySet()) {
+      ArrayList<Play> playsOfSpecificGame = allPlays.get(key);
+      for (Play play : playsOfSpecificGame) {
+
+        String[] players = play.getPlayers();
+        for (String player : players) {
+          if(player.equals(name)) {
+            String gameName = play.getGame().getName();
+            String date = play.getDate();
+            String[] splitDate = date.split("-");
+            int year = Integer.valueOf(splitDate[0]);
+            int month = Integer.valueOf(splitDate[1]);
+            int day = Integer.valueOf(splitDate[2]);
+
+            if(mostRecentYear > year) {
+              break;
+            }
+            if(mostRecentYear < year) {
+              mostRecentYear = year;
+              mostRecentMonth = month;
+              mostRecentDay = day;
+              mostRecentGame = gameName;
+              break;
+            }
+            if(mostRecentMonth > month) {
+              break;
+            }
+            if(mostRecentMonth < month) {
+              mostRecentYear = year;
+              mostRecentMonth = month;
+              mostRecentDay = day;
+              mostRecentGame = gameName;
+              break;
+            }
+            if(mostRecentDay > day) {
+              break;
+            }
+            if(mostRecentDay < day) {
+              mostRecentYear = year;
+              mostRecentMonth = month;
+              mostRecentDay = day;
+              mostRecentGame = gameName;
+            }
+            break;
+          }
+        }
+      }
+    }
+    return mostRecentGame;
   }
 }

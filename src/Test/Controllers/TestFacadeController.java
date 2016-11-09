@@ -1,5 +1,6 @@
 package Test.Controllers;
 
+import Main.Containers.GameNameAndPlayHolder;
 import Main.Controllers.FacadeController;
 import Main.Models.Storage.ICollectionBuilder;
 import Test.Models.StubsAndMocks.CollectionBuilderStub;
@@ -108,10 +109,10 @@ public class TestFacadeController {
   }
 
   @Test
-  public void shouldReturnPlayerMapContaining2PlaysByMartin() {
+  public void shouldReturnPlayerMapContaining3PlaysByMartin() {
     HashMap<String, Integer> map = facadeController.getNumberOfPlaysByPlayers();
     int playsByMartin = map.get("Martin");
-    assertEquals(2, playsByMartin);
+    assertEquals(3, playsByMartin);
   }
 
   @Test
@@ -121,9 +122,16 @@ public class TestFacadeController {
   }
 
   @Test
-  public void shouldReturnMostPlayedGames() {
-    HashMap<String, String> mostPlayed = facadeController.getMostPlayedGamesByPlayers();
-    assertEquals("Hive", mostPlayed.get("Martin"));
+  public void shouldReturnHiveAsMostPlayedWithTwoPlays() {
+    HashMap<String, GameNameAndPlayHolder> mostPlayed = facadeController.getMostPlayedGamesByPlayers();
+    assertEquals("Hive", mostPlayed.get("Martin").gameName);
+    assertEquals(2, mostPlayed.get("Martin").plays);
+  }
+
+  @Test
+  public void shouldReturnLastPlayOfPlayer() {
+    HashMap<String, String> lastPlayDates = facadeController.getDateOfLastPlayForEachPlayer();
+    assertEquals("Agricola", lastPlayDates.get("Martin"));
   }
 
 }

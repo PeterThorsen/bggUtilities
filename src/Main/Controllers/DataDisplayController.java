@@ -1,9 +1,6 @@
 package Main.Controllers;
 
-import Main.Containers.BoardGame;
-import Main.Containers.BoardGameCollection;
-import Main.Containers.Play;
-import Main.Containers.Plays;
+import Main.Containers.*;
 import Main.Models.Storage.ICollectionBuilder;
 
 import java.util.ArrayList;
@@ -125,8 +122,19 @@ public class DataDisplayController implements IDataDisplayController {
   }
 
   @Override
-  public HashMap<String, String> getMostPlayedGamesByPlayers() {
+  public HashMap<String, GameNameAndPlayHolder> getMostPlayedGamesByPlayers() {
     return plays.getMostPlayedGamesByPlayers();
+  }
+
+  @Override
+  public HashMap<String, String> getDateOfLastPlayForEachPlayer() {
+    HashMap<String, String> lastPlayDates = new HashMap<>(); // key = player name, value = game name
+    String[] names = getPlayerNames();
+    for (String name : names) {
+      String gameName = plays.getLastPlayedGame(name);
+      lastPlayDates.put(name, gameName);
+    }
+    return lastPlayDates;
   }
 
   public int getNumberOfGames() {

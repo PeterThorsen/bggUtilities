@@ -30,7 +30,7 @@ public class CollectionBuilderStub implements ICollectionBuilder {
     Play play = new Play(game1, "2016-09-14", names, 1);
     plays.addPlay(play);
 
-    play = new Play(game2, "2016-09-14", names, 1);
+    play = new Play(game2, "2016-09-13", names, 2);
     plays.addPlay(play);
 
     ArrayList<BoardGame> games = new ArrayList<>();

@@ -1,5 +1,6 @@
 package Main.Views;
 
+import Main.Containers.GameNameAndPlayHolder;
 import Main.Controllers.FacadeController;
 
 import javax.swing.*;
@@ -118,7 +119,8 @@ public class MainView {
 
               String[] playerNames = facadeController.getPlayerNames();
               HashMap<String, Integer> noOfPlaysByPlayer = facadeController.getNumberOfPlaysByPlayers();
-              HashMap<String, String> favoriteGames = facadeController.getMostPlayedGamesByPlayers();
+              HashMap<String, GameNameAndPlayHolder> favoriteGames = facadeController.getMostPlayedGamesByPlayers();
+              HashMap<String, String> lastPlayDates = facadeController.getDateOfLastPlayForEachPlayer();
               public int getColumnCount() {
                 return 4;
               }
@@ -137,7 +139,11 @@ public class MainView {
                   return noOfPlaysByPlayer.get(playerNames[row]);
                 }
                 if(col == 2) {
-                  return favoriteGames.get(playerNames[row]);
+                  GameNameAndPlayHolder holder = favoriteGames.get(playerNames[row]);
+                  return holder.gameName + " (" + holder.plays + " plays)";
+                }
+                if(col == 3) {
+                  return lastPlayDates.get(playerNames[row]);
                 }
                 else {
                   return "Rest";
@@ -148,7 +154,7 @@ public class MainView {
               public String getColumnName(int column) {
                 switch (column){
                   case 0: return "Name";
-                  case 1: return "# Plays";
+                  case 1: return "Total plays";
                   case 2: return "Most played";
                   case 3: return "Last play";
                   default: return "REST";
