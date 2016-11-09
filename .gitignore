@@ -12,3 +12,7 @@
 hs_err_pid*
 .idea/
 bggUtilities.iml
+
+.DS_Store
+*.DS_Store
+*/.DS_Store
