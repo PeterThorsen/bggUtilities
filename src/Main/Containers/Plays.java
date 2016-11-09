@@ -35,34 +35,32 @@ public class Plays {
     for (String player : play.getPlayers()) {
       String gameName = play.getGame().getName();
 
-      if (allPlayers.containsKey(player)) {
-        allPlayers.put(player, allPlayers.get(player) + 1);
-
-        if(playsByPerson.containsKey(player)) {
-          HashMap<String, Integer> gamePlaysByPlayer = playsByPerson.get(player);
-
-          if(gamePlaysByPlayer.containsKey(gameName)) {
-            int noOfPlays = gamePlaysByPlayer.get(gameName);
-            noOfPlays += play.getQuantity();
-            gamePlaysByPlayer.put(gameName, noOfPlays);
-
-          }
-          else {
-            gamePlaysByPlayer.put(gameName, play.getQuantity());
-          }
-          playsByPerson.put(player, gamePlaysByPlayer);
-        }
-        else {
-          HashMap<String, Integer> gamePlaysByPlayer = new HashMap<>();
-          gamePlaysByPlayer.put(gameName, play.getQuantity());
-          playsByPerson.put(player, gamePlaysByPlayer);
-        }
-      } else {
-        allPlayers.put(player, 1);
+      if (!allPlayers.containsKey(player)) {
+        allPlayers.put(player, play.getQuantity());
         HashMap<String, Integer> gamePlaysByPlayer = new HashMap<>();
         gamePlaysByPlayer.put(gameName, play.getQuantity());
         playsByPerson.put(player, gamePlaysByPlayer);
+        continue;
       }
+      allPlayers.put(player, allPlayers.get(player) + play.getQuantity());
+
+      if (!playsByPerson.containsKey(player)) {
+        HashMap<String, Integer> gamePlaysByPlayer = new HashMap<>();
+        gamePlaysByPlayer.put(gameName, play.getQuantity());
+        playsByPerson.put(player, gamePlaysByPlayer);
+        continue;
+      }
+
+      HashMap<String, Integer> gamePlaysByPlayer = playsByPerson.get(player);
+      if (!gamePlaysByPlayer.containsKey(gameName)) {
+        gamePlaysByPlayer.put(gameName, play.getQuantity());
+        playsByPerson.put(player, gamePlaysByPlayer);
+        continue;
+      }
+      int noOfPlays = gamePlaysByPlayer.get(gameName);
+      noOfPlays += play.getQuantity();
+      gamePlaysByPlayer.put(gameName, noOfPlays);
+      playsByPerson.put(player, gamePlaysByPlayer);
     }
 
     BoardGame game = play.getGame();

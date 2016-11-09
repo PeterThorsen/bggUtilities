@@ -99,7 +99,7 @@ public class MainView {
                   case 0: return "Title";
                   case 1: return "Playtime";
                   case 2: return "Complexity";
-                  case 3: return "Plays";
+                  case 3: return "Players";
                   case 4: return "Plays";
                   case 5: return "Your rating";
                   case 6: return "Average rating";
@@ -136,6 +136,9 @@ public class MainView {
                 if(col == 1) {
                   return noOfPlaysByPlayer.get(playerNames[row]);
                 }
+                if(col == 2) {
+                  return favoriteGames.get(playerNames[row]);
+                }
                 else {
                   return "Rest";
                 }
@@ -146,7 +149,7 @@ public class MainView {
                 switch (column){
                   case 0: return "Name";
                   case 1: return "# Plays";
-                  case 2: return "Favorite game";
+                  case 2: return "Most played";
                   case 3: return "Last play";
                   default: return "REST";
                 }
