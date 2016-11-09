@@ -22,6 +22,11 @@ public class StartView {
       @Override
       public void actionPerformed(ActionEvent e) {
         String givenUsername = usernameField.getText();
+        String[] split = givenUsername.split(" ");
+        givenUsername = split[0];
+        for (int i = 1; i < split.length; i++) {
+          givenUsername = givenUsername.concat("%20" + split[i]);
+        }
         caller.tryLogin(givenUsername);
       }
     });

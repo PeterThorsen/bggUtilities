@@ -88,10 +88,31 @@ public class CollectionBuilder implements ICollectionBuilder {
       int uniqueID = Integer.valueOf(uniqueIDString);
       uniqueIDArray[i] = uniqueID;
 
+      // Finding the stats and numPlays nodes
+      int itemPos = 1;
+      Node statsNode = null;
+      Node numPlaysNode = null;
+      while(true) {
+        try {
+          String temp = nodeList.item(i).getChildNodes().item(itemPos).getNodeName();
+          if (temp.equals("stats")) {
+            statsNode = nodeList.item(i).getChildNodes().item(itemPos);
+          }
+          else if(temp.equals("numplays")) {
+            numPlaysNode = nodeList.item(i).getChildNodes().item(itemPos);
+          }
+          itemPos += 2;
+        }
+        catch (Exception e) {
+          break;
+        }
+      }
+
+
       // Minimum plays
       int minPlayers;
       try {
-        String minPlayersString = nodeList.item(i).getChildNodes().item(9).getAttributes().getNamedItem("minplayers").getTextContent();
+        String minPlayersString = statsNode.getAttributes().getNamedItem("minplayers").getTextContent();
         minPlayers = Integer.valueOf(minPlayersString);
       } catch (NullPointerException e) {
         minPlayers = 0;
@@ -100,7 +121,7 @@ public class CollectionBuilder implements ICollectionBuilder {
       // Max plays
       int maxPlayers;
       try {
-        String maxPlayersString = nodeList.item(i).getChildNodes().item(9).getAttributes().getNamedItem("maxplayers").getTextContent();
+        String maxPlayersString = statsNode.getAttributes().getNamedItem("maxplayers").getTextContent();
         maxPlayers = Integer.valueOf(maxPlayersString);
 
         // If only maxPlayers was filled on bgg by game creator
@@ -114,7 +135,7 @@ public class CollectionBuilder implements ICollectionBuilder {
       // Min playtime
       int minPlaytime;
       try {
-        String minPlaytimeString = nodeList.item(i).getChildNodes().item(9).getAttributes().getNamedItem("minplaytime").getTextContent();
+        String minPlaytimeString = statsNode.getAttributes().getNamedItem("minplaytime").getTextContent();
         minPlaytime = Integer.valueOf(minPlaytimeString);
       } catch (NullPointerException e) {
         minPlaytime = 0;
@@ -123,7 +144,7 @@ public class CollectionBuilder implements ICollectionBuilder {
       // Max playtime
       int maxPlaytime;
       try {
-        String maxPlaytimeString = nodeList.item(i).getChildNodes().item(9).getAttributes().getNamedItem("maxplaytime").getTextContent();
+        String maxPlaytimeString = statsNode.getAttributes().getNamedItem("maxplaytime").getTextContent();
         maxPlaytime = Integer.valueOf(maxPlaytimeString);
 
         // If only maxPlaytime was filled on bgg by game creator
@@ -135,19 +156,19 @@ public class CollectionBuilder implements ICollectionBuilder {
       }
 
       // Personal rating
-      String personalRatingString = nodeList.item(i).getChildNodes().item(9).getChildNodes().item(1).getAttributes().getNamedItem("value").getTextContent();
+      String personalRatingString = statsNode.getChildNodes().item(1).getAttributes().getNamedItem("value").getTextContent();
       // Returning string, as value might be N/A
 
       // Number of plays
       int numPlays;
-      String numPlaysString = nodeList.item(i).getChildNodes().item(13).getTextContent(); // TODO: 31/10/2016 what if numplays = 0?
+
+      String numPlaysString = numPlaysNode.getTextContent();
       numPlays = Integer.valueOf(numPlaysString);
 
-      String averageRating = nodeList.item(i).getChildNodes().item(9).getChildNodes().item(1).getChildNodes().item(3).getAttributes().getNamedItem("value").getTextContent();
+      String averageRating = statsNode.getChildNodes().item(1).getChildNodes().item(3).getAttributes().getNamedItem("value").getTextContent();
 
       BoardGame game = new BoardGame(name, uniqueID, minPlayers, maxPlayers, minPlaytime, maxPlaytime, personalRatingString, numPlays, averageRating);
       games.add(game);
-      game.addComplexity(2.5);
 
       idToGameMap.put(uniqueID, game);
     }
@@ -186,31 +207,50 @@ public class CollectionBuilder implements ICollectionBuilder {
     }
     NodeList playsList = playsDoc.getElementsByTagName("play");
     for (int i = 0; i < playsList.getLength(); i++) {
-      Node playNode = playsList.item(i);
-      NodeList playChildren = playNode.getChildNodes();
-      Node gameInfo = playChildren.item(1);
+
+      // Finding the stats and numPlays nodes
+      int itemPos = 1;
+      Node itemNode = null;
+      Node playersNode = null;
+      while(true) {
+        try {
+          String temp = playsList.item(i).getChildNodes().item(itemPos).getNodeName();
+          if (temp.equals("item")) {
+            itemNode = playsList.item(i).getChildNodes().item(itemPos);
+          }
+          else if(temp.equals("players")) {
+            playersNode = playsList.item(i).getChildNodes().item(itemPos);
+          }
+          itemPos += 2;
+        }
+        catch (Exception e) {
+          break;
+        }
+      }
 
       // Get board game
-      int uniqueID = Integer.valueOf(gameInfo.getAttributes().getNamedItem("objectid").getNodeValue());
+      int uniqueID = Integer.valueOf(itemNode.getAttributes().getNamedItem("objectid").getNodeValue());
       BoardGame game = idToGameMap.get(uniqueID);
 
       // Get date and quantity
-      NamedNodeMap playAttributes = playNode.getAttributes();
+      NamedNodeMap playAttributes = playsList.item(i).getAttributes();
       String date = playAttributes.getNamedItem("date").getNodeValue();
       int quantity = Integer.valueOf(playAttributes.getNamedItem("quantity").getNodeValue());
 
       // Get plays
-      Node playerInfo = playChildren.item(3);
-      NodeList playersNode = playerInfo.getChildNodes();
-      int j = 1;
-      String[] playerNames = new String[(playersNode.getLength() - 1) / 2];
-      int arrayPos = 0;
-      while (j < playersNode.getLength()) {
-        Node playerJ = playersNode.item(j);
-        String playerJName = playerJ.getAttributes().getNamedItem("name").getNodeValue();
-        playerNames[arrayPos] = playerJName;
-        arrayPos++;
-        j += 2;
+      String[] playerNames = new String[0];
+      if(playersNode != null) {
+        NodeList playersNodeList = playersNode.getChildNodes();
+        int j = 1;
+        playerNames = new String[(playersNodeList.getLength() - 1) / 2];
+        int arrayPos = 0;
+        while (j < playersNodeList.getLength()) {
+          Node playerJ = playersNodeList.item(j);
+          String playerJName = playerJ.getAttributes().getNamedItem("name").getNodeValue();
+          playerNames[arrayPos] = playerJName;
+          arrayPos++;
+          j += 2;
+        }
       }
 
       // Adding the plays

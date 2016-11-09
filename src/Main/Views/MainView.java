@@ -9,7 +9,7 @@ import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
-import java.util.ArrayList;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 
 /**
@@ -40,6 +40,7 @@ public class MainView {
   }
 
   public void fillGamesTable() {
+    DecimalFormat df = new DecimalFormat("####0.00");
     TableModel dataModel = new
             AbstractTableModel() {
 
@@ -73,7 +74,8 @@ public class MainView {
                   return minLengths[row] + "-" + maxLengths[row];
                 }
                 if(col == 2) {
-                  return complexities[row];
+                  String res = df.format(complexities[row]);
+                  return res;
                 }
 
                 if(col == 3) {
@@ -90,7 +92,10 @@ public class MainView {
                 }
 
                 if(col == 6) {
-                  return averageRatings[row];
+                  String temp = averageRatings[row];
+                  double avgRatingAsDouble = Double.valueOf(temp);
+                  String res = df.format(avgRatingAsDouble);
+                  return res;
                 }
                 else {
                   return "Rest";
