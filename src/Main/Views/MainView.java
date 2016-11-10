@@ -122,8 +122,8 @@ public class MainView {
   private void fillPlayersTable() {
     String[] playerNames = facadeController.getPlayerNames();
     playerNames = InsertionSortStrings.sort(playerNames);
-
     String[] finalPlayerNames = playerNames;
+
     TableModel dataModel = new
             AbstractTableModel() {
 
