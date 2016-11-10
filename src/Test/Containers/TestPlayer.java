@@ -93,7 +93,7 @@ public class TestPlayer {
     plays[1] = play2;
     buildPlayer(plays);
 
-    assertEquals("Agricola", player.getMostPlayedGame());
+    assertEquals("Agricola", player.getMostPlayedGame().gameName);
   }
 
   @Test
@@ -107,7 +107,7 @@ public class TestPlayer {
     plays[1] = play2;
     buildPlayer(plays);
 
-    assertEquals("Camel Up", player.getMostPlayedGame());
+    assertEquals("Camel Up", player.getMostPlayedGame().gameName);
   }
 
   @Test
