@@ -176,4 +176,9 @@ public class TestPlayer {
     assertEquals(1, valCharlotte);
     assertEquals(1, valPeter);
   }
+
+  @Test
+  public void a() {
+    player.getMostRecentGame();
+  }
 }

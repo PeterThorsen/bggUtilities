@@ -1,9 +1,6 @@
 package Main.Models.Storage;
 
-import Main.Containers.BoardGame;
-import Main.Containers.BoardGameCollection;
-import Main.Containers.Play;
-import Main.Containers.Plays;
+import Main.Containers.*;
 import Main.Models.Network.IConnectionHandler;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -21,6 +18,7 @@ public class CollectionBuilder implements ICollectionBuilder {
   private String username;
   private Document collectionDocument;
   private final Plays plays;
+  private Player[] players = null;
 
   public CollectionBuilder(IConnectionHandler connectionHandler) {
     this.connectionHandler = connectionHandler;
@@ -68,6 +66,47 @@ public class CollectionBuilder implements ICollectionBuilder {
 
   public Plays getPlays() {
     return plays;
+  }
+
+  @Override
+  public Player[] getPlayers() {
+
+    Play[] allPlays = plays.getAllPlaysSorted();
+    HashMap<String, ArrayList<Play>> map = new HashMap<>();
+    int totalPersons = 0;
+
+    // Register plays for each specific person
+    for (Play play : allPlays) {
+      String[] currentPlayers = play.getPlayers();
+      for (String name : currentPlayers) {
+        if(map.containsKey(name)) {
+          ArrayList<Play> specificPersonPlays = map.get(name);
+          specificPersonPlays.add(play);
+          map.put(name, specificPersonPlays);
+        }
+        else {
+          ArrayList<Play> specificPersonPlays = new ArrayList<>();
+          specificPersonPlays.add(play);
+          map.put(name, specificPersonPlays);
+          totalPersons++;
+        }
+      }
+    }
+
+    // Convert map to Player[]
+    Player[] allPlayers = new Player[totalPersons];
+    int pos = 0;
+    for (String key : map.keySet()) {
+      ArrayList<Play> specificPersonPlays = map.get(key);
+      Play[] asArray = new Play[specificPersonPlays.size()];
+      for (int i = 0; i < asArray.length; i++) {
+        asArray[i] = specificPersonPlays.get(i);
+      }
+      allPlayers[pos] = new Player(key, asArray);
+      pos++;
+    }
+
+    return allPlayers;
   }
 
   private ArrayList<BoardGame> buildCollection(Document document) {

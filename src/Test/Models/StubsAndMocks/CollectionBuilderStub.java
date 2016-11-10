@@ -1,9 +1,6 @@
 package Test.Models.StubsAndMocks;
 
-import Main.Containers.BoardGame;
-import Main.Containers.BoardGameCollection;
-import Main.Containers.Play;
-import Main.Containers.Plays;
+import Main.Containers.*;
 import Main.Models.Storage.ICollectionBuilder;
 
 import java.util.ArrayList;
@@ -14,6 +11,7 @@ import java.util.ArrayList;
 public class CollectionBuilderStub implements ICollectionBuilder {
 
   private final Plays plays;
+  private final Player[] players = new Player[1];
   private BoardGameCollection collection;
 
   public CollectionBuilderStub() {
@@ -32,6 +30,11 @@ public class CollectionBuilderStub implements ICollectionBuilder {
 
     play = new Play(game2, "2016-09-13", names, 2);
     plays.addPlay(play);
+
+    Play[] playForPlayer = new Play[1];
+    playForPlayer[0] = play;
+    Player player = new Player("Peter", playForPlayer);
+    players[0] = player;
 
     ArrayList<BoardGame> games = new ArrayList<>();
     games.add(game1);
@@ -53,5 +56,10 @@ public class CollectionBuilderStub implements ICollectionBuilder {
 
   public Plays getPlays() {
     return plays;
+  }
+
+  @Override
+  public Player[] getPlayers() {
+    return players;
   }
 }

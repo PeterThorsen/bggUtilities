@@ -2,7 +2,7 @@ package Test.Models.Storage;
 
 import Main.Containers.BoardGame;
 import Main.Containers.BoardGameCollection;
-import Main.Containers.Play;
+import Main.Containers.Player;
 import Main.Models.Network.IConnectionHandler;
 import Main.Models.Storage.CollectionBuilder;
 import Main.Models.Storage.ICollectionBuilder;
@@ -203,5 +203,11 @@ public class TestCollectionBuilder_WithStub {
   public void dixitShouldHaveAverageRating7Dot54402() {
     BoardGame game = games.get(13);
     assertEquals(7.54402, Double.valueOf(game.getAverageRating()));
+  }
+
+  @Test
+  public void playersShouldContainMultiplePeople() {
+    Player[] players = collectionBuilder.getPlayers();
+    assertTrue(players.length > 1);
   }
 }

@@ -51,7 +51,7 @@ public class Player {
     }
   }
 
-  public String getMostPlayedGame() {
+  public GameNameAndPlayHolder getMostPlayedGame() {
     int maxValue = 0;
     String maxGame = "";
     for (String key : gameToPlaysMap.keySet()) {
@@ -61,7 +61,7 @@ public class Player {
         maxGame = key;
       }
     }
-    return maxGame;
+    return new GameNameAndPlayHolder(maxGame, maxValue);
   }
 
   public String getMostCommonFriend() {
@@ -75,5 +75,55 @@ public class Player {
       }
     }
     return maxPlayer;
+  }
+
+  public String getMostRecentGame() {
+
+    int mostRecentYear = 0;
+    int mostRecentMonth = 0;
+    int mostRecentDay = 0;
+    String mostRecentGame = "";
+
+    for (Play play : allPlays) {
+
+      String gameName = play.getGame().getName();
+      String date = play.getDate();
+      String[] splitDate = date.split("-");
+      int year = Integer.valueOf(splitDate[0]);
+      int month = Integer.valueOf(splitDate[1]);
+      int day = Integer.valueOf(splitDate[2]);
+
+      if (mostRecentYear > year) {
+        break;
+      }
+      if (mostRecentYear < year) {
+        mostRecentYear = year;
+        mostRecentMonth = month;
+        mostRecentDay = day;
+        mostRecentGame = gameName;
+        break;
+      }
+      if (mostRecentMonth > month) {
+        break;
+      }
+      if (mostRecentMonth < month) {
+        mostRecentYear = year;
+        mostRecentMonth = month;
+        mostRecentDay = day;
+        mostRecentGame = gameName;
+        break;
+      }
+      if (mostRecentDay > day) {
+        break;
+      }
+      if (mostRecentDay < day) {
+        mostRecentYear = year;
+        mostRecentMonth = month;
+        mostRecentDay = day;
+        mostRecentGame = gameName;
+      }
+      break;
+    }
+    return mostRecentGame;
   }
 }

@@ -13,10 +13,12 @@ import java.util.HashMap;
 public class DataDisplayController implements IDataDisplayController {
   private final BoardGameCollection collection;
   private final Plays plays;
+  private final Player[] players;
 
   public DataDisplayController(ICollectionBuilder collectionBuilder, String username) {
     collection = collectionBuilder.getCollection(username);
     plays = collectionBuilder.getPlays();
+    players = collectionBuilder.getPlayers();
   }
 
   @Override
@@ -139,6 +141,11 @@ public class DataDisplayController implements IDataDisplayController {
   @Override
   public Play[] getAllPlaysSorted() {
     return plays.getAllPlaysSorted();
+  }
+
+  @Override
+  public Player[] getAllPlayers() {
+    return players;
   }
 
   public int getNumberOfGames() {

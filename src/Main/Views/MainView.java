@@ -2,6 +2,7 @@ package Main.Views;
 
 import Main.Containers.GameNameAndPlayHolder;
 import Main.Containers.Play;
+import Main.Containers.Player;
 import Main.Controllers.FacadeController;
 import Main.InsertionSortStrings;
 
@@ -10,7 +11,6 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
 import java.text.DecimalFormat;
-import java.util.HashMap;
 
 /**
  * Created by Peter on 10/10/2016.
@@ -120,40 +120,47 @@ public class MainView {
   }
 
   private void fillPlayersTable() {
-    String[] playerNames = facadeController.getPlayerNames();
-    playerNames = InsertionSortStrings.sort(playerNames);
-    String[] finalPlayerNames = playerNames;
+    //String[] playerNames = facadeController.getPlayerNames();
+    //playerNames = InsertionSortStrings.sort(playerNames);
+    //String[] finalPlayerNames = playerNames;
+
+    Player[] players = facadeController.getAllPlayers();
+    players = insertionSort(players);
+
+    final Player[] finalPlayers = players;
 
     TableModel dataModel = new
             AbstractTableModel() {
 
-
-              final HashMap<String, Integer> noOfPlaysByPlayer = facadeController.getNumberOfPlaysByPlayers();
-              final HashMap<String, GameNameAndPlayHolder> favoriteGames = facadeController.getMostPlayedGamesByPlayers();
-              final HashMap<String, String> lastPlayDates = facadeController.getDateOfLastPlayForEachPlayer();
+              //final HashMap<String, Integer> noOfPlaysByPlayer = facadeController.getNumberOfPlaysByPlayers();
+              //final HashMap<String, GameNameAndPlayHolder> favoriteGames = facadeController.getMostPlayedGamesByPlayers();
+              //final HashMap<String, String> lastPlayDates = facadeController.getDateOfLastPlayForEachPlayer();
               public int getColumnCount() {
                 return 4;
               }
 
               public int getRowCount() {
-                return facadeController.getNumberOfPlayers();
+                return finalPlayers.length;
               }
 
               public Object getValueAt(int row, int col) {
 
                 // Name
                 if(col == 0) {
-                  return finalPlayerNames[row];
+                  return finalPlayers[row].name;
                 }
+                // Total plays
                 if(col == 1) {
-                  return noOfPlaysByPlayer.get(finalPlayerNames[row]);
+                  return finalPlayers[row].totalPlays;
+                  //return noOfPlaysByPlayer.get(finalPlayerNames[row]);
                 }
+                // Most played
                 if(col == 2) {
-                  GameNameAndPlayHolder holder = favoriteGames.get(finalPlayerNames[row]);
+                  GameNameAndPlayHolder holder = finalPlayers[row].getMostPlayedGame();
                   return holder.gameName + " (" + holder.plays + " plays)";
                 }
                 if(col == 3) {
-                  return lastPlayDates.get(finalPlayerNames[row]);
+                  return finalPlayers[row].getMostRecentGame();
                 }
                 else {
                   return "Rest";
@@ -174,6 +181,11 @@ public class MainView {
             };
 
     playersTable.setModel(dataModel);
+  }
+
+  private Player[] insertionSort(Player[] players) {
+    return players;
+    // TODO
   }
 
 

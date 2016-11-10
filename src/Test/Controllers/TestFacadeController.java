@@ -1,15 +1,12 @@
 package Test.Controllers;
 
-import Main.Containers.GameNameAndPlayHolder;
 import Main.Containers.Play;
+import Main.Containers.Player;
 import Main.Controllers.FacadeController;
 import Main.Models.Storage.ICollectionBuilder;
 import Test.Models.StubsAndMocks.CollectionBuilderStub;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
@@ -106,6 +103,13 @@ public class TestFacadeController {
 
   @Test
   public void shouldReturnAllPlayers() {
+    Player[] players = facadeController.getAllPlayers();
+    assertEquals("Peter", players[0].name);
+
+  }
+/**
+  @Test
+  public void shouldReturnAllPlayers() {
     String[] playerNames = facadeController.getPlayerNames();
     assertEquals("Martin", playerNames[0]);
   }
@@ -135,7 +139,7 @@ public class TestFacadeController {
     HashMap<String, String> lastPlayDates = facadeController.getDateOfLastPlayForEachPlayer();
     assertEquals("Agricola", lastPlayDates.get("Martin"));
   }
-
+*/
   @Test
   public void shouldReturnListOfAllPlaysSorted() {
     Play[] allPlays = facadeController.getAllPlaysSorted();

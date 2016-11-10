@@ -3,6 +3,7 @@ package Main.Controllers;
 import Main.Containers.BoardGame;
 import Main.Containers.GameNameAndPlayHolder;
 import Main.Containers.Play;
+import Main.Containers.Player;
 import Main.Models.Storage.ICollectionBuilder;
 
 import java.util.ArrayList;
@@ -72,10 +73,6 @@ public class FacadeController {
     return dataDisplayController.getNumberOfPlaysByPlayers();
   }
 
-  public int getNumberOfPlayers() {
-    return dataDisplayController.getNumberOfPlayers();
-  }
-
   public HashMap<String, GameNameAndPlayHolder> getMostPlayedGamesByPlayers() {
     return dataDisplayController.getMostPlayedGamesByPlayers();
   }
@@ -86,5 +83,9 @@ public class FacadeController {
 
   public Play[] getAllPlaysSorted() {
     return dataDisplayController.getAllPlaysSorted();
+  }
+
+  public Player[] getAllPlayers() {
+    return dataDisplayController.getAllPlayers();
   }
 }

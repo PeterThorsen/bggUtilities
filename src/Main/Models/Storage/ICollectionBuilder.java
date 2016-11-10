@@ -1,6 +1,7 @@
 package Main.Models.Storage;
 
 import Main.Containers.BoardGameCollection;
+import Main.Containers.Player;
 import Main.Containers.Plays;
 
 /**
@@ -12,4 +13,6 @@ public interface ICollectionBuilder {
   boolean verifyUser(String username);
 
   Plays getPlays();
+
+  Player[] getPlayers();
 }
