@@ -16,6 +16,8 @@ import static org.junit.Assert.assertEquals;
 public class TestPlayer {
   private Player player;
   private String[] playerNames;
+  private BoardGame game1 = new BoardGame("Agricola", 31260, 1, 5, 30, 150, String.valueOf(8), 0, "8.07978");
+  private BoardGame game2 = new BoardGame("Camel Up", 153938, 1, 8, 20, 30, String.valueOf(8), 0, "7.118");
 
 
   @Before
@@ -45,7 +47,6 @@ public class TestPlayer {
   @Test
   public void shouldHaveTotalPlays1Given1PlayWithQuantity1() {
 
-    BoardGame game1 = new BoardGame("Agricola", 31260, 1, 5, 30, 150, String.valueOf(8), 0, "8.07978");
     Play play1 = new Play(game1, "2016-11-10", playerNames, 1);
 
     Play[] plays = new Play[1];
@@ -58,7 +59,6 @@ public class TestPlayer {
   @Test
   public void shouldHaveTotalPlays2Given1PlayWithQuantity2() {
 
-    BoardGame game1 = new BoardGame("Agricola", 31260, 1, 5, 30, 150, String.valueOf(8), 0, "8.07978");
     Play play1 = new Play(game1, "2016-11-10", playerNames, 2);
 
     Play[] plays = new Play[1];
@@ -70,7 +70,6 @@ public class TestPlayer {
 
   @Test
   public void shouldHaveTotalPlays2Given2PlaysWithQuantity1() {
-    BoardGame game1 = new BoardGame("Agricola", 31260, 1, 5, 30, 150, String.valueOf(8), 0, "8.07978");
     Play play1 = new Play(game1, "2016-11-10", playerNames, 1);
     Play play2 = new Play(game1, "2016-11-10", playerNames, 1);
 
@@ -84,8 +83,6 @@ public class TestPlayer {
 
   @Test
   public void shouldHaveMostPlayedGameAgricolaGivenMorePlaysThanOtherGames() {
-    BoardGame game1 = new BoardGame("Agricola", 31260, 1, 5, 30, 150, String.valueOf(8), 0, "8.07978");
-    BoardGame game2 = new BoardGame("Camel Up", 153938, 1, 8, 20, 30, String.valueOf(8), 0, "7.118");
     Play play1 = new Play(game1, "2016-11-10", playerNames, 2);
     Play play2 = new Play(game2, "2016-11-10", playerNames, 1);
     Play[] plays = new Play[2];
@@ -98,8 +95,6 @@ public class TestPlayer {
 
   @Test
   public void shouldHaveMostPlayedGameCamelUpGivenMorePlaysThanOtherGames() {
-    BoardGame game1 = new BoardGame("Agricola", 31260, 1, 5, 30, 150, String.valueOf(8), 0, "8.07978");
-    BoardGame game2 = new BoardGame("Camel Up", 153938, 1, 8, 20, 30, String.valueOf(8), 0, "7.118");
     Play play1 = new Play(game1, "2016-11-10", playerNames, 1);
     Play play2 = new Play(game2, "2016-11-10", playerNames, 2);
     Play[] plays = new Play[2];
@@ -112,8 +107,6 @@ public class TestPlayer {
 
   @Test
   public void shouldBeAbleToGetMapContainingPlaysOfEachGame() {
-    BoardGame game1 = new BoardGame("Agricola", 31260, 1, 5, 30, 150, String.valueOf(8), 0, "8.07978");
-    BoardGame game2 = new BoardGame("Camel Up", 153938, 1, 8, 20, 30, String.valueOf(8), 0, "7.118");
     Play play1 = new Play(game1, "2016-11-10", playerNames, 1);
     Play play2 = new Play(game2, "2016-11-10", playerNames, 2);
     Play[] plays = new Play[2];
@@ -129,7 +122,6 @@ public class TestPlayer {
 
   @Test
   public void shouldGetMostCommonFriendPeter() {
-    BoardGame game1 = new BoardGame("Agricola", 31260, 1, 5, 30, 150, String.valueOf(8), 0, "8.07978");
     String[] newPlayers = new String[1];
     newPlayers[0] = "Peter";
 
@@ -143,7 +135,6 @@ public class TestPlayer {
   }
   @Test
   public void shouldGetMostCommonFriendMichelle() {
-    BoardGame game1 = new BoardGame("Agricola", 31260, 1, 5, 30, 150, String.valueOf(8), 0, "8.07978");
     String[] newPlayers = new String[1];
     newPlayers[0] = "Michelle";
 
@@ -158,7 +149,6 @@ public class TestPlayer {
 
   @Test
   public void shouldBeAbleToGetMapContainingPlaysOfEachPlayer() {
-    BoardGame game1 = new BoardGame("Agricola", 31260, 1, 5, 30, 150, String.valueOf(8), 0, "8.07978");
     String[] newPlayers = new String[1];
     newPlayers[0] = "Michelle";
 
@@ -178,7 +168,16 @@ public class TestPlayer {
   }
 
   @Test
-  public void a() {
-    player.getMostRecentGame();
+  public void shouldShowCorrectMostRecentGame() {
+
+    Play play1 = new Play(game1, "2016-11-8", playerNames, 1);
+    Play play2 = new Play(game2, "2016-11-10", playerNames, 1);
+    Play[] plays = new Play[2];
+    plays[0] = play1;
+    plays[1] = play2;
+    buildPlayer(plays);
+
+    String gameName = player.getMostRecentGame();
+    assertEquals("Camel Up", gameName);
   }
 }

@@ -87,6 +87,7 @@ public class Player {
     for (Play play : allPlays) {
 
       String gameName = play.getGame().getName();
+
       String date = play.getDate();
       String[] splitDate = date.split("-");
       int year = Integer.valueOf(splitDate[0]);
@@ -94,27 +95,27 @@ public class Player {
       int day = Integer.valueOf(splitDate[2]);
 
       if (mostRecentYear > year) {
-        break;
+        continue;
       }
       if (mostRecentYear < year) {
         mostRecentYear = year;
         mostRecentMonth = month;
         mostRecentDay = day;
         mostRecentGame = gameName;
-        break;
+        continue;
       }
       if (mostRecentMonth > month) {
-        break;
+        continue;
       }
       if (mostRecentMonth < month) {
         mostRecentYear = year;
         mostRecentMonth = month;
         mostRecentDay = day;
         mostRecentGame = gameName;
-        break;
+        continue;
       }
       if (mostRecentDay > day) {
-        break;
+        continue;
       }
       if (mostRecentDay < day) {
         mostRecentYear = year;
@@ -122,7 +123,6 @@ public class Player {
         mostRecentDay = day;
         mostRecentGame = gameName;
       }
-      break;
     }
     return mostRecentGame;
   }
