@@ -232,6 +232,11 @@ public class CollectionBuilder implements ICollectionBuilder {
       int uniqueID = Integer.valueOf(itemNode.getAttributes().getNamedItem("objectid").getNodeValue());
       BoardGame game = idToGameMap.get(uniqueID);
 
+      // Skipping plays of games not owned by the user. Can be modified to search for game info at the cost of another network call
+      if(game == null) {
+        continue;
+      }
+
       // Get date and quantity
       NamedNodeMap playAttributes = playsList.item(i).getAttributes();
       String date = playAttributes.getNamedItem("date").getNodeValue();

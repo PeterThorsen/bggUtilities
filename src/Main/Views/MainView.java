@@ -206,6 +206,9 @@ public class MainView {
                 }
                 if(col == 3) {
                   String[] players = allPlaysSorted[row].getPlayers();
+                  if(players.length == 0) {
+                    return "";
+                  }
                   players = InsertionSortStrings.sort(players);
                   String printValue = players[0];
                   for (int i = 1; i < players.length-1; i++) {

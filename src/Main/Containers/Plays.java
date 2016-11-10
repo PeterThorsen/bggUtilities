@@ -1,7 +1,5 @@
 package Main.Containers;
 
-import Main.InsertionSortStrings;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -34,8 +32,14 @@ public class Plays {
   }
 
   public void addPlay(Play play) {
+    String gameName = "";
+    try {
+      gameName = play.getGame().getName();
+    }
+    catch (Exception e) {
+      System.out.println("ex, play is: " + play.getGame()); // TODO: 09/11/2016 null ved agentkuo, hvorfor findes game ikke
+    }
     for (String player : play.getPlayers()) {
-      String gameName = play.getGame().getName();
 
       if (!allPlayers.containsKey(player)) {
         allPlayers.put(player, play.getQuantity());
@@ -67,7 +71,6 @@ public class Plays {
 
     BoardGame game = play.getGame();
     int id = game.getID();
-    String gameName = game.getName();
     nameToIDMap.put(gameName, id); // For getPlays with name
 
     if (allPlays.containsKey(id)) {
