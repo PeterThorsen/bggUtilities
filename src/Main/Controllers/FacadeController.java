@@ -13,7 +13,7 @@ import java.util.HashMap;
  */
 public class FacadeController {
   private final String username;
-  private IDataDisplayController dataDisplayController;
+  private final IDataDisplayController dataDisplayController;
 
   public FacadeController(ICollectionBuilder collectionBuilder, String username) {
     this.username = username;

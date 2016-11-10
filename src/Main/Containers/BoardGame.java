@@ -12,7 +12,7 @@ public class BoardGame {
   private final String name;
   private final String personalRating;
   private final int numPlays;
-  private String averageRating;
+  private final String averageRating;
   private double complexity = 0.0;
 
   public BoardGame(String name, int uniqueID, int minPlayers, int maxPlayers, int minPlaytime,

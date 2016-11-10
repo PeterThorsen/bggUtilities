@@ -14,16 +14,16 @@ import java.awt.*;
  */
 public class Driver {
 
-  private LoginController loginController;
+  private final LoginController loginController;
   private FacadeController mainController;
-  private JFrame frame;
-  private JPanel panelMain;
+  private final JFrame frame;
+  private final JPanel panelMain;
 
   public static void main(String[] args) {
     new Driver();
   }
 
-  public Driver() {
+  private Driver() {
     loginController = new LoginController(new ReleaseStartupFactory());
     frame = new JFrame("bggUtilities");
     StartView startView = new StartView(this);

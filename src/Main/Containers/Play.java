@@ -5,7 +5,7 @@ package Main.Containers;
  */
 public class Play {
   private final String[] playerNames;
-  private BoardGame game;
+  private final BoardGame game;
   private final String date;
   private final int noOfPlays;
 

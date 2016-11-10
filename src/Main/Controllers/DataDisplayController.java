@@ -11,8 +11,8 @@ import java.util.HashMap;
  * Will be used for connection to the model (ICollectionBuilder) and the view.
  */
 public class DataDisplayController implements IDataDisplayController {
-  BoardGameCollection collection;
-  Plays plays;
+  private final BoardGameCollection collection;
+  private final Plays plays;
 
   public DataDisplayController(ICollectionBuilder collectionBuilder, String username) {
     collection = collectionBuilder.getCollection(username);
@@ -107,8 +107,7 @@ public class DataDisplayController implements IDataDisplayController {
 
   @Override
   public String[] getPlayerNames() {
-    String[] names = plays.getPlayerNames();
-    return names;
+    return plays.getPlayerNames();
   }
 
   @Override

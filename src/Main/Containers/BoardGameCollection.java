@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class BoardGameCollection {
 
-  private ArrayList<BoardGame> games;
+  private final ArrayList<BoardGame> games;
 
   public BoardGameCollection(ArrayList<BoardGame> games) {
     this.games = games;

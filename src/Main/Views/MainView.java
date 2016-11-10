@@ -44,15 +44,15 @@ public class MainView {
     TableModel dataModel = new
             AbstractTableModel() {
 
-              String[] gameNames = facadeController.getAllGameNames();
-              int[] minLengths = facadeController.getAllMinLengths();
-              int[] maxLengths = facadeController.getAllMaxLengths();
-              int[] minPlayers = facadeController.getAllMinPlayers();
-              int[] maxPlayers = facadeController.getAllMaxPlayers();
-              int[] numPlays = facadeController.getAllNumberOfPlays();
-              String[] personalRatings = facadeController.getAllPersonalRatings();
-              double[] complexities = facadeController.getAllComplexities();
-              String[] averageRatings = facadeController.getAllAverageRatings();
+              final String[] gameNames = facadeController.getAllGameNames();
+              final int[] minLengths = facadeController.getAllMinLengths();
+              final int[] maxLengths = facadeController.getAllMaxLengths();
+              final int[] minPlayers = facadeController.getAllMinPlayers();
+              final int[] maxPlayers = facadeController.getAllMaxPlayers();
+              final int[] numPlays = facadeController.getAllNumberOfPlays();
+              final String[] personalRatings = facadeController.getAllPersonalRatings();
+              final double[] complexities = facadeController.getAllComplexities();
+              final String[] averageRatings = facadeController.getAllAverageRatings();
               public int getColumnCount() {
                 return 7;
               }
@@ -74,8 +74,7 @@ public class MainView {
                   return minLengths[row] + "-" + maxLengths[row];
                 }
                 if(col == 2) {
-                  String res = df.format(complexities[row]);
-                  return res;
+                  return df.format(complexities[row]);
                 }
 
                 if(col == 3) {
@@ -94,8 +93,7 @@ public class MainView {
                 if(col == 6) {
                   String temp = averageRatings[row];
                   double avgRatingAsDouble = Double.valueOf(temp);
-                  String res = df.format(avgRatingAsDouble);
-                  return res;
+                  return df.format(avgRatingAsDouble);
                 }
                 else {
                   return "Rest";
@@ -130,9 +128,9 @@ public class MainView {
             AbstractTableModel() {
 
 
-              HashMap<String, Integer> noOfPlaysByPlayer = facadeController.getNumberOfPlaysByPlayers();
-              HashMap<String, GameNameAndPlayHolder> favoriteGames = facadeController.getMostPlayedGamesByPlayers();
-              HashMap<String, String> lastPlayDates = facadeController.getDateOfLastPlayForEachPlayer();
+              final HashMap<String, Integer> noOfPlaysByPlayer = facadeController.getNumberOfPlaysByPlayers();
+              final HashMap<String, GameNameAndPlayHolder> favoriteGames = facadeController.getMostPlayedGamesByPlayers();
+              final HashMap<String, String> lastPlayDates = facadeController.getDateOfLastPlayForEachPlayer();
               public int getColumnCount() {
                 return 4;
               }
@@ -183,7 +181,7 @@ public class MainView {
     TableModel dataModel = new
             AbstractTableModel() {
 
-              Play[] allPlaysSorted = facadeController.getAllPlaysSorted();
+              final Play[] allPlaysSorted = facadeController.getAllPlaysSorted();
               public int getColumnCount() {
                 return 4;
               }

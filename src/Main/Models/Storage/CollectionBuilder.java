@@ -17,10 +17,10 @@ import java.util.HashMap;
  * Created by Peter on 28/09/16.
  */
 public class CollectionBuilder implements ICollectionBuilder {
-  private IConnectionHandler connectionHandler;
+  private final IConnectionHandler connectionHandler;
   private String username;
   private Document collectionDocument;
-  private Plays plays;
+  private final Plays plays;
 
   public CollectionBuilder(IConnectionHandler connectionHandler) {
     this.connectionHandler = connectionHandler;
@@ -54,8 +54,7 @@ public class CollectionBuilder implements ICollectionBuilder {
       }
     }
     ArrayList<BoardGame> games = buildCollection(collectionDocument);
-    BoardGameCollection collection = new BoardGameCollection(games);
-    return collection;
+    return new BoardGameCollection(games);
   }
 
   @Override

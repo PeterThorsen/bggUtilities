@@ -3,8 +3,6 @@ package Main.Views;
 import Main.Driver;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Created by Peter on 04/10/16.
@@ -18,17 +16,16 @@ public class StartView {
 
   public StartView(Driver driver) {
     caller = driver;
-    connectButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        String givenUsername = usernameField.getText();
-        String[] split = givenUsername.split(" ");
-        givenUsername = split[0];
-        for (int i = 1; i < split.length; i++) {
-          givenUsername = givenUsername.concat("%20" + split[i]);
-        }
-        caller.tryLogin(givenUsername);
+
+    // Lambda expression. e comes from super action listener. When action happens on connectButton, execute the code below
+    connectButton.addActionListener(e -> {
+      String givenUsername = usernameField.getText();
+      String[] split = givenUsername.split(" ");
+      givenUsername = split[0];
+      for (int i = 1; i < split.length; i++) {
+        givenUsername = givenUsername.concat("%20" + split[i]);
       }
+      caller.tryLogin(givenUsername);
     });
   }
 

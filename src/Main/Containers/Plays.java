@@ -9,10 +9,10 @@ import java.util.Set;
  * Created by Peter on 07/11/2016.
  */
 public class Plays {
-  private HashMap<String, Integer> allPlayers = new HashMap<String, Integer>();
-  private HashMap<String, Integer> nameToIDMap = new HashMap<>();
-  private HashMap<Integer, ArrayList<Play>> allPlays = new HashMap<>();
-  private HashMap<String, HashMap<String, Integer>> playsByPerson = new HashMap<>();
+  private final HashMap<String, Integer> allPlayers = new HashMap<>();
+  private final HashMap<String, Integer> nameToIDMap = new HashMap<>();
+  private final HashMap<Integer, ArrayList<Play>> allPlays = new HashMap<>();
+  private final HashMap<String, HashMap<String, Integer>> playsByPerson = new HashMap<>();
 
   public String[] getPlayerNames() {
     String[] names = new String[allPlayers.size()];

@@ -10,7 +10,7 @@ import java.util.HashMap;
 /**
  * Created by Peter on 06/10/2016.
  */
-public interface IDataDisplayController {
+interface IDataDisplayController {
 
   ArrayList<BoardGame> getAllGames();
 

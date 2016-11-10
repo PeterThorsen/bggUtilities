@@ -57,8 +57,7 @@ public class ConnectionHandler implements IConnectionHandler {
    * @return built url
    */
   private String buildPlaysURL(String username) {
-    String url = String.format("https://www.boardgamegeek.com/xmlapi2/plays?username=%s", username);
-    return url;
+    return String.format("https://www.boardgamegeek.com/xmlapi2/plays?username=%s", username);
   }
 
   /**
@@ -68,8 +67,7 @@ public class ConnectionHandler implements IConnectionHandler {
    * @return built url
    */
   private String buildCollectionURL(String username) {
-    String url = String.format("https://www.boardgamegeek.com/xmlapi2/collection?stats=1&username=%s", username);
-    return url;
+    return String.format("https://www.boardgamegeek.com/xmlapi2/collection?stats=1&username=%s", username);
   }
 
   /**
@@ -85,7 +83,7 @@ public class ConnectionHandler implements IConnectionHandler {
     sb.append(gameIDArray[0]);
 
     for (int i = 1; i < gameIDArray.length; i++) {
-      sb.append("," + gameIDArray[i]);
+      sb.append(",").append(gameIDArray[i]);
     }
 
     return sb.toString();
