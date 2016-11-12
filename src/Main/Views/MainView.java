@@ -45,8 +45,9 @@ public class MainView {
     TableModel dataModel = new
             AbstractTableModel() {
 
-              final String[] gameNames = facadeController.getAllGameNames();
+              //final String[] gameNames = facadeController.getAllGameNames();
               final BoardGame[] allGames = facadeController.getAllGames();
+              /**
               final int[] minLengths = facadeController.getAllMinLengths();
               final int[] maxLengths = facadeController.getAllMaxLengths();
               final int[] minPlayers = facadeController.getAllMinPlayers();
@@ -54,46 +55,46 @@ public class MainView {
               final int[] numPlays = facadeController.getAllNumberOfPlays();
               final String[] personalRatings = facadeController.getAllPersonalRatings();
               final double[] complexities = facadeController.getAllComplexities();
-              final String[] averageRatings = facadeController.getAllAverageRatings();
+              final String[] averageRatings = facadeController.getAllAverageRatings(); */
               public int getColumnCount() {
                 return 7;
               }
 
               public int getRowCount() {
-                return facadeController.getNumberOfGames();
+                return allGames.length;
               }
 
               public Object getValueAt(int row, int col) {
 
                 // Name
                 if(col == 0) {
-                  return gameNames[row];
+                  return allGames[row].getName();
                 }
                 if (col == 1) {
-                  if(minLengths[row] == maxLengths[row]) {
-                    return minLengths[row];
+                  if(allGames[row].getMinPlaytime() == allGames[row].getMaxPlaytime()) {
+                    return allGames[row].getMinPlaytime();
                   }
-                  return minLengths[row] + "-" + maxLengths[row];
+                  return allGames[row].getMinPlaytime() + "-" + allGames[row].getMaxPlaytime();
                 }
                 if(col == 2) {
-                  return df.format(complexities[row]);
+                  return df.format(allGames[row].getComplexity());
                 }
 
                 if(col == 3) {
-                  if(minPlayers[row] == maxPlayers[row]) {
-                    return minPlayers[row];
+                  if(allGames[row].getMinPlayers() == allGames[row].getMaxPlayers()) {
+                    return allGames[row].getMinPlayers();
                   }
-                  return minPlayers[row] + "-" + maxPlayers[row];
+                  return allGames[row].getMinPlayers() + "-" + allGames[row].getMaxPlayers();
                 }
                 if(col == 4) {
-                  return numPlays[row];
+                  return allGames[row].getNumberOfPlays();
                 }
                  if(col == 5) {
-                  return personalRatings[row];
+                  return allGames[row].getPersonalRating();
                 }
 
                 if(col == 6) {
-                  String temp = averageRatings[row];
+                  String temp = allGames[row].getAverageRating();
                   double avgRatingAsDouble = Double.valueOf(temp);
                   return df.format(avgRatingAsDouble);
                 }
