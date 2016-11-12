@@ -12,7 +12,7 @@ public class InsertionSortStrings {
     for (j = 1; j < sortedPlays.length; j++)    // Start with 1 (not 0)
     {
       key = sortedPlays[j];
-      for(i = j - 1; (i >= 0) && (sortedPlays[i].compareTo(key)) > 0; i--)   // Smaller values are moving up
+      for(i = j - 1; (i >= 0) && (sortedPlays[i].compareToIgnoreCase(key)) > 0; i--)   // Smaller values are moving up
       {
         sortedPlays[ i+1 ] = sortedPlays[i];
       }

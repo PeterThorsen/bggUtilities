@@ -5,6 +5,7 @@ import Main.Containers.GameNameAndPlayHolder;
 import Main.Containers.Play;
 import Main.Containers.Player;
 import Main.Controllers.FacadeController;
+import Main.InsertionSortPlayers;
 import Main.InsertionSortStrings;
 
 import javax.swing.*;
@@ -44,18 +45,7 @@ public class MainView {
     DecimalFormat df = new DecimalFormat("####0.00");
     TableModel dataModel = new
             AbstractTableModel() {
-
-              //final String[] gameNames = facadeController.getAllGameNames();
               final BoardGame[] allGames = facadeController.getAllGames();
-              /**
-              final int[] minLengths = facadeController.getAllMinLengths();
-              final int[] maxLengths = facadeController.getAllMaxLengths();
-              final int[] minPlayers = facadeController.getAllMinPlayers();
-              final int[] maxPlayers = facadeController.getAllMaxPlayers();
-              final int[] numPlays = facadeController.getAllNumberOfPlays();
-              final String[] personalRatings = facadeController.getAllPersonalRatings();
-              final double[] complexities = facadeController.getAllComplexities();
-              final String[] averageRatings = facadeController.getAllAverageRatings(); */
               public int getColumnCount() {
                 return 7;
               }
@@ -124,7 +114,7 @@ public class MainView {
 
   private void fillPlayersTable() {
     Player[] players = facadeController.getAllPlayers();
-    players = insertionSort(players);
+    players = InsertionSortPlayers.sort(players);
 
     final Player[] finalPlayers = players;
 
@@ -147,7 +137,6 @@ public class MainView {
                 // Total plays
                 if(col == 1) {
                   return finalPlayers[row].totalPlays;
-                  //return noOfPlaysByPlayer.get(finalPlayerNames[row]);
                 }
                 // Most played
                 if(col == 2) {
@@ -177,12 +166,6 @@ public class MainView {
 
     playersTable.setModel(dataModel);
   }
-
-  private Player[] insertionSort(Player[] players) {
-    return players;
-    // TODO
-  }
-
 
   private void fillPlaysTable() {
     TableModel dataModel = new
