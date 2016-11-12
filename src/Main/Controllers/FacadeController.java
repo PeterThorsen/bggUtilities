@@ -21,46 +21,6 @@ public class FacadeController {
     return dataDisplayController.getAllGames();
   }
 
-  public int getNumberOfGames() {
-    return dataDisplayController.getNumberOfGames();
-  }
-
-  public String[] getAllGameNames() {
-    return dataDisplayController.getGameNames();
-  }
-
-  public int[] getAllMinLengths() {
-    return dataDisplayController.getMinLengths();
-  }
-
-  public int[] getAllMaxLengths() {
-    return dataDisplayController.getMaxLengths();
-  }
-
-  public double[] getAllComplexities() {
-    return dataDisplayController.getComplexities();
-  }
-
-  public int[] getAllMinPlayers() {
-    return dataDisplayController.getMinPlayers();
-  }
-
-  public int[] getAllMaxPlayers() {
-    return dataDisplayController.getMaxPlayers();
-  }
-
-  public int[] getAllNumberOfPlays() {
-    return dataDisplayController.getNumberOfPlays();
-  }
-
-  public String[] getAllPersonalRatings() {
-    return dataDisplayController.getPersonalRatings();
-  }
-
-  public String[] getAllAverageRatings() {
-    return dataDisplayController.getAverageRatings();
-  }
-
   public Play[] getAllPlaysSorted() {
     return dataDisplayController.getAllPlaysSorted();
   }

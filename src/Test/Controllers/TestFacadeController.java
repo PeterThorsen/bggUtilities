@@ -1,5 +1,6 @@
 package Test.Controllers;
 
+import Main.Containers.BoardGame;
 import Main.Containers.Play;
 import Main.Containers.Player;
 import Main.Controllers.FacadeController;
@@ -28,84 +29,21 @@ public class TestFacadeController {
 
   @Test
   public void shouldReturnListOfGames() {
-    assertTrue(facadeController.getAllGames().length > 0);
+    BoardGame[] allGames = facadeController.getAllGames();
+    assertTrue(allGames.length == 2);
   }
 
   @Test
-  public void shouldReturnSizeOfGamesList() {
-    int size = facadeController.getNumberOfGames();
-    assertEquals(2, size);
-  }
-
-
-  @Test
-  public void shouldReturnAllGameNames() {
-    String[] gameNames = facadeController.getAllGameNames();
-    assertEquals("Agricola", gameNames[0]);
-    assertEquals("Hive", gameNames[1]);
-  }
-
-  @Test
-  public void shouldReturnAllMinimumLengths() {
-    int[] minLengths = facadeController.getAllMinLengths();
-    assertEquals(30, minLengths[0]);
-    assertEquals(20, minLengths[1]);
-  }
-
-  @Test
-  public void shouldReturnAllMaximumLengths() {
-    int[] minLengths = facadeController.getAllMaxLengths();
-    assertEquals(150, minLengths[0]);
-    assertEquals(20, minLengths[1]);
-  }
-
-  @Test
-  public void shouldReturnAllComplexities() {
-    double[] minLengths = facadeController.getAllComplexities();
-    assertEquals(2.3453, minLengths[0]);
-    assertEquals(3.6298, minLengths[1]);
-  }
-
-  @Test
-  public void shouldReturnAllMinPlayers() {
-    int[] minPlayers = facadeController.getAllMinPlayers();
-    assertEquals(1, minPlayers[0]);
-    assertEquals(2, minPlayers[1]);
-  }
-
-  @Test
-  public void shouldReturnAllMaxPlayers() {
-    int[] maxPlayers = facadeController.getAllMaxPlayers();
-    assertEquals(5, maxPlayers[0]);
-    assertEquals(2, maxPlayers[1]);
-  }
-
-  @Test
-  public void shouldReturnNumPlays() {
-    int[] numPlays = facadeController.getAllNumberOfPlays();
-    assertEquals(0, numPlays[0]);
-    assertEquals(1, numPlays[1]);
-  }
-
-  @Test
-  public void shouldReturnPersonalRating() {
-    String[] personalRating = facadeController.getAllPersonalRatings();
-    assertEquals(8, Integer.parseInt(personalRating[0]));
-    assertEquals(10, Integer.parseInt(personalRating[1]));
-  }
-
-  @Test
-  public void shouldReturnAverageRating() {
-    String[] averageRatings = facadeController.getAllAverageRatings();
-    assertEquals(8.07978, Double.parseDouble(averageRatings[0]));
-    assertEquals(7.34394, Double.parseDouble(averageRatings[1]));
+  public void listOfGamesShouldContain() {
+    BoardGame[] allGames = facadeController.getAllGames();
+    assertEquals("Agricola", allGames[0].getName());
+    assertEquals("Hive", allGames[1].getName());
   }
 
   @Test
   public void shouldReturnAllPlayers() {
     Player[] players = facadeController.getAllPlayers();
     assertEquals("Peter", players[0].name);
-
   }
 
   @Test

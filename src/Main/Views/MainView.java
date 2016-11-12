@@ -34,7 +34,7 @@ public class MainView {
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     int width = screenSize.width;
     int height = screenSize.height;
-    panel1.setPreferredSize(new Dimension(width/2, height/2));
+    panel1.setPreferredSize(new Dimension(width / 2, height / 2));
 
     fillGamesTable();
     fillPlayersTable();
@@ -46,6 +46,7 @@ public class MainView {
     TableModel dataModel = new
             AbstractTableModel() {
               final BoardGame[] allGames = facadeController.getAllGames();
+
               public int getColumnCount() {
                 return 7;
               }
@@ -57,53 +58,59 @@ public class MainView {
               public Object getValueAt(int row, int col) {
 
                 // Name
-                if(col == 0) {
+                if (col == 0) {
                   return allGames[row].getName();
                 }
                 if (col == 1) {
-                  if(allGames[row].getMinPlaytime() == allGames[row].getMaxPlaytime()) {
+                  if (allGames[row].getMinPlaytime() == allGames[row].getMaxPlaytime()) {
                     return allGames[row].getMinPlaytime();
                   }
                   return allGames[row].getMinPlaytime() + "-" + allGames[row].getMaxPlaytime();
                 }
-                if(col == 2) {
+                if (col == 2) {
                   return df.format(allGames[row].getComplexity());
                 }
 
-                if(col == 3) {
-                  if(allGames[row].getMinPlayers() == allGames[row].getMaxPlayers()) {
+                if (col == 3) {
+                  if (allGames[row].getMinPlayers() == allGames[row].getMaxPlayers()) {
                     return allGames[row].getMinPlayers();
                   }
                   return allGames[row].getMinPlayers() + "-" + allGames[row].getMaxPlayers();
                 }
-                if(col == 4) {
+                if (col == 4) {
                   return allGames[row].getNumberOfPlays();
                 }
-                 if(col == 5) {
+                if (col == 5) {
                   return allGames[row].getPersonalRating();
                 }
 
-                if(col == 6) {
+                if (col == 6) {
                   String temp = allGames[row].getAverageRating();
                   double avgRatingAsDouble = Double.valueOf(temp);
                   return df.format(avgRatingAsDouble);
-                }
-                else {
+                } else {
                   return "Rest";
                 }
               }
 
-
               public String getColumnName(int column) {
-                switch (column){
-                  case 0: return "Title";
-                  case 1: return "Playtime";
-                  case 2: return "Complexity";
-                  case 3: return "Players";
-                  case 4: return "Plays";
-                  case 5: return "Your rating";
-                  case 6: return "Average rating";
-                  default: return "REST";
+                switch (column) {
+                  case 0:
+                    return "Title";
+                  case 1:
+                    return "Playtime";
+                  case 2:
+                    return "Complexity";
+                  case 3:
+                    return "Players";
+                  case 4:
+                    return "Plays";
+                  case 5:
+                    return "Your rating";
+                  case 6:
+                    return "Average rating";
+                  default:
+                    return "REST";
                 }
               }
 
@@ -131,34 +138,38 @@ public class MainView {
               public Object getValueAt(int row, int col) {
 
                 // Name
-                if(col == 0) {
+                if (col == 0) {
                   return finalPlayers[row].name;
                 }
                 // Total plays
-                if(col == 1) {
+                if (col == 1) {
                   return finalPlayers[row].totalPlays;
                 }
                 // Most played
-                if(col == 2) {
+                if (col == 2) {
                   GameNameAndPlayHolder holder = finalPlayers[row].getMostPlayedGame();
                   return holder.gameName + " (" + holder.plays + " plays)";
                 }
-                if(col == 3) {
+                if (col == 3) {
                   return finalPlayers[row].getMostRecentGame();
-                }
-                else {
+                } else {
                   return "Rest";
                 }
               }
 
 
               public String getColumnName(int column) {
-                switch (column){
-                  case 0: return "Name";
-                  case 1: return "Total plays";
-                  case 2: return "Most played";
-                  case 3: return "Last play";
-                  default: return "REST";
+                switch (column) {
+                  case 0:
+                    return "Name";
+                  case 1:
+                    return "Total plays";
+                  case 2:
+                    return "Most played";
+                  case 3:
+                    return "Last play";
+                  default:
+                    return "REST";
                 }
               }
 
@@ -172,6 +183,7 @@ public class MainView {
             AbstractTableModel() {
 
               final Play[] allPlaysSorted = facadeController.getAllPlaysSorted();
+
               public int getColumnCount() {
                 return 4;
               }
@@ -183,40 +195,44 @@ public class MainView {
               public Object getValueAt(int row, int col) {
 
                 // Name
-                if(col == 0) {
+                if (col == 0) {
                   return allPlaysSorted[row].getGame().getName();
                 }
-                if(col == 1) {
+                if (col == 1) {
                   return allPlaysSorted[row].getQuantity();
                 }
-                if(col == 2) {
+                if (col == 2) {
                   return allPlaysSorted[row].getDate();
                 }
-                if(col == 3) {
+                if (col == 3) {
                   String[] players = allPlaysSorted[row].getPlayers();
-                  if(players.length == 0) {
+                  if (players.length == 0) {
                     return "";
                   }
                   players = InsertionSortStrings.sort(players);
                   String printValue = players[0];
-                  for (int i = 1; i < players.length-1; i++) {
+                  for (int i = 1; i < players.length - 1; i++) {
                     printValue = printValue.concat(", " + players[i]);
                   }
-                  printValue = printValue.concat(" and " + players[players.length-1] + ".");
+                  printValue = printValue.concat(" and " + players[players.length - 1] + ".");
                   return printValue;
-                }
-                else {
+                } else {
                   return "Rest";
                 }
               }
 
               public String getColumnName(int column) {
-                switch (column){
-                  case 0: return "Name";
-                  case 1: return "Quantity";
-                  case 2: return "Date";
-                  case 3: return "Players";
-                  default: return "REST";
+                switch (column) {
+                  case 0:
+                    return "Name";
+                  case 1:
+                    return "Quantity";
+                  case 2:
+                    return "Date";
+                  case 3:
+                    return "Players";
+                  default:
+                    return "REST";
                 }
               }
             };

@@ -5,18 +5,18 @@ package Main;
  */
 public class InsertionSortStrings {
   public static String[] sort(String[] sortedPlays) {
-    int j;                     // the number of items sorted so far
-    String key;                // the item to be inserted
+    int j;
+    String key;
     int i;
 
-    for (j = 1; j < sortedPlays.length; j++)    // Start with 1 (not 0)
+    for (j = 1; j < sortedPlays.length; j++)
     {
       key = sortedPlays[j];
-      for(i = j - 1; (i >= 0) && (sortedPlays[i].compareToIgnoreCase(key)) > 0; i--)   // Smaller values are moving up
+      for(i = j - 1; (i >= 0) && (sortedPlays[i].compareToIgnoreCase(key)) > 0; i--)
       {
         sortedPlays[ i+1 ] = sortedPlays[i];
       }
-      sortedPlays[ i+1 ] = key;    // Put the key in its proper location
+      sortedPlays[ i+1 ] = key;
     }
     return sortedPlays;
   }
