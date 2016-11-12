@@ -21,7 +21,7 @@ import static org.junit.Assert.assertTrue;
 public class TestPlays {
   Plays plays;
   BoardGameCollection collection;
-  private ArrayList<BoardGame> games;
+  private BoardGame[] games;
 
   @Before
   public void setup() {

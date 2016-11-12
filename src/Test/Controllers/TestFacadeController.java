@@ -28,7 +28,7 @@ public class TestFacadeController {
 
   @Test
   public void shouldReturnListOfGames() {
-    assertTrue(facadeController.getAllGames().size() > 0);
+    assertTrue(facadeController.getAllGames().length > 0);
   }
 
   @Test
@@ -107,39 +107,7 @@ public class TestFacadeController {
     assertEquals("Peter", players[0].name);
 
   }
-/**
-  @Test
-  public void shouldReturnAllPlayers() {
-    String[] playerNames = facadeController.getPlayerNames();
-    assertEquals("Martin", playerNames[0]);
-  }
 
-  @Test
-  public void shouldReturnPlayerMapContaining3PlaysByMartin() {
-    HashMap<String, Integer> map = facadeController.getNumberOfPlaysByPlayers();
-    int playsByMartin = map.get("Martin");
-    assertEquals(3, playsByMartin);
-  }
-
-  @Test
-  public void shouldReturn1WhenCalledGetNumberOfPlayers() {
-    int players = facadeController.getNumberOfPlayers();
-    assertEquals(1, players);
-  }
-
-  @Test
-  public void shouldReturnHiveAsMostPlayedWithTwoPlays() {
-    HashMap<String, GameNameAndPlayHolder> mostPlayed = facadeController.getMostPlayedGamesByPlayers();
-    assertEquals("Hive", mostPlayed.get("Martin").gameName);
-    assertEquals(2, mostPlayed.get("Martin").plays);
-  }
-
-  @Test
-  public void shouldReturnLastPlayOfPlayer() {
-    HashMap<String, String> lastPlayDates = facadeController.getDateOfLastPlayForEachPlayer();
-    assertEquals("Agricola", lastPlayDates.get("Martin"));
-  }
-*/
   @Test
   public void shouldReturnListOfAllPlaysSorted() {
     Play[] allPlays = facadeController.getAllPlaysSorted();

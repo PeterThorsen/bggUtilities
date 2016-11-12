@@ -10,8 +10,6 @@ import Test.Models.StubsAndMocks.ConnectionHandlerStub;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 import static junit.framework.TestCase.*;
 
 /**
@@ -21,7 +19,7 @@ public class TestCollectionBuilder_WithStub {
   IConnectionHandler connectionHandler;
   ICollectionBuilder collectionBuilder;
   BoardGameCollection collection;
-  ArrayList<BoardGame> games;
+  BoardGame[] games;
 
   @Before
   public void setUp() {
@@ -43,7 +41,7 @@ public class TestCollectionBuilder_WithStub {
 
   @Test
   public void collectionShouldContainNonEmptyListOfBoardGames() {
-    assertTrue(games.size() > 0);
+    assertTrue(games.length > 0);
   }
 
   @Test
@@ -88,7 +86,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void agricolaShouldHaveUniqueID31260() {
     int uniqueID = 0;
-    BoardGame game = games.get(0);
+    BoardGame game = games[0];
     uniqueID = game.getID();
     assertEquals(31260, uniqueID);
   }
@@ -96,7 +94,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void hiveShouldHaveUniqueID2655() {
     int uniqueID = 0;
-    BoardGame game = games.get(20);
+    BoardGame game = games[20];
     uniqueID = game.getID();
     assertEquals(2655, uniqueID);
   }
@@ -104,7 +102,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void agricolaShouldHaveMinPlayers1() {
     int minPlayers = 0;
-    BoardGame game = games.get(0);
+    BoardGame game = games[0];
     minPlayers = game.getMinPlayers();
     assertEquals(1, minPlayers);
   }
@@ -112,7 +110,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void hiveShouldHaveMinPlayers2() {
     int minPlayers = 0;
-    BoardGame game = games.get(20);
+    BoardGame game = games[20];
     minPlayers = game.getMinPlayers();
     assertEquals(2, minPlayers);
   }
@@ -120,7 +118,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void hiveShouldHaveMaxPlayers2() {
     int maxPlayers = 0;
-    BoardGame game = games.get(20);
+    BoardGame game = games[20];
     maxPlayers = game.getMaxPlayers();
     assertEquals(2, maxPlayers);
   }
@@ -128,7 +126,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void agricolaShouldHaveMaxPlayers5() {
     int maxPlayers = 0;
-    BoardGame game = games.get(0);
+    BoardGame game = games[0];
     maxPlayers = game.getMaxPlayers();
     assertEquals(5, maxPlayers);
   }
@@ -136,7 +134,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void agricolaShouldHaveMinPlaytime30Min() {
     int minPlaytime = 0;
-    BoardGame game = games.get(0);
+    BoardGame game = games[0];
     minPlaytime = game.getMinPlaytime();
     assertEquals(30, minPlaytime);
   }
@@ -144,7 +142,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void agricolaShouldHaveMaxPlaytime150Min() {
     int maxPlaytime;
-    BoardGame game = games.get(0);
+    BoardGame game = games[0];
     maxPlaytime = game.getMaxPlaytime();
     assertEquals(150, maxPlaytime);
   }
@@ -152,7 +150,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void agricolaShouldHavePersonalRating8() {
     String personalRating;
-    BoardGame game = games.get(0);
+    BoardGame game = games[0];
     personalRating = game.getPersonalRating();
     int rating = Integer.valueOf(personalRating);
     assertEquals(8, rating);
@@ -161,7 +159,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void hiveShouldHavePersonalRating10() {
     String personalRating;
-    BoardGame game = games.get(20);
+    BoardGame game = games[20];
     personalRating = game.getPersonalRating();
     int rating = Integer.valueOf(personalRating);
     assertEquals(10, rating);
@@ -170,7 +168,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void agricolaShouldHaveNumPlays0() {
     int numPlays;
-    BoardGame game = games.get(0);
+    BoardGame game = games[0];
     numPlays = game.getNumberOfPlays();
     assertEquals(0, numPlays);
   }
@@ -178,7 +176,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void hiveShouldHaveNumPlays1() {
     int numPlays;
-    BoardGame game = games.get(20);
+    BoardGame game = games[20];
     numPlays = game.getNumberOfPlays();
     assertEquals(1, numPlays);
   }
@@ -186,7 +184,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void hiveShouldHaveComplexityBetween2And3() {
     double complexity;
-    BoardGame game = games.get(20);
+    BoardGame game = games[20];
     complexity = game.getComplexity();
     assertTrue(complexity > 2.0 && complexity < 3.0);
   }
@@ -194,14 +192,14 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void agricolaShouldHaveComplexityBetween3And4() {
     double complexity;
-    BoardGame game = games.get(0);
+    BoardGame game = games[0];
     complexity = game.getComplexity();
     assertTrue(complexity > 3.0 && complexity < 4.0);
   }
 
   @Test
   public void dixitShouldHaveAverageRating7Dot54402() {
-    BoardGame game = games.get(13);
+    BoardGame game = games[13];
     assertEquals(7.54402, Double.valueOf(game.getAverageRating()));
   }
 

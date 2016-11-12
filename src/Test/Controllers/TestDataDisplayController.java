@@ -47,13 +47,14 @@ public class TestDataDisplayController {
 
   @Test
   public void controllerShouldReturnListOfGames() {
-    ArrayList<BoardGame> games = controller.getAllGames();
+    BoardGame[] games = controller.getAllGames();
     assertNotNull(games);
+    assertTrue(games.length > 0);
   }
 
   @Test
   public void controllerShouldReturnListOfGamesContainingHive() {
-    ArrayList<BoardGame> games = controller.getAllGames();
+    BoardGame[] games = controller.getAllGames();
 
     boolean foundHive = false;
 
@@ -67,7 +68,7 @@ public class TestDataDisplayController {
 
   @Test
   public void controllerShouldReturnListOfGamesContainingAgricola() {
-    ArrayList<BoardGame> games = controller.getAllGames();
+    BoardGame[] games = controller.getAllGames();
 
     boolean foundAgricola = false;
 

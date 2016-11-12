@@ -1,19 +1,15 @@
 package Main.Controllers;
 
 import Main.Containers.BoardGame;
-import Main.Containers.GameNameAndPlayHolder;
 import Main.Containers.Play;
 import Main.Containers.Player;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by Peter on 06/10/2016.
  */
 interface IDataDisplayController {
 
-  ArrayList<BoardGame> getAllGames();
+  BoardGame[] getAllGames();
 
   int getNumberOfGames();
 
@@ -36,14 +32,6 @@ interface IDataDisplayController {
   String[] getAverageRatings();
 
   String[] getPlayerNames();
-
-  HashMap<String,Integer> getNumberOfPlaysByPlayers();
-
-  int getNumberOfPlayers();
-
-  HashMap<String, GameNameAndPlayHolder> getMostPlayedGamesByPlayers();
-
-  HashMap<String,String> getDateOfLastPlayForEachPlayer();
 
   Play[] getAllPlaysSorted();
 

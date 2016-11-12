@@ -1,5 +1,6 @@
 package Main.Views;
 
+import Main.Containers.BoardGame;
 import Main.Containers.GameNameAndPlayHolder;
 import Main.Containers.Play;
 import Main.Containers.Player;
@@ -45,6 +46,7 @@ public class MainView {
             AbstractTableModel() {
 
               final String[] gameNames = facadeController.getAllGameNames();
+              final BoardGame[] allGames = facadeController.getAllGames();
               final int[] minLengths = facadeController.getAllMinLengths();
               final int[] maxLengths = facadeController.getAllMaxLengths();
               final int[] minPlayers = facadeController.getAllMinPlayers();
@@ -120,10 +122,6 @@ public class MainView {
   }
 
   private void fillPlayersTable() {
-    //String[] playerNames = facadeController.getPlayerNames();
-    //playerNames = InsertionSortStrings.sort(playerNames);
-    //String[] finalPlayerNames = playerNames;
-
     Player[] players = facadeController.getAllPlayers();
     players = insertionSort(players);
 
@@ -131,10 +129,6 @@ public class MainView {
 
     TableModel dataModel = new
             AbstractTableModel() {
-
-              //final HashMap<String, Integer> noOfPlaysByPlayer = facadeController.getNumberOfPlaysByPlayers();
-              //final HashMap<String, GameNameAndPlayHolder> favoriteGames = facadeController.getMostPlayedGamesByPlayers();
-              //final HashMap<String, String> lastPlayDates = facadeController.getDateOfLastPlayForEachPlayer();
               public int getColumnCount() {
                 return 4;
               }

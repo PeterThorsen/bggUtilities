@@ -1,13 +1,9 @@
 package Main.Controllers;
 
 import Main.Containers.BoardGame;
-import Main.Containers.GameNameAndPlayHolder;
 import Main.Containers.Play;
 import Main.Containers.Player;
 import Main.Models.Storage.ICollectionBuilder;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by Peter on 05/10/2016.
@@ -21,7 +17,7 @@ public class FacadeController {
     dataDisplayController = new DataDisplayController(collectionBuilder, username);
   }
 
-  public ArrayList<BoardGame> getAllGames() {
+  public BoardGame[] getAllGames() {
     return dataDisplayController.getAllGames();
   }
 
@@ -63,22 +59,6 @@ public class FacadeController {
 
   public String[] getAllAverageRatings() {
     return dataDisplayController.getAverageRatings();
-  }
-
-  public String[] getPlayerNames() {
-    return dataDisplayController.getPlayerNames();
-  }
-
-  public HashMap<String,Integer> getNumberOfPlaysByPlayers() {
-    return dataDisplayController.getNumberOfPlaysByPlayers();
-  }
-
-  public HashMap<String, GameNameAndPlayHolder> getMostPlayedGamesByPlayers() {
-    return dataDisplayController.getMostPlayedGamesByPlayers();
-  }
-
-  public HashMap<String,String> getDateOfLastPlayForEachPlayer() {
-    return dataDisplayController.getDateOfLastPlayForEachPlayer();
   }
 
   public Play[] getAllPlaysSorted() {
