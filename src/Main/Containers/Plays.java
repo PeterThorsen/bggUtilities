@@ -1,5 +1,7 @@
 package Main.Containers;
 
+import Main.Sorting.InsertionSortPlays;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -35,7 +37,7 @@ public class Plays {
     catch (Exception e) {
       System.out.println("ex, play is: " + play.getGame()); // TODO: 09/11/2016 null ved agentkuo, hvorfor findes game ikke
     }
-    for (String player : play.getPlayers()) {
+    for (String player : play.playerNames) {
 
       if (!allPlayers.containsKey(player)) {
         allPlayers.put(player, play.getQuantity());
@@ -106,25 +108,8 @@ public class Plays {
       sortedPlays[i] = unsortedPlays.get(i);
     }
 
-    sortedPlays = insertionSort(sortedPlays);
+    sortedPlays = InsertionSortPlays.sort(sortedPlays);
 
-    return sortedPlays;
-  }
-
-  private Play[] insertionSort(Play[] sortedPlays) {
-    int j;                     // the number of items sorted so far
-    Play key;                // the item to be inserted
-    int i;
-
-    for (j = 1; j < sortedPlays.length; j++)    // Start with 1 (not 0)
-    {
-      key = sortedPlays[j];
-      for(i = j - 1; (i >= 0) && (sortedPlays[i].getDate().compareTo(key.getDate()) < 0); i--)   // Smaller values are moving up
-      {
-        sortedPlays[ i+1 ] = sortedPlays[i];
-      }
-      sortedPlays[ i+1 ] = key;    // Put the key in its proper location
-    }
     return sortedPlays;
   }
 

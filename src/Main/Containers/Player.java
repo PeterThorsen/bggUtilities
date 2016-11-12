@@ -23,7 +23,7 @@ public class Player {
       int quantity = play.getQuantity();
       BoardGame game = play.getGame();
       String gameName = game.getName();
-      String[] allPlayers = play.getPlayers();
+      String[] allPlayers = play.playerNames;
 
       totalPlays += quantity;
 
@@ -47,7 +47,6 @@ public class Player {
           nameToPlaysMap.put(name, quantity);
         }
       }
-
     }
   }
 

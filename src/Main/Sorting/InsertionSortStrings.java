@@ -1,4 +1,4 @@
-package Main;
+package Main.Sorting;
 
 /**
  * Created by Peter on 09-Nov-16.

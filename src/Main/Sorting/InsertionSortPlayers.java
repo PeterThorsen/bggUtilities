@@ -1,4 +1,4 @@
-package Main;
+package Main.Sorting;
 
 import Main.Containers.Player;
 

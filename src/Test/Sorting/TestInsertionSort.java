@@ -1,10 +1,9 @@
-package Test;
+package Test.Sorting;
 
 import Main.Containers.Play;
 import Main.Containers.Player;
-import Main.InsertionSortPlayers;
-import Main.InsertionSortStrings;
-import org.junit.Before;
+import Main.Sorting.InsertionSortPlayers;
+import Main.Sorting.InsertionSortStrings;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

@@ -5,8 +5,6 @@ import Main.Containers.GameNameAndPlayHolder;
 import Main.Containers.Play;
 import Main.Containers.Player;
 import Main.Controllers.FacadeController;
-import Main.InsertionSortPlayers;
-import Main.InsertionSortStrings;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -121,9 +119,6 @@ public class MainView {
 
   private void fillPlayersTable() {
     Player[] players = facadeController.getAllPlayers();
-    players = InsertionSortPlayers.sort(players);
-
-    final Player[] finalPlayers = players;
 
     TableModel dataModel = new
             AbstractTableModel() {
@@ -132,26 +127,26 @@ public class MainView {
               }
 
               public int getRowCount() {
-                return finalPlayers.length;
+                return players.length;
               }
 
               public Object getValueAt(int row, int col) {
 
                 // Name
                 if (col == 0) {
-                  return finalPlayers[row].name;
+                  return players[row].name;
                 }
                 // Total plays
                 if (col == 1) {
-                  return finalPlayers[row].totalPlays;
+                  return players[row].totalPlays;
                 }
                 // Most played
                 if (col == 2) {
-                  GameNameAndPlayHolder holder = finalPlayers[row].getMostPlayedGame();
+                  GameNameAndPlayHolder holder = players[row].getMostPlayedGame();
                   return holder.gameName + " (" + holder.plays + " plays)";
                 }
                 if (col == 3) {
-                  return finalPlayers[row].getMostRecentGame();
+                  return players[row].getMostRecentGame();
                 } else {
                   return "Rest";
                 }
@@ -205,11 +200,10 @@ public class MainView {
                   return allPlaysSorted[row].getDate();
                 }
                 if (col == 3) {
-                  String[] players = allPlaysSorted[row].getPlayers();
+                  String[] players = allPlaysSorted[row].playerNames;
                   if (players.length == 0) {
                     return "";
                   }
-                  players = InsertionSortStrings.sort(players);
                   String printValue = players[0];
                   for (int i = 1; i < players.length - 1; i++) {
                     printValue = printValue.concat(", " + players[i]);

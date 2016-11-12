@@ -77,7 +77,7 @@ public class CollectionBuilder implements ICollectionBuilder {
 
     // Register plays for each specific person
     for (Play play : allPlays) {
-      String[] currentPlayers = play.getPlayers();
+      String[] currentPlayers = play.playerNames;
       for (String name : currentPlayers) {
         if(map.containsKey(name)) {
           ArrayList<Play> specificPersonPlays = map.get(name);

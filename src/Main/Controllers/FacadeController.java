@@ -26,6 +26,6 @@ public class FacadeController {
   }
 
   public Player[] getAllPlayers() {
-    return dataDisplayController.getAllPlayers();
+    return dataDisplayController.getAllPlayersSorted();
   }
 }

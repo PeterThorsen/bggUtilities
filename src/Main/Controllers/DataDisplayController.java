@@ -1,6 +1,7 @@
 package Main.Controllers;
 
 import Main.Containers.*;
+import Main.Sorting.InsertionSortPlayers;
 import Main.Models.Storage.ICollectionBuilder;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 public class DataDisplayController implements IDataDisplayController {
   private final BoardGameCollection collection;
   private final Plays plays;
-  private final Player[] players;
+  private Player[] players;
 
   public DataDisplayController(ICollectionBuilder collectionBuilder, String username) {
     collection = collectionBuilder.getCollection(username);
@@ -35,89 +36,13 @@ public class DataDisplayController implements IDataDisplayController {
   }
 
   @Override
-  public double[] getComplexities() {
-    double[] complexities = new double[collection.getGames().length];
-    for (int i = 0; i < complexities.length; i++) {
-      complexities[i] = collection.getGames()[i].getComplexity();
-    }
-    return complexities;
-  }
-
-  @Override
-  public int[] getMaxLengths() {
-    int[] maxLengths = new int[collection.getGames().length];
-    for (int i = 0; i < maxLengths.length; i++) {
-      maxLengths[i] = collection.getGames()[i].getMaxPlaytime();
-    }
-    return maxLengths;
-  }
-
-  @Override
-  public int[] getMinLengths() {
-    int[] minLengths = new int[collection.getGames().length];
-    for (int i = 0; i < minLengths.length; i++) {
-      minLengths[i] = collection.getGames()[i].getMinPlaytime();
-    }
-    return minLengths;
-  }
-
-  @Override
-  public int[] getMinPlayers() {
-    int[] minPlayers = new int[collection.getGames().length];
-    for (int i = 0; i < minPlayers.length; i++) {
-      minPlayers[i] = collection.getGames()[i].getMinPlayers();
-    }
-    return minPlayers;
-  }
-
-  @Override
-  public int[] getMaxPlayers() {
-    int[] maxPlayers = new int[collection.getGames().length];
-    for (int i = 0; i < maxPlayers.length; i++) {
-      maxPlayers[i] = collection.getGames()[i].getMaxPlayers();
-    }
-    return maxPlayers;
-  }
-
-  @Override
-  public int[] getNumberOfPlays() {
-    int[] playsArray = new int[collection.getGames().length];
-    for (int i = 0; i < playsArray.length; i++) {
-      playsArray[i] = collection.getGames()[i].getNumberOfPlays();
-    }
-    return playsArray;
-  }
-
-  @Override
-  public String[] getPersonalRatings() {
-    String[] personalRatings = new String[collection.getGames().length];
-    for (int i = 0; i < personalRatings.length; i++) {
-      personalRatings[i] = collection.getGames()[i].getPersonalRating();
-    }
-    return personalRatings;
-  }
-
-  @Override
-  public String[] getAverageRatings() {
-    String[] averageRatings = new String[collection.getGames().length];
-    for (int i = 0; i < averageRatings.length; i++) {
-      averageRatings[i] = collection.getGames()[i].getAverageRating();
-    }
-    return averageRatings;
-  }
-
-  @Override
-  public String[] getPlayerNames() {
-    return plays.getPlayerNames();
-  }
-
-  @Override
   public Play[] getAllPlaysSorted() {
     return plays.getAllPlaysSorted();
   }
 
   @Override
-  public Player[] getAllPlayers() {
+  public Player[] getAllPlayersSorted() {
+    players = InsertionSortPlayers.sort(players);
     return players;
   }
 

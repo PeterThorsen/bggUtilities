@@ -1,4 +1,4 @@
-package Test.Models;
+package Test.Containers;
 
 import Main.Containers.BoardGame;
 import Main.Containers.BoardGameCollection;
@@ -93,7 +93,7 @@ public class TestPlays {
     boolean exists = false;
     for (Play play : dixitPlays) {
       if (play.getDate().equals("2016-09-09")) {
-        for (String name : play.getPlayers()) {
+        for (String name : play.playerNames) {
           if(name.equals("Martin")) {
             exists = true;
             break;

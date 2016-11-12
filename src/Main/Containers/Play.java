@@ -4,7 +4,7 @@ package Main.Containers;
  * Created by Peter on 03/10/16.
  */
 public class Play {
-  private final String[] playerNames;
+  public String[] playerNames;
   private final BoardGame game;
   private final String date;
   private final int noOfPlays;
@@ -18,10 +18,6 @@ public class Play {
 
   public String getDate() {
     return date;
-  }
-
-  public String[] getPlayers() {
-    return playerNames;
   }
 
   public int getQuantity() {

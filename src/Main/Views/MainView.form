@@ -47,7 +47,10 @@
             <children>
               <component id="f807a" class="javax.swing.JTable" binding="playersTable">
                 <constraints/>
-                <properties/>
+                <properties>
+                  <autoCreateRowSorter value="false"/>
+                  <fillsViewportHeight value="false"/>
+                </properties>
               </component>
             </children>
           </scrollpane>
