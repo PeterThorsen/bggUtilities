@@ -96,6 +96,7 @@ public class PlayerViewMoreStats {
     double maxComplexity = 0;
     for (BoardGame key : map.keySet()) {
       double current = key.getComplexity();
+      if(current == 0.0) continue;
       if (current < minComplexity) {
         minComplexity = current;
       }
