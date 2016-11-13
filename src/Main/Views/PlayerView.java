@@ -300,8 +300,12 @@ public class PlayerView {
     showMoreStatsButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        PlayerViewMoreStats moreStats = new PlayerViewMoreStats();
+        PlayerViewMoreStats moreStats = new PlayerViewMoreStats(frame, selectedPlayer, PlayerView.this);
+
         frame.setContentPane(moreStats.panel1);
+        frame.repaint();
+        frame.pack();
+
       }
     });
     suggestGamesButtonButton.addActionListener(new ActionListener() {

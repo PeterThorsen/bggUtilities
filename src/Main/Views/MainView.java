@@ -19,8 +19,6 @@ import java.text.DecimalFormat;
  */
 public class MainView {
   private final FacadeController facadeController;
-  private final int width;
-  private final int height;
   public JPanel panel1;
   public JTable gamesTable;
   private JTabbedPane tabbedPane1;
@@ -36,8 +34,8 @@ public class MainView {
 
     // make the frame half the height and width
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    width = screenSize.width;
-    height = screenSize.height;
+    int width = screenSize.width;
+    int height = screenSize.height;
     halfDimension = new Dimension(width/2, height/2);
     panel1.setPreferredSize(halfDimension);
 

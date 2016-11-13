@@ -76,4 +76,16 @@ public class BoardGame {
   public String getAverageRating() {
     return averageRating;
   }
+
+  @Override
+  public int hashCode() {
+    return name.hashCode();
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    BoardGame object = (BoardGame) obj;
+    return object.name.equals(name);
+  }
+
 }
