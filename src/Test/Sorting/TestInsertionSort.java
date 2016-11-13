@@ -2,7 +2,9 @@ package Test.Sorting;
 
 import Main.Containers.Play;
 import Main.Containers.Player;
+import Main.Containers.StringToIntHolder;
 import Main.Sorting.InsertionSortPlayers;
+import Main.Sorting.InsertionSortStringAndIntHolder;
 import Main.Sorting.InsertionSortStrings;
 import org.junit.Test;
 
@@ -123,5 +125,47 @@ public class TestInsertionSort {
     assertEquals(str2, allStrings[0]);
     assertEquals(str3, allStrings[1]);
     assertEquals(str1, allStrings[2]);
+  }
+
+  @Test
+  public void sortStringToIntHolder_returnOnlyHolderGivenOne() {
+    StringToIntHolder holder1 = new StringToIntHolder("a", 1);
+    StringToIntHolder[] arr = new StringToIntHolder[1];
+    arr[0] = holder1;
+
+    arr = InsertionSortStringAndIntHolder.sort(arr);
+    assertEquals("a", arr[0].str);
+  }
+
+  @Test
+  public void sortStringToIntHolder_maxValueShouldBeFirst() {
+    StringToIntHolder holder1 = new StringToIntHolder("a", 1);
+    StringToIntHolder holder2 = new StringToIntHolder("b", 2);
+    StringToIntHolder[] arr = new StringToIntHolder[2];
+    arr[0] = holder1;
+    arr[1] = holder2;
+
+
+    arr = InsertionSortStringAndIntHolder.sort(arr);
+    assertEquals("b", arr[0].str);
+    assertEquals("a", arr[1].str);
+  }
+
+  @Test
+  public void sortStringToIntHolder_sortThreeEntriesCorrectly() {
+    StringToIntHolder holder1 = new StringToIntHolder("a", 1);
+    StringToIntHolder holder2 = new StringToIntHolder("b", 2);
+    StringToIntHolder holder3 = new StringToIntHolder("c", 10);
+
+    StringToIntHolder[] arr = new StringToIntHolder[3];
+    arr[2] = holder1;
+    arr[1] = holder2;
+    arr[0] = holder3;
+
+
+    arr = InsertionSortStringAndIntHolder.sort(arr);
+    assertEquals("c", arr[0].str);
+    assertEquals("b", arr[1].str);
+    assertEquals("a", arr[2].str);
   }
 }

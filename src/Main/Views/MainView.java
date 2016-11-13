@@ -179,8 +179,6 @@ public class MainView {
 
     playersTable.setModel(dataModel);
 
-
-
     playersTable.addMouseListener(new MouseAdapter() {
       public void mouseClicked(MouseEvent e) {
         if (e.getClickCount() == 2) {
@@ -238,7 +236,9 @@ public class MainView {
                   for (int i = 1; i < players.length - 1; i++) {
                     printValue = printValue.concat(", " + players[i]);
                   }
-                  printValue = printValue.concat(" and " + players[players.length - 1] + ".");
+                  if(players.length > 1) {
+                    printValue = printValue.concat(" and " + players[players.length - 1] + ".");
+                  }
                   return printValue;
                 } else {
                   return "Rest";
