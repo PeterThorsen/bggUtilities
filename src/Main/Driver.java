@@ -61,7 +61,6 @@ public class Driver {
     frame.setContentPane(mainView.panel1);
     frame.pack();
     frame.setLocationRelativeTo(null);
-    //mainView.panel1.setSize(Toolkit.getDefaultToolkit().getScreenSize().width/2, Toolkit.getDefaultToolkit().getScreenSize().height/2);
   }
 
 }

@@ -7,7 +7,7 @@ import java.util.HashMap;
  */
 public class Player {
   public final String name;
-  private final Play[] allPlays;
+  public final Play[] allPlays;
   public int totalPlays = 0;
   public HashMap<String, Integer> gameToPlaysMap = new HashMap<>();
   public HashMap<String, Integer> nameToPlaysMap = new HashMap<>();
