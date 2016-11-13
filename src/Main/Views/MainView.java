@@ -186,9 +186,9 @@ public class MainView {
           int row = target.getSelectedRow();
           Player selectedPlayer = players[row];
 
-          PlayerView playerView = new PlayerView(selectedPlayer);
 
           JFrame frame = new JFrame(selectedPlayer.name);
+          PlayerView playerView = new PlayerView(frame, selectedPlayer);
           frame.setContentPane(playerView.panel1);
           frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 

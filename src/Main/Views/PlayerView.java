@@ -25,9 +25,11 @@ public class PlayerView {
   private JTable mostCommonPlayers;
   private JButton showMoreStatsButton;
   private JButton suggestGamesButtonButton;
+  private JFrame frame;
   private Player selectedPlayer;
 
-  public PlayerView(Player selectedPlayer) {
+  public PlayerView(JFrame frame, Player selectedPlayer) {
+    this.frame = frame;
     this.selectedPlayer = selectedPlayer;
     playerNameLabel.setText(selectedPlayer.name);
 
@@ -298,7 +300,8 @@ public class PlayerView {
     showMoreStatsButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-
+        PlayerViewMoreStats moreStats = new PlayerViewMoreStats();
+        frame.setContentPane(moreStats.panel1);
       }
     });
     suggestGamesButtonButton.addActionListener(new ActionListener() {
