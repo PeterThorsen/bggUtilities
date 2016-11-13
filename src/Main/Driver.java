@@ -46,7 +46,7 @@ public class Driver {
 
         mainController = loginController.verifyUser(givenUsername);
         if(mainController == null) {
-          // Error message
+          // TODO Error message
           return;
         }
         startMainView();
@@ -61,7 +61,7 @@ public class Driver {
     frame.setContentPane(mainView.panel1);
     frame.pack();
     frame.setLocationRelativeTo(null);
-    mainView.panel1.setSize(Toolkit.getDefaultToolkit().getScreenSize().width/2, Toolkit.getDefaultToolkit().getScreenSize().height/2);
+    //mainView.panel1.setSize(Toolkit.getDefaultToolkit().getScreenSize().width/2, Toolkit.getDefaultToolkit().getScreenSize().height/2);
   }
 
 }

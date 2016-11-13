@@ -10,6 +10,8 @@ import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 
 /**
@@ -17,6 +19,8 @@ import java.text.DecimalFormat;
  */
 public class MainView {
   private final FacadeController facadeController;
+  private final int width;
+  private final int height;
   public JPanel panel1;
   public JTable gamesTable;
   private JTabbedPane tabbedPane1;
@@ -25,14 +29,17 @@ public class MainView {
   private JTable playersTable;
   private JTable playsTable;
   private JScrollPane Plays;
+  private Dimension halfDimension;
 
   public MainView(FacadeController controller) {
     facadeController = controller;
+
     // make the frame half the height and width
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    int width = screenSize.width;
-    int height = screenSize.height;
-    panel1.setPreferredSize(new Dimension(width / 2, height / 2));
+    width = screenSize.width;
+    height = screenSize.height;
+    halfDimension = new Dimension(width/2, height/2);
+    panel1.setPreferredSize(halfDimension);
 
     fillGamesTable();
     fillPlayersTable();
@@ -171,6 +178,29 @@ public class MainView {
             };
 
     playersTable.setModel(dataModel);
+
+
+
+    playersTable.addMouseListener(new MouseAdapter() {
+      public void mouseClicked(MouseEvent e) {
+        if (e.getClickCount() == 2) {
+          JTable target = (JTable) e.getSource();
+          int row = target.getSelectedRow();
+          Player selectedPlayer = players[row];
+
+          PlayerView playerView = new PlayerView(selectedPlayer);
+
+          JFrame frame = new JFrame(selectedPlayer.name);
+          frame.setContentPane(playerView.panel1);
+          frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+          frame.setPreferredSize(halfDimension);
+          frame.setSize(halfDimension);
+          frame.setLocationRelativeTo(null);
+          frame.setVisible(true);
+        }
+      }
+    });
   }
 
   private void fillPlaysTable() {
