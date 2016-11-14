@@ -14,6 +14,38 @@ import static org.junit.Assert.*;
 
 /**
  * Created by Peter on 14/11/2016.
+ *
+ *
+ 0 : Alf
+ 1 : Andreas
+ 2 : Arnar
+ 3 : Bolette
+ 4 : Bulbjerg
+ 5 : Camilla
+ 6 : Charlotte
+ 7 : Christian
+ 8 : Daniella
+ 9 : Emil
+ 10 : Famse
+ 11 : Inna
+ 12 : Jesper
+ 13 : Joachim
+ 14 : Josefine
+ 15 : Lisbeth
+ 16 : Liss
+ 17 : Marian
+ 18 : Martin
+ 19 : Merle
+ 20 : Michael
+ 21 : Michelle
+ 22 : Mikkel
+ 23 : Morten
+ 24 : Palle
+ 25 : Poul
+ 26 : Signe
+ 27 : Steffen
+ 28 : Thomas
+ 29 : Ulrik
  */
 public class TestLogicController {
   private FacadeController facadeController;
@@ -25,10 +57,6 @@ public class TestLogicController {
     ICollectionBuilder collectionBuilder = new CollectionBuilder(stub);
     facadeController = new FacadeController(collectionBuilder, "cwaq");
     allPlayers = facadeController.getAllPlayers();
-
-    //System.out.println(facadeController.getAllPlayers()[6].name); Charlotte
-    //System.out.println(facadeController.getAllPlayers()[0].name); Alf
-    //System.out.println(facadeController.getAllPlayers()[10].name); Famse
   }
 
   /**
@@ -65,6 +93,62 @@ public class TestLogicController {
     boolean foundGame = false;
     for (BoardGame game : suggestedGames) {
       if(game.getName().equals("Camel Up")) {
+        foundGame = true;
+        break;
+      }
+    }
+    assertTrue(foundGame);
+  }
+
+  @Test
+  public void suggestedGamesShouldNotContainResistanceAsPlayerNumberIsWrong() {
+    Player[] players = new Player[1];
+    players[0] = allPlayers[10];
+    BoardGame[] suggestedGames = facadeController.suggestGames(players, 40);
+
+    boolean foundGame = false;
+    for (BoardGame game : suggestedGames) {
+      if(game.getName().equals("The Resistance")) {
+        foundGame = true;
+        break;
+      }
+    }
+    assertFalse(foundGame);
+  }
+
+  @Test
+  public void suggestedGamesForSixPlayersShouldContainResistanceAsTheyHaveAllPlayedIt() {
+    Player[] players = new Player[5];
+    players[0] = allPlayers[10];
+    players[1] = allPlayers[0];
+    players[2] = allPlayers[6];
+    players[3] = allPlayers[22];
+    players[4] = allPlayers[15];
+    BoardGame[] suggestedGames = facadeController.suggestGames(players, 40);
+
+    boolean foundGame = false;
+    for (BoardGame game : suggestedGames) {
+      if(game.getName().equals("The Resistance")) {
+        foundGame = true;
+        break;
+      }
+    }
+    assertTrue(foundGame);
+  }
+
+  @Test
+  public void suggestedGamesForSixPlayersShouldContainDixitOdysseyAsCriteriasAreFilledAndRatingIsHigh() {
+    Player[] players = new Player[5];
+    players[0] = allPlayers[10];
+    players[1] = allPlayers[0];
+    players[2] = allPlayers[6];
+    players[3] = allPlayers[22];
+    players[4] = allPlayers[15];
+    BoardGame[] suggestedGames = facadeController.suggestGames(players, 40);
+
+    boolean foundGame = false;
+    for (BoardGame game : suggestedGames) {
+      if(game.getName().equals("Dixit Odyssey")) {
         foundGame = true;
         break;
       }
