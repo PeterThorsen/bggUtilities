@@ -16,7 +16,7 @@ import static junit.framework.TestCase.*;
 /**
  * Created by Peter on 03/10/16.
  */
-public class TestDataDisplayController {
+public class TestDataController {
 
   private DataDisplayController controller;
   private ICollectionBuilder collectionBuilder;

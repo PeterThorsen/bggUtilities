@@ -1,5 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?><plays username="cwaq" userid="1019300" total="91" page="1" termsofuse="http://boardgamegeek.com/xmlapi/termsofuse">
-<play id="20562798" date="2016-10-30" quantity="3" length="0" incomplete="0" nowinstats="0" location="">
+<?xml version="1.0" encoding="utf-8"?><plays username="cwaq" userid="1019300" total="96" page="1" termsofuse="http://boardgamegeek.com/xmlapi/termsofuse">
+<play id="20723205" date="2016-11-12" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="Sushi Go!" objecttype="thing" objectid="133473">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="20723201" date="2016-11-11" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="Betrayal at House on the Hill" objecttype="thing" objectid="10547">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Martin" startposition="" color="" score="" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Josefine" startposition="" color="" score="" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Daniella" startposition="" color="" score="" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="20723196" date="2016-11-11" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="Colt Express" objecttype="thing" objectid="158899">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Martin" startposition="" color="" score="" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Josefine" startposition="" color="" score="" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Daniella" startposition="" color="" score="" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="20562798" date="2016-10-30" quantity="3" length="0" incomplete="0" nowinstats="0" location="">
 			<item name="The Resistance" objecttype="thing" objectid="41114">
 				<subtypes>
 										<subtype value="boardgame" />
@@ -430,6 +464,16 @@
 						<player username="" userid="0" name="Daniella" startposition="" color="" score="" new="0" rating="0" win="0" />
 						</players>
 					</play>
+	<play id="20730867" date="2016-05-12" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="Camel Up" objecttype="thing" objectid="153938">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
+						</players>
+					</play>
 	<play id="20450907" date="2016-02-01" quantity="2" length="0" incomplete="0" nowinstats="0" location="">
 			<item name="Power Grid" objecttype="thing" objectid="2651">
 				<subtypes>
@@ -461,6 +505,18 @@
 			</item>
 									<players>
 									<player username="" userid="0" name="Jesper" startposition="" color="" score="" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="20724741" date="2016-01-01" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="Agricola" objecttype="thing" objectid="31260">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Arnar" startposition="" color="" score="" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Christian" startposition="" color="" score="" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Joachim" startposition="" color="" score="" new="0" rating="0" win="0" />
 						</players>
 					</play>
 	<play id="20450553" date="2016-01-01" quantity="1" length="0" incomplete="0" nowinstats="0" location="">

@@ -1,403 +1,529 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<items totalitems="40" termsofuse="http://boardgamegeek.com/xmlapi/termsofuse" pubdate="Tue, 27 Sep 2016 06:24:32 +0000">
+<items totalitems="40" termsofuse="http://boardgamegeek.com/xmlapi/termsofuse" pubdate="Sun, 13 Nov 2016 20:42:30 +0000">
 		<item objecttype="thing" objectid="31260" subtype="boardgame" collid="29575876">
 	<name sortindex="1">Agricola</name>
 		<yearpublished>2007</yearpublished>			<image>//cf.geekdo-images.com/images/pic259085.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic259085_t.jpg</thumbnail>
-		<stats minplayers="1"																	maxplayers="5"																	minplaytime="30"																	maxplaytime="150"																	playingtime="150"																	numowned="53621" >
-				<rating value="8">			<usersrated value="44855" />			<average value="8.07978" />
-			<bayesaverage value="7.99468" />			<stddev value="1.56113" />
-			<median value="0" />		</rating>
+		<stats minplayers="1"																	maxplayers="5"																	minplaytime="30"																	maxplaytime="150"																	playingtime="150"																	numowned="54420" >
+				<rating value="8">			<usersrated value="45556" />			<average value="8.07558" />
+			<bayesaverage value="7.98873" />			<stddev value="1.56083" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="11" bayesaverage="7.98873" />
+																<rank type="family" id="5497" name="strategygames" friendlyname="Strategy Game Rank" value="11" bayesaverage="7.96812" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-08-29 05:24:48" />
-	<numplays>0</numplays>							</item>
+	<numplays>7</numplays>							</item>
 		<item objecttype="thing" objectid="10547" subtype="boardgame" collid="34949803">
 	<name sortindex="1">Betrayal at House on the Hill</name>
 		<yearpublished>2004</yearpublished>			<image>//cf.geekdo-images.com/images/pic828598.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic828598_t.jpg</thumbnail>
-		<stats minplayers="3"																	maxplayers="6"																	minplaytime="60"																	maxplaytime="60"																	playingtime="60"																	numowned="26105" >
-				<rating value="7">			<usersrated value="18441" />			<average value="7.13261" />
-			<bayesaverage value="6.95987" />			<stddev value="1.50349" />
-			<median value="0" />		</rating>
+		<stats minplayers="3"																	maxplayers="6"																	minplaytime="60"																	maxplaytime="60"																	playingtime="60"																	numowned="27240" >
+				<rating value="7">			<usersrated value="19128" />			<average value="7.14155" />
+			<bayesaverage value="6.96935" />			<stddev value="1.50285" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="338" bayesaverage="6.96935" />
+																<rank type="family" id="5496" name="thematic" friendlyname="Thematic Rank" value="118" bayesaverage="6.89583" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-08-29 05:24:40" />
-	<numplays>0</numplays>							</item>
+	<numplays>4</numplays>							</item>
 		<item objecttype="thing" objectid="11" subtype="boardgame" collid="36561165">
 	<name sortindex="1">Bohnanza</name>
 		<yearpublished>1997</yearpublished>			<image>//cf.geekdo-images.com/images/pic69366.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic69366_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="7"																	minplaytime="45"																	maxplaytime="45"																	playingtime="45"																	numowned="36146" >
-				<rating value="10">			<usersrated value="26503" />			<average value="7.07509" />
-			<bayesaverage value="6.99359" />			<stddev value="1.27757" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="7"																	minplaytime="45"																	maxplaytime="45"																	playingtime="45"																	numowned="36833" >
+				<rating value="10">			<usersrated value="26901" />			<average value="7.07316" />
+			<bayesaverage value="6.9902" />			<stddev value="1.27768" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="322" bayesaverage="6.9902" />
+																<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="53" bayesaverage="6.98909" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-09-21 06:53:18" />
-	<numplays>0</numplays>							</item>
+	<numplays>5</numplays>							</item>
 		<item objecttype="thing" objectid="153938" subtype="boardgame" collid="34949774">
 	<name sortindex="1">Camel Up</name>
 		<yearpublished>2014</yearpublished>			<image>//cf.geekdo-images.com/images/pic1918028.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic1918028_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="8"																	minplaytime="20"																	maxplaytime="30"																	playingtime="30"																	numowned="12392" >
-				<rating value="8">			<usersrated value="9445" />			<average value="7.11645" />
-			<bayesaverage value="6.95656" />			<stddev value="1.21138" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="8"																	minplaytime="20"																	maxplaytime="30"																	playingtime="30"																	numowned="13191" >
+				<rating value="8">			<usersrated value="10030" />			<average value="7.11785" />
+			<bayesaverage value="6.96021" />			<stddev value="1.21281" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="348" bayesaverage="6.96021" />
+																<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="54" bayesaverage="6.98706" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-09-21 06:53:35" />
-	<numplays>1</numplays>							</item>
+	<numplays>7</numplays>							</item>
 		<item objecttype="thing" objectid="822" subtype="boardgame" collid="26992340">
 	<name sortindex="1">Carcassonne</name>
 		<yearpublished>2000</yearpublished>			<image>//cf.geekdo-images.com/images/pic2337577.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic2337577_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="5"																	minplaytime="30"																	maxplaytime="45"																	playingtime="45"																	numowned="82356" >
-				<rating value="8">			<usersrated value="60863" />			<average value="7.43462" />
-			<bayesaverage value="7.33645" />			<stddev value="1.30025" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="5"																	minplaytime="30"																	maxplaytime="45"																	playingtime="45"																	numowned="84240" >
+				<rating value="8">			<usersrated value="62017" />			<average value="7.43283" />
+			<bayesaverage value="7.33524" />			<stddev value="1.30108" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="123" bayesaverage="7.33524" />
+																<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="13" bayesaverage="7.32554" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-09-21 06:53:59" />
-	<numplays>0</numplays>							</item>
+	<numplays>12</numplays>							</item>
 		<item objecttype="thing" objectid="2993" subtype="boardgame" collid="26992342">
 	<name sortindex="1">Carcassonne: Expansion 1 – Inns &amp; Cathedrals</name>
 		<yearpublished>2002</yearpublished>			<image>//cf.geekdo-images.com/images/pic2659943.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic2659943_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="6"																	minplaytime="60"																	maxplaytime="60"																	playingtime="60"																	numowned="28551" >
-				<rating value="8">			<usersrated value="14922" />			<average value="7.60241" />
-			<bayesaverage value="7.44849" />			<stddev value="1.1155" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="6"																	minplaytime="60"																	maxplaytime="60"																	playingtime="60"																	numowned="28984" >
+				<rating value="8">			<usersrated value="15113" />			<average value="7.60114" />
+			<bayesaverage value="7.44682" />			<stddev value="1.11586" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="Not Ranked" bayesaverage="7.44682" />
+																<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="Not Ranked" bayesaverage="7.47211" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-08-29 05:24:17" />
 	<numplays>0</numplays>							</item>
 		<item objecttype="thing" objectid="5405" subtype="boardgame" collid="34949816">
 	<name sortindex="1">Carcassonne: Expansion 2 – Traders &amp; Builders</name>
 		<yearpublished>2003</yearpublished>			<image>//cf.geekdo-images.com/images/pic2659946.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic2659946_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="6"																	minplaytime="60"																	maxplaytime="60"																	playingtime="60"																	numowned="23796" >
-				<rating value="8">			<usersrated value="11615" />			<average value="7.59273" />
-			<bayesaverage value="7.41023" />			<stddev value="1.14769" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="6"																	minplaytime="60"																	maxplaytime="60"																	playingtime="60"																	numowned="24151" >
+				<rating value="8">			<usersrated value="11774" />			<average value="7.59412" />
+			<bayesaverage value="7.40893" />			<stddev value="1.14923" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="Not Ranked" bayesaverage="7.40893" />
+																<rank type="family" id="5497" name="strategygames" friendlyname="Strategy Game Rank" value="Not Ranked" bayesaverage="7.38947" />
+								<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="Not Ranked" bayesaverage="7.44684" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-08-29 05:24:10" />
 	<numplays>0</numplays>							</item>
 		<item objecttype="thing" objectid="84876" subtype="boardgame" collid="34949827">
 	<name sortindex="5">The Castles of Burgundy</name>
 		<yearpublished>2011</yearpublished>			<image>//cf.geekdo-images.com/images/pic1176894.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic1176894_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="4"																	minplaytime="30"																	maxplaytime="90"																	playingtime="90"																	numowned="28683" >
-				<rating value="7">			<usersrated value="21266" />			<average value="8.10985" />
-			<bayesaverage value="7.99446" />			<stddev value="1.22944" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="4"																	minplaytime="30"																	maxplaytime="90"																	playingtime="90"																	numowned="29737" >
+				<rating value="7">			<usersrated value="21984" />			<average value="8.1095" />
+			<bayesaverage value="7.99475" />			<stddev value="1.23163" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="9" bayesaverage="7.99475" />
+																<rank type="family" id="5497" name="strategygames" friendlyname="Strategy Game Rank" value="9" bayesaverage="7.99889" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-08-29 05:23:57" />
-	<numplays>0</numplays>							</item>
+	<numplays>6</numplays>							</item>
 		<item objecttype="thing" objectid="13" subtype="boardgame" collid="26992339">
 	<name sortindex="1">Catan</name>
 		<yearpublished>1995</yearpublished>			<image>//cf.geekdo-images.com/images/pic2419375.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic2419375_t.jpg</thumbnail>
-		<stats minplayers="3"																	maxplayers="4"																	minplaytime="60"																	maxplaytime="120"																	playingtime="120"																	numowned="85382" >
-				<rating value="7">			<usersrated value="61726" />			<average value="7.29291" />
-			<bayesaverage value="7.15606" />			<stddev value="1.44315" />
-			<median value="0" />		</rating>
+		<stats minplayers="3"																	maxplayers="4"																	minplaytime="60"																	maxplaytime="120"																	playingtime="120"																	numowned="87184" >
+				<rating value="7">			<usersrated value="62898" />			<average value="7.28473" />
+			<bayesaverage value="7.14841" />			<stddev value="1.44493" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="214" bayesaverage="7.14841" />
+																<rank type="family" id="5497" name="strategygames" friendlyname="Strategy Game Rank" value="207" bayesaverage="7.04104" />
+								<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="34" bayesaverage="7.10352" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-09-21 06:54:46" />
-	<numplays>1</numplays>							</item>
+	<numplays>10</numplays>							</item>
 		<item objecttype="thing" objectid="2807" subtype="boardgame" collid="34949820">
 	<name sortindex="1">Catan: 5-6 Player Extension</name>
 		<yearpublished>1996</yearpublished>			<image>//cf.geekdo-images.com/images/pic2420287.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic2420287_t.jpg</thumbnail>
-		<stats minplayers="5"																	maxplayers="6"																	minplaytime="120"																	maxplaytime="120"																	playingtime="120"																	numowned="24867" >
-				<rating value="5">			<usersrated value="10619" />			<average value="7.01646" />
-			<bayesaverage value="6.817" />			<stddev value="1.55564" />
-			<median value="0" />		</rating>
+		<stats minplayers="5"																	maxplayers="6"																	minplaytime="120"																	maxplaytime="120"																	playingtime="120"																	numowned="25284" >
+				<rating value="5">			<usersrated value="10743" />			<average value="7.01162" />
+			<bayesaverage value="6.81155" />			<stddev value="1.55621" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="Not Ranked" bayesaverage="6.81155" />
+																<rank type="family" id="5497" name="strategygames" friendlyname="Strategy Game Rank" value="Not Ranked" bayesaverage="6.74146" />
+								<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="Not Ranked" bayesaverage="6.79167" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-09-21 06:54:52" />
 	<numplays>0</numplays>							</item>
 		<item objecttype="thing" objectid="178900" subtype="boardgame" collid="34949833">
 	<name sortindex="1">Codenames</name>
 		<yearpublished>2015</yearpublished>			<image>//cf.geekdo-images.com/images/pic2582929.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic2582929_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="8"																	minplaytime="15"																	maxplaytime="15"																	playingtime="15"																	numowned="31171" >
-				<rating value="10">			<usersrated value="19767" />			<average value="7.99928" />
-			<bayesaverage value="7.87088" />			<stddev value="1.21595" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="8"																	minplaytime="15"																	maxplaytime="15"																	playingtime="15"																	numowned="34449" >
+				<rating value="10">			<usersrated value="21868" />			<average value="7.98343" />
+			<bayesaverage value="7.86369" />			<stddev value="1.21727" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="20" bayesaverage="7.86369" />
+																<rank type="family" id="5498" name="partygames" friendlyname="Party Game Rank" value="1" bayesaverage="7.88687" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-08-29 05:23:26" />
-	<numplays>0</numplays>							</item>
+	<numplays>40</numplays>							</item>
 		<item objecttype="thing" objectid="158899" subtype="boardgame" collid="34949784">
 	<name sortindex="1">Colt Express</name>
 		<yearpublished>2014</yearpublished>			<image>//cf.geekdo-images.com/images/pic2869710.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic2869710_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="6"																	minplaytime="30"																	maxplaytime="40"																	playingtime="40"																	numowned="12836" >
-				<rating value="8">			<usersrated value="8848" />			<average value="7.26686" />
-			<bayesaverage value="7.09195" />			<stddev value="1.17436" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="6"																	minplaytime="30"																	maxplaytime="40"																	playingtime="40"																	numowned="13781" >
+				<rating value="8">			<usersrated value="9511" />			<average value="7.25717" />
+			<bayesaverage value="7.08644" />			<stddev value="1.18351" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="247" bayesaverage="7.08644" />
+																<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="32" bayesaverage="7.11525" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-09-21 06:55:05" />
-	<numplays>0</numplays>							</item>
+	<numplays>2</numplays>							</item>
 		<item objecttype="thing" objectid="119657" subtype="boardgame" collid="36688821">
-	<name sortindex="1">Dixit 3</name>
-		<yearpublished>2012</yearpublished>			<image>//cf.geekdo-images.com/images/pic1230282.jpg</image>
-		<thumbnail>//cf.geekdo-images.com/images/pic1230282_t.jpg</thumbnail>
-		<stats minplayers="3"																	maxplayers="6"																	minplaytime="30"																	maxplaytime="30"																	playingtime="30"																	numowned="3217" >
-				<rating value="N/A">			<usersrated value="1404" />			<average value="7.82605" />
-			<bayesaverage value="6.93985" />			<stddev value="1.2011" />
-			<median value="0" />		</rating>
+	<name sortindex="1">Dixit 3: Journey</name>
+		<yearpublished>2012</yearpublished>			<image>//cf.geekdo-images.com/images/pic3127290.jpg</image>
+		<thumbnail>//cf.geekdo-images.com/images/pic3127290_t.jpg</thumbnail>
+		<stats minplayers="3"																	maxplayers="6"																	minplaytime="30"																	maxplaytime="30"																	playingtime="30"																	numowned="3313" >
+				<rating value="N/A">			<usersrated value="1450" />			<average value="7.81325" />
+			<bayesaverage value="6.93575" />			<stddev value="1.20462" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="Not Ranked" bayesaverage="6.93575" />
+																<rank type="family" id="5498" name="partygames" friendlyname="Party Game Rank" value="Not Ranked" bayesaverage="7.41767" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-09-04 15:58:07" />
 	<numplays>0</numplays>							</item>
 		<item objecttype="thing" objectid="92828" subtype="boardgame" collid="36688816">
 	<name sortindex="1">Dixit Odyssey</name>
 		<yearpublished>2011</yearpublished>			<image>//cf.geekdo-images.com/images/pic918568.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic918568_t.jpg</thumbnail>
-		<stats minplayers="3"																	maxplayers="12"																	minplaytime="30"																	maxplaytime="30"																	playingtime="30"																	numowned="11609" >
-				<rating value="10">			<usersrated value="8606" />			<average value="7.54402" />
-			<bayesaverage value="7.33059" />			<stddev value="1.33294" />
-			<median value="0" />		</rating>
+		<stats minplayers="3"																	maxplayers="12"																	minplaytime="30"																	maxplaytime="30"																	playingtime="30"																	numowned="11938" >
+				<rating value="10">			<usersrated value="8867" />			<average value="7.54256" />
+			<bayesaverage value="7.33097" />			<stddev value="1.32517" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="127" bayesaverage="7.33097" />
+																<rank type="family" id="5498" name="partygames" friendlyname="Party Game Rank" value="5" bayesaverage="7.39058" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-09-21 06:55:16" />
-	<numplays>8</numplays>							</item>
+	<numplays>10</numplays>							</item>
 		<item objecttype="thing" objectid="145325" subtype="boardgame" collid="36688827">
 	<name sortindex="1">Dixit: Origins</name>
 		<yearpublished>2013</yearpublished>			<image>//cf.geekdo-images.com/images/pic1833862.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic1833862_t.jpg</thumbnail>
-		<stats minplayers="3"																	maxplayers="6"																	minplaytime="30"																	maxplaytime="30"																	playingtime="30"																	numowned="3764" >
-				<rating value="N/A">			<usersrated value="1234" />			<average value="7.91833" />
-			<bayesaverage value="6.92914" />			<stddev value="1.12026" />
-			<median value="0" />		</rating>
+		<stats minplayers="3"																	maxplayers="6"																	minplaytime="30"																	maxplaytime="30"																	playingtime="30"																	numowned="3888" >
+				<rating value="N/A">			<usersrated value="1285" />			<average value="7.89757" />
+			<bayesaverage value="6.92165" />			<stddev value="1.11737" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="Not Ranked" bayesaverage="6.92165" />
+																<rank type="family" id="5498" name="partygames" friendlyname="Party Game Rank" value="Not Ranked" bayesaverage="7.46541" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-09-04 15:58:19" />
 	<numplays>0</numplays>							</item>
 		<item objecttype="thing" objectid="100901" subtype="boardgame" collid="34949788">
 	<name sortindex="1">Flash Point: Fire Rescue</name>
 		<yearpublished>2011</yearpublished>			<image>//cf.geekdo-images.com/images/pic1129370.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic1129370_t.jpg</thumbnail>
-		<stats minplayers="1"																	maxplayers="6"																	minplaytime="45"																	maxplaytime="45"																	playingtime="45"																	numowned="18911" >
-				<rating value="7">			<usersrated value="12109" />			<average value="7.30773" />
-			<bayesaverage value="7.16665" />			<stddev value="1.21902" />
-			<median value="0" />		</rating>
+		<stats minplayers="1"																	maxplayers="6"																	minplaytime="45"																	maxplaytime="45"																	playingtime="45"																	numowned="19405" >
+				<rating value="7">			<usersrated value="12463" />			<average value="7.30152" />
+			<bayesaverage value="7.16179" />			<stddev value="1.2229" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="208" bayesaverage="7.16179" />
+																<rank type="family" id="5496" name="thematic" friendlyname="Thematic Rank" value="67" bayesaverage="7.15522" />
+								<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="26" bayesaverage="7.17877" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-08-29 05:23:12" />
-	<numplays>0</numplays>							</item>
+	<numplays>5</numplays>							</item>
 		<item objecttype="thing" objectid="258" subtype="boardgame" collid="34949808">
 	<name sortindex="1">Fluxx</name>
 		<yearpublished>1997</yearpublished>			<image>//cf.geekdo-images.com/images/pic2405641.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic2405641_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="6"																	minplaytime="5"																	maxplaytime="30"																	playingtime="30"																	numowned="17642" >
-				<rating value="5">			<usersrated value="11501" />			<average value="5.70095" />
-			<bayesaverage value="5.59743" />			<stddev value="1.8256" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="6"																	minplaytime="5"																	maxplaytime="30"																	playingtime="30"																	numowned="17979" >
+				<rating value="5">			<usersrated value="11691" />			<average value="5.70078" />
+			<bayesaverage value="5.59761" />			<stddev value="1.8247" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="5595" bayesaverage="5.59761" />
+																<rank type="family" id="5498" name="partygames" friendlyname="Party Game Rank" value="384" bayesaverage="5.30065" />
+								<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="1339" bayesaverage="5.50174" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-09-21 06:50:04" />
-	<numplays>0</numplays>							</item>
+	<numplays>5</numplays>							</item>
 		<item objecttype="thing" objectid="172" subtype="boardgame" collid="34949770">
 	<name sortindex="1">For Sale</name>
 		<yearpublished>1997</yearpublished>			<image>//cf.geekdo-images.com/images/pic1513085.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic1513085_t.jpg</thumbnail>
-		<stats minplayers="3"																	maxplayers="6"																	minplaytime="20"																	maxplaytime="20"																	playingtime="20"																	numowned="15880" >
-				<rating value="8">			<usersrated value="13954" />			<average value="7.21607" />
-			<bayesaverage value="7.11201" />			<stddev value="1.13887" />
-			<median value="0" />		</rating>
+		<stats minplayers="3"																	maxplayers="6"																	minplaytime="20"																	maxplaytime="20"																	playingtime="20"																	numowned="16327" >
+				<rating value="8">			<usersrated value="14264" />			<average value="7.21792" />
+			<bayesaverage value="7.11248" />			<stddev value="1.13719" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="228" bayesaverage="7.11248" />
+																<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="30" bayesaverage="7.13987" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-08-29 05:22:50" />
-	<numplays>2</numplays>							</item>
+	<numplays>8</numplays>							</item>
 		<item objecttype="thing" objectid="98778" subtype="boardgame" collid="34949831">
 	<name sortindex="1">Hanabi</name>
 		<yearpublished>2010</yearpublished>			<image>//cf.geekdo-images.com/images/pic2007286.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic2007286_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="5"																	minplaytime="25"																	maxplaytime="25"																	playingtime="25"																	numowned="32500" >
-				<rating value="8">			<usersrated value="20509" />			<average value="7.25647" />
-			<bayesaverage value="7.17288" />			<stddev value="1.34012" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="5"																	minplaytime="25"																	maxplaytime="25"																	playingtime="25"																	numowned="33560" >
+				<rating value="8">			<usersrated value="21169" />			<average value="7.24406" />
+			<bayesaverage value="7.15999" />			<stddev value="1.34267" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="211" bayesaverage="7.15999" />
+																<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="28" bayesaverage="7.16267" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-09-21 07:22:29" />
-	<numplays>0</numplays>							</item>
+	<numplays>11</numplays>							</item>
 		<item objecttype="thing" objectid="8203" subtype="boardgame" collid="34949765">
 	<name sortindex="1">Hey, That&#039;s My Fish!</name>
 		<yearpublished>2003</yearpublished>			<image>//cf.geekdo-images.com/images/pic1004115.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic1004115_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="4"																	minplaytime="20"																	maxplaytime="20"																	playingtime="20"																	numowned="17231" >
-				<rating value="7">			<usersrated value="14397" />			<average value="6.79247" />
-			<bayesaverage value="6.71281" />			<stddev value="1.08935" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="4"																	minplaytime="20"																	maxplaytime="20"																	playingtime="20"																	numowned="17510" >
+				<rating value="7">			<usersrated value="14615" />			<average value="6.78861" />
+			<bayesaverage value="6.70706" />			<stddev value="1.08822" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="555" bayesaverage="6.70706" />
+																<rank type="family" id="4666" name="abstracts" friendlyname="Abstract Game Rank" value="33" bayesaverage="6.7705" />
+								<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="119" bayesaverage="6.72276" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-09-21 06:50:58" />
-	<numplays>2</numplays>							</item>
+	<numplays>5</numplays>							</item>
 		<item objecttype="thing" objectid="2655" subtype="boardgame" collid="34949793">
 	<name sortindex="1">Hive</name>
 		<yearpublished>2001</yearpublished>			<image>//cf.geekdo-images.com/images/pic791151.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic791151_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="2"																	minplaytime="20"																	maxplaytime="20"																	playingtime="20"																	numowned="22731" >
-				<rating value="10">			<usersrated value="18396" />			<average value="7.34394" />
-			<bayesaverage value="7.23863" />			<stddev value="1.27499" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="2"																	minplaytime="20"																	maxplaytime="20"																	playingtime="20"																	numowned="23184" >
+				<rating value="10">			<usersrated value="18738" />			<average value="7.34278" />
+			<bayesaverage value="7.23538" />			<stddev value="1.27592" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="165" bayesaverage="7.23538" />
+																<rank type="family" id="4666" name="abstracts" friendlyname="Abstract Game Rank" value="6" bayesaverage="7.21303" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-08-29 05:22:13" />
-	<numplays>1</numplays>							</item>
+	<numplays>21</numplays>							</item>
 		<item objecttype="thing" objectid="70704" subtype="boardgame" collid="34949802">
 	<name sortindex="1">Hive: The Ladybug</name>
 		<yearpublished>2010</yearpublished>			<image>//cf.geekdo-images.com/images/pic767448.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic767448_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="2"																	minplaytime="20"																	maxplaytime="20"																	playingtime="20"																	numowned="4279" >
-				<rating value="7">			<usersrated value="1362" />			<average value="7.55688" />
-			<bayesaverage value="6.76167" />			<stddev value="1.12897" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="2"																	minplaytime="20"																	maxplaytime="20"																	playingtime="20"																	numowned="4357" >
+				<rating value="7">			<usersrated value="1400" />			<average value="7.56495" />
+			<bayesaverage value="6.75898" />			<stddev value="1.13263" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="Not Ranked" bayesaverage="6.75898" />
+																<rank type="family" id="4666" name="abstracts" friendlyname="Abstract Game Rank" value="Not Ranked" bayesaverage="7.27121" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-08-29 05:22:05" />
 	<numplays>0</numplays>							</item>
 		<item objecttype="thing" objectid="30323" subtype="boardgame" collid="34949797">
 	<name sortindex="1">Hive: The Mosquito</name>
 		<yearpublished>2007</yearpublished>			<image>//cf.geekdo-images.com/images/pic347192.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic347192_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="2"																	minplaytime="20"																	maxplaytime="20"																	playingtime="20"																	numowned="5742" >
-				<rating value="7">			<usersrated value="2137" />			<average value="7.46062" />
-			<bayesaverage value="6.89611" />			<stddev value="1.14136" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="2"																	minplaytime="20"																	maxplaytime="20"																	playingtime="20"																	numowned="5807" >
+				<rating value="7">			<usersrated value="2174" />			<average value="7.46566" />
+			<bayesaverage value="6.89142" />			<stddev value="1.1422" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="Not Ranked" bayesaverage="6.89142" />
+																<rank type="family" id="4666" name="abstracts" friendlyname="Abstract Game Rank" value="Not Ranked" bayesaverage="7.25781" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-08-29 05:21:51" />
 	<numplays>0</numplays>							</item>
 		<item objecttype="thing" objectid="139666" subtype="boardgame" collid="34949799">
 	<name sortindex="1">Hive: The Pillbug</name>
 		<yearpublished>2013</yearpublished>			<image>//cf.geekdo-images.com/images/pic2843760.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic2843760_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="2"																	minplaytime="20"																	maxplaytime="20"																	playingtime="20"																	numowned="3360" >
-				<rating value="9">			<usersrated value="800" />			<average value="7.68725" />
-			<bayesaverage value="6.54753" />			<stddev value="1.22707" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="2"																	minplaytime="20"																	maxplaytime="20"																	playingtime="20"																	numowned="3465" >
+				<rating value="9">			<usersrated value="846" />			<average value="7.69048" />
+			<bayesaverage value="6.56425" />			<stddev value="1.22758" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="Not Ranked" bayesaverage="6.56425" />
+																<rank type="family" id="4666" name="abstracts" friendlyname="Abstract Game Rank" value="Not Ranked" bayesaverage="7.23018" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-08-29 05:21:43" />
 	<numplays>0</numplays>							</item>
 		<item objecttype="thing" objectid="54043" subtype="boardgame" collid="34949866">
 	<name sortindex="1">Jaipur</name>
 		<yearpublished>2009</yearpublished>			<image>//cf.geekdo-images.com/images/pic725500.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic725500_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="2"																	minplaytime="30"																	maxplaytime="30"																	playingtime="30"																	numowned="20528" >
-				<rating value="8">			<usersrated value="15173" />			<average value="7.5458" />
-			<bayesaverage value="7.42096" />			<stddev value="1.07889" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="2"																	minplaytime="30"																	maxplaytime="30"																	playingtime="30"																	numowned="21293" >
+				<rating value="8">			<usersrated value="15753" />			<average value="7.54458" />
+			<bayesaverage value="7.41852" />			<stddev value="1.08163" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="96" bayesaverage="7.41852" />
+																<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="9" bayesaverage="7.44288" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-09-18 03:56:29" />
-	<numplays>1</numplays>							</item>
+	<numplays>9</numplays>							</item>
 		<item objecttype="thing" objectid="122515" subtype="boardgame" collid="34949806">
 	<name sortindex="1">Keyflower</name>
 		<yearpublished>2012</yearpublished>			<image>//cf.geekdo-images.com/images/pic2278942.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic2278942_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="6"																	minplaytime="90"																	maxplaytime="120"																	playingtime="120"																	numowned="12306" >
-				<rating value="8">			<usersrated value="9912" />			<average value="7.97352" />
-			<bayesaverage value="7.77617" />			<stddev value="1.26799" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="6"																	minplaytime="90"																	maxplaytime="120"																	playingtime="120"																	numowned="12703" >
+				<rating value="8">			<usersrated value="10307" />			<average value="7.96664" />
+			<bayesaverage value="7.76959" />			<stddev value="1.27293" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="26" bayesaverage="7.76959" />
+																<rank type="family" id="5497" name="strategygames" friendlyname="Strategy Game Rank" value="21" bayesaverage="7.80949" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-08-29 05:20:53" />
-	<numplays>0</numplays>							</item>
+	<numplays>3</numplays>							</item>
 		<item objecttype="thing" objectid="129622" subtype="boardgame" collid="34949813">
 	<name sortindex="1">Love Letter</name>
 		<yearpublished>2012</yearpublished>			<image>//cf.geekdo-images.com/images/pic1401448.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic1401448_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="4"																	minplaytime="20"																	maxplaytime="20"																	playingtime="20"																	numowned="52476" >
-				<rating value="7">			<usersrated value="31211" />			<average value="7.34009" />
-			<bayesaverage value="7.25944" />			<stddev value="1.31735" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="4"																	minplaytime="20"																	maxplaytime="20"																	playingtime="20"																	numowned="54028" >
+				<rating value="7">			<usersrated value="32178" />			<average value="7.33593" />
+			<bayesaverage value="7.25475" />			<stddev value="1.31825" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="154" bayesaverage="7.25475" />
+																<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="18" bayesaverage="7.2398" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-09-21 06:48:14" />
-	<numplays>1</numplays>							</item>
+	<numplays>6</numplays>							</item>
 		<item objecttype="thing" objectid="12942" subtype="boardgame" collid="34949779">
 	<name sortindex="1">No Thanks!</name>
 		<yearpublished>2004</yearpublished>			<image>//cf.geekdo-images.com/images/pic2602161.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic2602161_t.jpg</thumbnail>
-		<stats minplayers="3"																	maxplayers="5"																	minplaytime="20"																	maxplaytime="20"																	playingtime="20"																	numowned="16855" >
-				<rating value="10">			<usersrated value="13273" />			<average value="7.04097" />
-			<bayesaverage value="6.94702" />			<stddev value="1.1694" />
-			<median value="0" />		</rating>
+		<stats minplayers="3"																	maxplayers="5"																	minplaytime="10"																	maxplaytime="20"																	playingtime="20"																	numowned="17194" >
+				<rating value="10">			<usersrated value="13537" />			<average value="7.04092" />
+			<bayesaverage value="6.94611" />			<stddev value="1.17214" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="357" bayesaverage="6.94611" />
+																<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="62" bayesaverage="6.97337" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-08-29 05:20:19" />
-	<numplays>0</numplays>							</item>
+	<numplays>12</numplays>							</item>
 		<item objecttype="thing" objectid="30549" subtype="boardgame" collid="26992353">
 	<name sortindex="1">Pandemic</name>
 		<yearpublished>2008</yearpublished>			<image>//cf.geekdo-images.com/images/pic1534148.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic1534148_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="4"																	minplaytime="30"																	maxplaytime="90"																	playingtime="90"																	numowned="76273" >
-				<rating value="8">			<usersrated value="54725" />			<average value="7.66969" />
-			<bayesaverage value="7.58607" />			<stddev value="1.29992" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="4"																	minplaytime="30"																	maxplaytime="90"																	playingtime="90"																	numowned="78537" >
+				<rating value="8">			<usersrated value="56176" />			<average value="7.66971" />
+			<bayesaverage value="7.5875" />			<stddev value="1.30244" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="54" bayesaverage="7.5875" />
+																<rank type="family" id="5497" name="strategygames" friendlyname="Strategy Game Rank" value="59" bayesaverage="7.50473" />
+								<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="4" bayesaverage="7.5667" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2015-04-22 15:05:51" />
-	<numplays>0</numplays>							</item>
+	<numplays>11</numplays>							</item>
 		<item objecttype="thing" objectid="40849" subtype="boardgame" collid="28123689">
 	<name sortindex="1">Pandemic: On the Brink</name>
 		<yearpublished>2009</yearpublished>			<image>//cf.geekdo-images.com/images/pic1546621.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic1546621_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="5"																	minplaytime="45"																	maxplaytime="45"																	playingtime="45"																	numowned="27959" >
-				<rating value="8">			<usersrated value="11295" />			<average value="8.11161" />
-			<bayesaverage value="7.89826" />			<stddev value="1.08612" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="5"																	minplaytime="45"																	maxplaytime="45"																	playingtime="45"																	numowned="28592" >
+				<rating value="8">			<usersrated value="11540" />			<average value="8.11321" />
+			<bayesaverage value="7.89854" />			<stddev value="1.08744" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="Not Ranked" bayesaverage="7.89854" />
+																<rank type="family" id="5497" name="strategygames" friendlyname="Strategy Game Rank" value="Not Ranked" bayesaverage="7.89831" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2015-04-22 15:05:59" />
 	<numplays>0</numplays>							</item>
 		<item objecttype="thing" objectid="2651" subtype="boardgame" collid="26992338">
 	<name sortindex="1">Power Grid</name>
 		<yearpublished>2004</yearpublished>			<image>//cf.geekdo-images.com/images/pic173153.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic173153_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="6"																	minplaytime="120"																	maxplaytime="120"																	playingtime="120"																	numowned="44099" >
-				<rating value="9">			<usersrated value="39115" />			<average value="7.96489" />
-			<bayesaverage value="7.89156" />			<stddev value="1.33288" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="6"																	minplaytime="120"																	maxplaytime="120"																	playingtime="120"																	numowned="44814" >
+				<rating value="9">			<usersrated value="39724" />			<average value="7.96186" />
+			<bayesaverage value="7.88663" />			<stddev value="1.33117" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="17" bayesaverage="7.88663" />
+																<rank type="family" id="5497" name="strategygames" friendlyname="Strategy Game Rank" value="15" bayesaverage="7.87897" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-09-21 07:23:22" />
-	<numplays>0</numplays>							</item>
+	<numplays>4</numplays>							</item>
 		<item objecttype="thing" objectid="41114" subtype="boardgame" collid="36688801">
 	<name sortindex="5">The Resistance</name>
 		<yearpublished>2009</yearpublished>			<image>//cf.geekdo-images.com/images/pic2576459.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic2576459_t.jpg</thumbnail>
-		<stats minplayers="5"																	maxplayers="10"																	minplaytime="30"																	maxplaytime="30"																	playingtime="30"																	numowned="33607" >
-				<rating value="N/A">			<usersrated value="22916" />			<average value="7.46204" />
-			<bayesaverage value="7.35658" />			<stddev value="1.44559" />
-			<median value="0" />		</rating>
-			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-09-04 15:57:05" />
-	<numplays>1</numplays>							</item>
+		<stats minplayers="5"																	maxplayers="10"																	minplaytime="30"																	maxplaytime="30"																	playingtime="30"																	numowned="34401" >
+				<rating value="9">			<usersrated value="23488" />			<average value="7.45509" />
+			<bayesaverage value="7.35039" />			<stddev value="1.44703" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="118" bayesaverage="7.35039" />
+																<rank type="family" id="5498" name="partygames" friendlyname="Party Game Rank" value="10" bayesaverage="7.28207" />
+											</ranks>		</rating>
+			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-10-31 06:03:44" />
+	<numplays>4</numplays>							</item>
 		<item objecttype="thing" objectid="162889" subtype="boardgame" collid="36688809">
 	<name sortindex="5">The Resistance: Hostile Intent</name>
 		<yearpublished>2014</yearpublished>			<image>//cf.geekdo-images.com/images/pic2086248.png</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic2086248_t.png</thumbnail>
-		<stats minplayers="5"																	maxplayers="10"																	minplaytime="30"																	maxplaytime="30"																	playingtime="30"																	numowned="1648" >
-				<rating value="N/A">			<usersrated value="237" />			<average value="7.36065" />
-			<bayesaverage value="5.90453" />			<stddev value="1.49299" />
-			<median value="0" />		</rating>
+		<stats minplayers="5"																	maxplayers="10"																	minplaytime="30"																	maxplaytime="30"																	playingtime="30"																	numowned="1714" >
+				<rating value="N/A">			<usersrated value="252" />			<average value="7.34712" />
+			<bayesaverage value="5.90539" />			<stddev value="1.48687" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="Not Ranked" bayesaverage="5.90539" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-09-04 15:57:23" />
 	<numplays>0</numplays>							</item>
 		<item objecttype="thing" objectid="2375" subtype="boardgame" collid="34949822">
 	<name sortindex="1">Sequence</name>
 		<yearpublished>1982</yearpublished>			<image>//cf.geekdo-images.com/images/pic212893.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic212893_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="12"																	minplaytime="10"																	maxplaytime="120"																	playingtime="120"																	numowned="7048" >
-				<rating value="5">			<usersrated value="4114" />			<average value="5.88611" />
-			<bayesaverage value="5.77204" />			<stddev value="1.44254" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="12"																	minplaytime="10"																	maxplaytime="120"																	playingtime="120"																	numowned="7220" >
+				<rating value="5">			<usersrated value="4181" />			<average value="5.8849" />
+			<bayesaverage value="5.77252" />			<stddev value="1.43738" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="3085" bayesaverage="5.77252" />
+																<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="936" bayesaverage="5.76409" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-09-21 06:50:07" />
-	<numplays>0</numplays>							</item>
+	<numplays>7</numplays>							</item>
 		<item objecttype="thing" objectid="123260" subtype="boardgame" collid="28123693">
 	<name sortindex="1">Suburbia</name>
 		<yearpublished>2012</yearpublished>			<image>//cf.geekdo-images.com/images/pic1418335.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic1418335_t.jpg</thumbnail>
-		<stats minplayers="1"																	maxplayers="4"																	minplaytime="90"																	maxplaytime="90"																	playingtime="90"																	numowned="15732" >
-				<rating value="8">			<usersrated value="13038" />			<average value="7.6718" />
-			<bayesaverage value="7.52923" />			<stddev value="1.2391" />
-			<median value="0" />		</rating>
+		<stats minplayers="1"																	maxplayers="4"																	minplaytime="90"																	maxplaytime="90"																	playingtime="90"																	numowned="16165" >
+				<rating value="8">			<usersrated value="13392" />			<average value="7.67019" />
+			<bayesaverage value="7.52749" />			<stddev value="1.23735" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="71" bayesaverage="7.52749" />
+																<rank type="family" id="5497" name="strategygames" friendlyname="Strategy Game Rank" value="53" bayesaverage="7.53977" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-09-21 07:23:52" />
-	<numplays>0</numplays>							</item>
+	<numplays>8</numplays>							</item>
 		<item objecttype="thing" objectid="145196" subtype="boardgame" collid="34954175">
 	<name sortindex="1">Suburbia Inc</name>
 		<yearpublished>2013</yearpublished>			<image>//cf.geekdo-images.com/images/pic1722753.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic1722753_t.jpg</thumbnail>
-		<stats minplayers="1"																	maxplayers="4"																	minplaytime="90"																	maxplaytime="90"																	playingtime="90"																	numowned="5464" >
-				<rating value="8">			<usersrated value="1826" />			<average value="8.07103" />
-			<bayesaverage value="7.26126" />			<stddev value="1.07361" />
-			<median value="0" />		</rating>
+		<stats minplayers="1"																	maxplayers="4"																	minplaytime="90"																	maxplaytime="90"																	playingtime="90"																	numowned="5581" >
+				<rating value="8">			<usersrated value="1867" />			<average value="8.06625" />
+			<bayesaverage value="7.25803" />			<stddev value="1.06589" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="Not Ranked" bayesaverage="7.25803" />
+																<rank type="family" id="5497" name="strategygames" friendlyname="Strategy Game Rank" value="Not Ranked" bayesaverage="7.43897" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-09-21 07:24:00" />
 	<numplays>0</numplays>							</item>
 		<item objecttype="thing" objectid="133473" subtype="boardgame" collid="34949830">
 	<name sortindex="1">Sushi Go!</name>
 		<yearpublished>2013</yearpublished>			<image>//cf.geekdo-images.com/images/pic1900075.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic1900075_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="5"																	minplaytime="15"																	maxplaytime="15"																	playingtime="15"																	numowned="23370" >
-				<rating value="8">			<usersrated value="13463" />			<average value="7.15168" />
-			<bayesaverage value="7.0277" />			<stddev value="1.10478" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="5"																	minplaytime="15"																	maxplaytime="15"																	playingtime="15"																	numowned="24685" >
+				<rating value="8">			<usersrated value="14300" />			<average value="7.15406" />
+			<bayesaverage value="7.02878" />			<stddev value="1.10609" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="298" bayesaverage="7.02878" />
+																<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="43" bayesaverage="7.03847" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-08-29 05:18:32" />
-	<numplays>0</numplays>							</item>
+	<numplays>11</numplays>							</item>
 		<item objecttype="thing" objectid="70919" subtype="boardgame" collid="34954176">
 	<name sortindex="1">Takenoko</name>
 		<yearpublished>2011</yearpublished>			<image>//cf.geekdo-images.com/images/pic1912529.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic1912529_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="4"																	minplaytime="45"																	maxplaytime="45"																	playingtime="45"																	numowned="24884" >
-				<rating value="6">			<usersrated value="16682" />			<average value="7.36093" />
-			<bayesaverage value="7.23307" />			<stddev value="1.14587" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="4"																	minplaytime="45"																	maxplaytime="45"																	playingtime="45"																	numowned="25822" >
+				<rating value="6">			<usersrated value="17375" />			<average value="7.35342" />
+			<bayesaverage value="7.22756" />			<stddev value="1.14749" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="168" bayesaverage="7.22756" />
+																<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="19" bayesaverage="7.23822" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-08-29 05:17:57" />
-	<numplays>1</numplays>							</item>
+	<numplays>5</numplays>							</item>
 		<item objecttype="thing" objectid="9209" subtype="boardgame" collid="26992345">
 	<name sortindex="1">Ticket to Ride</name>
 		<yearpublished>2004</yearpublished>			<image>//cf.geekdo-images.com/images/pic38668.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic38668_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="5"																	minplaytime="30"																	maxplaytime="60"																	playingtime="60"																	numowned="52942" >
-				<rating value="8">			<usersrated value="43798" />			<average value="7.49421" />
-			<bayesaverage value="7.4028" />			<stddev value="1.28299" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="5"																	minplaytime="30"																	maxplaytime="60"																	playingtime="60"																	numowned="54164" >
+				<rating value="8">			<usersrated value="44632" />			<average value="7.48985" />
+			<bayesaverage value="7.39907" />			<stddev value="1.28272" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="102" bayesaverage="7.39907" />
+																<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="10" bayesaverage="7.39678" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-08-29 05:17:13" />
-	<numplays>0</numplays>							</item>
+	<numplays>12</numplays>							</item>
 		<item objecttype="thing" objectid="24439" subtype="boardgame" collid="26992350">
 	<name sortindex="1">Ticket to Ride: USA 1910</name>
 		<yearpublished>2006</yearpublished>			<image>//cf.geekdo-images.com/images/pic144599.jpg</image>
 		<thumbnail>//cf.geekdo-images.com/images/pic144599_t.jpg</thumbnail>
-		<stats minplayers="2"																	maxplayers="5"																	minplaytime="30"																	maxplaytime="60"																	playingtime="60"																	numowned="15935" >
-				<rating value="8">			<usersrated value="7573" />			<average value="8.01805" />
-			<bayesaverage value="7.74021" />			<stddev value="1.11683" />
-			<median value="0" />		</rating>
+		<stats minplayers="2"																	maxplayers="5"																	minplaytime="30"																	maxplaytime="60"																	playingtime="60"																	numowned="16154" >
+				<rating value="8">			<usersrated value="7641" />			<average value="8.01833" />
+			<bayesaverage value="7.73741" />			<stddev value="1.11865" />
+			<median value="0" />			<ranks>
+												<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="Not Ranked" bayesaverage="7.73741" />
+																<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="Not Ranked" bayesaverage="7.80887" />
+											</ranks>		</rating>
 			</stats>	<status own="1" prevowned="0" fortrade="0" want="0" wanttoplay="0" wanttobuy="0" wishlist="0"  preordered="0" lastmodified="2016-08-29 05:17:28" />
 	<numplays>0</numplays>							</item>
 		

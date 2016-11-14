@@ -7,7 +7,7 @@ import Main.Containers.Player;
 /**
  * Created by Peter on 06/10/2016.
  */
-interface IDataDisplayController {
+interface IDataController {
 
   BoardGame[] getAllGames();
 

@@ -85,7 +85,6 @@ public class ConnectionHandler implements IConnectionHandler {
     for (int i = 1; i < gameIDArray.length; i++) {
       sb.append(",").append(gameIDArray[i]);
     }
-
     return sb.toString();
   }
 

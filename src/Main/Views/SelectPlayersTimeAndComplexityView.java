@@ -19,7 +19,6 @@ import java.util.ArrayList;
 public class SelectPlayersTimeAndComplexityView {
   private JTable table1;
   private JTable table2;
-  private JTextField minTimeField;
   private JTextField maxTimeField;
   private JButton calculateSuggestedGames;
   private JPanel belowTablesPanel;
@@ -60,15 +59,13 @@ public class SelectPlayersTimeAndComplexityView {
   }
 
   private boolean verifyAllInputs() {
-    String minText = minTimeField.getText();
     String maxText = maxTimeField.getText();
 
-    if(minText.equals("")||maxText.equals("")) {
+    if(maxText.equals("")) {
       return false;
     }
 
     try {
-      int minValue = Integer.valueOf(minText);
       int maxValue = Integer.valueOf(maxText);
       return true;
     }
@@ -78,7 +75,6 @@ public class SelectPlayersTimeAndComplexityView {
   }
 
   private void suggestGames() {
-    int minTime = Integer.valueOf(minTimeField.getText());
     int maxTime = Integer.valueOf(maxTimeField.getText());
 
     Player[] array = new Player[playersInTable2.size()];
@@ -86,7 +82,7 @@ public class SelectPlayersTimeAndComplexityView {
       array[i] = playersInTable2.get(i);
     }
 
-    BoardGame[] suggestedGames = facadeController.suggestGames(array, minTime, maxTime);
+    BoardGame[] suggestedGames = facadeController.suggestGames(array, maxTime);
 
     SuggestedBoardGamesView view = new SuggestedBoardGamesView(suggestedGames);
 

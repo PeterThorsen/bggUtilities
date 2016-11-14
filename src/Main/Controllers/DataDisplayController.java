@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Created by Peter on 03/10/16.
  * Will be used for connection to the model (ICollectionBuilder) and the view.
  */
-public class DataDisplayController implements IDataDisplayController {
+public class DataDisplayController implements IDataController {
   private final BoardGameCollection collection;
   private final Plays plays;
   private Player[] players;
