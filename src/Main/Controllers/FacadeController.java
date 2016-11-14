@@ -28,4 +28,8 @@ public class FacadeController {
   public Player[] getAllPlayers() {
     return dataDisplayController.getAllPlayersSorted();
   }
+
+  public BoardGame[] suggestGames(Player[] array, int minTime, int maxTime) {
+    return new BoardGame[0];
+  }
 }

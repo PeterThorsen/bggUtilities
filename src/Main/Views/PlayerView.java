@@ -9,7 +9,6 @@ import Main.Sorting.InsertionSortStringAndIntHolder;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -19,7 +18,7 @@ import java.util.HashMap;
  */
 public class PlayerView {
 
-  public JPanel panel1;
+  public JPanel panelMain;
   private JLabel playerNameLabel;
   private JTable favoriteGamesTable;
   private JTable recentPlaysTable;
@@ -314,7 +313,11 @@ public class PlayerView {
     suggestGamesButtonButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
+        SelectPlayersTimeAndComplexityView view = new SelectPlayersTimeAndComplexityView(frame, selectedPlayer, PlayerView.this, facadeController);
 
+        frame.setContentPane(view.panelMain);
+        frame.repaint();
+        frame.pack();
       }
     });
   }

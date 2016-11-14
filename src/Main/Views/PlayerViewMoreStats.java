@@ -5,7 +5,6 @@ import Main.Containers.Play;
 import Main.Containers.Player;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -48,7 +47,7 @@ public class PlayerViewMoreStats {
     goBackButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        frame.setContentPane(parentView.panel1);
+        frame.setContentPane(parentView.panelMain);
         frame.repaint();
         frame.pack();
       }
