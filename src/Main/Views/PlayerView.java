@@ -3,6 +3,7 @@ package Main.Views;
 import Main.Containers.Play;
 import Main.Containers.Player;
 import Main.Containers.StringToIntHolder;
+import Main.Controllers.FacadeController;
 import Main.Sorting.InsertionSortStringAndIntHolder;
 
 import javax.swing.*;
@@ -27,10 +28,12 @@ public class PlayerView {
   private JButton suggestGamesButtonButton;
   private JFrame frame;
   private Player selectedPlayer;
+  private FacadeController facadeController;
 
-  public PlayerView(JFrame frame, Player selectedPlayer) {
+  public PlayerView(JFrame frame, Player selectedPlayer, FacadeController facadeController) {
     this.frame = frame;
     this.selectedPlayer = selectedPlayer;
+    this.facadeController = facadeController;
     playerNameLabel.setText(selectedPlayer.name);
 
     fillMostPlayedGamesTable();

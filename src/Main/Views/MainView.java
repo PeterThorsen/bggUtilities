@@ -186,7 +186,7 @@ public class MainView {
 
 
           JFrame frame = new JFrame(selectedPlayer.name);
-          PlayerView playerView = new PlayerView(frame, selectedPlayer);
+          PlayerView playerView = new PlayerView(frame, selectedPlayer, facadeController);
           frame.setContentPane(playerView.panel1);
           frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 

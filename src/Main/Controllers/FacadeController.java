@@ -9,7 +9,7 @@ import Main.Models.Storage.ICollectionBuilder;
  * Created by Peter on 05/10/2016.
  */
 public class FacadeController {
-  private final String username;
+  public final String username;
   private final IDataDisplayController dataDisplayController;
 
   public FacadeController(ICollectionBuilder collectionBuilder, String username) {
