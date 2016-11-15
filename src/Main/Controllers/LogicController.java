@@ -49,7 +49,7 @@ public class LogicController implements ILogicController {
       thisComplexity = thisComplexity / noOfPlays;
 
       averageComplexityGivingAllPlayersEqualWeight += thisComplexity;
-      weighedAverageComplexityOfAllPlayers += thisComplexity; // TODO: 15/11/2016  was here 
+      weighedAverageComplexityOfAllPlayers += thisComplexity;
     }
 
     // To direct algorithm towards better recommendations
@@ -93,7 +93,6 @@ public class LogicController implements ILogicController {
                                            int maxTime, double averageComplexityGivingAllPlayersEqualWeight,
                                            double weighedAverageComplexityOfAllPlayers) {
 
-    System.out.println(averageComplexityGivingAllPlayersEqualWeight); // TODO: 15/11/2016
 
     BoardGameCounter[] gamesWithCounter = new BoardGameCounter[allGamesMatchingCriteria.size()];
     for (int i = 0; i < gamesWithCounter.length; i++) {
@@ -234,6 +233,7 @@ public class LogicController implements ILogicController {
     }
     gamesWithCounter = InsertionSortGamesWithCounter.sort(gamesWithCounter);
 
+    // TODO: 15-Nov-16  REMOVE
     for (int i = 0; i < gamesWithCounter.length; i++) {
       System.out.println(gamesWithCounter[i].game.getName() + ", " + gamesWithCounter[i].value + " <---");
     }

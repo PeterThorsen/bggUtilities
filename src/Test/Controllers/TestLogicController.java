@@ -9,6 +9,7 @@ import Main.Models.Storage.CollectionBuilder;
 import Main.Models.Storage.ICollectionBuilder;
 import Test.Models.StubsAndMocks.ConnectionHandlerStub;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -92,10 +93,6 @@ public class TestLogicController {
     BoardGameSuggestion suggestions = facadeController.suggestGames(players, 100);
     BoardGame[] suggestedGames = suggestions.allOptions;
 
-    for (int i = 0; i < suggestions.suggestedCombination.length; i++) {
-      System.out.println("--> " + suggestions.suggestedCombination[i]); // TODO: 15/11/2016
-    }
-
     boolean foundGame = false;
     for (BoardGame game : suggestedGames) {
       if(game.getName().equals("Camel Up")) {
@@ -155,6 +152,29 @@ public class TestLogicController {
     boolean foundGame = false;
     for (BoardGame game : suggestedGames) {
       if(game.getName().equals("Dixit Odyssey")) {
+        foundGame = true;
+        break;
+      }
+    }
+    assertTrue(foundGame);
+  }
+
+  @Ignore
+  @Test
+  public void forExperimentation() {
+    Player[] players = new Player[2];
+    players[0] = allPlayers[10];
+    players[1] = allPlayers[26];
+    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 100);
+    BoardGame[] suggestedGames = suggestions.allOptions;
+
+    for (int i = 0; i < suggestions.suggestedCombination.length; i++) {
+      System.out.println("--> " + suggestions.suggestedCombination[i]);
+    }
+
+    boolean foundGame = false;
+    for (BoardGame game : suggestedGames) {
+      if(game.getName().equals("Camel Up")) {
         foundGame = true;
         break;
       }
