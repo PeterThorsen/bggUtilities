@@ -1,6 +1,7 @@
 package Main.Controllers;
 
 import Main.Containers.BoardGame;
+import Main.Containers.BoardGameSuggestion;
 import Main.Containers.Play;
 import Main.Containers.Player;
 import Main.Models.Storage.ICollectionBuilder;
@@ -31,7 +32,7 @@ public class FacadeController {
     return dataController.getAllPlayersSorted();
   }
 
-  public BoardGame[] suggestGames(Player[] array, int maxTime) {
+  public BoardGameSuggestion suggestGames(Player[] array, int maxTime) {
     return logicController.suggestGames(array, maxTime);
   }
 }

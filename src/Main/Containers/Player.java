@@ -10,7 +10,7 @@ public class Player {
   public final Play[] allPlays;
   public int totalPlays = 0;
   public HashMap<String, Integer> gameToPlaysMap = new HashMap<>();
-  public HashMap<String, Integer> nameToPlaysMap = new HashMap<>();
+  public HashMap<String, Integer> playerNameToPlaysMap = new HashMap<>();
 
   public Player(String name, Play[] allPlays) {
     this.name = name;
@@ -39,12 +39,12 @@ public class Player {
 
       // Tracking total plays of all players
       for (String name : allPlayers) {
-        if (nameToPlaysMap.containsKey(name)) {
-          int value = nameToPlaysMap.get(name);
+        if (playerNameToPlaysMap.containsKey(name)) {
+          int value = playerNameToPlaysMap.get(name);
           value += quantity;
-          nameToPlaysMap.put(name, value);
+          playerNameToPlaysMap.put(name, value);
         } else {
-          nameToPlaysMap.put(name, quantity);
+          playerNameToPlaysMap.put(name, quantity);
         }
       }
     }
@@ -66,8 +66,8 @@ public class Player {
   public String getMostCommonFriend() {
     int maxValue = 0;
     String maxPlayer = "";
-    for (String key : nameToPlaysMap.keySet()) {
-      int current = nameToPlaysMap.get(key);
+    for (String key : playerNameToPlaysMap.keySet()) {
+      int current = playerNameToPlaysMap.get(key);
       if (current > maxValue) {
         maxValue = current;
         maxPlayer = key;

@@ -166,19 +166,19 @@ public class TestCollectionBuilder_WithStub {
   }
 
   @Test
-  public void agricolaShouldHaveNumPlays0() {
+  public void agricolaShouldHaveNumPlays7() {
     int numPlays;
     BoardGame game = games[0];
     numPlays = game.getNumberOfPlays();
-    assertEquals(0, numPlays);
+    assertEquals(7, numPlays);
   }
 
   @Test
-  public void hiveShouldHaveNumPlays1() {
+  public void hiveShouldHaveNumPlays21() {
     int numPlays;
     BoardGame game = games[20];
     numPlays = game.getNumberOfPlays();
-    assertEquals(1, numPlays);
+    assertEquals(21, numPlays);
   }
 
   @Test
@@ -198,9 +198,9 @@ public class TestCollectionBuilder_WithStub {
   }
 
   @Test
-  public void dixitShouldHaveAverageRating7Dot54402() {
+  public void dixitShouldHaveAverageRating7Dot54256() {
     BoardGame game = games[13];
-    assertEquals(7.54402, Double.valueOf(game.getAverageRating()));
+    assertEquals(7.54256, Double.valueOf(game.getAverageRating()));
   }
 
   @Test

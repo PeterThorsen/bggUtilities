@@ -1,14 +1,13 @@
 package Test.Sorting;
 
-import Main.Containers.Play;
-import Main.Containers.Player;
-import Main.Containers.StringToIntHolder;
+import Main.Containers.*;
+import Main.Sorting.InsertionSortGamesWithCounter;
 import Main.Sorting.InsertionSortPlayers;
 import Main.Sorting.InsertionSortStringAndIntHolder;
 import Main.Sorting.InsertionSortStrings;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Peter on 12-Nov-16.
@@ -167,5 +166,72 @@ public class TestInsertionSort {
     assertEquals("c", arr[0].str);
     assertEquals("b", arr[1].str);
     assertEquals("a", arr[2].str);
+  }
+
+  @Test
+  public void sortGamesWithCounter_ReturnOnlyObjectGivenOne() {
+    // Build games
+    BoardGame game1 = new BoardGame("Agricola",31260,1,5,30,150,String.valueOf(8),0, "8.07978");
+    game1.addComplexity(2.3453);
+
+    BoardGame game2 = new BoardGame("Hive",2655,2,2,20,20,String.valueOf(10),1, "7.34394");
+    game2.addComplexity(3.6298);
+
+    BoardGameCounter counter = new BoardGameCounter(game1);
+    counter.value += 2;
+
+    BoardGameCounter[] arr = new BoardGameCounter[1];
+    arr[0] = counter;
+    arr = InsertionSortGamesWithCounter.sort(arr);
+    assertEquals("Agricola", arr[0].game.getName());
+  }
+
+  @Test
+  public void sortGamesWithCounter_sortTwoObjectsByValue() {
+    // Build games
+    BoardGame game1 = new BoardGame("Agricola",31260,1,5,30,150,String.valueOf(8),0, "8.07978");
+    game1.addComplexity(2.3453);
+
+    BoardGame game2 = new BoardGame("Hive",2655,2,2,20,20,String.valueOf(10),1, "7.34394");
+    game2.addComplexity(3.6298);
+
+    BoardGameCounter counter = new BoardGameCounter(game1);
+    BoardGameCounter counter2 = new BoardGameCounter(game2);
+    counter.value += 2;
+    counter2.value += 4;
+
+    BoardGameCounter[] arr = new BoardGameCounter[2];
+    arr[0] = counter;
+    arr[1] = counter2;
+    arr = InsertionSortGamesWithCounter.sort(arr);
+    assertEquals("Hive", arr[0].game.getName());
+    assertEquals("Agricola", arr[1].game.getName());
+  }
+
+  @Test
+  public void sortGamesWithCounter_sortThreeObjectsCorrectly() {
+    // Build games
+    BoardGame game1 = new BoardGame("Agricola",31260,1,5,30,150,String.valueOf(8),0, "8.07978");
+    game1.addComplexity(2.3453);
+
+    BoardGame game2 = new BoardGame("Hive",2655,2,2,20,20,String.valueOf(10),1, "7.34394");
+    game2.addComplexity(3.6298);
+
+    BoardGameCounter counter = new BoardGameCounter(game1);
+    BoardGameCounter counter1 = new BoardGameCounter(game1);
+    BoardGameCounter counter2 = new BoardGameCounter(game2);
+    counter.value += 2;
+    counter1.value += 5;
+    counter2.value += 4;
+
+    BoardGameCounter[] arr = new BoardGameCounter[3];
+    arr[0] = counter;
+    arr[1] = counter1;
+    arr[2] = counter2;
+    arr = InsertionSortGamesWithCounter.sort(arr);
+    assertEquals("Agricola", arr[0].game.getName());
+    assertEquals(5, arr[0].value, 0); // last is how much the values can be off by
+    assertEquals("Hive", arr[1].game.getName());
+    assertEquals("Agricola", arr[2].game.getName());
   }
 }

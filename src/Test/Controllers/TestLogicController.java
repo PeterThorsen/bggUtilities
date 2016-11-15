@@ -1,6 +1,7 @@
 package Test.Controllers;
 
 import Main.Containers.BoardGame;
+import Main.Containers.BoardGameSuggestion;
 import Main.Containers.Player;
 import Main.Controllers.FacadeController;
 import Main.Models.Network.IConnectionHandler;
@@ -67,7 +68,7 @@ public class TestLogicController {
   public void suggestedGamesShouldContainSequence() {
     Player[] players = new Player[1];
     players[0] = allPlayers[10];
-    BoardGame[] suggestedGames = facadeController.suggestGames(players, 40);
+    BoardGame[] suggestedGames = facadeController.suggestGames(players, 40).allOptions;
     boolean foundGame = false;
     for (BoardGame game : suggestedGames) {
       if(game.getName().equals("Sequence")) {
@@ -88,8 +89,13 @@ public class TestLogicController {
   public void suggestedGamesShouldContainCamelUp() {
     Player[] players = new Player[1];
     players[0] = allPlayers[10];
-    BoardGame[] suggestedGames = facadeController.suggestGames(players, 40);
+    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 40);
+    BoardGame[] suggestedGames = suggestions.allOptions;
 
+    for (int i = 0; i < suggestions.suggestedCombination.length; i++) {
+      System.out.println("--> " + suggestions.suggestedCombination[i]); // TODO: 15/11/2016  
+    }
+    
     boolean foundGame = false;
     for (BoardGame game : suggestedGames) {
       if(game.getName().equals("Camel Up")) {
@@ -104,7 +110,7 @@ public class TestLogicController {
   public void suggestedGamesShouldNotContainResistanceAsPlayerNumberIsWrong() {
     Player[] players = new Player[1];
     players[0] = allPlayers[10];
-    BoardGame[] suggestedGames = facadeController.suggestGames(players, 40);
+    BoardGame[] suggestedGames = facadeController.suggestGames(players, 40).allOptions;
 
     boolean foundGame = false;
     for (BoardGame game : suggestedGames) {
@@ -124,7 +130,7 @@ public class TestLogicController {
     players[2] = allPlayers[6];
     players[3] = allPlayers[22];
     players[4] = allPlayers[15];
-    BoardGame[] suggestedGames = facadeController.suggestGames(players, 40);
+    BoardGame[] suggestedGames = facadeController.suggestGames(players, 40).allOptions;
 
     boolean foundGame = false;
     for (BoardGame game : suggestedGames) {
@@ -144,7 +150,7 @@ public class TestLogicController {
     players[2] = allPlayers[6];
     players[3] = allPlayers[22];
     players[4] = allPlayers[15];
-    BoardGame[] suggestedGames = facadeController.suggestGames(players, 40);
+    BoardGame[] suggestedGames = facadeController.suggestGames(players, 40).allOptions;
 
     boolean foundGame = false;
     for (BoardGame game : suggestedGames) {

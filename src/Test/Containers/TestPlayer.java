@@ -158,7 +158,7 @@ public class TestPlayer {
     plays[0] = play1;
     plays[1] = play2;
     buildPlayer(plays);
-    HashMap<String, Integer> map = player.nameToPlaysMap;
+    HashMap<String, Integer> map = player.playerNameToPlaysMap;
     int valMichelle = map.get("Michelle");
     int valCharlotte = map.get("Charlotte");
     int valPeter = map.get("Peter");

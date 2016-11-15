@@ -1,6 +1,6 @@
 package Main.Views;
 
-import Main.Containers.BoardGame;
+import Main.Containers.BoardGameSuggestion;
 import Main.Containers.Player;
 import Main.Controllers.FacadeController;
 
@@ -82,9 +82,9 @@ public class SelectPlayersTimeAndComplexityView {
       array[i] = playersInTable2.get(i);
     }
 
-    BoardGame[] suggestedGames = facadeController.suggestGames(array, maxTime);
+    BoardGameSuggestion suggestedGames = facadeController.suggestGames(array, maxTime);
 
-    SuggestedBoardGamesView view = new SuggestedBoardGamesView(suggestedGames);
+    SuggestedBoardGamesView view = new SuggestedBoardGamesView(suggestedGames.allOptions); // TODO: 14/11/2016  
 
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     frame.setContentPane(view.panel1);
