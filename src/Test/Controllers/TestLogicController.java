@@ -89,13 +89,13 @@ public class TestLogicController {
   public void suggestedGamesShouldContainCamelUp() {
     Player[] players = new Player[1];
     players[0] = allPlayers[10];
-    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 40);
+    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 100);
     BoardGame[] suggestedGames = suggestions.allOptions;
 
     for (int i = 0; i < suggestions.suggestedCombination.length; i++) {
-      System.out.println("--> " + suggestions.suggestedCombination[i]); // TODO: 15/11/2016  
+      System.out.println("--> " + suggestions.suggestedCombination[i]); // TODO: 15/11/2016
     }
-    
+
     boolean foundGame = false;
     for (BoardGame game : suggestedGames) {
       if(game.getName().equals("Camel Up")) {

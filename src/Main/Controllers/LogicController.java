@@ -31,13 +31,12 @@ public class LogicController implements ILogicController {
     double weighedAverageComplexityOfAllPlayers = 0;
 
     for (Player player : array) {
-      double averageComplexity = 0.0;
-      double weighedAverageComplexity;
-      double weighedPlays = 0;
+      double thisComplexity = 0.0;
+      double noOfPlays = 0;
       for (Play play : player.allPlays) {
         double gameComplexity = play.getGame().getComplexity();
-        averageComplexity += gameComplexity * play.getQuantity();
-        weighedPlays += play.getQuantity();
+        thisComplexity += gameComplexity * play.getQuantity();
+        noOfPlays += play.getQuantity();
 
         if (gameComplexity < minComplexity) {
           minComplexity = gameComplexity;
@@ -47,15 +46,14 @@ public class LogicController implements ILogicController {
         }
       }
 
-      weighedAverageComplexity = averageComplexity / weighedPlays;
-      averageComplexity = averageComplexity / (double) player.allPlays.length;
+      thisComplexity = thisComplexity / noOfPlays;
 
-      averageComplexityGivingAllPlayersEqualWeight += averageComplexity;
-      weighedAverageComplexityOfAllPlayers += weighedAverageComplexity;
+      averageComplexityGivingAllPlayersEqualWeight += thisComplexity;
+      weighedAverageComplexityOfAllPlayers += thisComplexity; // TODO: 15/11/2016  was here 
     }
 
     // To direct algorithm towards better recommendations
-    averageComplexityGivingAllPlayersEqualWeight = averageComplexityGivingAllPlayersEqualWeight / array.length;
+    averageComplexityGivingAllPlayersEqualWeight = averageComplexityGivingAllPlayersEqualWeight / Double.valueOf(array.length);
     weighedAverageComplexityOfAllPlayers = weighedAverageComplexityOfAllPlayers / array.length;
 
 
@@ -95,6 +93,8 @@ public class LogicController implements ILogicController {
                                            int maxTime, double averageComplexityGivingAllPlayersEqualWeight,
                                            double weighedAverageComplexityOfAllPlayers) {
 
+    System.out.println(averageComplexityGivingAllPlayersEqualWeight); // TODO: 15/11/2016
+
     BoardGameCounter[] gamesWithCounter = new BoardGameCounter[allGamesMatchingCriteria.size()];
     for (int i = 0; i < gamesWithCounter.length; i++) {
       gamesWithCounter[i] = new BoardGameCounter(allGamesMatchingCriteria.get(i));
@@ -109,6 +109,7 @@ public class LogicController implements ILogicController {
         gamesWithCounter[i].value += 8;
       }
 
+      // For all players
       for (int j = 0; j < allPlayers.length; j++) {
 
         if (allPlayers[j].gameToPlaysMap.containsKey(currentGame.getName())) {
@@ -199,7 +200,7 @@ public class LogicController implements ILogicController {
       double difference = Math.abs(currentComplexity - averageComplexityGivingAllPlayersEqualWeight);
       //double differenceWeighed = Math.abs(currentComplexity - weighedAverageComplexityOfAllPlayers);
 
-      if (difference >= 8) {
+      if (difference >= 0.8) {
         gamesWithCounter[i].value -= 5;
         if (difference >= 1.0) {
           gamesWithCounter[i].value -= 2;
@@ -233,6 +234,10 @@ public class LogicController implements ILogicController {
     }
     gamesWithCounter = InsertionSortGamesWithCounter.sort(gamesWithCounter);
 
+    for (int i = 0; i < gamesWithCounter.length; i++) {
+      System.out.println(gamesWithCounter[i].game.getName() + ", " + gamesWithCounter[i].value + " <---");
+    }
+
     // If no combination can be found within first 6 games, return highest recommendation
     BoardGame[] suggestedCombination = new BoardGame[1];
     suggestedCombination[0] = gamesWithCounter[0].game;
@@ -243,7 +248,7 @@ public class LogicController implements ILogicController {
       BoardGame gameI = gamesWithCounter[i].game;
       currentCombination.add(gameI);
       int remainingTime = maxTime - gameI.getMinPlaytime();
-      for (int j = i; j < countTo; j++) {
+      for (int j = i+1; j < countTo; j++) {
         BoardGame gameJ = gamesWithCounter[j].game;
         if (maxTime >= remainingTime + gameJ.getMinPlaytime()) {
           remainingTime += gameJ.getMinPlaytime();
