@@ -2,6 +2,7 @@ package Main.Models.Storage;
 
 import Main.Containers.*;
 import Main.Models.Network.IConnectionHandler;
+import Test.Containers.GameMechanism;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -215,24 +216,72 @@ public class CollectionBuilder implements ICollectionBuilder {
       return games;
     }
 
-    // Complexity
+    // Expanded game info: Complexity, whether it is expansion, categories,
     Document gamesDoc = connectionHandler.getGames(uniqueIDArray);
     NodeList gamesList = gamesDoc.getElementsByTagName("item");
     for (int i = 0; i < gamesList.getLength(); i++) {
       Node item = gamesList.item(i);
+
+      // Connecting the item to our own data through unique id
       int uniqueID = Integer.valueOf(item.getAttributes().getNamedItem("id").getNodeValue());
 
-      // Finding the averageWeight node and its corresponding value
+      // Item type is either boardgame or boardgameexpansion
+      String category = item.getAttributes().getNamedItem("type").getNodeValue();
+      boolean isExpansion = false;
+      if(!category.equals("boardgame")) {
+        isExpansion = true;
+      }
+
       NodeList subNodes = item.getChildNodes();
       int lengthOfSubNodes = subNodes.getLength();
-      Node statisticsNode = subNodes.item(lengthOfSubNodes - 2);
+
+      double complexity = 0;
+      ArrayList<GameCategory> categoriesList = new ArrayList<>();
+
+      for (int j = 0; j < lengthOfSubNodes; j++) {
+        Node currentNode = subNodes.item(j);
+
+        if(currentNode.getNodeName().equals("link")) {
+          String type = currentNode.getAttributes().getNamedItem("type").getNodeValue();
+
+          // Game categories
+          if(type.equals("boardgamecategory")) {
+            // can also get unique ID, choosing name
+            String currentCategory = currentNode.getAttributes().getNamedItem("value").getNodeValue();
+            categoriesList.add(new GameCategory(currentCategory));
+          }
+                 // boardgamemechanic
+        }
+
+        // Complexity
+        if(currentNode.getNodeName().equals("statistics")) {
+          Node ratingsNode = currentNode.getChildNodes().item(1);
+          Node averageWeightNode = ratingsNode.getChildNodes().item(25);
+          complexity = Double.valueOf(averageWeightNode.getAttributes().item(0).getNodeValue());
+        }
+      }
+      //System.out.println("complexity is " + complexity + " for game " + uniqueID);
+      /**
+
+      // Finding the averageWeight node and its corresponding value to find complexity
+      Node statisticsNode = subNodes.item(lengthOfSubNodes - 2); // Statistics are always added to the end
       Node ratingsNode = statisticsNode.getChildNodes().item(1);
       Node averageWeightNode = ratingsNode.getChildNodes().item(25);
       double complexity = Double.valueOf(averageWeightNode.getAttributes().item(0).getNodeValue());
 
-      // Add complexity to the game
+      Node temp = subNodes.item(lengthOfSubNodes - 4); // Statistics are always added to the end
+      System.out.println(temp.getNodeName());
+      System.out.println(statisticsNode.getNodeName());
+*/
+      GameCategory[] cats = new GameCategory[categoriesList.size()];
+
+      for (int j = 0; j < cats.length; j++) {
+        cats[j] = categoriesList.get(j);
+      }
+
+      // Add expanded info to game
       BoardGame game = idToGameMap.get(uniqueID);
-      game.addComplexity(complexity);
+      game.addExpandedGameInfo(complexity, isExpansion, cats, new GameMechanism[0]);
     }
 
 

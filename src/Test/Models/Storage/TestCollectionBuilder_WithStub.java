@@ -2,10 +2,12 @@ package Test.Models.Storage;
 
 import Main.Containers.BoardGame;
 import Main.Containers.BoardGameCollection;
+import Main.Containers.GameCategory;
 import Main.Containers.Player;
 import Main.Models.Network.IConnectionHandler;
 import Main.Models.Storage.CollectionBuilder;
 import Main.Models.Storage.ICollectionBuilder;
+import Test.Containers.GameMechanism;
 import Test.Models.StubsAndMocks.ConnectionHandlerStub;
 import org.junit.Before;
 import org.junit.Test;
@@ -207,5 +209,78 @@ public class TestCollectionBuilder_WithStub {
   public void playersShouldContainMultiplePeople() {
     Player[] players = collectionBuilder.getPlayers();
     assertTrue(players.length > 1);
+  }
+
+  @Test
+  public void agricolaShouldNotBeDefinedAsExpansion() {
+    BoardGame game = games[0];
+    assertFalse(game.isExpansion());
+  }
+
+  @Test
+  public void HiveTheLadybugShouldBeDefinedAsExpansion() {
+    BoardGame game = games[21];
+    assertTrue(game.isExpansion());
+  }
+
+  @Test
+  public void agricolaShouldHaveCategoryArrayContainingAnimalsEconomicAndFarming() {
+    BoardGame game = games[0];
+    GameCategory[] categories = game.getCategories();
+    boolean foundAnimals = false;
+    boolean foundEconomic = false;
+    boolean foundFarming = false;
+
+    for (int i = 0; i < categories.length; i++) {
+      GameCategory cat = categories[i];
+      if(cat.category.equals("Animals")) foundAnimals = true;
+      else if (cat.category.equals("Economic")) foundEconomic = true;
+      else if (cat.category.equals("Farming")) foundFarming = true;
+    }
+
+    assertTrue(foundAnimals);
+    assertTrue(foundEconomic);
+    assertTrue(foundFarming);
+  }
+
+  @Test
+  public void hiveShouldHaveCategoryArrayContainingAbstractStrategyAndAnimals() {
+    BoardGame game = games[21];
+    System.out.println(game);
+    GameCategory[] categories = game.getCategories();
+    boolean foundAnimals = false;
+    boolean foundAbstractStrategy = false;
+
+    for (int i = 0; i < categories.length; i++) {
+      GameCategory cat = categories[i];
+      if(cat.category.equals("Animals")) foundAnimals = true;
+      else if (cat.category.equals("Abstract Strategy")) foundAbstractStrategy = true;
+    }
+
+    assertTrue(foundAnimals);
+    assertTrue(foundAbstractStrategy);
+  }
+
+  @Test
+  public void agricolaShouldHaveMechanicsArrayOf_AreaEnclosure_CardDrafting_HandManagement_WorkerPlacement() {
+    BoardGame game = games[0];
+    GameMechanism[] mechanisms = game.getMechanisms();
+    boolean foundAreaEnclosure = false;
+    boolean foundCardDrafting = false;
+    boolean foundHandManagement = false;
+    boolean foundWorkerPlacement = false;
+
+    for (int i = 0; i < mechanisms.length; i++) {
+      GameMechanism mech = mechanisms[i];
+      if(mech.mechanism.equals("Area Enclosure")) foundAreaEnclosure = true;
+      else if (mech.mechanism.equals("Card Drafting")) foundCardDrafting = true;
+      else if (mech.mechanism.equals("Hand Management")) foundHandManagement = true;
+      else if (mech.mechanism.equals("Worker Placement")) foundWorkerPlacement = true;
+    }
+
+    assertTrue(foundAreaEnclosure);
+    assertTrue(foundCardDrafting);
+    assertTrue(foundHandManagement);
+    assertTrue(foundWorkerPlacement);
   }
 }

@@ -1,5 +1,7 @@
 package Main.Containers;
 
+import Test.Containers.GameMechanism;
+
 /**
  * Created by Peter on 28/09/16.
  */
@@ -14,6 +16,9 @@ public class BoardGame {
   private final int numPlays;
   private final String averageRating;
   private double complexity = 0.0;
+  private boolean isExpansion;
+  private GameCategory[] categories;
+  private GameMechanism[] mechanisms;
 
   public BoardGame(String name, int uniqueID, int minPlayers, int maxPlayers, int minPlaytime,
                    int maxPlaytime, String personalRating, int numberOfPlays, String averageRating) {
@@ -28,8 +33,11 @@ public class BoardGame {
     this.averageRating = averageRating;
   }
 
-  public void addComplexity(double complexity) {
+  public void addExpandedGameInfo(double complexity, boolean isExpansion, GameCategory[] categories, GameMechanism[] mechanisms) {
     this.complexity = complexity;
+    this.isExpansion = isExpansion;
+    this.categories = categories;
+    this.mechanisms = mechanisms;
   }
 
   public String getName() {
@@ -88,4 +96,15 @@ public class BoardGame {
     return object.name.equals(name);
   }
 
+  public boolean isExpansion() {
+    return isExpansion;
+  }
+
+  public GameCategory[] getCategories() {
+    return categories;
+  }
+
+  public GameMechanism[] getMechanisms() {
+    return mechanisms;
+  }
 }
