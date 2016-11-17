@@ -21,9 +21,10 @@ public class BoardGame {
   private GameMechanism[] mechanisms;
   private int[] bestWith;
   private int[] recommendedWith;
+  private String type; // Type might be null, always check for null
 
   public BoardGame(String name, int uniqueID, int minPlayers, int maxPlayers, int minPlaytime,
-                   int maxPlaytime, String personalRating, int numberOfPlays, String averageRating) {
+                   int maxPlaytime, String personalRating, int numberOfPlays, String averageRating, String type) {
     this.name = name;
     id = uniqueID;
     minimum = minPlayers;
@@ -33,6 +34,7 @@ public class BoardGame {
     this.personalRating = personalRating;
     numPlays = numberOfPlays;
     this.averageRating = averageRating;
+    this.type = type;
   }
 
   public void addExpandedGameInfo(double complexity, boolean isExpansion, GameCategory[] categories,
@@ -119,5 +121,9 @@ public class BoardGame {
 
   public int[] getRecommendedWith() {
     return recommendedWith;
+  }
+
+  public String getType() {
+    return type;
   }
 }

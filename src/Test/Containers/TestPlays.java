@@ -48,9 +48,9 @@ public class TestPlays {
 
   @Test
   public void hivePlayShouldBeOnDate_2016_09_14() {
-    ArrayList<Play> hivePLays = plays.getPlays("Hive");
+    ArrayList<Play> hivePlays = plays.getPlays("Hive");
     boolean exists = false;
-    for (Play play : hivePLays) {
+    for (Play play : hivePlays) {
       if (play.getDate().equals("2016-09-14")) {
         exists = true;
         break;

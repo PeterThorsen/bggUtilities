@@ -16,8 +16,8 @@ import static org.junit.Assert.assertEquals;
 public class TestPlayer {
   private Player player;
   private String[] playerNames;
-  private BoardGame game1 = new BoardGame("Agricola", 31260, 1, 5, 30, 150, String.valueOf(8), 0, "8.07978");
-  private BoardGame game2 = new BoardGame("Camel Up", 153938, 1, 8, 20, 30, String.valueOf(8), 0, "7.118");
+  private BoardGame game1 = new BoardGame("Agricola", 31260, 1, 5, 30, 150, String.valueOf(8), 0, "8.07978", "strategygames");
+  private BoardGame game2 = new BoardGame("Camel Up", 153938, 1, 8, 20, 30, String.valueOf(8), 0, "7.118", "abstracts");
 
 
   @Before

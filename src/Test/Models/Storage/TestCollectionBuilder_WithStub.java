@@ -339,4 +339,128 @@ public class TestCollectionBuilder_WithStub {
     assertTrue(found1);
     assertTrue(found2);
   }
+
+  @Test
+  public void camelUpShouldHaveBestWith4_5() {
+    BoardGame game = games[3];
+    int[] bestWith = game.getBestWith();
+
+    boolean found4 = false;
+    boolean found5 = false;
+
+    for (int i = 0; i < bestWith.length; i++) {
+      if(bestWith[i] == 4) {
+        found4 = true;
+      }
+      else if (bestWith[i] == 5) {
+        found5 = true;
+      }
+    }
+    assertTrue(found4);
+    assertTrue(found5);
+  }
+
+
+  @Test
+  public void camelUpShouldHaveRecommendedWith2_3_6_7_8() {
+    BoardGame game = games[3];
+    int[] recommendedWith = game.getRecommendedWith();
+
+    boolean found2 = false;
+    boolean found3 = false;
+    boolean found6 = false;
+    boolean found7 = false;
+    boolean found8 = false;
+
+    for (int i = 0; i < recommendedWith.length; i++) {
+      if(recommendedWith[i] == 2) {
+        found2 = true;
+      }
+      else if (recommendedWith[i] == 3) {
+        found3 = true;
+      }
+      else if (recommendedWith[i] == 6) {
+        found6 = true;
+      }
+      else if (recommendedWith[i] == 7) {
+        found7 = true;
+      }
+      else if (recommendedWith[i] == 8) {
+        found8 = true;
+      }
+    }
+    assertTrue(found2);
+    assertTrue(found3);
+    assertTrue(found6);
+    assertTrue(found7);
+    assertTrue(found8);
+  }
+
+  @Test
+  public void camelUpShouldNotHaveRecommendedWith4_5() {
+    BoardGame game = games[3];
+    int[] recommendedWith = game.getRecommendedWith();
+
+    boolean found4 = false;
+    boolean found5 = false;
+
+    for (int i = 0; i < recommendedWith.length; i++) {
+      if(recommendedWith[i] == 4) {
+        found4 = true;
+      }
+      else if (recommendedWith[i] == 5) {
+        found5 = true;
+      }
+    }
+    assertFalse(found4);
+    assertFalse(found5);
+  }
+
+  @Test
+  public void camelUpShouldNotHaveBestWith2_3_6_7_8() {
+    BoardGame game = games[3];
+    int[] bestWith = game.getBestWith();
+
+    boolean found2 = false;
+    boolean found3 = false;
+    boolean found6 = false;
+    boolean found7 = false;
+    boolean found8 = false;
+
+    for (int i = 0; i < bestWith.length; i++) {
+      if(bestWith[i] == 2) {
+        found2 = true;
+      }
+      else if (bestWith[i] == 3) {
+        found3 = true;
+      }
+      else if (bestWith[i] == 6) {
+        found6 = true;
+      }
+      else if (bestWith[i] == 7) {
+        found7 = true;
+      }
+      else if (bestWith[i] == 8) {
+        found8 = true;
+      }
+    }
+    assertFalse(found2);
+    assertFalse(found3);
+    assertFalse(found6);
+    assertFalse(found7);
+    assertFalse(found8);
+  }
+
+  @Test
+  public void agricolaShouldHaveType_strategygames() {
+    BoardGame game = games[0];
+    String type = game.getType();
+    assertEquals("strategygames", type);
+  }
+
+  @Test
+  public void bohnanzaShouldHaveType_familygames() {
+    BoardGame game = games[2];
+    String type = game.getType();
+    assertEquals("familygames", type);  }
 }

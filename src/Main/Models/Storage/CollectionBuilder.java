@@ -203,7 +203,15 @@ public class CollectionBuilder implements ICollectionBuilder {
 
       String averageRating = statsNode.getChildNodes().item(1).getChildNodes().item(3).getAttributes().getNamedItem("value").getTextContent();
 
-      BoardGame game = new BoardGame(name, uniqueID, minPlayers, maxPlayers, minPlaytime, maxPlaytime, personalRatingString, numPlays, averageRating);
+      // Getting game type
+      String type;
+      try {
+        type = statsNode.getChildNodes().item(1).getChildNodes().item(11).getChildNodes().item(3).getAttributes().getNamedItem("name").getTextContent();
+      }
+      catch (NullPointerException e) {
+        type = null; // On some games, this isn't set
+      }
+      BoardGame game = new BoardGame(name, uniqueID, minPlayers, maxPlayers, minPlaytime, maxPlaytime, personalRatingString, numPlays, averageRating, type);
       games.add(game);
 
       idToGameMap.put(uniqueID, game);

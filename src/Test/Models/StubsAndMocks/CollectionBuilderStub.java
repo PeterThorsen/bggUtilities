@@ -17,7 +17,7 @@ public class CollectionBuilderStub implements ICollectionBuilder {
 
   public CollectionBuilderStub() {
     // Build games
-    BoardGame game1 = new BoardGame("Agricola",31260,1,5,30,150,String.valueOf(8),0, "8.07978");
+    BoardGame game1 = new BoardGame("Agricola",31260,1,5,30,150,String.valueOf(8),0, "8.07978", "strategygames");
     GameCategory[] cats = new GameCategory[3];
     cats[0] = new GameCategory("Animals");
     cats[1] = new GameCategory("Economic");
@@ -39,7 +39,7 @@ public class CollectionBuilderStub implements ICollectionBuilder {
 
     game1.addExpandedGameInfo(2.3453, false, cats, mechs, bestWith, recommendedWith);
 
-    BoardGame game2 = new BoardGame("Hive",2655,2,2,20,20,String.valueOf(10),1, "7.34394");
+    BoardGame game2 = new BoardGame("Hive",2655,2,2,20,20,String.valueOf(10),1, "7.34394", "abstracts");
     GameCategory[] cats2 = new GameCategory[2];
     cats2[0] = new GameCategory("Abstract Strategy");
     cats2[1] = new GameCategory("Animals");
