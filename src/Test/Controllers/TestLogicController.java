@@ -9,10 +9,10 @@ import Main.Models.Storage.CollectionBuilder;
 import Main.Models.Storage.ICollectionBuilder;
 import Test.Models.StubsAndMocks.ConnectionHandlerStub;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Peter on 14/11/2016.
@@ -66,12 +66,12 @@ public class TestLogicController {
    * Since sequence can be played by two players in time 10-120 minutes, it should be on the suggested list
    */
   @Test
-  public void suggestedGamesShouldContainSequence() {
+  public void allGamesShouldContainSequence() {
     Player[] players = new Player[1];
     players[0] = allPlayers[10];
-    BoardGame[] suggestedGames = facadeController.suggestGames(players, 40).allOptions;
+    BoardGame[] allGames = facadeController.suggestGames(players, 40).allOptions;
     boolean foundGame = false;
-    for (BoardGame game : suggestedGames) {
+    for (BoardGame game : allGames) {
       if(game.getName().equals("Sequence")) {
         foundGame = true;
         break;
@@ -87,14 +87,14 @@ public class TestLogicController {
    * which is the main criteria.
    */
   @Test
-  public void suggestedGamesShouldContainCamelUp() {
+  public void allGamesShouldContainCamelUp() {
     Player[] players = new Player[1];
     players[0] = allPlayers[10];
     BoardGameSuggestion suggestions = facadeController.suggestGames(players, 100);
-    BoardGame[] suggestedGames = suggestions.allOptions;
+    BoardGame[] allGames = suggestions.allOptions;
 
     boolean foundGame = false;
-    for (BoardGame game : suggestedGames) {
+    for (BoardGame game : allGames) {
       if(game.getName().equals("Camel Up")) {
         foundGame = true;
         break;
@@ -104,13 +104,13 @@ public class TestLogicController {
   }
 
   @Test
-  public void suggestedGamesShouldNotContainResistanceAsPlayerNumberIsWrong() {
+  public void allGamesShouldNotContainResistanceAsPlayerNumberIsWrong() {
     Player[] players = new Player[1];
     players[0] = allPlayers[10];
-    BoardGame[] suggestedGames = facadeController.suggestGames(players, 40).allOptions;
+    BoardGame[] allGames = facadeController.suggestGames(players, 40).allOptions;
 
     boolean foundGame = false;
-    for (BoardGame game : suggestedGames) {
+    for (BoardGame game : allGames) {
       if(game.getName().equals("The Resistance")) {
         foundGame = true;
         break;
@@ -120,17 +120,17 @@ public class TestLogicController {
   }
 
   @Test
-  public void suggestedGamesForSixPlayersShouldContainResistanceAsTheyHaveAllPlayedIt() {
+  public void allGamesForSixPlayersShouldContainResistanceAsTheyHaveAllPlayedIt() {
     Player[] players = new Player[5];
     players[0] = allPlayers[10];
     players[1] = allPlayers[0];
     players[2] = allPlayers[6];
     players[3] = allPlayers[22];
     players[4] = allPlayers[15];
-    BoardGame[] suggestedGames = facadeController.suggestGames(players, 40).allOptions;
+    BoardGame[] allGames = facadeController.suggestGames(players, 40).allOptions;
 
     boolean foundGame = false;
-    for (BoardGame game : suggestedGames) {
+    for (BoardGame game : allGames) {
       if(game.getName().equals("The Resistance")) {
         foundGame = true;
         break;
@@ -140,17 +140,17 @@ public class TestLogicController {
   }
 
   @Test
-  public void suggestedGamesForSixPlayersShouldContainDixitOdysseyAsCriteriasAreFilledAndRatingIsHigh() {
+  public void allGamesForSixPlayersShouldContainDixitOdysseyAsCriteriasAreFilledAndRatingIsHigh() {
     Player[] players = new Player[5];
     players[0] = allPlayers[10];
     players[1] = allPlayers[0];
     players[2] = allPlayers[6];
     players[3] = allPlayers[22];
     players[4] = allPlayers[15];
-    BoardGame[] suggestedGames = facadeController.suggestGames(players, 40).allOptions;
+    BoardGame[] allGames = facadeController.suggestGames(players, 40).allOptions;
 
     boolean foundGame = false;
-    for (BoardGame game : suggestedGames) {
+    for (BoardGame game : allGames) {
       if(game.getName().equals("Dixit Odyssey")) {
         foundGame = true;
         break;
@@ -159,26 +159,41 @@ public class TestLogicController {
     assertTrue(foundGame);
   }
 
-  @Ignore
   @Test
-  public void forExperimentation() {
-    Player[] players = new Player[2];
+  public void allGamesShouldNotContainCodeNamesOrBohnanza() {
+    Player[] players = new Player[1];
     players[0] = allPlayers[10];
-    players[1] = allPlayers[26];
-    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 100);
-    BoardGame[] suggestedGames = suggestions.allOptions;
+    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 60);
+    BoardGame[] allGames = suggestions.allOptions;
 
-    for (int i = 0; i < suggestions.suggestedCombination.length; i++) {
-      System.out.println("--> " + suggestions.suggestedCombination[i]);
-    }
-
-    boolean foundGame = false;
-    for (BoardGame game : suggestedGames) {
-      if(game.getName().equals("Camel Up")) {
-        foundGame = true;
-        break;
+    boolean foundCodenames = false;
+    boolean foundBohnanza = false;
+    for (BoardGame game : allGames) {
+      if(game.getName().equals("Codenames")) {
+        foundCodenames = true;
+      }
+      if(game.getName().equals("Bohnanza")) {
+        foundBohnanza = true;
       }
     }
-    assertTrue(foundGame);
+    assertFalse(foundBohnanza);
+    assertFalse(foundCodenames);
+  }
+
+  @Test
+  public void expansionsShouldNotBeInAllGames() {
+    Player[] players = new Player[1];
+    players[0] = allPlayers[10];
+    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 60);
+    BoardGame[] allGames = suggestions.allOptions;
+
+
+    boolean foundExpansion = false;
+    for (BoardGame game : allGames) {
+      if(game.getName().equals("Carcassonne: Expansion 1 – Inns & Cathedrals")) {
+        foundExpansion = true;
+      }
+    }
+    assertFalse(foundExpansion);
   }
 }

@@ -62,6 +62,10 @@ public class LogicController implements ILogicController {
     BoardGame[] allGames = facadeController.getAllGames();
 
     for (BoardGame game : allGames) {
+
+      // Don't include expansions
+      if(game.isExpansion()) continue;
+
       if (numberOfPlayers > game.getMaxPlayers() || numberOfPlayers < game.getMinPlayers()) {
         continue;
       }
@@ -71,6 +75,24 @@ public class LogicController implements ILogicController {
       if (minComplexity - 0.50 > game.getComplexity() || maxComplexity + 0.50 < game.getComplexity()) {
         continue;
       }
+      // only add games within recommended games
+      boolean found = false;
+      for (int i = 0; i < game.getBestWith().length; i++) {
+        if(game.getBestWith()[i] == numberOfPlayers) {
+          found = true;
+          break;
+        }
+      }
+      if(!found) {
+        for (int i = 0; i < game.getRecommendedWith().length; i++) {
+          if (game.getRecommendedWith()[i] == numberOfPlayers) {
+            found = true;
+            break;
+          }
+        }
+      }
+      if(!found) continue;
+
       allGamesMatchingCriteria.add(game);
     }
 
