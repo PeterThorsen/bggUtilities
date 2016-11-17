@@ -196,4 +196,27 @@ public class TestLogicController {
     }
     assertFalse(foundExpansion);
   }
+
+  // Jaipur is close to the average complexity of the current player. It is a 2 player only game and holds a high
+  // personal rating by me. It is also a family (type) card game (category) utilising hand management mechanisms,
+  // which is similar to sequence.
+  @Test
+  public void recommendedGameShouldContainJaipur() {
+    Player[] players = new Player[1];
+    players[0] = allPlayers[10];
+    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 60);
+    BoardGame[] suggestedCombination = suggestions.suggestedCombination;
+
+    for (int i = 0; i < suggestedCombination.length; i++) {
+      System.out.println("Sug: " + suggestedCombination[i]);
+    }
+
+    boolean found = false;
+    for (BoardGame game : suggestedCombination) {
+      if(game.getName().equals("Jaipur")) {
+        found = true;
+      }
+    }
+    assertTrue(found);
+  }
 }

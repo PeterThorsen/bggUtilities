@@ -269,11 +269,12 @@ public class LogicController implements ILogicController {
       ArrayList<BoardGame> currentCombination = new ArrayList<>();
       BoardGame gameI = gamesWithCounter[i].game;
       currentCombination.add(gameI);
-      int remainingTime = maxTime - gameI.getMinPlaytime();
+      int currentTimeSpent = gameI.getMinPlaytime();
       for (int j = i+1; j < countTo; j++) {
         BoardGame gameJ = gamesWithCounter[j].game;
-        if (maxTime >= remainingTime + gameJ.getMinPlaytime()) {
-          remainingTime += gameJ.getMinPlaytime();
+        int withinTime = currentTimeSpent + gameJ.getMinPlaytime();
+        if (maxTime >= withinTime) {
+          currentTimeSpent = withinTime;
           currentCombination.add(gameJ);
         }
       }
