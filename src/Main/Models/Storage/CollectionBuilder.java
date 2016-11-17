@@ -80,12 +80,11 @@ public class CollectionBuilder implements ICollectionBuilder {
     for (Play play : allPlays) {
       String[] currentPlayers = play.playerNames;
       for (String name : currentPlayers) {
-        if(map.containsKey(name)) {
+        if (map.containsKey(name)) {
           ArrayList<Play> specificPersonPlays = map.get(name);
           specificPersonPlays.add(play);
           map.put(name, specificPersonPlays);
-        }
-        else {
+        } else {
           ArrayList<Play> specificPersonPlays = new ArrayList<>();
           specificPersonPlays.add(play);
           map.put(name, specificPersonPlays);
@@ -131,18 +130,16 @@ public class CollectionBuilder implements ICollectionBuilder {
       int itemPos = 1;
       Node statsNode = null;
       Node numPlaysNode = null;
-      while(true) {
+      while (true) {
         try {
           String temp = nodeList.item(i).getChildNodes().item(itemPos).getNodeName();
           if (temp.equals("stats")) {
             statsNode = nodeList.item(i).getChildNodes().item(itemPos);
-          }
-          else if(temp.equals("numplays")) {
+          } else if (temp.equals("numplays")) {
             numPlaysNode = nodeList.item(i).getChildNodes().item(itemPos);
           }
           itemPos += 2;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
           break;
         }
       }
@@ -228,7 +225,7 @@ public class CollectionBuilder implements ICollectionBuilder {
       // Item type is either boardgame or boardgameexpansion
       String category = item.getAttributes().getNamedItem("type").getNodeValue();
       boolean isExpansion = false;
-      if(!category.equals("boardgame")) {
+      if (!category.equals("boardgame")) {
         isExpansion = true;
       }
 
@@ -237,51 +234,120 @@ public class CollectionBuilder implements ICollectionBuilder {
 
       double complexity = 0;
       ArrayList<GameCategory> categoriesList = new ArrayList<>();
+      ArrayList<GameMechanism> mechanismsList = new ArrayList<>();
+      ArrayList<Integer> bestList = new ArrayList<>();
+      ArrayList<Integer> recommendedList = new ArrayList<>();
 
       for (int j = 0; j < lengthOfSubNodes; j++) {
         Node currentNode = subNodes.item(j);
 
-        if(currentNode.getNodeName().equals("link")) {
+        if (currentNode.getNodeName().equals("poll")) {
+          String name = currentNode.getAttributes().getNamedItem("name").getNodeValue();
+
+          // Suggested number of players
+          if (name.equals("suggested_numplayers")) {
+            NodeList childrenOfCurrentNode = currentNode.getChildNodes();
+
+            for (int k = 0; k < childrenOfCurrentNode.getLength(); k++) {
+              Node pollResultHeader = childrenOfCurrentNode.item(k);
+              String numPlayersString;
+              try {
+                numPlayersString = pollResultHeader.getAttributes().getNamedItem("numplayers").getNodeValue();
+              }
+              catch (NullPointerException e) {
+                // every other node will be null
+                continue;
+              }
+              int numPlayers;
+
+              // If string is for example 5+ we ignore it.
+              try {
+                numPlayers = Integer.parseInt(numPlayersString);
+
+              } catch (NumberFormatException e) {
+                continue;
+              }
+
+              NodeList childrenOfPollResultHeader = pollResultHeader.getChildNodes();
+              int maxVotes = 0;
+              String highest = "";
+              for (int l = 0; l < childrenOfPollResultHeader.getLength(); l++) {
+                Node result = childrenOfPollResultHeader.item(l);
+                int numVotes;
+                try {
+                  numVotes = Integer.parseInt(result.getAttributes().getNamedItem("numvotes").getNodeValue()); // No votes = 0
+                }
+                catch (NullPointerException e) {
+                  // Every other node will be null
+                  continue;
+                }
+                if (numVotes <= maxVotes) continue; // Not relevant as we only use highest
+
+                maxVotes = numVotes;
+                String value = result.getAttributes().getNamedItem("value").getNodeValue();
+                highest = value;
+              }
+              // We convert to int[] later
+              if (highest.equals("Best")) {
+                bestList.add(numPlayers);
+              } else if (highest.equals("Recommended")) {
+                recommendedList.add(numPlayers);
+              }
+            }
+          }
+        }
+
+        // Categories and mechanisms
+        if (currentNode.getNodeName().equals("link")) {
           String type = currentNode.getAttributes().getNamedItem("type").getNodeValue();
 
           // Game categories
-          if(type.equals("boardgamecategory")) {
+          if (type.equals("boardgamecategory")) {
             // can also get unique ID, choosing name
             String currentCategory = currentNode.getAttributes().getNamedItem("value").getNodeValue();
             categoriesList.add(new GameCategory(currentCategory));
           }
-                 // boardgamemechanic
+          if (type.equals("boardgamemechanic")) {
+            String currentMechanism = currentNode.getAttributes().getNamedItem("value").getNodeValue();
+
+            mechanismsList.add(new GameMechanism(currentMechanism));
+          }
         }
 
         // Complexity
-        if(currentNode.getNodeName().equals("statistics")) {
+        if (currentNode.getNodeName().equals("statistics")) {
           Node ratingsNode = currentNode.getChildNodes().item(1);
           Node averageWeightNode = ratingsNode.getChildNodes().item(25);
           complexity = Double.valueOf(averageWeightNode.getAttributes().item(0).getNodeValue());
         }
       }
-      //System.out.println("complexity is " + complexity + " for game " + uniqueID);
-      /**
 
-      // Finding the averageWeight node and its corresponding value to find complexity
-      Node statisticsNode = subNodes.item(lengthOfSubNodes - 2); // Statistics are always added to the end
-      Node ratingsNode = statisticsNode.getChildNodes().item(1);
-      Node averageWeightNode = ratingsNode.getChildNodes().item(25);
-      double complexity = Double.valueOf(averageWeightNode.getAttributes().item(0).getNodeValue());
-
-      Node temp = subNodes.item(lengthOfSubNodes - 4); // Statistics are always added to the end
-      System.out.println(temp.getNodeName());
-      System.out.println(statisticsNode.getNodeName());
-*/
+      // As array instead of list
       GameCategory[] cats = new GameCategory[categoriesList.size()];
-
       for (int j = 0; j < cats.length; j++) {
         cats[j] = categoriesList.get(j);
       }
 
+      // As array instead of list
+      GameMechanism[] mechs = new GameMechanism[mechanismsList.size()];
+      for (int j = 0; j < mechs.length; j++) {
+        mechs[j] = mechanismsList.get(j);
+      }
+
+      // As array instead of list
+      int[] bestPlayerCount = new int[bestList.size()];
+      for (int j = 0; j < bestPlayerCount.length; j++) {
+        bestPlayerCount[j] = bestList.get(j);
+      }
+      int[] recommendedPlayerCount = new int[recommendedList.size()];
+      for (int j = 0; j < recommendedPlayerCount.length; j++) {
+        recommendedPlayerCount[j] = recommendedList.get(j);
+      }
+
+
       // Add expanded info to game
       BoardGame game = idToGameMap.get(uniqueID);
-      game.addExpandedGameInfo(complexity, isExpansion, cats, new GameMechanism[0]);
+      game.addExpandedGameInfo(complexity, isExpansion, cats, mechs, bestPlayerCount, recommendedPlayerCount);
     }
 
 
@@ -299,18 +365,16 @@ public class CollectionBuilder implements ICollectionBuilder {
       int itemPos = 1;
       Node itemNode = null;
       Node playersNode = null;
-      while(true) {
+      while (true) {
         try {
           String temp = playsList.item(i).getChildNodes().item(itemPos).getNodeName();
           if (temp.equals("item")) {
             itemNode = playsList.item(i).getChildNodes().item(itemPos);
-          }
-          else if(temp.equals("players")) {
+          } else if (temp.equals("players")) {
             playersNode = playsList.item(i).getChildNodes().item(itemPos);
           }
           itemPos += 2;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
           break;
         }
       }
@@ -320,7 +384,7 @@ public class CollectionBuilder implements ICollectionBuilder {
       BoardGame game = idToGameMap.get(uniqueID);
 
       // Skipping plays of games not owned by the user. Can be modified to search for game info at the cost of another network call
-      if(game == null) {
+      if (game == null) {
         continue;
       }
 
@@ -331,7 +395,7 @@ public class CollectionBuilder implements ICollectionBuilder {
 
       // Get plays
       String[] playerNames = new String[0];
-      if(playersNode != null) {
+      if (playersNode != null) {
         NodeList playersNodeList = playersNode.getChildNodes();
         int j = 1;
         playerNames = new String[(playersNodeList.getLength() - 1) / 2];

@@ -184,7 +184,15 @@ public class TestInsertionSort {
     mechs[2] = new GameMechanism("Hand Management");
     mechs[3] = new GameMechanism("Worker Placement");
 
-    game1.addExpandedGameInfo(2.3453, false, cats, mechs);
+    int[] bestWith = new int[2];
+    bestWith[0] = 3;
+    bestWith[1] = 4;
+
+    int[] recommendedWith = new int[2];
+    recommendedWith[0] = 1;
+    recommendedWith[1] = 2;
+
+    game1.addExpandedGameInfo(2.3453, false, cats, mechs, bestWith, recommendedWith);
 
     BoardGame game2 = new BoardGame("Hive",2655,2,2,20,20,String.valueOf(10),1, "7.34394");
     GameCategory[] cats2 = new GameCategory[2];
@@ -195,7 +203,10 @@ public class TestInsertionSort {
     mechs2[0] = new GameMechanism("Grid Movement");
     mechs2[1] = new GameMechanism("Tile Placement");
 
-    game2.addExpandedGameInfo(3.6298, false, cats2, mechs2);
+    int[] bestWith2 = new int[1];
+    bestWith[0] = 2;
+
+    game2.addExpandedGameInfo(3.6298, false, cats2, mechs2, bestWith2, new int[0]);
 
     BoardGameCounter counter = new BoardGameCounter(game1);
     counter.value += 2;
@@ -221,7 +232,15 @@ public class TestInsertionSort {
     mechs[2] = new GameMechanism("Hand Management");
     mechs[3] = new GameMechanism("Worker Placement");
 
-    game1.addExpandedGameInfo(2.3453, false, cats, mechs);
+    int[] bestWith = new int[2];
+    bestWith[0] = 3;
+    bestWith[1] = 4;
+
+    int[] recommendedWith = new int[2];
+    recommendedWith[0] = 1;
+    recommendedWith[1] = 2;
+
+    game1.addExpandedGameInfo(2.3453, false, cats, mechs, bestWith, recommendedWith);
 
     BoardGame game2 = new BoardGame("Hive",2655,2,2,20,20,String.valueOf(10),1, "7.34394");
     GameCategory[] cats2 = new GameCategory[2];
@@ -232,7 +251,10 @@ public class TestInsertionSort {
     mechs2[0] = new GameMechanism("Grid Movement");
     mechs2[1] = new GameMechanism("Tile Placement");
 
-    game2.addExpandedGameInfo(3.6298, false, cats2, mechs2);
+    int[] bestWith2 = new int[1];
+    bestWith[0] = 2;
+
+    game2.addExpandedGameInfo(3.6298, false, cats2, mechs2, bestWith2, new int[0]);
 
     BoardGameCounter counter = new BoardGameCounter(game1);
     BoardGameCounter counter2 = new BoardGameCounter(game2);
@@ -262,7 +284,15 @@ public class TestInsertionSort {
     mechs[2] = new GameMechanism("Hand Management");
     mechs[3] = new GameMechanism("Worker Placement");
 
-    game1.addExpandedGameInfo(2.3453, false, cats, mechs);
+    int[] bestWith = new int[2];
+    bestWith[0] = 3;
+    bestWith[1] = 4;
+
+    int[] recommendedWith = new int[2];
+    recommendedWith[0] = 1;
+    recommendedWith[1] = 2;
+
+    game1.addExpandedGameInfo(2.3453, false, cats, mechs, bestWith, recommendedWith);
 
     BoardGame game2 = new BoardGame("Hive",2655,2,2,20,20,String.valueOf(10),1, "7.34394");
     GameCategory[] cats2 = new GameCategory[2];
@@ -273,7 +303,10 @@ public class TestInsertionSort {
     mechs2[0] = new GameMechanism("Grid Movement");
     mechs2[1] = new GameMechanism("Tile Placement");
 
-    game2.addExpandedGameInfo(3.6298, false, cats2, mechs2);
+    int[] bestWith2 = new int[1];
+    bestWith[0] = 2;
+
+    game2.addExpandedGameInfo(3.6298, false, cats2, mechs2, bestWith2, new int[0]);
 
     BoardGameCounter counter = new BoardGameCounter(game1);
     BoardGameCounter counter1 = new BoardGameCounter(game1);

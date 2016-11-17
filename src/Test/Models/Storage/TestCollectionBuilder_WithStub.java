@@ -246,7 +246,6 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void hiveShouldHaveCategoryArrayContainingAbstractStrategyAndAnimals() {
     BoardGame game = games[21];
-    System.out.println(game);
     GameCategory[] categories = game.getCategories();
     boolean foundAnimals = false;
     boolean foundAbstractStrategy = false;
@@ -282,5 +281,62 @@ public class TestCollectionBuilder_WithStub {
     assertTrue(foundCardDrafting);
     assertTrue(foundHandManagement);
     assertTrue(foundWorkerPlacement);
+  }
+
+  @Test
+  public void hiveShouldHaveMechanicsArrayOf_GridMovement_TilePlacement() {
+    BoardGame game = games[20];
+    GameMechanism[] mechanisms = game.getMechanisms();
+    boolean foundGridMovement = false;
+    boolean foundTilePlacement = false;
+
+    for (int i = 0; i < mechanisms.length; i++) {
+      GameMechanism mech = mechanisms[i];
+      if(mech.mechanism.equals("Grid Movement")) foundGridMovement = true;
+      else if (mech.mechanism.equals("Tile Placement")) foundTilePlacement = true;
+    }
+
+    assertTrue(foundGridMovement);
+    assertTrue(foundTilePlacement);
+  }
+
+  @Test
+  public void agricolaShouldHaveBestWith3And4() {
+    BoardGame game = games[0];
+    int[] bestWith = game.getBestWith();
+    
+    boolean found3 = false;
+    boolean found4 = false;
+
+    for (int i = 0; i < bestWith.length; i++) {
+      if(bestWith[i] == 3) {
+        found3 = true;
+      }
+      else if (bestWith[i] == 4) {
+        found4 = true;
+      }
+    }
+    assertTrue(found3);
+    assertTrue(found4);
+  }
+
+  @Test
+  public void agricolaShouldHaveRecommendedWith3And4() {
+    BoardGame game = games[0];
+    int[] recommendedWith = game.getRecommendedWith();
+
+    boolean found1 = false;
+    boolean found2 = false;
+
+    for (int i = 0; i < recommendedWith.length; i++) {
+      if(recommendedWith[i] == 1) {
+        found1 = true;
+      }
+      else if (recommendedWith[i] == 2) {
+        found2 = true;
+      }
+    }
+    assertTrue(found1);
+    assertTrue(found2);
   }
 }

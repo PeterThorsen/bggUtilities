@@ -19,6 +19,8 @@ public class BoardGame {
   private boolean isExpansion;
   private GameCategory[] categories;
   private GameMechanism[] mechanisms;
+  private int[] bestWith;
+  private int[] recommendedWith;
 
   public BoardGame(String name, int uniqueID, int minPlayers, int maxPlayers, int minPlaytime,
                    int maxPlaytime, String personalRating, int numberOfPlays, String averageRating) {
@@ -33,11 +35,14 @@ public class BoardGame {
     this.averageRating = averageRating;
   }
 
-  public void addExpandedGameInfo(double complexity, boolean isExpansion, GameCategory[] categories, GameMechanism[] mechanisms) {
+  public void addExpandedGameInfo(double complexity, boolean isExpansion, GameCategory[] categories,
+                                  GameMechanism[] mechanisms, int[] bestWith, int[] recommendedWith) {
     this.complexity = complexity;
     this.isExpansion = isExpansion;
     this.categories = categories;
     this.mechanisms = mechanisms;
+    this.bestWith = bestWith;
+    this.recommendedWith = recommendedWith;
   }
 
   public String getName() {
@@ -106,5 +111,13 @@ public class BoardGame {
 
   public GameMechanism[] getMechanisms() {
     return mechanisms;
+  }
+
+  public int[] getBestWith() {
+    return bestWith;
+  }
+
+  public int[] getRecommendedWith() {
+    return recommendedWith;
   }
 }
