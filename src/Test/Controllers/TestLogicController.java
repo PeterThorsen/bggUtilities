@@ -201,15 +201,11 @@ public class TestLogicController {
   // personal rating by me. It is also a family (type) card game (category) utilising hand management mechanisms,
   // which is similar to sequence.
   @Test
-  public void recommendedGameShouldContainJaipur() {
+  public void recommendedGamesShouldContainJaipur() {
     Player[] players = new Player[1];
     players[0] = allPlayers[10];
     BoardGameSuggestion suggestions = facadeController.suggestGames(players, 60);
     BoardGame[] suggestedCombination = suggestions.suggestedCombination;
-
-    for (int i = 0; i < suggestedCombination.length; i++) {
-      System.out.println("Sug: " + suggestedCombination[i]);
-    }
 
     boolean found = false;
     for (BoardGame game : suggestedCombination) {
@@ -218,5 +214,28 @@ public class TestLogicController {
       }
     }
     assertTrue(found);
+  }
+
+  // Sushi go contains hand management like sequence while having a low complexity and being recommended at 2 players
+  @Test
+  public void recommendedGamesShouldContainJaipurAndSushiGo() {
+    Player[] players = new Player[1];
+    players[0] = allPlayers[10];
+    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 60);
+    BoardGame[] suggestedCombination = suggestions.suggestedCombination;
+
+    boolean foundJaipur = false;
+    boolean foundSushiGo = false;
+
+    for (BoardGame game : suggestedCombination) {
+      if(game.getName().equals("Jaipur")) {
+        foundJaipur = true;
+      }
+      else if(game.getName().equals("Sushi Go!")) {
+        foundSushiGo = true;
+      }
+    }
+    assertTrue(foundJaipur);
+    assertTrue(foundSushiGo);
   }
 }
