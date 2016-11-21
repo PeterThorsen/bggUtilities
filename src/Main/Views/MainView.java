@@ -148,7 +148,7 @@ public class MainView {
                 // Most played
                 if (col == 2) {
                   GameNameAndPlayHolder holder = players[row].getMostPlayedGame();
-                  return holder.gameName + " (" + holder.plays + " plays)";
+                  return holder.game + " (" + holder.plays + " plays)";
                 }
                 if (col == 3) {
                   return players[row].getMostRecentGame();

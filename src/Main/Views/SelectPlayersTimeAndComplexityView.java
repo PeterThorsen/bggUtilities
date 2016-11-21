@@ -52,7 +52,7 @@ public class SelectPlayersTimeAndComplexityView {
           suggestGames();
         }
         else {
-          System.out.println("Not all input correct"); // // TODO: 14/11/2016
+          System.out.println("Not all input correct"); // TODO: 14/11/2016
         }
       }
     });
@@ -84,7 +84,7 @@ public class SelectPlayersTimeAndComplexityView {
 
     BoardGameSuggestion suggestedGames = facadeController.suggestGames(array, maxTime);
 
-    SuggestedBoardGamesView view = new SuggestedBoardGamesView(suggestedGames.allOptions); // TODO: 14/11/2016  
+    SuggestedBoardGamesView view = new SuggestedBoardGamesView(suggestedGames.suggestedCombination); // TODO: 14/11/2016
 
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     frame.setContentPane(view.panel1);

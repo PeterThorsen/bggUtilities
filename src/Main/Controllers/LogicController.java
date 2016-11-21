@@ -2,6 +2,7 @@ package Main.Controllers;
 
 import Main.Containers.*;
 import Main.Sorting.InsertionSortGamesWithCounter;
+import Test.Containers.GameMechanism;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -64,7 +65,7 @@ public class LogicController implements ILogicController {
     for (BoardGame game : allGames) {
 
       // Don't include expansions
-      if(game.isExpansion()) continue;
+      if (game.isExpansion()) continue;
 
       if (numberOfPlayers > game.getMaxPlayers() || numberOfPlayers < game.getMinPlayers()) {
         continue;
@@ -78,12 +79,12 @@ public class LogicController implements ILogicController {
       // only add games within recommended games
       boolean found = false;
       for (int i = 0; i < game.getBestWith().length; i++) {
-        if(game.getBestWith()[i] == numberOfPlayers) {
+        if (game.getBestWith()[i] == numberOfPlayers) {
           found = true;
           break;
         }
       }
-      if(!found) {
+      if (!found) {
         for (int i = 0; i < game.getRecommendedWith().length; i++) {
           if (game.getRecommendedWith()[i] == numberOfPlayers) {
             found = true;
@@ -91,7 +92,7 @@ public class LogicController implements ILogicController {
           }
         }
       }
-      if(!found) continue;
+      if (!found) continue;
 
       allGamesMatchingCriteria.add(game);
     }
@@ -103,18 +104,33 @@ public class LogicController implements ILogicController {
     }
 
     BoardGame[] bestCombination = buildBestCombination(allGamesMatchingCriteria, array, maxTime,
-            averageComplexityGivingAllPlayersEqualWeight, weighedAverageComplexityOfAllPlayers);
+            averageComplexityGivingAllPlayersEqualWeight);
 
     BoardGameSuggestion suggestedGames = new BoardGameSuggestion(bestCombination, allValid);
 
     return suggestedGames;
   }
 
-
+  /**
+   * @param allGamesMatchingCriteria
+   * @param allPlayers
+   * @param maxTime
+   * @param averageComplexityGivingAllPlayersEqualWeight
+   * @return allOptions and suggested combination
+   * <p>
+   * Algorithm to suggest best games. Split into three main sections:
+   * 1) Have the players played the game before, and when?
+   * 2) How similar is the game to other games played by the players before?
+   * 3) Absolute factors depending only on the specific game. This section checks the users personal rating,
+   * whether it is easily possible to play the game within the given time limit (and whether it takes only a set
+   * percentage of the time limit), how complex the game is, giving more points if it is close to the average rating
+   * of all players and finally if the game is voted as "best with" the current player number.
+   * <p>
+   * The first two parts increase dynamically depending on players and games played, while the last will have a
+   * hard max.
+   */
   private BoardGame[] buildBestCombination(ArrayList<BoardGame> allGamesMatchingCriteria, Player[] allPlayers,
-                                           int maxTime, double averageComplexityGivingAllPlayersEqualWeight,
-                                           double weighedAverageComplexityOfAllPlayers) {
-
+                                           int maxTime, double averageComplexityGivingAllPlayersEqualWeight) {
 
     BoardGameCounter[] gamesWithCounter = new BoardGameCounter[allGamesMatchingCriteria.size()];
     for (int i = 0; i < gamesWithCounter.length; i++) {
@@ -122,169 +138,253 @@ public class LogicController implements ILogicController {
     }
 
     for (int i = 0; i < gamesWithCounter.length; i++) {
-      BoardGame currentGame = gamesWithCounter[i].game;
-      int currentGameMinTime = currentGame.getMinPlaytime();
-      int currentGameMaxTime = currentGame.getMaxPlaytime();
+      BoardGameCounter current = gamesWithCounter[i];
 
-      if (currentGame.getNumberOfPlays() < 2) {
-        gamesWithCounter[i].value += 8;
+      calculatePlayerScore(allPlayers, current);
+      calculateAbsoluteFactorsScore(current, maxTime, allPlayers, averageComplexityGivingAllPlayersEqualWeight);
+    }
+    return calculateSuggestedGames(gamesWithCounter, maxTime);
+
+  }
+
+
+  private void calculatePlayerScore(Player[] allPlayers, BoardGameCounter current) {
+
+    // Favor games that the user haven't played much
+    if (current.game.getNumberOfPlays() < 3) {
+      current.value += 10;
+    }
+    // For all players
+    for (Player player : allPlayers) {
+
+      if (player.gameToPlaysMap.containsKey(current.game.getName())) {
+        // If players have played the game, recommend it more
+        current.value += 12.0 / allPlayers.length;
+
+        // For each day passed since last play for each player, favor the game a bit more
+        Play[] allPlaysForPlayer = player.allPlays;
+        for (int k = 0; k < allPlaysForPlayer.length; k++) {
+          if (allPlaysForPlayer[k].getGame().equals(current.game)) {
+            String date = allPlaysForPlayer[k].getDate();
+            Date dateFormatted;
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+              dateFormatted = df.parse(date);
+            } catch (ParseException e) {
+              dateFormatted = null;
+              e.printStackTrace();
+            }
+
+            // Calculate days since last play
+            Date dateNow = new Date();
+            Calendar cal1 = Calendar.getInstance();
+            Calendar cal2 = Calendar.getInstance();
+            cal1.setTime(dateFormatted);
+            cal2.setTime(dateNow);
+            long timeInMilisPlayTime = cal1.getTimeInMillis();
+            long timeInMilisCurrentTime = cal2.getTimeInMillis();
+            long diff = timeInMilisCurrentTime - timeInMilisPlayTime;
+            long diffInDays = diff / 1000 / 60 / 60 / 24;
+
+            double absoluteMin = 8.0 / allPlayers.length;
+            double increaseBy = absoluteMin / 200.0;
+            current.value += Math.min(absoluteMin, diffInDays * increaseBy);
+          }
+        }
+      }
+      // How well does the type, mechanisms and categories match
+      calculateCombinationScore(current, player, allPlayers.length + 1);
+    }
+  }
+
+  private void calculateCombinationScore(BoardGameCounter current, Player player, int numberOfPlayers) {
+
+    ArrayList<BoardGame> listOfMap = new ArrayList<>();
+
+    for (BoardGame key : player.gameToPlaysMap.keySet()) {
+      if (key.equals(current.game)) continue;
+      listOfMap.add(key);
+    }
+    BoardGame[] allGames = new BoardGame[listOfMap.size()];
+
+    for (int i = 0; i < allGames.length; i++) {
+      allGames[i] = listOfMap.get(i);
+    }
+
+    // Don't include expansions
+    ArrayList<BoardGame> noExpansions = new ArrayList<>();
+    for (int i = 0; i < allGames.length; i++) {
+      if (!allGames[i].isExpansion())
+        noExpansions.add(allGames[i]);
+    }
+    allGames = new BoardGame[noExpansions.size()];
+    for (int i = 0; i < allGames.length; i++) {
+      allGames[i] = noExpansions.get(i);
+    }
+
+    BoardGame currentGame = current.game;
+    GameMechanism[] currentMechanisms = currentGame.getMechanisms();
+    GameCategory[] currentCategories = currentGame.getCategories();
+    double combinationScore = 0;
+
+    for (int i = 0; i < allGames.length; i++) {
+      BoardGame otherGame = allGames[i];
+
+      GameMechanism[] otherMechanisms = otherGame.getMechanisms();
+      GameCategory[] otherCategories = otherGame.getCategories();
+      if (currentGame.equals(otherGame)) continue;
+
+      // Up to 6 points based on type match
+      if (currentGame.getType().equals(otherGame.getType())) {
+        combinationScore += 6.0 / numberOfPlayers / allGames.length;
       }
 
-      // For all players
-      for (int j = 0; j < allPlayers.length; j++) {
-
-        if (allPlayers[j].gameToPlaysMap.containsKey(currentGame.getName())) {
-
-          // Should be higher recommended if players have tried the game
-          gamesWithCounter[i].value += 5;
-
-          // For each day passed since last play for each player, favor the game a bit more
-          Play[] allPlaysForPlayerJ = allPlayers[j].allPlays;
-          for (int k = 0; k < allPlaysForPlayerJ.length; k++) {
-            if (allPlaysForPlayerJ[k].getGame().equals(currentGame)) {
-              String date = allPlaysForPlayerJ[k].getDate();
-              Date dateFormatted;
-              DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-              try {
-                dateFormatted = df.parse(date);
-              } catch (ParseException e) {
-                dateFormatted = null;
-                e.printStackTrace();
-              }
-
-              // Calculate days since last play
-              Date dateNow = new Date();
-              Calendar cal1 = Calendar.getInstance();
-              Calendar cal2 = Calendar.getInstance();
-              cal1.setTime(dateFormatted);
-              cal2.setTime(dateNow);
-              long timeInMilisPlayTime = cal1.getTimeInMillis();
-              long timeInMilisCurrentTime = cal2.getTimeInMillis();
-              long diff = timeInMilisCurrentTime - timeInMilisPlayTime;
-              long diffInDays = diff / 1000 / 60 / 60 / 24;
-              gamesWithCounter[i].value += Math.min(3, diffInDays * 0.015);
-            }
+      // Up to 7 points based on mechanisms match
+      for (int j = 0; j < currentMechanisms.length; j++) {
+        GameMechanism cMech = currentMechanisms[j];
+        for (int k = 0; k < otherMechanisms.length; k++) {
+          GameMechanism oMech = otherMechanisms[k];
+          if (cMech.equals(oMech)) {
+            combinationScore += 7.0 / numberOfPlayers / allGames.length / otherMechanisms.length / currentMechanisms.length;
           }
         }
       }
 
-      // Personal rating should matter
-      String personalRatingString = currentGame.getPersonalRating();
-      double personalRating;
-      if (personalRatingString.equals("N/A")) {
-        personalRating = 5;
-      } else {
-        personalRating = Double.valueOf(personalRatingString);
-      }
-      gamesWithCounter[i].value += personalRating * 3;
-
-      // - if personal rating is higher than average rating
-      String averageRatingString = currentGame.getAverageRating();
-      if (!averageRatingString.equals("N/A")) {
-        double averageRating = Double.valueOf(averageRatingString);
-        if (averageRating > personalRating) {
-          gamesWithCounter[i].value += (averageRating - personalRating) * 2;
+      // Up to 7 points based on categories match
+      for (int j = 0; j < currentCategories.length; j++) {
+        GameCategory cCat = currentCategories[j];
+        for (int k = 0; k < otherCategories.length; k++) {
+          GameCategory oCat = otherCategories[k];
+          if (cCat.equals(oCat)) {
+            combinationScore += 7.0 / numberOfPlayers / allGames.length / otherCategories.length / currentCategories.length;
+          }
         }
       }
-
-      // How well does the game combine with other valid games? Favor combining two games
-      double combinationScore = 0;
-      for (int j = 0; j < gamesWithCounter.length; j++) {
-        if (i == j) continue;
-
-        int otherMinTime = gamesWithCounter[j].game.getMinPlaytime();
-        int otherMaxTime = gamesWithCounter[j].game.getMaxPlaytime();
-
-        if (currentGameMinTime + otherMinTime <= maxTime) {
-          combinationScore += 0.1;
-        }
-        if (currentGameMaxTime + otherMaxTime <= maxTime) {
-          combinationScore += 0.2;
-        }
-      }
-      combinationScore = Math.min(combinationScore, 15);
-      gamesWithCounter[i].value += combinationScore;
-
-      // If in doubt of whether the game can fit within time limit
-      if (currentGameMaxTime > maxTime) {
-        gamesWithCounter[i].value -= 5;
-
-        // Some games have playtime increasing linearly by player amount, see Agricola
-        if (currentGameMaxTime / allPlayers.length > maxTime) {
-          gamesWithCounter[i].value -= 8;
-        }
-      }
-
-      // Calculating complexity fit
-      double currentComplexity = currentGame.getComplexity();
-
-      double difference = Math.abs(currentComplexity - averageComplexityGivingAllPlayersEqualWeight);
-      //double differenceWeighed = Math.abs(currentComplexity - weighedAverageComplexityOfAllPlayers);
-
-      if (difference >= 0.8) {
-        gamesWithCounter[i].value -= 5;
-        if (difference >= 1.0) {
-          gamesWithCounter[i].value -= 2;
-        }
-        if (difference >= 1.2) {
-          gamesWithCounter[i].value -= 2;
-        }
-        if (difference >= 1.4) {
-          gamesWithCounter[i].value -= 2;
-        }
-        if (difference > 1.5) {
-          gamesWithCounter[i].value -= 5;
-        }
-      } else if (difference <= 0.5) {
-        gamesWithCounter[i].value += 1;
-
-        if (difference <= 0.4) {
-          gamesWithCounter[i].value += 1;
-        }
-        if (difference <= 0.3) {
-          gamesWithCounter[i].value += 1;
-        }
-        if (difference <= 0.2) {
-          gamesWithCounter[i].value += 1;
-        }
-        if (difference <= 0.1) {
-          gamesWithCounter[i].value += 1;
-        }
-      }
-
     }
-    gamesWithCounter = InsertionSortGamesWithCounter.sort(gamesWithCounter);
+    current.value += combinationScore;
+  }
 
-    // TODO: 15-Nov-16  REMOVE
-    for (int i = 0; i < gamesWithCounter.length; i++) {
-      System.out.println(gamesWithCounter[i].game.getName() + ", " + gamesWithCounter[i].value + " <---");
+  private void calculateAbsoluteFactorsScore(BoardGameCounter current, int maxTime, Player[] allPlayers,
+                                             double averageComplexityGivingAllPlayersEqualWeight) {
+    BoardGame currentGame = current.game;
+
+    // Personal rating should matter
+    String personalRatingString = currentGame.getPersonalRating();
+    double personalRating;
+    if (personalRatingString.equals("N/A")) {
+      personalRating = 5;
+    } else {
+      personalRating = Double.valueOf(personalRatingString);
+    }
+    current.value += personalRating * 3;
+
+    // If personal rating is higher than average rating
+    String averageRatingString = currentGame.getAverageRating();
+    if (!averageRatingString.equals("N/A")) {
+      double averageRating = Double.valueOf(averageRatingString);
+      if (averageRating < personalRating) {
+        current.value += Math.min(5, (personalRating - averageRating) * 3);
+      }
     }
 
-    // If no combination can be found within first 6 games, return highest recommendation
-    BoardGame[] suggestedCombination = new BoardGame[1];
-    suggestedCombination[0] = gamesWithCounter[0].game;
+    // Can we easily play this game within time limit
+    int currentMinTime = currentGame.getMinPlaytime();
+    int currentMaxTime = currentGame.getMaxPlaytime();
 
-    int countTo = Math.min(6, gamesWithCounter.length);
-    for (int i = 0; i < countTo; i++) {
-      ArrayList<BoardGame> currentCombination = new ArrayList<>();
-      BoardGame gameI = gamesWithCounter[i].game;
-      currentCombination.add(gameI);
-      int currentTimeSpent = gameI.getMinPlaytime();
-      for (int j = i+1; j < countTo; j++) {
-        BoardGame gameJ = gamesWithCounter[j].game;
-        int withinTime = currentTimeSpent + gameJ.getMinPlaytime();
-        if (maxTime >= withinTime) {
-          currentTimeSpent = withinTime;
-          currentCombination.add(gameJ);
-        }
-      }
-      if (currentCombination.size() > 1) {
-        suggestedCombination = new BoardGame[currentCombination.size()];
-        for (int j = 0; j < suggestedCombination.length; j++) {
-          suggestedCombination[j] = currentCombination.get(j);
-        }
+    double approximationTime;
+    if (currentMinTime == currentMaxTime) {
+      approximationTime = currentMaxTime;
+    } else {
+      double difference = currentMaxTime - currentMaxTime;
+      difference = difference / (currentGame.getMaxPlayers() - currentGame.getMinPlayers());
+      approximationTime = currentMaxTime + difference * (allPlayers.length + 1);
+    }
+
+    for (Player player : allPlayers) {
+      if (player.hasPlayed(currentGame)) {
+        approximationTime += 10;
         break;
       }
+    }
+    current.approximateTime = approximationTime;
+
+    if (approximationTime < maxTime) {
+      current.value += 20;
+    }
+
+    // How fitting is the complexity
+    double currentComplexity = currentGame.getComplexity();
+    double difference = Math.abs(currentComplexity - averageComplexityGivingAllPlayersEqualWeight);
+
+    // First, lower rating if complexity is too different
+    if (difference >= 0.8) {
+      current.value -= 5;
+      if (difference >= 1.0) {
+        current.value -= 2;
+      }
+      if (difference >= 1.2) {
+        current.value -= 2;
+      }
+      if (difference >= 1.4) {
+        current.value -= 2;
+      }
+      if (difference >= 1.5) {
+        current.value -= 4;
+      }
+    }
+    // If low different, recommend more!
+    else if (difference <= 0.8) {
+      current.value += 5;
+
+      if (difference <= 0.5) {
+        current.value += 5;
+      }
+      if (difference <= 0.4) {
+        current.value += 3;
+      }
+      if (difference <= 0.3) {
+        current.value += 3;
+      }
+      if (difference <= 0.2) {
+        current.value += 4;
+      }
+    }
+
+    // Finally, if the game is best with the player number, recommend it more
+    int[] bestWith = currentGame.getBestWith();
+    for (int i : bestWith) {
+      if (i == allPlayers.length + 1) {
+        current.value += 20;
+        break;
+      }
+    }
+  }
+
+  private BoardGame[] calculateSuggestedGames(BoardGameCounter[] gamesWithCounter, int maxTime) {
+    gamesWithCounter = InsertionSortGamesWithCounter.sort(gamesWithCounter);
+
+    ArrayList<BoardGame> suggestedCombinationList = new ArrayList<>();
+    int posOfFirstElement = 0;
+    double currentTimeSpent = 0;
+
+    for (int i = 0; i < gamesWithCounter.length; i++) {
+      if (maxTime >= gamesWithCounter[i].approximateTime) {
+        suggestedCombinationList.add(gamesWithCounter[i].game);
+        posOfFirstElement = i;
+        currentTimeSpent += gamesWithCounter[i].approximateTime;
+        break;
+      }
+    }
+    for (int i = posOfFirstElement + 1; i < gamesWithCounter.length; i++) {
+      double withinTime = currentTimeSpent + gamesWithCounter[i].approximateTime;
+      if (maxTime >= withinTime) {
+        suggestedCombinationList.add(gamesWithCounter[i].game);
+        currentTimeSpent = withinTime;
+      }
+    }
+    BoardGame[] suggestedCombination = new BoardGame[suggestedCombinationList.size()];
+    for (int i = 0; i < suggestedCombination.length; i++) {
+      suggestedCombination[i] = suggestedCombinationList.get(i);
     }
     return suggestedCombination;
   }

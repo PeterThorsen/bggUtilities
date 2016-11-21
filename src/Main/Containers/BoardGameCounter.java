@@ -7,6 +7,7 @@ public class BoardGameCounter {
 
   public BoardGame game;
   public double value = 0;
+  public double approximateTime = 0;
 
   public BoardGameCounter(BoardGame game) {
 

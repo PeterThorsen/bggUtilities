@@ -10,4 +10,10 @@ public class GameCategory {
     this.category = category;
   }
 
+  @Override
+  public boolean equals(Object other) {
+    GameCategory correctOther = (GameCategory)other;
+    return category.equals(correctOther.category);
+  }
+
 }

@@ -216,26 +216,28 @@ public class TestLogicController {
     assertTrue(found);
   }
 
-  // Sushi go contains hand management like sequence while having a low complexity and being recommended at 2 players
   @Test
-  public void recommendedGamesShouldContainJaipurAndSushiGo() {
+  public void recommendedGamesShouldContainJaipurAndCarcassonne() {
     Player[] players = new Player[1];
     players[0] = allPlayers[10];
-    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 60);
+    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 80);
     BoardGame[] suggestedCombination = suggestions.suggestedCombination;
 
     boolean foundJaipur = false;
-    boolean foundSushiGo = false;
+    boolean foundCarcassonne = false;
 
     for (BoardGame game : suggestedCombination) {
       if(game.getName().equals("Jaipur")) {
         foundJaipur = true;
       }
-      else if(game.getName().equals("Sushi Go!")) {
-        foundSushiGo = true;
+      else if(game.getName().equals("Carcassonne")) {
+        foundCarcassonne = true;
+      }
+      else {
+        break; // Too many suggestions, should be exactly these two
       }
     }
     assertTrue(foundJaipur);
-    assertTrue(foundSushiGo);
+    assertTrue(foundCarcassonne);
   }
 }

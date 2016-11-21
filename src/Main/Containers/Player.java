@@ -9,7 +9,7 @@ public class Player {
   public final String name;
   public final Play[] allPlays;
   public int totalPlays = 0;
-  public HashMap<String, Integer> gameToPlaysMap = new HashMap<>();
+  public HashMap<BoardGame, Integer> gameToPlaysMap = new HashMap<>();
   public HashMap<String, Integer> playerNameToPlaysMap = new HashMap<>();
 
   public Player(String name, Play[] allPlays) {
@@ -22,19 +22,18 @@ public class Player {
     for (Play play : allPlays) {
       int quantity = play.getQuantity();
       BoardGame game = play.getGame();
-      String gameName = game.getName();
       String[] allPlayers = play.playerNames;
 
       totalPlays += quantity;
 
 
       // Tracking total plays of all games
-      if (gameToPlaysMap.containsKey(gameName)) {
-        int value = gameToPlaysMap.get(gameName);
+      if (gameToPlaysMap.containsKey(game)) {
+        int value = gameToPlaysMap.get(game);
         value += quantity;
-        gameToPlaysMap.put(gameName, value);
+        gameToPlaysMap.put(game, value);
       } else {
-        gameToPlaysMap.put(gameName, quantity);
+        gameToPlaysMap.put(game, quantity);
       }
 
       // Tracking total plays of all players
@@ -52,8 +51,8 @@ public class Player {
 
   public GameNameAndPlayHolder getMostPlayedGame() {
     int maxValue = 0;
-    String maxGame = "";
-    for (String key : gameToPlaysMap.keySet()) {
+    BoardGame maxGame = null;
+    for (BoardGame key : gameToPlaysMap.keySet()) {
       int current = gameToPlaysMap.get(key);
       if (current > maxValue) {
         maxValue = current;
@@ -124,5 +123,9 @@ public class Player {
       }
     }
     return mostRecentGame;
+  }
+
+  public boolean hasPlayed(BoardGame game) {
+    return gameToPlaysMap.containsKey(game);
   }
 }

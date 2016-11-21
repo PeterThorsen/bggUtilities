@@ -9,6 +9,8 @@ import org.junit.Test;
 import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Peter on 10/11/2016.
@@ -17,7 +19,7 @@ public class TestPlayer {
   private Player player;
   private String[] playerNames;
   private BoardGame game1 = new BoardGame("Agricola", 31260, 1, 5, 30, 150, String.valueOf(8), 0, "8.07978", "strategygames");
-  private BoardGame game2 = new BoardGame("Camel Up", 153938, 1, 8, 20, 30, String.valueOf(8), 0, "7.118", "abstracts");
+  private BoardGame game2 = new BoardGame("Camel Up", 153938, 1, 8, 20, 30, String.valueOf(8), 0, "7.118", "familygames");
 
 
   @Before
@@ -90,7 +92,7 @@ public class TestPlayer {
     plays[1] = play2;
     buildPlayer(plays);
 
-    assertEquals("Agricola", player.getMostPlayedGame().gameName);
+    assertEquals("Agricola", player.getMostPlayedGame().game.getName());
   }
 
   @Test
@@ -102,7 +104,7 @@ public class TestPlayer {
     plays[1] = play2;
     buildPlayer(plays);
 
-    assertEquals("Camel Up", player.getMostPlayedGame().gameName);
+    assertEquals("Camel Up", player.getMostPlayedGame().game.getName());
   }
 
   @Test
@@ -113,9 +115,9 @@ public class TestPlayer {
     plays[0] = play1;
     plays[1] = play2;
     buildPlayer(plays);
-    HashMap<String, Integer> map = player.gameToPlaysMap;
-    int valCamelUp = map.get("Camel Up");
-    int valAgricola = map.get("Agricola");
+    HashMap<BoardGame, Integer> map = player.gameToPlaysMap;
+    int valCamelUp = map.get(game2);
+    int valAgricola = map.get(game1);
     assertEquals(2, valCamelUp);
     assertEquals(1, valAgricola);
   }
@@ -179,5 +181,27 @@ public class TestPlayer {
 
     String gameName = player.getMostRecentGame();
     assertEquals("Camel Up", gameName);
+  }
+
+  @Test
+  public void hasPlayedAgricolaShouldReturnTrue() {
+    Play play1 = new Play(game1, "2016-11-8", playerNames, 1);
+    Play[] plays = new Play[1];
+    plays[0] = play1;
+    buildPlayer(plays);
+
+    assertTrue(player.hasPlayed(game1));
+  }
+
+  @Test
+  public void hasPlayedHiveShouldReturnFalse() {
+    Play play1 = new Play(game1, "2016-11-8", playerNames, 1);
+    Play[] plays = new Play[1];
+    plays[0] = play1;
+    buildPlayer(plays);
+
+    BoardGame game2 = new BoardGame("Hive",2655,2,2,20,20,String.valueOf(10),1, "7.34394", "abstracts");
+
+    assertFalse(player.hasPlayed(game2));
   }
 }

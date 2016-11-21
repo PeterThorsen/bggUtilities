@@ -5,10 +5,10 @@ package Main.Containers;
  */
 public class GameNameAndPlayHolder {
   public final int plays;
-  public final String gameName;
+  public final BoardGame game;
 
-  public GameNameAndPlayHolder(String gameName, int plays) {
-    this.gameName = gameName;
+  public GameNameAndPlayHolder(BoardGame game, int plays) {
+    this.game = game;
     this.plays = plays;
   }
 }

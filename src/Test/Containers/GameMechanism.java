@@ -9,4 +9,10 @@ public class GameMechanism {
   public GameMechanism(String mechanism) {
     this.mechanism = mechanism;
   }
+
+  @Override
+  public boolean equals(Object other) {
+    GameMechanism correctOther = (GameMechanism)other;
+    return mechanism.equals(correctOther.mechanism);
+  }
 }
