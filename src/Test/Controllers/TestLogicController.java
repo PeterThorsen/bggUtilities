@@ -1,6 +1,7 @@
 package Test.Controllers;
 
 import Main.Containers.BoardGame;
+import Main.Containers.BoardGameCounter;
 import Main.Containers.BoardGameSuggestion;
 import Main.Containers.Player;
 import Main.Controllers.FacadeController;
@@ -205,11 +206,11 @@ public class TestLogicController {
     Player[] players = new Player[1];
     players[0] = allPlayers[10];
     BoardGameSuggestion suggestions = facadeController.suggestGames(players, 60);
-    BoardGame[] suggestedCombination = suggestions.suggestedCombination;
+    BoardGameCounter[] suggestedCombination = suggestions.suggestedCombination;
 
     boolean found = false;
-    for (BoardGame game : suggestedCombination) {
-      if(game.getName().equals("Jaipur")) {
+    for (BoardGameCounter gameCounter : suggestedCombination) {
+      if(gameCounter.game.getName().equals("Jaipur")) {
         found = true;
       }
     }
@@ -221,16 +222,16 @@ public class TestLogicController {
     Player[] players = new Player[1];
     players[0] = allPlayers[10];
     BoardGameSuggestion suggestions = facadeController.suggestGames(players, 80);
-    BoardGame[] suggestedCombination = suggestions.suggestedCombination;
+    BoardGameCounter[] suggestedCombination = suggestions.suggestedCombination;
 
     boolean foundJaipur = false;
     boolean foundCarcassonne = false;
 
-    for (BoardGame game : suggestedCombination) {
-      if(game.getName().equals("Jaipur")) {
+    for (BoardGameCounter gameCounter : suggestedCombination) {
+      if(gameCounter.game.getName().equals("Jaipur")) {
         foundJaipur = true;
       }
-      else if(game.getName().equals("Carcassonne")) {
+      else if(gameCounter.game.getName().equals("Carcassonne")) {
         foundCarcassonne = true;
       }
       else {

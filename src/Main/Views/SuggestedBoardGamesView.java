@@ -1,6 +1,7 @@
 package Main.Views;
 
-import Main.Containers.BoardGame;
+import Main.Containers.BoardGameCounter;
+import Main.Containers.BoardGameSuggestion;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -13,16 +14,16 @@ public class SuggestedBoardGamesView {
   public JPanel panel1;
   private JTable table1;
 
-  public SuggestedBoardGamesView(BoardGame[] suggestedGames) {
-    fillTable(suggestedGames);
+  public SuggestedBoardGamesView(BoardGameSuggestion suggestions) {
+    fillTable(suggestions.suggestedCombination);
   }
 
-  private void fillTable(BoardGame[] suggestedGames) {
+  private void fillTable(BoardGameCounter[] suggestedGames) {
     TableModel dataModel = new
             AbstractTableModel() {
 
               public int getColumnCount() {
-                return 1;
+                return 2;
               }
 
               public int getRowCount() {
@@ -33,7 +34,10 @@ public class SuggestedBoardGamesView {
 
                 // Name
                 if (col == 0) {
-                  return suggestedGames[row].getName();
+                  return suggestedGames[row].game.getName();
+                }
+                if (col == 1) {
+                  return suggestedGames[row].approximateTime;
                 }
                 else {
                   return "Rest";
@@ -44,6 +48,8 @@ public class SuggestedBoardGamesView {
                 switch (column) {
                   case 0:
                     return "Name";
+                  case 1:
+                    return "Approximate time spent";
                   default:
                     return "REST";
                 }

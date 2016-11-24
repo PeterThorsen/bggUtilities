@@ -103,7 +103,7 @@ public class LogicController implements ILogicController {
       allValid[i] = allGamesMatchingCriteria.get(i);
     }
 
-    BoardGame[] bestCombination = buildBestCombination(allGamesMatchingCriteria, array, maxTime,
+    BoardGameCounter[] bestCombination = buildBestCombination(allGamesMatchingCriteria, array, maxTime,
             averageComplexityGivingAllPlayersEqualWeight);
 
     BoardGameSuggestion suggestedGames = new BoardGameSuggestion(bestCombination, allValid);
@@ -129,7 +129,7 @@ public class LogicController implements ILogicController {
    * The first two parts increase dynamically depending on players and games played, while the last will have a
    * hard max.
    */
-  private BoardGame[] buildBestCombination(ArrayList<BoardGame> allGamesMatchingCriteria, Player[] allPlayers,
+  private BoardGameCounter[] buildBestCombination(ArrayList<BoardGame> allGamesMatchingCriteria, Player[] allPlayers,
                                            int maxTime, double averageComplexityGivingAllPlayersEqualWeight) {
 
     BoardGameCounter[] gamesWithCounter = new BoardGameCounter[allGamesMatchingCriteria.size()];
@@ -294,14 +294,20 @@ public class LogicController implements ILogicController {
     double approximationTime;
     if (currentMinTime == currentMaxTime) {
       approximationTime = currentMaxTime;
-    } else {
-      double difference = currentMaxTime - currentMaxTime;
+    }
+    else if (currentGame.getMinPlayers() == currentGame.getMaxPlayers()) {
+      approximationTime = currentMinTime;
+
+    }
+    else {
+      double difference = currentMaxTime - currentMinTime;
       difference = difference / (currentGame.getMaxPlayers() - currentGame.getMinPlayers());
-      approximationTime = currentMaxTime + difference * (allPlayers.length + 1);
+      approximationTime = currentMinTime + (difference * (allPlayers.length + 1 - currentGame.getMinPlayers()));
     }
 
+    // Add time to approximation if someone has to learn the game
     for (Player player : allPlayers) {
-      if (player.hasPlayed(currentGame)) {
+      if (!player.hasPlayed(currentGame)) {
         approximationTime += 10;
         break;
       }
@@ -360,16 +366,16 @@ public class LogicController implements ILogicController {
     }
   }
 
-  private BoardGame[] calculateSuggestedGames(BoardGameCounter[] gamesWithCounter, int maxTime) {
+  private BoardGameCounter[] calculateSuggestedGames(BoardGameCounter[] gamesWithCounter, int maxTime) {
     gamesWithCounter = InsertionSortGamesWithCounter.sort(gamesWithCounter);
 
-    ArrayList<BoardGame> suggestedCombinationList = new ArrayList<>();
+    ArrayList<BoardGameCounter> suggestedCombinationList = new ArrayList<>();
     int posOfFirstElement = 0;
     double currentTimeSpent = 0;
 
     for (int i = 0; i < gamesWithCounter.length; i++) {
       if (maxTime >= gamesWithCounter[i].approximateTime) {
-        suggestedCombinationList.add(gamesWithCounter[i].game);
+        suggestedCombinationList.add(gamesWithCounter[i]);
         posOfFirstElement = i;
         currentTimeSpent += gamesWithCounter[i].approximateTime;
         break;
@@ -378,11 +384,11 @@ public class LogicController implements ILogicController {
     for (int i = posOfFirstElement + 1; i < gamesWithCounter.length; i++) {
       double withinTime = currentTimeSpent + gamesWithCounter[i].approximateTime;
       if (maxTime >= withinTime) {
-        suggestedCombinationList.add(gamesWithCounter[i].game);
+        suggestedCombinationList.add(gamesWithCounter[i]);
         currentTimeSpent = withinTime;
       }
     }
-    BoardGame[] suggestedCombination = new BoardGame[suggestedCombinationList.size()];
+    BoardGameCounter[] suggestedCombination = new BoardGameCounter[suggestedCombinationList.size()];
     for (int i = 0; i < suggestedCombination.length; i++) {
       suggestedCombination[i] = suggestedCombinationList.get(i);
     }

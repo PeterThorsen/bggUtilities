@@ -5,10 +5,10 @@ package Main.Containers;
  */
 public class BoardGameSuggestion {
 
-  public final BoardGame[] suggestedCombination;
+  public final BoardGameCounter[] suggestedCombination;
   public final BoardGame[] allOptions;
 
-  public BoardGameSuggestion(BoardGame[] suggestedCombination, BoardGame[] allOptions) {
+  public BoardGameSuggestion(BoardGameCounter[] suggestedCombination, BoardGame[] allOptions) {
 
     this.suggestedCombination = suggestedCombination;
     this.allOptions = allOptions;
