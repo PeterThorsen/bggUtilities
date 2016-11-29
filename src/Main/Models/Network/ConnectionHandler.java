@@ -11,6 +11,8 @@ import java.net.URL;
  */
 public class ConnectionHandler implements IConnectionHandler {
 
+  private boolean firstTime = true;
+
   /**
    * Used for returning a users boardgame collection for manipulation in other classes.
    *
@@ -26,6 +28,21 @@ public class ConnectionHandler implements IConnectionHandler {
       // Invalid user id, remember to check for null on receiving end
       return null;
     }
+
+    // Below section fixes bug caused by bgg's API when loading an user for the first time.
+    if (xmlResponseInDocument.getElementsByTagName("item").getLength() == 0) {
+      if(!firstTime) {
+        return null;
+      }
+      try {
+        Thread.sleep(5000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      firstTime = false;
+      return getCollection(username);
+    }
+
     return xmlResponseInDocument;
   }
 
