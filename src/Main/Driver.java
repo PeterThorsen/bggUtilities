@@ -15,6 +15,7 @@ import java.awt.*;
 public class Driver {
 
   private final LoginController loginController;
+  private final JTextArea loadingInfoTextArea;
   private FacadeController mainController;
   private final JFrame frame;
   private final JPanel panelMain;
@@ -28,6 +29,7 @@ public class Driver {
     frame = new JFrame("bggUtilities");
     StartView startView = new StartView(this);
     panelMain = startView.panelMain;
+    loadingInfoTextArea = startView.loadingInfoTextArea;
     frame.setContentPane(panelMain);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -44,9 +46,14 @@ public class Driver {
       public void run() {
         // panelMain button!
 
-        mainController = loginController.verifyUser(givenUsername);
+        if(givenUsername.equals("")) {
+          loadingInfoTextArea.setText("No username written!");
+          return;
+        }
+        loadingInfoTextArea.setText("Verifying user. Please wait.");
+        mainController = loginController.verifyUser(givenUsername, loadingInfoTextArea);
         if(mainController == null) {
-          // TODO Error message
+          loadingInfoTextArea.setText("Username not found on BoardGameGeek. Are you sure you wrote the correct name?");
           return;
         }
         startMainView();

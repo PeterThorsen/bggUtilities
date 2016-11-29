@@ -13,6 +13,7 @@ public class StartView {
   public JPanel panelMain;
   private JTextArea textArea;
   private JTextField usernameField;
+  public JTextArea loadingInfoTextArea;
 
   public StartView(Driver driver) {
     caller = driver;

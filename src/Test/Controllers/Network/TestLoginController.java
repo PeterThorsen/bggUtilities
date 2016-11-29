@@ -27,12 +27,12 @@ public class TestLoginController {
   @Test
   public void controllerShouldVerifyCorrectUsername() {
     String username="cwaq";
-    assertNotNull(controller.verifyUser(username));
+    assertNotNull(controller.verifyUser(username, null));
   }
 
   @Test
   public void controllerShouldReturnErrorOnWrongUsername() {
     String username = "notanusername";
-    assertNull(controller.verifyUser(username));
+    assertNull(controller.verifyUser(username, null));
   }
 }
