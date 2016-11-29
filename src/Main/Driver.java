@@ -53,7 +53,7 @@ public class Driver {
         loadingInfoTextArea.setText("Verifying user. Please wait.");
         mainController = loginController.verifyUser(givenUsername, loadingInfoTextArea);
         if(mainController == null) {
-          loadingInfoTextArea.setText("Username not found on BoardGameGeek. Are you sure you wrote the correct name?");
+          loadingInfoTextArea.setText("Username not found on\nBoardGameGeek. Are you sure you\nwrote the correct name?");
           return;
         }
         startMainView();
