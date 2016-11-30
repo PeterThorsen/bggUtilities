@@ -39,7 +39,9 @@ public class ConnectionHandler implements IConnectionHandler {
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
-      firstTime = false;
+      finally {
+        firstTime = false;
+      }
       return getCollection(username);
     }
 
