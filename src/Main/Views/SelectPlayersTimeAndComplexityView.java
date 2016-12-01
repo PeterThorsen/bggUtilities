@@ -61,10 +61,6 @@ public class SelectPlayersTimeAndComplexityView {
   private boolean verifyAllInputs() {
     String maxText = maxTimeField.getText();
 
-    if(maxText.equals("")) {
-      return false;
-    }
-
     try {
       int maxValue = Integer.valueOf(maxText);
       return true;
@@ -84,7 +80,7 @@ public class SelectPlayersTimeAndComplexityView {
 
     BoardGameSuggestion suggestedGames = facadeController.suggestGames(array, maxTime);
 
-    SuggestedBoardGamesView view = new SuggestedBoardGamesView(suggestedGames); // TODO: 14/11/2016
+    SuggestedBoardGamesView view = new SuggestedBoardGamesView(suggestedGames);
 
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     frame.setContentPane(view.panel1);

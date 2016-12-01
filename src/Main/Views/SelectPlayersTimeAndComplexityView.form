@@ -54,7 +54,7 @@
           </scrollpane>
         </children>
       </grid>
-      <grid id="79167" binding="belowTablesPanel" layout-manager="GridLayoutManager" row-count="3" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="79167" binding="belowTablesPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="5" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -62,49 +62,79 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="a8a23" class="javax.swing.JLabel">
+          <grid id="e2868" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties>
-              <text value="Complexity range:"/>
-            </properties>
-          </component>
-          <component id="b4c5" class="javax.swing.JLabel">
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="a8a23" class="javax.swing.JLabel">
+                <constraints/>
+                <properties>
+                  <text value="Complexity range:"/>
+                </properties>
+              </component>
+              <component id="613dd" class="javax.swing.JLabel" binding="complexityRangeValue">
+                <constraints/>
+                <properties>
+                  <text value="Label"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="55b9" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties>
-              <text value="Maximum time (in minutes)"/>
-            </properties>
-          </component>
-          <component id="6209a" class="javax.swing.JButton" binding="calculateSuggestedGames">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Suggest some games!"/>
-            </properties>
-          </component>
-          <component id="b5939" class="javax.swing.JTextField" binding="maxTimeField">
-            <constraints>
-              <grid row="1" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="b4c5" class="javax.swing.JLabel">
+                <constraints border-constraint="West"/>
+                <properties>
+                  <text value="Maximum time (in minutes)"/>
+                </properties>
+              </component>
+              <grid id="c3418" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints border-constraint="Center"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="b5939" class="javax.swing.JTextField" binding="maxTimeField">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                        <minimum-size width="70" height="-1"/>
+                        <preferred-size width="70" height="-1"/>
+                        <maximum-size width="70" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <enabled value="true"/>
+                      <text value=""/>
+                      <toolTipText value=""/>
+                    </properties>
+                  </component>
+                </children>
               </grid>
-            </constraints>
-            <properties>
-              <text value=""/>
-              <toolTipText value=""/>
-            </properties>
-          </component>
-          <component id="613dd" class="javax.swing.JLabel" binding="complexityRangeValue">
+            </children>
+          </grid>
+          <grid id="73e1d" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints>
-              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties>
-              <text value="Label"/>
-            </properties>
-          </component>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="6209a" class="javax.swing.JButton" binding="calculateSuggestedGames">
+                <constraints/>
+                <properties>
+                  <text value="Suggest some games!"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
         </children>
       </grid>
       <component id="24bac" class="javax.swing.JLabel">
