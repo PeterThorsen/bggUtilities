@@ -11,11 +11,42 @@ public class Player {
   public int totalPlays = 0;
   public HashMap<BoardGame, Integer> gameToPlaysMap = new HashMap<>();
   public HashMap<String, Integer> playerNameToPlaysMap = new HashMap<>();
+  private double averageComplexity;
+  private double maxComplexity;
+  private double minComplexity;
 
   public Player(String name, Play[] allPlays) {
     this.name = name;
     this.allPlays = allPlays;
     interpretPlays();
+    calculateComplexity();
+  }
+
+  private void calculateComplexity() {
+    double counter = 0;
+    double totalComplexity = 0;
+    double max = 1;
+    double min = 5;
+    for (BoardGame key : gameToPlaysMap.keySet()) {
+      double keyComplexity = key.getComplexity();
+      counter++;
+      totalComplexity += keyComplexity;
+      // Finding max complexity
+      if (keyComplexity > max) {
+        max = keyComplexity;
+      }
+      // Finding min complexity
+      if(keyComplexity < min) {
+        min = keyComplexity;
+      }
+
+    }
+    if (counter > 0) {
+      averageComplexity = totalComplexity / counter;
+      maxComplexity = max;
+      minComplexity = min;
+      return;
+    }
   }
 
   private void interpretPlays() {
@@ -127,5 +158,18 @@ public class Player {
 
   public boolean hasPlayed(BoardGame game) {
     return gameToPlaysMap.containsKey(game);
+  }
+
+  public double getAverageComplexity() {
+    return averageComplexity;
+  }
+
+  public double getMaxComplexity() {
+    return maxComplexity;
+  }
+
+  public double getMinComplexity() {
+    return minComplexity;
+    
   }
 }

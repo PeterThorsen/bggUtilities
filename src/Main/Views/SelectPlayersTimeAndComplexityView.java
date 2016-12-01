@@ -186,6 +186,24 @@ public class SelectPlayersTimeAndComplexityView {
         }
       }
     });
+
+    // Changing complexity range
+    double min = 5;
+    double max = 1;
+    double average = 0;
+    for (Player player : playersInTable2) {
+      double currentMin = player.getMinComplexity();
+      double currentMax = player.getMaxComplexity();
+      average += player.getAverageComplexity();
+      if(currentMin < min) {
+        min = currentMin;
+      }
+      if(currentMax > max) {
+        max = currentMax;
+      }
+    }
+    average = average / playersInTable2.size();
+    complexityRangeValue.setText(min + " - " + max + " (average: " + average + ")");
   }
 
   private void addToTable2(Player player) {
