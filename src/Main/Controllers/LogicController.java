@@ -2,6 +2,7 @@ package Main.Controllers;
 
 import Main.Containers.*;
 import Main.Sorting.InsertionSortGamesWithCounter;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,33 +28,17 @@ public class LogicController implements ILogicController {
     double maxComplexity = 0.0;
 
     double averageComplexityGivingAllPlayersEqualWeight = 0;
-    double weighedAverageComplexityOfAllPlayers = 0;
 
     for (Player player : array) {
-      double thisComplexity = 0.0;
-      double noOfPlays = 0;
-      for (Play play : player.allPlays) {
-        double gameComplexity = play.getGame().getComplexity();
-        thisComplexity += gameComplexity * play.getQuantity();
-        noOfPlays += play.getQuantity();
+      double currentAverage = player.getAverageComplexity();
+      if(player.getMaxComplexity() > maxComplexity) maxComplexity = player.getMaxComplexity();
+      if(player.getMinComplexity() < minComplexity) minComplexity = player.getMinComplexity();
 
-        if (gameComplexity < minComplexity) {
-          minComplexity = gameComplexity;
-        }
-        if (gameComplexity > maxComplexity) {
-          maxComplexity = gameComplexity;
-        }
-      }
-
-      thisComplexity = thisComplexity / noOfPlays;
-
-      averageComplexityGivingAllPlayersEqualWeight += thisComplexity;
-      weighedAverageComplexityOfAllPlayers += thisComplexity;
+      averageComplexityGivingAllPlayersEqualWeight += currentAverage;
     }
 
     // To direct algorithm towards better recommendations
     averageComplexityGivingAllPlayersEqualWeight = averageComplexityGivingAllPlayersEqualWeight / Double.valueOf(array.length);
-    weighedAverageComplexityOfAllPlayers = weighedAverageComplexityOfAllPlayers / array.length;
 
 
     ArrayList<BoardGame> allGamesMatchingCriteria = new ArrayList<>();

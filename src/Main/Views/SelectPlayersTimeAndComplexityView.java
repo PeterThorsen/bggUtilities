@@ -203,7 +203,12 @@ public class SelectPlayersTimeAndComplexityView {
       }
     }
     average = average / playersInTable2.size();
-    complexityRangeValue.setText(min + " - " + max + " (average: " + average + ")");
+    if (playersInTable2.size() > 0) {
+      complexityRangeValue.setText(min + " - " + max + " (average: " + average + ")");
+    }
+    else {
+      complexityRangeValue.setText("-");
+    }
   }
 
   private void addToTable2(Player player) {
