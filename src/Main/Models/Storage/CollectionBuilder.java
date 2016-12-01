@@ -2,7 +2,6 @@ package Main.Models.Storage;
 
 import Main.Containers.*;
 import Main.Models.Network.IConnectionHandler;
-import Test.Containers.GameMechanism;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;

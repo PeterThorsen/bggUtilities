@@ -1,4 +1,4 @@
-package Test.Controllers.Network;
+package Controllers.Network;
 
 import Main.Controllers.LoginController;
 import Main.Factories.IStartupFactory;

@@ -1,7 +1,5 @@
 package Main.Containers;
 
-import Test.Containers.GameMechanism;
-
 /**
  * Created by Peter on 28/09/16.
  */

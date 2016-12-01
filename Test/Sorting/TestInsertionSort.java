@@ -1,11 +1,11 @@
-package Test.Sorting;
+package Sorting;
 
 import Main.Containers.*;
 import Main.Sorting.InsertionSortGamesWithCounter;
 import Main.Sorting.InsertionSortPlayers;
 import Main.Sorting.InsertionSortStringAndIntHolder;
 import Main.Sorting.InsertionSortStrings;
-import Test.Containers.GameMechanism;
+import Main.Containers.GameMechanism;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

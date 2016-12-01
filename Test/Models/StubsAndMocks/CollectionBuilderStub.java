@@ -1,8 +1,8 @@
-package Test.Models.StubsAndMocks;
+package Models.StubsAndMocks;
 
 import Main.Containers.*;
 import Main.Models.Storage.ICollectionBuilder;
-import Test.Containers.GameMechanism;
+import Main.Containers.GameMechanism;
 
 import java.util.ArrayList;
 

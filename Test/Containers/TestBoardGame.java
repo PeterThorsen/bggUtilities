@@ -1,4 +1,4 @@
-package Test.Containers;
+package Containers;
 
 import Main.Containers.BoardGame;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package Test.Controllers;
+package Controllers;
 
 import Main.Containers.BoardGame;
 import Main.Containers.BoardGameCounter;
@@ -8,7 +8,7 @@ import Main.Controllers.FacadeController;
 import Main.Models.Network.IConnectionHandler;
 import Main.Models.Storage.CollectionBuilder;
 import Main.Models.Storage.ICollectionBuilder;
-import Test.Models.StubsAndMocks.ConnectionHandlerStub;
+import Models.StubsAndMocks.ConnectionHandlerStub;
 import org.junit.Before;
 import org.junit.Test;
 

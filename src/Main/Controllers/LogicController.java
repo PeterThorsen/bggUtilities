@@ -2,8 +2,6 @@ package Main.Controllers;
 
 import Main.Containers.*;
 import Main.Sorting.InsertionSortGamesWithCounter;
-import Test.Containers.GameMechanism;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

@@ -1,4 +1,4 @@
-package Test.Containers;
+package Containers;
 
 import Main.Containers.BoardGame;
 import Main.Containers.BoardGameCollection;
@@ -7,7 +7,7 @@ import Main.Containers.Plays;
 import Main.Models.Network.IConnectionHandler;
 import Main.Models.Storage.CollectionBuilder;
 import Main.Models.Storage.ICollectionBuilder;
-import Test.Models.StubsAndMocks.ConnectionHandlerStub;
+import Models.StubsAndMocks.ConnectionHandlerStub;
 import org.junit.Before;
 import org.junit.Test;
 

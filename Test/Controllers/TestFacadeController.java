@@ -1,11 +1,11 @@
-package Test.Controllers;
+package Controllers;
 
 import Main.Containers.BoardGame;
 import Main.Containers.Play;
 import Main.Containers.Player;
 import Main.Controllers.FacadeController;
 import Main.Models.Storage.ICollectionBuilder;
-import Test.Models.StubsAndMocks.CollectionBuilderStub;
+import Models.StubsAndMocks.CollectionBuilderStub;
 import org.junit.Before;
 import org.junit.Test;
 

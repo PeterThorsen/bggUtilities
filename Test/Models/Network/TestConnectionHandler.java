@@ -1,4 +1,4 @@
-package Test.Models.Network;
+package Models.Network;
 
 import Main.Models.Network.ConnectionHandler;
 import org.junit.Before;
