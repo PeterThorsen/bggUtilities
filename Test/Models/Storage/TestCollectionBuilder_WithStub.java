@@ -96,7 +96,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void hiveShouldHaveUniqueID2655() {
     int uniqueID = 0;
-    BoardGame game = games[20];
+    BoardGame game = games[23];
     uniqueID = game.getID();
     assertEquals(2655, uniqueID);
   }
@@ -112,7 +112,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void hiveShouldHaveMinPlayers2() {
     int minPlayers = 0;
-    BoardGame game = games[20];
+    BoardGame game = games[23];
     minPlayers = game.getMinPlayers();
     assertEquals(2, minPlayers);
   }
@@ -120,7 +120,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void hiveShouldHaveMaxPlayers2() {
     int maxPlayers = 0;
-    BoardGame game = games[20];
+    BoardGame game = games[23];
     maxPlayers = game.getMaxPlayers();
     assertEquals(2, maxPlayers);
   }
@@ -161,7 +161,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void hiveShouldHavePersonalRating10() {
     String personalRating;
-    BoardGame game = games[20];
+    BoardGame game = games[23];
     personalRating = game.getPersonalRating();
     int rating = Integer.valueOf(personalRating);
     assertEquals(10, rating);
@@ -176,17 +176,17 @@ public class TestCollectionBuilder_WithStub {
   }
 
   @Test
-  public void hiveShouldHaveNumPlays21() {
+  public void hiveShouldHaveNumPlays26() {
     int numPlays;
-    BoardGame game = games[20];
+    BoardGame game = games[23];
     numPlays = game.getNumberOfPlays();
-    assertEquals(21, numPlays);
+    assertEquals(26, numPlays);
   }
 
   @Test
   public void hiveShouldHaveComplexityBetween2And3() {
     double complexity;
-    BoardGame game = games[20];
+    BoardGame game = games[23];
     complexity = game.getComplexity();
     assertTrue(complexity > 2.0 && complexity < 3.0);
   }
@@ -200,9 +200,10 @@ public class TestCollectionBuilder_WithStub {
   }
 
   @Test
-  public void dixitShouldHaveAverageRating7Dot54256() {
-    BoardGame game = games[13];
-    assertEquals(7.54256, Double.valueOf(game.getAverageRating()));
+  public void dixitShouldHaveAverageRating7Dot54213() {
+    BoardGame game = games[14];
+    System.out.println(game);
+    assertEquals(7.54213, Double.valueOf(game.getAverageRating()));
   }
 
   @Test
@@ -219,7 +220,7 @@ public class TestCollectionBuilder_WithStub {
 
   @Test
   public void HiveTheLadybugShouldBeDefinedAsExpansion() {
-    BoardGame game = games[21];
+    BoardGame game = games[24];
     assertTrue(game.isExpansion());
   }
 
@@ -245,7 +246,7 @@ public class TestCollectionBuilder_WithStub {
 
   @Test
   public void hiveShouldHaveCategoryArrayContainingAbstractStrategyAndAnimals() {
-    BoardGame game = games[21];
+    BoardGame game = games[23];
     GameCategory[] categories = game.getCategories();
     boolean foundAnimals = false;
     boolean foundAbstractStrategy = false;
@@ -285,7 +286,7 @@ public class TestCollectionBuilder_WithStub {
 
   @Test
   public void hiveShouldHaveMechanicsArrayOf_GridMovement_TilePlacement() {
-    BoardGame game = games[20];
+    BoardGame game = games[23];
     GameMechanism[] mechanisms = game.getMechanisms();
     boolean foundGridMovement = false;
     boolean foundTilePlacement = false;

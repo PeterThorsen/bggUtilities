@@ -172,4 +172,9 @@ public class Player {
     return minComplexity;
     
   }
+
+  @Override
+  public String toString() {
+    return name;
+  }
 }
