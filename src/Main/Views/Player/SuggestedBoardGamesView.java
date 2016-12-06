@@ -1,4 +1,4 @@
-package Main.Views;
+package Main.Views.Player;
 
 import Main.Containers.BoardGameCounter;
 import Main.Containers.BoardGameSuggestion;

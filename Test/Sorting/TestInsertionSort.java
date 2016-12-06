@@ -1,9 +1,10 @@
 package Sorting;
 
 import Main.Containers.*;
+import Main.Containers.Holders.StringIntHolder;
 import Main.Sorting.InsertionSortGamesWithCounter;
 import Main.Sorting.InsertionSortPlayers;
-import Main.Sorting.InsertionSortStringAndIntHolder;
+import Main.Sorting.InsertionSortStringIntHolder;
 import Main.Sorting.InsertionSortStrings;
 import Main.Containers.GameMechanism;
 import org.junit.Test;
@@ -128,42 +129,42 @@ public class TestInsertionSort {
   }
 
   @Test
-  public void sortStringToIntHolder_returnOnlyHolderGivenOne() {
-    StringToIntHolder holder1 = new StringToIntHolder("a", 1);
-    StringToIntHolder[] arr = new StringToIntHolder[1];
+  public void sortStringIntHolder_returnOnlyHolderGivenOne() {
+    StringIntHolder holder1 = new StringIntHolder("a", 1);
+    StringIntHolder[] arr = new StringIntHolder[1];
     arr[0] = holder1;
 
-    arr = InsertionSortStringAndIntHolder.sort(arr);
+    arr = InsertionSortStringIntHolder.sort(arr);
     assertEquals("a", arr[0].str);
   }
 
   @Test
-  public void sortStringToIntHolder_maxValueShouldBeFirst() {
-    StringToIntHolder holder1 = new StringToIntHolder("a", 1);
-    StringToIntHolder holder2 = new StringToIntHolder("b", 2);
-    StringToIntHolder[] arr = new StringToIntHolder[2];
+  public void sortStringIntHolder_maxValueShouldBeFirst() {
+    StringIntHolder holder1 = new StringIntHolder("a", 1);
+    StringIntHolder holder2 = new StringIntHolder("b", 2);
+    StringIntHolder[] arr = new StringIntHolder[2];
     arr[0] = holder1;
     arr[1] = holder2;
 
 
-    arr = InsertionSortStringAndIntHolder.sort(arr);
+    arr = InsertionSortStringIntHolder.sort(arr);
     assertEquals("b", arr[0].str);
     assertEquals("a", arr[1].str);
   }
 
   @Test
-  public void sortStringToIntHolder_sortThreeEntriesCorrectly() {
-    StringToIntHolder holder1 = new StringToIntHolder("a", 1);
-    StringToIntHolder holder2 = new StringToIntHolder("b", 2);
-    StringToIntHolder holder3 = new StringToIntHolder("c", 10);
+  public void sortStringIntHolder_sortThreeEntriesCorrectly() {
+    StringIntHolder holder1 = new StringIntHolder("a", 1);
+    StringIntHolder holder2 = new StringIntHolder("b", 2);
+    StringIntHolder holder3 = new StringIntHolder("c", 10);
 
-    StringToIntHolder[] arr = new StringToIntHolder[3];
+    StringIntHolder[] arr = new StringIntHolder[3];
     arr[2] = holder1;
     arr[1] = holder2;
     arr[0] = holder3;
 
 
-    arr = InsertionSortStringAndIntHolder.sort(arr);
+    arr = InsertionSortStringIntHolder.sort(arr);
     assertEquals("c", arr[0].str);
     assertEquals("b", arr[1].str);
     assertEquals("a", arr[2].str);

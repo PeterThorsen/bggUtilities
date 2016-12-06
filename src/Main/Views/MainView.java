@@ -1,10 +1,11 @@
 package Main.Views;
 
 import Main.Containers.BoardGame;
-import Main.Containers.GameNameAndPlayHolder;
+import Main.Containers.Holders.GamePlayHolder;
 import Main.Containers.Play;
 import Main.Containers.Player;
 import Main.Controllers.FacadeController;
+import Main.Views.Player.PlayerView;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -147,7 +148,7 @@ public class MainView {
                 }
                 // Most played
                 if (col == 2) {
-                  GameNameAndPlayHolder holder = players[row].getMostPlayedGame();
+                  GamePlayHolder holder = players[row].getMostPlayedGame();
                   return holder.game + " (" + holder.plays + " plays)";
                 }
                 if (col == 3) {

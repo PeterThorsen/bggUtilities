@@ -10,7 +10,6 @@ public class BoardGameCounter {
   public double approximateTime = 0;
 
   public BoardGameCounter(BoardGame game) {
-
     this.game = game;
   }
 

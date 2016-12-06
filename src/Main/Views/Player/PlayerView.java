@@ -1,10 +1,10 @@
-package Main.Views;
+package Main.Views.Player;
 
 import Main.Containers.Play;
 import Main.Containers.Player;
-import Main.Containers.StringToIntHolder;
+import Main.Containers.Holders.StringIntHolder;
 import Main.Controllers.FacadeController;
-import Main.Sorting.InsertionSortStringAndIntHolder;
+import Main.Sorting.InsertionSortStringIntHolder;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -59,14 +59,14 @@ public class PlayerView {
     }
 
     int pos = 0;
-    StringToIntHolder[] gamesSortedByPlays = new StringToIntHolder[mostPlaysMap.size()];
+    StringIntHolder[] gamesSortedByPlays = new StringIntHolder[mostPlaysMap.size()];
     for (String key : mostPlaysMap.keySet()) {
-      gamesSortedByPlays[pos] = new StringToIntHolder(key, mostPlaysMap.get(key));
+      gamesSortedByPlays[pos] = new StringIntHolder(key, mostPlaysMap.get(key));
       pos++;
     }
 
-    gamesSortedByPlays = InsertionSortStringAndIntHolder.sort(gamesSortedByPlays);
-    StringToIntHolder[] finalGamesSortedByPlays = gamesSortedByPlays;
+    gamesSortedByPlays = InsertionSortStringIntHolder.sort(gamesSortedByPlays);
+    StringIntHolder[] finalGamesSortedByPlays = gamesSortedByPlays;
 
     TableModel dataModel = new
             AbstractTableModel() {
@@ -198,17 +198,17 @@ public class PlayerView {
       }
     }
 
-    StringToIntHolder[] mostCommonPlayersSorted = new StringToIntHolder[mostPlaysMap.size()];
+    StringIntHolder[] mostCommonPlayersSorted = new StringIntHolder[mostPlaysMap.size()];
     int pos = 0;
     for (String key : mostPlaysMap.keySet()) {
-      StringToIntHolder holder = new StringToIntHolder(key, mostPlaysMap.get(key));
+      StringIntHolder holder = new StringIntHolder(key, mostPlaysMap.get(key));
       mostCommonPlayersSorted[pos] = holder;
       pos++;
     }
 
-    mostCommonPlayersSorted = InsertionSortStringAndIntHolder.sort(mostCommonPlayersSorted);
+    mostCommonPlayersSorted = InsertionSortStringIntHolder.sort(mostCommonPlayersSorted);
 
-    StringToIntHolder[] finalMostCommonPlayersSorted = mostCommonPlayersSorted;
+    StringIntHolder[] finalMostCommonPlayersSorted = mostCommonPlayersSorted;
 
     TableModel dataModel = new
             AbstractTableModel() {

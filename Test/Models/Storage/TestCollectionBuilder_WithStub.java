@@ -202,7 +202,6 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void dixitShouldHaveAverageRating7Dot54213() {
     BoardGame game = games[14];
-    System.out.println(game);
     assertEquals(7.54213, Double.valueOf(game.getAverageRating()));
   }
 

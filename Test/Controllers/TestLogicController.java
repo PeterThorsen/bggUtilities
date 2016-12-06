@@ -213,7 +213,6 @@ public class TestLogicController {
 
     boolean found = false;
     for (BoardGameCounter gameCounter : suggestedCombination) {
-      System.out.println(gameCounter.game);
       if(gameCounter.game.getName().equals("Jaipur")) {
         found = true;
       }

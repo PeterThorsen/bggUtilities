@@ -1,14 +1,14 @@
 package Main.Sorting;
 
-import Main.Containers.StringToIntHolder;
+import Main.Containers.Holders.StringIntHolder;
 
 /**
  * Created by Peter on 13-Nov-16.
  */
-public class InsertionSortStringAndIntHolder {
-  public static StringToIntHolder[] sort(StringToIntHolder[] mostCommonPlayersSorted) {
+public class InsertionSortStringIntHolder {
+  public static StringIntHolder[] sort(StringIntHolder[] mostCommonPlayersSorted) {
     int j;
-    StringToIntHolder key;
+    StringIntHolder key;
     int i;
 
     for (j = 1; j < mostCommonPlayersSorted.length; j++)

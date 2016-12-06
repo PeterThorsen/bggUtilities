@@ -1,5 +1,7 @@
 package Main.Containers;
 
+import Main.Containers.Holders.GamePlayHolder;
+
 import java.util.HashMap;
 
 /**
@@ -80,7 +82,7 @@ public class Player {
     }
   }
 
-  public GameNameAndPlayHolder getMostPlayedGame() {
+  public GamePlayHolder getMostPlayedGame() {
     int maxValue = 0;
     BoardGame maxGame = null;
     for (BoardGame key : gameToPlaysMap.keySet()) {
@@ -90,7 +92,7 @@ public class Player {
         maxGame = key;
       }
     }
-    return new GameNameAndPlayHolder(maxGame, maxValue);
+    return new GamePlayHolder(maxGame, maxValue);
   }
 
   public String getMostCommonFriend() {

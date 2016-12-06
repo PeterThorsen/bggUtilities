@@ -1,13 +1,15 @@
-package Main.Containers;
+package Main.Containers.Holders;
+
+import Main.Containers.BoardGame;
 
 /**
  * Created by Peter on 09-Nov-16.
  */
-public class GameNameAndPlayHolder {
+public class GamePlayHolder {
   public final int plays;
   public final BoardGame game;
 
-  public GameNameAndPlayHolder(BoardGame game, int plays) {
+  public GamePlayHolder(BoardGame game, int plays) {
     this.game = game;
     this.plays = plays;
   }
