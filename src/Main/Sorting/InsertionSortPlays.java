@@ -1,5 +1,6 @@
 package Main.Sorting;
 
+import Main.Containers.Holders.PlayerNodeInformationHolder;
 import Main.Containers.Play;
 
 /**
@@ -22,9 +23,9 @@ public class InsertionSortPlays {
     }
 
     for (Play play : plays) {
-      String[] playerNames = play.playerNames;
-      playerNames = InsertionSortStrings.sort(playerNames);
-      play.playerNames = playerNames;
+      PlayerNodeInformationHolder[] playerInformation = play.playerInformation;
+      playerInformation = InsertionSortPlayerInformation.sort(playerInformation);
+      play.playerInformation = playerInformation;
     }
 
     return plays;

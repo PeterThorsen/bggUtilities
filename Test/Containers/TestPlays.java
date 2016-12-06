@@ -2,6 +2,7 @@ package Containers;
 
 import Main.Containers.BoardGame;
 import Main.Containers.BoardGameCollection;
+import Main.Containers.Holders.PlayerNodeInformationHolder;
 import Main.Containers.Play;
 import Main.Containers.Plays;
 import Main.Models.Network.IConnectionHandler;
@@ -93,8 +94,8 @@ public class TestPlays {
     boolean exists = false;
     for (Play play : dixitPlays) {
       if (play.getDate().equals("2016-09-09")) {
-        for (String name : play.playerNames) {
-          if(name.equals("Martin")) {
+        for (PlayerNodeInformationHolder holder : play.playerInformation) {
+          if(holder.equals("Martin")) {
             exists = true;
             break;
           }

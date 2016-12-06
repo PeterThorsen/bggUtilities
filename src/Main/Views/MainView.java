@@ -2,6 +2,7 @@ package Main.Views;
 
 import Main.Containers.BoardGame;
 import Main.Containers.Holders.GamePlayHolder;
+import Main.Containers.Holders.PlayerNodeInformationHolder;
 import Main.Containers.Play;
 import Main.Containers.Player;
 import Main.Controllers.FacadeController;
@@ -227,16 +228,16 @@ public class MainView {
                   return allPlaysSorted[row].getDate();
                 }
                 if (col == 3) {
-                  String[] players = allPlaysSorted[row].playerNames;
+                  PlayerNodeInformationHolder[] players = allPlaysSorted[row].playerInformation;
                   if (players.length == 0) {
                     return "";
                   }
-                  String printValue = players[0];
+                  String printValue = players[0].playerName;
                   for (int i = 1; i < players.length - 1; i++) {
-                    printValue = printValue.concat(", " + players[i]);
+                    printValue = printValue.concat(", " + players[i].playerName);
                   }
                   if(players.length > 1) {
-                    printValue = printValue.concat(" and " + players[players.length - 1] + ".");
+                    printValue = printValue.concat(" and " + players[players.length - 1].playerName + ".");
                   }
                   return printValue;
                 } else {

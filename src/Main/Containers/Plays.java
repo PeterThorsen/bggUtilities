@@ -1,5 +1,6 @@
 package Main.Containers;
 
+import Main.Containers.Holders.PlayerNodeInformationHolder;
 import Main.Sorting.InsertionSortPlays;
 
 import java.util.ArrayList;
@@ -11,19 +12,19 @@ import java.util.Set;
  * Created by Peter on 07/11/2016.
  */
 public class Plays {
-  private final HashMap<String, Integer> allPlayers = new HashMap<>();
+  private final HashMap<PlayerNodeInformationHolder, Integer> allPlayers = new HashMap<>();
   private final HashMap<String, Integer> nameToIDMap = new HashMap<>();
   private final HashMap<Integer, ArrayList<Play>> allPlays = new HashMap<>();
   private final HashMap<String, HashMap<String, Integer>> playsByPerson = new HashMap<>();
 
   public String[] getPlayerNames() {
     String[] names = new String[allPlayers.size()];
-    Set<String> keys = allPlayers.keySet();
-    Iterator<String> iterator = keys.iterator();
+    Set<PlayerNodeInformationHolder> keys = allPlayers.keySet();
+    Iterator<PlayerNodeInformationHolder> iterator = keys.iterator();
 
     int i = 0;
     while (iterator.hasNext()) {
-      names[i] = iterator.next();
+      names[i] = iterator.next().playerName;
       i++;
     }
     return names;
@@ -37,35 +38,35 @@ public class Plays {
     catch (Exception e) {
       System.out.println("ex, play is: " + play.getGame()); // TODO: 09/11/2016 null ved agentkuo, hvorfor findes game ikke
     }
-    for (String player : play.playerNames) { // TODO: 05/12/2016 change this to playerRatingHolder
+    for (PlayerNodeInformationHolder holder : play.playerInformation) { // TODO: 05/12/2016 change this to playerRatingHolder
 
       // TODO: 05/12/2016 change below maps to use Player as map.. add ratings 
-      if (!allPlayers.containsKey(player)) {
-        allPlayers.put(player, play.getQuantity());
+      if (!allPlayers.containsKey(holder)) {
+        allPlayers.put(holder, play.getQuantity());
         HashMap<String, Integer> gamePlaysByPlayer = new HashMap<>();
         gamePlaysByPlayer.put(gameName, play.getQuantity());
-        playsByPerson.put(player, gamePlaysByPlayer);
+        playsByPerson.put(holder.playerName, gamePlaysByPlayer);
         continue;
       }
-      allPlayers.put(player, allPlayers.get(player) + play.getQuantity());
+      allPlayers.put(holder, allPlayers.get(holder) + play.getQuantity());
 
-      if (!playsByPerson.containsKey(player)) {
+      if (!playsByPerson.containsKey(holder.playerName)) {
         HashMap<String, Integer> gamePlaysByPlayer = new HashMap<>();
         gamePlaysByPlayer.put(gameName, play.getQuantity());
-        playsByPerson.put(player, gamePlaysByPlayer);
+        playsByPerson.put(holder.playerName, gamePlaysByPlayer);
         continue;
       }
 
-      HashMap<String, Integer> gamePlaysByPlayer = playsByPerson.get(player);
+      HashMap<String, Integer> gamePlaysByPlayer = playsByPerson.get(holder.playerName);
       if (!gamePlaysByPlayer.containsKey(gameName)) {
         gamePlaysByPlayer.put(gameName, play.getQuantity());
-        playsByPerson.put(player, gamePlaysByPlayer);
+        playsByPerson.put(holder.playerName, gamePlaysByPlayer);
         continue;
       }
       int noOfPlays = gamePlaysByPlayer.get(gameName);
       noOfPlays += play.getQuantity();
       gamePlaysByPlayer.put(gameName, noOfPlays);
-      playsByPerson.put(player, gamePlaysByPlayer);
+      playsByPerson.put(holder.playerName, gamePlaysByPlayer);
     }
 
     BoardGame game = play.getGame();
@@ -99,7 +100,7 @@ public class Plays {
     return new ArrayList<>();
   }
 
-  public Play[] getAllPlaysSorted() {
+  public Play[] getAllPlays() {
     ArrayList<Play> unsortedPlays = new ArrayList<>();
     for (int key : allPlays.keySet()) {
       unsortedPlays.addAll(allPlays.get(key));

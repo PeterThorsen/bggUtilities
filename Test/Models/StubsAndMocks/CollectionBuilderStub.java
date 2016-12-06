@@ -1,6 +1,7 @@
 package Models.StubsAndMocks;
 
 import Main.Containers.*;
+import Main.Containers.Holders.PlayerNodeInformationHolder;
 import Main.Models.Storage.ICollectionBuilder;
 
 import java.util.ArrayList;
@@ -53,8 +54,8 @@ public class CollectionBuilderStub implements ICollectionBuilder {
     game2.addExpandedGameInfo(3.6298, false, cats2, mechs2, bestWith2, new int[0]);
     
     plays = new Plays();
-    String[] names = new String[1];
-    names[0] = "Martin";
+    PlayerNodeInformationHolder[] names = new PlayerNodeInformationHolder[1];
+    names[0] = new PlayerNodeInformationHolder("Martin");
     Play play = new Play(game1, "2016-09-14", names, 1);
     plays.addPlay(play);
 
@@ -71,7 +72,15 @@ public class CollectionBuilderStub implements ICollectionBuilder {
     games.add(game2);
 
     // Add games to collection
-    collection = new BoardGameCollection(games);
+    collection = new BoardGameCollection(asArray(games));
+  }
+
+  private BoardGame[] asArray(ArrayList<BoardGame> games) {
+    BoardGame[] arr = new BoardGame[games.size()];
+    for (int i = 0; i < arr.length; i++) {
+      arr[i] = games.get(i);
+    }
+    return arr;
   }
 
   @Override

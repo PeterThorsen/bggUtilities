@@ -25,11 +25,11 @@ public class FacadeController {
   }
 
   public Play[] getAllPlaysSorted() {
-    return dataController.getAllPlaysSorted();
+    return dataController.getAllPlays();
   }
 
   public Player[] getAllPlayers() {
-    return dataController.getAllPlayersSorted();
+    return dataController.getAllPlayers();
   }
 
   public BoardGameSuggestion suggestGames(Player[] array, int maxTime) {

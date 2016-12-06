@@ -1,6 +1,7 @@
 package Main.Containers;
 
 import Main.Containers.Holders.GamePlayHolder;
+import Main.Containers.Holders.PlayerNodeInformationHolder;
 
 import java.util.HashMap;
 
@@ -55,7 +56,7 @@ public class Player {
     for (Play play : allPlays) {
       int quantity = play.getQuantity();
       BoardGame game = play.getGame();
-      String[] allPlayers = play.playerNames;
+      PlayerNodeInformationHolder[] allPlayers = play.playerInformation;
 
       totalPlays += quantity;
 
@@ -70,13 +71,13 @@ public class Player {
       }
 
       // Tracking total plays of all players
-      for (String name : allPlayers) {
-        if (playerNameToPlaysMap.containsKey(name)) {
-          int value = playerNameToPlaysMap.get(name);
+      for (PlayerNodeInformationHolder holder : allPlayers) {
+        if (playerNameToPlaysMap.containsKey(holder.playerName)) {
+          int value = playerNameToPlaysMap.get(holder.playerName);
           value += quantity;
-          playerNameToPlaysMap.put(name, value);
+          playerNameToPlaysMap.put(holder.playerName, value);
         } else {
-          playerNameToPlaysMap.put(name, quantity);
+          playerNameToPlaysMap.put(holder.playerName, quantity);
         }
       }
     }

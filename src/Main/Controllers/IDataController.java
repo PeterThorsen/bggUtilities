@@ -15,7 +15,7 @@ interface IDataController {
 
   String[] getGameNames();
 
-  Play[] getAllPlaysSorted();
+  Play[] getAllPlays();
 
-  Player[] getAllPlayersSorted();
+  Player[] getAllPlayers();
 }

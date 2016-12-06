@@ -1,18 +1,20 @@
 package Main.Containers;
 
+import Main.Containers.Holders.PlayerNodeInformationHolder;
+
 /**
  * Created by Peter on 03/10/16.
  */
 public class Play {
-  public String[] playerNames;
+  public PlayerNodeInformationHolder[] playerInformation;
   private final BoardGame game;
   private final String date;
   private final int noOfPlays;
 
-  public Play(BoardGame game, String date, String[] playerNames, int noOfPlays) {
+  public Play(BoardGame game, String date, PlayerNodeInformationHolder[] playerInformation, int noOfPlays) {
     this.game = game;
     this.date = date;
-    this.playerNames = playerNames;
+    this.playerInformation = playerInformation;
     this.noOfPlays = noOfPlays;
   }
 

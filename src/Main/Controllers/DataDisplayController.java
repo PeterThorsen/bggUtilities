@@ -36,12 +36,12 @@ public class DataDisplayController implements IDataController {
   }
 
   @Override
-  public Play[] getAllPlaysSorted() {
-    return plays.getAllPlaysSorted();
+  public Play[] getAllPlays() {
+    return plays.getAllPlays();
   }
 
   @Override
-  public Player[] getAllPlayersSorted() {
+  public Player[] getAllPlayers() {
     players = InsertionSortPlayers.sort(players);
     return players;
   }

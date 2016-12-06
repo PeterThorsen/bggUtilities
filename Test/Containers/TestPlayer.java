@@ -1,6 +1,7 @@
 package Containers;
 
 import Main.Containers.*;
+import Main.Containers.Holders.PlayerNodeInformationHolder;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,7 +14,7 @@ import static org.junit.Assert.*;
  */
 public class TestPlayer {
   private Player player;
-  private String[] playerNames;
+  private PlayerNodeInformationHolder[] playerNames;
   private BoardGame game1;
   private BoardGame game2;
   private BoardGame game3;
@@ -25,10 +26,10 @@ public class TestPlayer {
 
   @Before
   public void setup() {
-    playerNames = new String[3];
-    playerNames[0] = "Michelle";
-    playerNames[1] = "Peter";
-    playerNames[2] = "Charlotte";
+    playerNames = new PlayerNodeInformationHolder[3];
+    playerNames[0] = new PlayerNodeInformationHolder("Michelle");
+    playerNames[1] = new PlayerNodeInformationHolder("Peter");
+    playerNames[2] = new PlayerNodeInformationHolder("Charlotte");
     buildPlayer(new Play[0]);
     game1 = new BoardGame("Agricola", 31260, 1, 5, 30, 150, String.valueOf(8), 0, "8.07978", "strategygames");
     game2 = new BoardGame("Hive",2655,2,2,20,20,String.valueOf(10),1, "7.34394", "abstracts");
@@ -161,8 +162,8 @@ public class TestPlayer {
 
   @Test
   public void shouldGetMostCommonFriendPeter() {
-    String[] newPlayers = new String[1];
-    newPlayers[0] = "Peter";
+    PlayerNodeInformationHolder[] newPlayers = new PlayerNodeInformationHolder[1];
+    newPlayers[0] = new PlayerNodeInformationHolder("Peter");
 
     Play play1 = new Play(game1, "2016-11-10", playerNames, 1);
     Play play2 = new Play(game1, "2016-11-10", newPlayers, 1);
@@ -174,8 +175,8 @@ public class TestPlayer {
   }
   @Test
   public void shouldGetMostCommonFriendMichelle() {
-    String[] newPlayers = new String[1];
-    newPlayers[0] = "Michelle";
+    PlayerNodeInformationHolder[] newPlayers = new PlayerNodeInformationHolder[1];
+    newPlayers[0] = new PlayerNodeInformationHolder("Michelle");
 
     Play play1 = new Play(game1, "2016-11-10", playerNames, 1);
     Play play2 = new Play(game1, "2016-11-10", newPlayers, 1);
@@ -188,8 +189,8 @@ public class TestPlayer {
 
   @Test
   public void shouldBeAbleToGetMapContainingPlaysOfEachPlayer() {
-    String[] newPlayers = new String[1];
-    newPlayers[0] = "Michelle";
+    PlayerNodeInformationHolder[] newPlayers = new PlayerNodeInformationHolder[1];
+    newPlayers[0] = new PlayerNodeInformationHolder("Michelle");
 
     Play play1 = new Play(game1, "2016-11-10", playerNames, 1);
     Play play2 = new Play(game1, "2016-11-10", newPlayers, 1);
