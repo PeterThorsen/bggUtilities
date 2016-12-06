@@ -36,11 +36,10 @@ public class Plays {
       gameName = play.getGame().getName();
     }
     catch (Exception e) {
-      System.out.println("ex, play is: " + play.getGame()); // TODO: 09/11/2016 null ved agentkuo, hvorfor findes game ikke
+      System.out.println("ex, play is: " + play.getGame());
     }
-    for (PlayerNodeInformationHolder holder : play.playerInformation) { // TODO: 05/12/2016 change this to playerRatingHolder
+    for (PlayerNodeInformationHolder holder : play.playerInformation) {
 
-      // TODO: 05/12/2016 change below maps to use Player as map.. add ratings 
       if (!allPlayers.containsKey(holder)) {
         allPlayers.put(holder, play.getQuantity());
         HashMap<String, Integer> gamePlaysByPlayer = new HashMap<>();

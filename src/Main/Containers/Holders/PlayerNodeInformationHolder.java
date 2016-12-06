@@ -5,9 +5,11 @@ package Main.Containers.Holders;
  */
 public class PlayerNodeInformationHolder {
   public final String playerName;
+  public final double rating;
 
-  public PlayerNodeInformationHolder(String playerName) {
+  public PlayerNodeInformationHolder(String playerName, double rating) {
     this.playerName = playerName;
+    this.rating = rating;
   }
 
   public int compareTo(PlayerNodeInformationHolder key) {

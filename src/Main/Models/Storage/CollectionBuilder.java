@@ -234,8 +234,18 @@ public class CollectionBuilder implements ICollectionBuilder {
       while (j < playersNodeList.getLength()) {
         Node playerJ = playersNodeList.item(j);
         String playerJName = playerJ.getAttributes().getNamedItem("name").getNodeValue();
-        // TODO: 05/12/2016 get player rating here!
-        players[arrayPos] = new PlayerNodeInformationHolder(playerJName);
+        String ratingString = playerJ.getAttributes().getNamedItem("rating").getNodeValue();
+        double rating;
+        try {
+          rating = Double.valueOf(ratingString);
+          if(rating > 10 || rating < 0) {
+            rating = 0;
+          }
+        }
+        catch (NumberFormatException e) {
+          rating = 0;
+        }
+        players[arrayPos] = new PlayerNodeInformationHolder(playerJName, rating);
         arrayPos++;
         j += 2;
       }

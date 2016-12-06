@@ -55,7 +55,7 @@ public class CollectionBuilderStub implements ICollectionBuilder {
     
     plays = new Plays();
     PlayerNodeInformationHolder[] names = new PlayerNodeInformationHolder[1];
-    names[0] = new PlayerNodeInformationHolder("Martin");
+    names[0] = new PlayerNodeInformationHolder("Martin", 0);
     Play play = new Play(game1, "2016-09-14", names, 1);
     plays.addPlay(play);
 

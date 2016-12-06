@@ -27,9 +27,9 @@ public class TestPlayer {
   @Before
   public void setup() {
     playerNames = new PlayerNodeInformationHolder[3];
-    playerNames[0] = new PlayerNodeInformationHolder("Michelle");
-    playerNames[1] = new PlayerNodeInformationHolder("Peter");
-    playerNames[2] = new PlayerNodeInformationHolder("Charlotte");
+    playerNames[0] = new PlayerNodeInformationHolder("Michelle", 0);
+    playerNames[1] = new PlayerNodeInformationHolder("Peter", 0);
+    playerNames[2] = new PlayerNodeInformationHolder("Charlotte", 0);
     buildPlayer(new Play[0]);
     game1 = new BoardGame("Agricola", 31260, 1, 5, 30, 150, String.valueOf(8), 0, "8.07978", "strategygames");
     game2 = new BoardGame("Hive",2655,2,2,20,20,String.valueOf(10),1, "7.34394", "abstracts");
@@ -163,7 +163,7 @@ public class TestPlayer {
   @Test
   public void shouldGetMostCommonFriendPeter() {
     PlayerNodeInformationHolder[] newPlayers = new PlayerNodeInformationHolder[1];
-    newPlayers[0] = new PlayerNodeInformationHolder("Peter");
+    newPlayers[0] = new PlayerNodeInformationHolder("Peter", 0);
 
     Play play1 = new Play(game1, "2016-11-10", playerNames, 1);
     Play play2 = new Play(game1, "2016-11-10", newPlayers, 1);
@@ -176,7 +176,7 @@ public class TestPlayer {
   @Test
   public void shouldGetMostCommonFriendMichelle() {
     PlayerNodeInformationHolder[] newPlayers = new PlayerNodeInformationHolder[1];
-    newPlayers[0] = new PlayerNodeInformationHolder("Michelle");
+    newPlayers[0] = new PlayerNodeInformationHolder("Michelle", 0);
 
     Play play1 = new Play(game1, "2016-11-10", playerNames, 1);
     Play play2 = new Play(game1, "2016-11-10", newPlayers, 1);
@@ -190,7 +190,7 @@ public class TestPlayer {
   @Test
   public void shouldBeAbleToGetMapContainingPlaysOfEachPlayer() {
     PlayerNodeInformationHolder[] newPlayers = new PlayerNodeInformationHolder[1];
-    newPlayers[0] = new PlayerNodeInformationHolder("Michelle");
+    newPlayers[0] = new PlayerNodeInformationHolder("Michelle", 0);
 
     Play play1 = new Play(game1, "2016-11-10", playerNames, 1);
     Play play2 = new Play(game1, "2016-11-10", newPlayers, 1);
