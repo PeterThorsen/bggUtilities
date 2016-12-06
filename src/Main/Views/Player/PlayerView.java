@@ -1,8 +1,8 @@
 package Main.Views.Player;
 
+import Main.Containers.Holders.StringIntHolder;
 import Main.Containers.Play;
 import Main.Containers.Player;
-import Main.Containers.Holders.StringIntHolder;
 import Main.Controllers.FacadeController;
 import Main.Sorting.InsertionSortStringIntHolder;
 

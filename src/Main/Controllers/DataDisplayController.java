@@ -1,8 +1,8 @@
 package Main.Controllers;
 
 import Main.Containers.*;
-import Main.Sorting.InsertionSortPlayers;
 import Main.Models.Storage.ICollectionBuilder;
+import Main.Sorting.InsertionSortPlayers;
 
 import java.util.ArrayList;
 

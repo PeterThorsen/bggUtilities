@@ -7,7 +7,8 @@ import Main.Models.Storage.ICollectionBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
-import static junit.framework.TestCase.*;
+import static junit.framework.TestCase.assertNotNull;
+import static junit.framework.TestCase.assertNull;
 
 /**
  * Created by Peter on 05/10/2016.

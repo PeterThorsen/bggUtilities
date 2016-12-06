@@ -7,7 +7,6 @@ import Main.Views.MainView;
 import Main.Views.StartView;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Created by Peter on 12/09/16.

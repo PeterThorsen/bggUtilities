@@ -1,13 +1,9 @@
 package Models.Storage;
 
-import Main.Containers.BoardGame;
-import Main.Containers.BoardGameCollection;
-import Main.Containers.GameCategory;
-import Main.Containers.Player;
+import Main.Containers.*;
 import Main.Models.Network.IConnectionHandler;
 import Main.Models.Storage.CollectionBuilder;
 import Main.Models.Storage.ICollectionBuilder;
-import Main.Containers.GameMechanism;
 import Models.StubsAndMocks.ConnectionHandlerStub;
 import org.junit.Before;
 import org.junit.Test;
