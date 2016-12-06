@@ -17,6 +17,7 @@ public class Player {
   private double averageComplexity;
   private double maxComplexity;
   private double minComplexity;
+  private HashMap<BoardGame, Double> gameRatingsMap = new HashMap<>();
 
   public Player(String name, Play[] allPlays) {
     this.name = name;
@@ -179,5 +180,13 @@ public class Player {
   @Override
   public String toString() {
     return name;
+  }
+
+  public double getPersonalRating(BoardGame game) {
+    if(!gameRatingsMap.containsKey(game)) {
+      return 0;
+    }
+    double rating = gameRatingsMap.get(game);
+    return rating;
   }
 }

@@ -156,7 +156,7 @@ public class LogicController implements ILogicController {
           double dateScore = calculateDateScore(allPlaysForPlayer[k], current.game, lengthAllPlayers);
           current.value += dateScore;
 
-          //double personalGameRating = calculatePersonalRating(player, current.game, lengthAllPlayers);
+          double personalGameRating = calculatePersonalRating(player, current.game, lengthAllPlayers);
 
         }
       }
@@ -164,7 +164,7 @@ public class LogicController implements ILogicController {
       calculateCombinationScore(current, player, lengthAllPlayers + 1);
     }
   }
-/**
+
   private double calculatePersonalRating(Player player, BoardGame game, int lengthAllPlayers) {
     double rating = player.getPersonalRating(game);
     if(rating == 0) {
@@ -174,7 +174,7 @@ public class LogicController implements ILogicController {
     // If 10/10 rating for all players, score a massive 50 points.
     double score = rating * 5 / lengthAllPlayers;
     return score;
-  } */
+  }
 
   private double calculateDateScore(Play play, BoardGame game, int lengthAllPlayers) {
 
