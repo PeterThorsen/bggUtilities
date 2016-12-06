@@ -10,7 +10,7 @@ import java.util.HashMap;
  */
 public class Player {
   public final String name;
-  public final PlayRatingHolder[] allPlays;
+  public final Play[] allPlays;
   public int totalPlays = 0;
   public HashMap<BoardGame, Integer> gameToPlaysMap = new HashMap<>();
   public HashMap<String, Integer> playerNameToPlaysMap = new HashMap<>();
@@ -19,7 +19,7 @@ public class Player {
   private double minComplexity;
   private HashMap<BoardGame, Double> gameRatingsMap = new HashMap<>();
 
-  public Player(String name, PlayRatingHolder[] allPlays) {
+  public Player(String name, Play[] allPlays) {
     this.name = name;
     this.allPlays = allPlays;
     interpretPlays();
@@ -54,13 +54,11 @@ public class Player {
   }
 
   private void interpretPlays() {
-    for (PlayRatingHolder playRatingHolder : allPlays) {
-      Play play = playRatingHolder.play;
-      double rating = playRatingHolder.rating;
+    for (Play play : allPlays) {
 
       int quantity = play.getQuantity();
       BoardGame game = play.getGame();
-      PlayerNodeInformationHolder[] allPlayers = play.playerInformation;
+      String[] allPlayers = play.playerNames;
 
       totalPlays += quantity;
 
@@ -75,13 +73,13 @@ public class Player {
       }
 
       // Tracking total plays of all other players
-      for (PlayerNodeInformationHolder holder : allPlayers) {
-        if (playerNameToPlaysMap.containsKey(holder.playerName)) {
-          int value = playerNameToPlaysMap.get(holder.playerName);
+      for (String name : allPlayers) {
+        if (playerNameToPlaysMap.containsKey(name)) {
+          int value = playerNameToPlaysMap.get(name);
           value += quantity;
-          playerNameToPlaysMap.put(holder.playerName, value);
+          playerNameToPlaysMap.put(name, value);
         } else {
-          playerNameToPlaysMap.put(holder.playerName, quantity);
+          playerNameToPlaysMap.put(name, quantity);
         }
       }
 
@@ -122,8 +120,7 @@ public class Player {
     int mostRecentDay = 0;
     String mostRecentGame = "";
 
-    for (PlayRatingHolder holder : allPlays) {
-      Play play = holder.play;
+    for (Play play : allPlays) {
 
       String gameName = play.getGame().getName();
 

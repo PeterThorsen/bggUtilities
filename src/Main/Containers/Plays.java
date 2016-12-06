@@ -12,19 +12,19 @@ import java.util.Set;
  * Created by Peter on 07/11/2016.
  */
 public class Plays {
-  private final HashMap<PlayerNodeInformationHolder, Integer> allPlayers = new HashMap<>();
+  private final HashMap<String, Integer> allPlayers = new HashMap<>();
   private final HashMap<String, Integer> nameToIDMap = new HashMap<>();
   private final HashMap<Integer, ArrayList<Play>> allPlays = new HashMap<>();
   private final HashMap<String, HashMap<String, Integer>> playsByPerson = new HashMap<>();
 
   public String[] getPlayerNames() {
     String[] names = new String[allPlayers.size()];
-    Set<PlayerNodeInformationHolder> keys = allPlayers.keySet();
-    Iterator<PlayerNodeInformationHolder> iterator = keys.iterator();
+    Set<String> keys = allPlayers.keySet();
+    Iterator<String> iterator = keys.iterator();
 
     int i = 0;
     while (iterator.hasNext()) {
-      names[i] = iterator.next().playerName;
+      names[i] = iterator.next();
       i++;
     }
     return names;
@@ -38,34 +38,34 @@ public class Plays {
     catch (Exception e) {
       System.out.println("ex, play is: " + play.getGame());
     }
-    for (PlayerNodeInformationHolder holder : play.playerInformation) {
+    for (String name : play.playerNames) {
 
-      if (!allPlayers.containsKey(holder)) {
-        allPlayers.put(holder, play.getQuantity());
+      if (!allPlayers.containsKey(name)) {
+        allPlayers.put(name, play.getQuantity());
         HashMap<String, Integer> gamePlaysByPlayer = new HashMap<>();
         gamePlaysByPlayer.put(gameName, play.getQuantity());
-        playsByPerson.put(holder.playerName, gamePlaysByPlayer);
+        playsByPerson.put(name, gamePlaysByPlayer);
         continue;
       }
-      allPlayers.put(holder, allPlayers.get(holder) + play.getQuantity());
+      allPlayers.put(name, allPlayers.get(name) + play.getQuantity());
 
-      if (!playsByPerson.containsKey(holder.playerName)) {
+      if (!playsByPerson.containsKey(name)) {
         HashMap<String, Integer> gamePlaysByPlayer = new HashMap<>();
         gamePlaysByPlayer.put(gameName, play.getQuantity());
-        playsByPerson.put(holder.playerName, gamePlaysByPlayer);
+        playsByPerson.put(name, gamePlaysByPlayer);
         continue;
       }
 
-      HashMap<String, Integer> gamePlaysByPlayer = playsByPerson.get(holder.playerName);
+      HashMap<String, Integer> gamePlaysByPlayer = playsByPerson.get(name);
       if (!gamePlaysByPlayer.containsKey(gameName)) {
         gamePlaysByPlayer.put(gameName, play.getQuantity());
-        playsByPerson.put(holder.playerName, gamePlaysByPlayer);
+        playsByPerson.put(name, gamePlaysByPlayer);
         continue;
       }
       int noOfPlays = gamePlaysByPlayer.get(gameName);
       noOfPlays += play.getQuantity();
       gamePlaysByPlayer.put(gameName, noOfPlays);
-      playsByPerson.put(holder.playerName, gamePlaysByPlayer);
+      playsByPerson.put(name, gamePlaysByPlayer);
     }
 
     BoardGame game = play.getGame();

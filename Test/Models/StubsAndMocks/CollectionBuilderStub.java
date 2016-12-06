@@ -54,16 +54,16 @@ public class CollectionBuilderStub implements ICollectionBuilder {
     game2.addExpandedGameInfo(3.6298, false, cats2, mechs2, bestWith2, new int[0]);
     
     plays = new Plays();
-    PlayerNodeInformationHolder[] names = new PlayerNodeInformationHolder[1];
-    names[0] = new PlayerNodeInformationHolder("Martin", 0);
-    Play play = new Play(game1, "2016-09-14", names, 1);
+    String[] names = new String[1];
+    names[0] = "Martin";
+    Play play = new Play(game1, "2016-09-14", names, 1, null);
     plays.addPlay(play);
 
-    play = new Play(game2, "2016-09-13", names, 2);
+    play = new Play(game2, "2016-09-13", names, 2, null);
     plays.addPlay(play);
 
-    PlayRatingHolder[] playForPlayer = new PlayRatingHolder[1];
-    playForPlayer[0] = new PlayRatingHolder(play, 0);
+    Play[] playForPlayer = new Play[1];
+    playForPlayer[0] = play;
     Player player = new Player("Peter", playForPlayer);
     players[0] = player;
 

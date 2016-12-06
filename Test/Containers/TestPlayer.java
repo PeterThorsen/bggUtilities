@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
  */
 public class TestPlayer {
   private Player player;
-  private PlayerNodeInformationHolder[] playerNames;
+  private String[] playerNames;
   private BoardGame game1;
   private BoardGame game2;
   private BoardGame game3;
@@ -26,11 +26,11 @@ public class TestPlayer {
 
   @Before
   public void setup() {
-    playerNames = new PlayerNodeInformationHolder[3];
-    playerNames[0] = new PlayerNodeInformationHolder("Michelle", 0);
-    playerNames[1] = new PlayerNodeInformationHolder("Peter", 0);
-    playerNames[2] = new PlayerNodeInformationHolder("Charlotte", 0);
-    buildPlayer(new PlayRatingHolder[0]);
+    playerNames = new String[3];
+    playerNames[0] = "Michelle";
+    playerNames[1] = "Peter";
+    playerNames[2] = "Charlotte";
+    buildPlayer(new Play[0]);
     game1 = new BoardGame("Agricola", 31260, 1, 5, 30, 150, String.valueOf(8), 0, "8.07978", "strategygames");
     game2 = new BoardGame("Hive",2655,2,2,20,20,String.valueOf(10),1, "7.34394", "abstracts");
     game3 = new BoardGame("Camel Up", 153938, 1, 8, 20, 30, String.valueOf(8), 0, "7.118", "familygames");
@@ -69,9 +69,9 @@ public class TestPlayer {
     game2.addExpandedGameInfo(3.6298, false, cats2, mechs2, bestWith2, new int[0]);
   }
 
-  private void buildPlayer(PlayRatingHolder[] holders) {
+  private void buildPlayer(Play[] plays) {
     String name = "Martin";
-    player = new Player(name, holders);
+    player = new Player(name, plays);
   }
 
   @Test
@@ -87,10 +87,10 @@ public class TestPlayer {
   @Test
   public void shouldHaveTotalPlays1Given1PlayWithQuantity1() {
 
-    Play play1 = new Play(game1, "2016-11-10", playerNames, 1);
+    Play play1 = new Play(game1, "2016-11-10", playerNames, 1, null);
 
-    PlayRatingHolder[] plays = new PlayRatingHolder[1];
-    plays[0] = new PlayRatingHolder(play1, 0);
+    Play[] plays = new Play[1];
+    plays[0] = play1;
     buildPlayer(plays);
 
     assertEquals(1, player.totalPlays);
@@ -99,10 +99,10 @@ public class TestPlayer {
   @Test
   public void shouldHaveTotalPlays2Given1PlayWithQuantity2() {
 
-    Play play1 = new Play(game1, "2016-11-10", playerNames, 2);
+    Play play1 = new Play(game1, "2016-11-10", playerNames, 2, null);
 
-    PlayRatingHolder[] plays = new PlayRatingHolder[1];
-    plays[0] = new PlayRatingHolder(play1, 0);
+    Play[] plays = new Play[1];
+    plays[0] = play1;
     buildPlayer(plays);
 
     assertEquals(2, player.totalPlays);
@@ -110,12 +110,12 @@ public class TestPlayer {
 
   @Test
   public void shouldHaveTotalPlays2Given2PlaysWithQuantity1() {
-    Play play1 = new Play(game1, "2016-11-10", playerNames, 1);
-    Play play2 = new Play(game1, "2016-11-10", playerNames, 1);
+    Play play1 = new Play(game1, "2016-11-10", playerNames, 1, null);
+    Play play2 = new Play(game1, "2016-11-10", playerNames, 1, null);
 
-    PlayRatingHolder[] plays = new PlayRatingHolder[2];
-    plays[0] = new PlayRatingHolder(play1, 0);
-    plays[1] = new PlayRatingHolder(play2, 0);
+    Play[] plays = new Play[2];
+    plays[0] = play1;
+    plays[1] = play2;
     buildPlayer(plays);
 
     assertEquals(2, player.totalPlays);
@@ -123,11 +123,11 @@ public class TestPlayer {
 
   @Test
   public void shouldHaveMostPlayedGameAgricolaGivenMorePlaysThanOtherGames() {
-    Play play1 = new Play(game1, "2016-11-10", playerNames, 2);
-    Play play2 = new Play(game3, "2016-11-10", playerNames, 1);
-    PlayRatingHolder[] plays = new PlayRatingHolder[2];
-    plays[0] = new PlayRatingHolder(play1, 0);
-    plays[1] = new PlayRatingHolder(play2, 0);
+    Play play1 = new Play(game1, "2016-11-10", playerNames, 2, null);
+    Play play2 = new Play(game3, "2016-11-10", playerNames, 1, null);
+    Play[] plays = new Play[2];
+    plays[0] = play1;
+    plays[1] = play2;
     buildPlayer(plays);
 
     assertEquals("Agricola", player.getMostPlayedGame().game.getName());
@@ -135,11 +135,11 @@ public class TestPlayer {
 
   @Test
   public void shouldHaveMostPlayedGameCamelUpGivenMorePlaysThanOtherGames() {
-    Play play1 = new Play(game1, "2016-11-10", playerNames, 1);
-    Play play2 = new Play(game3, "2016-11-10", playerNames, 2);
-    PlayRatingHolder[] plays = new PlayRatingHolder[2];
-    plays[0] = new PlayRatingHolder(play1, 0);
-    plays[1] = new PlayRatingHolder(play2, 0);
+    Play play1 = new Play(game1, "2016-11-10", playerNames, 1, null);
+    Play play2 = new Play(game3, "2016-11-10", playerNames, 2, null);
+    Play[] plays = new Play[2];
+    plays[0] = play1;
+    plays[1] = play2;
     buildPlayer(plays);
 
     assertEquals("Camel Up", player.getMostPlayedGame().game.getName());
@@ -147,11 +147,11 @@ public class TestPlayer {
 
   @Test
   public void shouldBeAbleToGetMapContainingPlaysOfEachGame() {
-    Play play1 = new Play(game1, "2016-11-10", playerNames, 1);
-    Play play2 = new Play(game3, "2016-11-10", playerNames, 2);
-    PlayRatingHolder[] plays = new PlayRatingHolder[2];
-    plays[0] = new PlayRatingHolder(play1, 0);
-    plays[1] = new PlayRatingHolder(play2, 0);
+    Play play1 = new Play(game1, "2016-11-10", playerNames, 1, null);
+    Play play2 = new Play(game3, "2016-11-10", playerNames, 2, null);
+    Play[] plays = new Play[2];
+    plays[0] = play1;
+    plays[1] = play2;
     buildPlayer(plays);
     HashMap<BoardGame, Integer> map = player.gameToPlaysMap;
     int valCamelUp = map.get(game3);
@@ -162,41 +162,41 @@ public class TestPlayer {
 
   @Test
   public void shouldGetMostCommonFriendPeter() {
-    PlayerNodeInformationHolder[] newPlayers = new PlayerNodeInformationHolder[1];
-    newPlayers[0] = new PlayerNodeInformationHolder("Peter", 0);
+    String[] newPlayers = new String[1];
+    newPlayers[0] = "Peter";
 
-    Play play1 = new Play(game1, "2016-11-10", playerNames, 1);
-    Play play2 = new Play(game1, "2016-11-10", newPlayers, 1);
-    PlayRatingHolder[] plays = new PlayRatingHolder[2];
-    plays[0] = new PlayRatingHolder(play1, 0);
-    plays[1] = new PlayRatingHolder(play2, 0);
+    Play play1 = new Play(game1, "2016-11-10", playerNames, 1, null);
+    Play play2 = new Play(game1, "2016-11-10", newPlayers, 1, null);
+    Play[] plays = new Play[2];
+    plays[0] = play1;
+    plays[1] = play2;
     buildPlayer(plays);
     assertEquals("Peter", player.getMostCommonFriend());
   }
   @Test
   public void shouldGetMostCommonFriendMichelle() {
-    PlayerNodeInformationHolder[] newPlayers = new PlayerNodeInformationHolder[1];
-    newPlayers[0] = new PlayerNodeInformationHolder("Michelle", 0);
+    String[] newPlayers = new String[1];
+    newPlayers[0] = "Michelle";
 
-    Play play1 = new Play(game1, "2016-11-10", playerNames, 1);
-    Play play2 = new Play(game1, "2016-11-10", newPlayers, 1);
-    PlayRatingHolder[] plays = new PlayRatingHolder[2];
-    plays[0] = new PlayRatingHolder(play1, 0);
-    plays[1] = new PlayRatingHolder(play2, 0);
+    Play play1 = new Play(game1, "2016-11-10", playerNames, 1, null);
+    Play play2 = new Play(game1, "2016-11-10", newPlayers, 1, null);
+    Play[] plays = new Play[2];
+    plays[0] = play1;
+    plays[1] = play2;
     buildPlayer(plays);
     assertEquals("Michelle", player.getMostCommonFriend());
   }
 
   @Test
   public void shouldBeAbleToGetMapContainingPlaysOfEachPlayer() {
-    PlayerNodeInformationHolder[] newPlayers = new PlayerNodeInformationHolder[1];
-    newPlayers[0] = new PlayerNodeInformationHolder("Michelle", 0);
+    String[] newPlayers = new String[1];
+    newPlayers[0] = "Michelle";
 
-    Play play1 = new Play(game1, "2016-11-10", playerNames, 1);
-    Play play2 = new Play(game1, "2016-11-10", newPlayers, 1);
-    PlayRatingHolder[] plays = new PlayRatingHolder[2];
-    plays[0] = new PlayRatingHolder(play1, 0);
-    plays[1] = new PlayRatingHolder(play2, 0);
+    Play play1 = new Play(game1, "2016-11-10", playerNames, 1, null);
+    Play play2 = new Play(game1, "2016-11-10", newPlayers, 1, null);
+    Play[] plays = new Play[2];
+    plays[0] = play1;
+    plays[1] = play2;
     buildPlayer(plays);
     HashMap<String, Integer> map = player.playerNameToPlaysMap;
     int valMichelle = map.get("Michelle");
@@ -210,11 +210,11 @@ public class TestPlayer {
   @Test
   public void shouldShowCorrectMostRecentGame() {
 
-    Play play1 = new Play(game1, "2016-11-8", playerNames, 1);
-    Play play2 = new Play(game3, "2016-11-10", playerNames, 1);
-    PlayRatingHolder[] plays = new PlayRatingHolder[2];
-    plays[0] = new PlayRatingHolder(play1, 0);
-    plays[1] = new PlayRatingHolder(play2, 0);
+    Play play1 = new Play(game1, "2016-11-8", playerNames, 1, null);
+    Play play2 = new Play(game3, "2016-11-10", playerNames, 1, null);
+    Play[] plays = new Play[2];
+    plays[0] = play1;
+    plays[1] = play2;
     buildPlayer(plays);
 
     String gameName = player.getMostRecentGame();
@@ -223,9 +223,9 @@ public class TestPlayer {
 
   @Test
   public void hasPlayedAgricolaShouldReturnTrue() {
-    Play play1 = new Play(game1, "2016-11-8", playerNames, 1);
-    PlayRatingHolder[] plays = new PlayRatingHolder[1];
-    plays[0] = new PlayRatingHolder(play1, 0);
+    Play play1 = new Play(game1, "2016-11-8", playerNames, 1, null);
+    Play[] plays = new Play[1];
+    plays[0] = play1;
     buildPlayer(plays);
 
     assertTrue(player.hasPlayed(game1));
@@ -233,9 +233,9 @@ public class TestPlayer {
 
   @Test
   public void hasPlayedHiveShouldReturnFalse() {
-    Play play1 = new Play(game1, "2016-11-8", playerNames, 1);
-    PlayRatingHolder[] plays = new PlayRatingHolder[1];
-    plays[0] = new PlayRatingHolder(play1, 0);
+    Play play1 = new Play(game1, "2016-11-8", playerNames, 1, null);
+    Play[] plays = new Play[1];
+    plays[0] = play1;
     buildPlayer(plays);
 
     BoardGame game2 = new BoardGame("Hive",2655,2,2,20,20,String.valueOf(10),1, "7.34394", "abstracts");
@@ -245,9 +245,9 @@ public class TestPlayer {
 
   @Test
   public void shouldHaveAverageComplexityStoredGivenOnePlay() {
-    Play play1 = new Play(game1, "2016-11-8", playerNames, 1);
-    PlayRatingHolder[] plays = new PlayRatingHolder[1];
-    plays[0] = new PlayRatingHolder(play1, 0);
+    Play play1 = new Play(game1, "2016-11-8", playerNames, 1, null);
+    Play[] plays = new Play[1];
+    plays[0] = play1;
     buildPlayer(plays);
 
     assertEquals(player.getAverageComplexity(), game1.getComplexity(), 0);
@@ -255,11 +255,11 @@ public class TestPlayer {
 
   @Test
   public void shouldHaveAverageComplexityStoredGivenTwoPlays() {
-    Play play1 = new Play(game1, "2016-11-8", playerNames, 1);
-    Play play2 = new Play(game2, "2016-11-10", playerNames, 1);
-    PlayRatingHolder[] plays = new PlayRatingHolder[2];
-    plays[0] = new PlayRatingHolder(play1, 0);
-    plays[1] = new PlayRatingHolder(play2, 0);
+    Play play1 = new Play(game1, "2016-11-8", playerNames, 1, null);
+    Play play2 = new Play(game2, "2016-11-10", playerNames, 1, null);
+    Play[] plays = new Play[2];
+    plays[0] = play1;
+    plays[1] = play2;
     buildPlayer(plays);
 
     double expected = (game1.getComplexity() + game2.getComplexity())/2;
@@ -269,9 +269,9 @@ public class TestPlayer {
 
   @Test
   public void shouldHaveMaxComplexityStoredGivenOnePlay() {
-    Play play1 = new Play(game1, "2016-11-8", playerNames, 1);
-    PlayRatingHolder[] plays = new PlayRatingHolder[1];
-    plays[0] = new PlayRatingHolder(play1, 0);
+    Play play1 = new Play(game1, "2016-11-8", playerNames, 1, null);
+    Play[] plays = new Play[1];
+    plays[0] = play1;
     buildPlayer(plays);
 
     assertEquals(player.getMaxComplexity(), game1.getComplexity(), 0);
@@ -279,11 +279,11 @@ public class TestPlayer {
 
   @Test
   public void shouldHaveMaxComplexityStoredGivenTwoPlays() {
-    Play play1 = new Play(game1, "2016-11-8", playerNames, 1);
-    Play play2 = new Play(game2, "2016-11-10", playerNames, 1);
-    PlayRatingHolder[] plays = new PlayRatingHolder[2];
-    plays[0] = new PlayRatingHolder(play1, 0);
-    plays[1] = new PlayRatingHolder(play2, 0);
+    Play play1 = new Play(game1, "2016-11-8", playerNames, 1, null);
+    Play play2 = new Play(game2, "2016-11-10", playerNames, 1, null);
+    Play[] plays = new Play[2];
+    plays[0] = play1;
+    plays[1] = play2;
     buildPlayer(plays);
 
     double expected = Math.max(game1.getComplexity(), game2.getComplexity());
@@ -292,9 +292,9 @@ public class TestPlayer {
   }
   @Test
   public void shouldHaveMinComplexityStoredGivenOnePlay() {
-    Play play1 = new Play(game1, "2016-11-8", playerNames, 1);
-    PlayRatingHolder[] plays = new PlayRatingHolder[1];
-    plays[0] = new PlayRatingHolder(play1, 0);
+    Play play1 = new Play(game1, "2016-11-8", playerNames, 1, null);
+    Play[] plays = new Play[1];
+    plays[0] = play1;
     buildPlayer(plays);
 
     assertEquals(game1.getComplexity(), player.getMinComplexity(), 0);
@@ -302,11 +302,11 @@ public class TestPlayer {
 
   @Test
   public void shouldHaveMinComplexityStoredGivenTwoPlays() {
-    Play play1 = new Play(game1, "2016-11-8", playerNames, 1);
-    Play play2 = new Play(game2, "2016-11-10", playerNames, 1);
-    PlayRatingHolder[] plays = new PlayRatingHolder[2];
-    plays[0] = new PlayRatingHolder(play1, 0);
-    plays[1] = new PlayRatingHolder(play2, 0);
+    Play play1 = new Play(game1, "2016-11-8", playerNames, 1, null);
+    Play play2 = new Play(game2, "2016-11-10", playerNames, 1, null);
+    Play[] plays = new Play[2];
+    plays[0] = play1;
+    plays[1] = play2;
     buildPlayer(plays);
 
     double expected = Math.min(game1.getComplexity(), game2.getComplexity());

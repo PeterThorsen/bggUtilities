@@ -17,7 +17,7 @@ public class TestInsertionSort {
 
   @Test
   public void sortPlayers_returnOnlyPlayerWhenGivenOne() {
-    Player player1 = new Player("Peter", new PlayRatingHolder[0]);
+    Player player1 = new Player("Peter", new Play[0]);
     Player[] allPlayers = new Player[1];
     allPlayers[0] = player1;
 
@@ -27,8 +27,8 @@ public class TestInsertionSort {
 
   @Test
   public void sortPlayers_ReturnLowerPlayerLexically() {
-    Player player1 = new Player("Peter", new PlayRatingHolder[0]);
-    Player player2 = new Player("Anna", new PlayRatingHolder[0]);
+    Player player1 = new Player("Peter", new Play[0]);
+    Player player2 = new Player("Anna", new Play[0]);
     Player[] allPlayers = new Player[2];
     allPlayers[0] = player1;
     allPlayers[1] = player2;
@@ -40,8 +40,8 @@ public class TestInsertionSort {
 
   @Test
   public void sortPlayers_sortPlayersIgnoringUppercase() {
-    Player player1 = new Player("Peter", new PlayRatingHolder[0]);
-    Player player2 = new Player("anna", new PlayRatingHolder[0]);
+    Player player1 = new Player("Peter", new Play[0]);
+    Player player2 = new Player("anna", new Play[0]);
     Player[] allPlayers = new Player[2];
     allPlayers[0] = player1;
     allPlayers[1] = player2;
@@ -53,9 +53,9 @@ public class TestInsertionSort {
 
   @Test
   public void sortPlayers_sortThreePlayersCorrectly() {
-    Player player1 = new Player("Peter", new PlayRatingHolder[0]);
-    Player player2 = new Player("Anna", new PlayRatingHolder[0]);
-    Player player3 = new Player("Ben", new PlayRatingHolder[0]);
+    Player player1 = new Player("Peter", new Play[0]);
+    Player player2 = new Player("Anna", new Play[0]);
+    Player player3 = new Player("Ben", new Play[0]);
     Player[] allPlayers = new Player[3];
     allPlayers[0] = player1;
     allPlayers[1] = player2;

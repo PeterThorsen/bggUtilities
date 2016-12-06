@@ -21,6 +21,7 @@ public class CollectionBuilder implements ICollectionBuilder {
   private String username;
   private Document collectionDocument;
   private final Plays plays;
+  private Player[] allPlayers;
 
   public CollectionBuilder(IConnectionHandler connectionHandler) {
     this.connectionHandler = connectionHandler;
@@ -72,41 +73,6 @@ public class CollectionBuilder implements ICollectionBuilder {
 
   @Override
   public Player[] getPlayers() {
-
-    Play[] allPlays = plays.getAllPlays();
-    HashMap<PlayerNodeInformationHolder, ArrayList<Play>> map = new HashMap<>();
-    int totalPersons = 0;
-
-    // Register plays for each specific person
-    for (Play play : allPlays) {
-      PlayerNodeInformationHolder[] currentPlayers = play.playerInformation;
-      for (PlayerNodeInformationHolder holder : currentPlayers) {
-        if (map.containsKey(holder)) {
-          ArrayList<Play> specificPersonPlays = map.get(holder);
-          specificPersonPlays.add(play);
-          map.put(holder, specificPersonPlays);
-        } else {
-          ArrayList<Play> specificPersonPlays = new ArrayList<>();
-          specificPersonPlays.add(play);
-          map.put(holder, specificPersonPlays);
-          totalPersons++;
-        }
-      }
-    }
-
-    // Convert map to Player[]
-    Player[] allPlayers = new Player[totalPersons];
-    int pos = 0;
-    for (PlayerNodeInformationHolder key : map.keySet()) {
-      ArrayList<Play> specificPersonPlays = map.get(key);
-      PlayRatingHolder[] asArray = new PlayRatingHolder[specificPersonPlays.size()];
-      for (int i = 0; i < asArray.length; i++) {
-        asArray[i] = new PlayRatingHolder(specificPersonPlays.get(i), 0); // TODO: 06-Dec-16 correct 0 to use actual rating 
-      }
-      allPlayers[pos] = new Player(key.playerName, asArray);
-      pos++;
-    }
-
     return allPlayers;
   }
 
@@ -175,8 +141,48 @@ public class CollectionBuilder implements ICollectionBuilder {
     // Adding specific plays
     addPlays(idToGameMap);
 
+    // Building players
+    buildPlayers();
+
     // Finally, return all games with full information
     return asArray(games);
+  }
+
+  private void buildPlayers() {
+
+    Play[] allPlays = plays.getAllPlays();
+    HashMap<String, ArrayList<Play>> map = new HashMap<>();
+    int totalPersons = 0;
+
+    // Register plays for each specific person
+    for (Play play : allPlays) {
+      String[] currentPlayers = play.playerNames;
+      for (String name : currentPlayers) {
+        if (map.containsKey(name)) {
+          ArrayList<Play> specificPersonPlays = map.get(name);
+          specificPersonPlays.add(play);
+          map.put(name, specificPersonPlays);
+        } else {
+          ArrayList<Play> specificPersonPlays = new ArrayList<>();
+          specificPersonPlays.add(play);
+          map.put(name, specificPersonPlays);
+          totalPersons++;
+        }
+      }
+    }
+
+    // Convert map to Player[]
+    allPlayers = new Player[totalPersons];
+    int pos = 0;
+    for (String key : map.keySet()) {
+      ArrayList<Play> specificPersonPlays = map.get(key);
+      Play[] asArray = new Play[specificPersonPlays.size()];
+      for (int i = 0; i < asArray.length; i++) {
+        asArray[i] = specificPersonPlays.get(i); // TODO: 06-Dec-16 correct 0 to use actual rating
+      }
+      allPlayers[pos] = new Player(key, asArray);
+      pos++;
+    }
   }
 
   private void addPlays(HashMap<Integer, BoardGame> idToGameMap) {
@@ -213,11 +219,20 @@ public class CollectionBuilder implements ICollectionBuilder {
       int quantity = Integer.valueOf(playAttributes.getNamedItem("quantity").getNodeValue());
 
       PlayerNodeInformationHolder[] playerInformationArray = calculatePlayerInformation(playersNode);
+      HashMap<String, Double> playerRatings = new HashMap<>();
+      String[] names = new String[playerInformationArray.length];
+      for (int j = 0; j < playerInformationArray.length; j++) {
+        String name = playerInformationArray[j].playerName;
+        double rating = playerInformationArray[j].rating;
+
+        playerRatings.put(name, rating);
+        names[j] = name;
+      }
 
 
 
       // Adding the plays
-      Play play = new Play(game, date, playerInformationArray, quantity);
+      Play play = new Play(game, date, names, quantity, playerRatings);
       plays.addPlay(play);
     }
   }

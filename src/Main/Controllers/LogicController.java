@@ -146,18 +146,18 @@ public class LogicController implements ILogicController {
         current.value += 12.0 / allPlayers.length;
 
         // For each day passed since last play for each player, favor the game a bit more
-        PlayRatingHolder[] allPlaysForPlayer = player.allPlays;
+        Play[] allPlaysForPlayer = player.allPlays;
         for (int k = 0; k < allPlaysForPlayer.length; k++) {
-          if (!allPlaysForPlayer[k].play.getGame().equals(current.game)) { // Only match with current game
+          if (!allPlaysForPlayer[k].getGame().equals(current.game)) { // Only match with current game
             continue;
           }
 
           // Calculating for days since last play for each player
-          double dateScore = calculateDateScore(allPlaysForPlayer[k].play, current.game, lengthAllPlayers);
+          double dateScore = calculateDateScore(allPlaysForPlayer[k], current.game, lengthAllPlayers);
           current.value += dateScore;
 
           double personalGameRating = calculatePersonalRating(player, current.game, lengthAllPlayers);
-          // TODO: 06-Dec-16 use personalGameRating 
+          // TODO: 06-Dec-16 use personalGameRating
         }
       }
       // How well does the type, mechanisms and categories match

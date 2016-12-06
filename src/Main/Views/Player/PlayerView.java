@@ -45,11 +45,10 @@ public class PlayerView {
   }
 
   private void fillMostPlayedGamesTable() {
-    PlayRatingHolder[] allPlays = selectedPlayer.allPlays;
+    Play[] allPlays = selectedPlayer.allPlays;
     HashMap<String, Integer> mostPlaysMap = new HashMap<>();
 
-    for (PlayRatingHolder holder : allPlays) {
-      Play play = holder.play;
+    for (Play play : allPlays) {
       String gameName = play.getGame().getName();
 
       if (mostPlaysMap.containsKey(gameName)) {
@@ -110,7 +109,7 @@ public class PlayerView {
   }
 
   private void fillRecentPlaysTable() {
-    PlayRatingHolder[] allPlays = selectedPlayer.allPlays;
+    Play[] allPlays = selectedPlayer.allPlays;
 
 
     TableModel dataModel = new
@@ -128,13 +127,13 @@ public class PlayerView {
 
                 // Name
                 if (col == 0) {
-                  return allPlays[row].play.getGame().getName();
+                  return allPlays[row].getGame().getName();
                 }
                 if (col == 1) {
-                  return allPlays[row].play.getQuantity();
+                  return allPlays[row].getQuantity();
                 }
                 if (col == 2) {
-                  return allPlays[row].play.getDate();
+                  return allPlays[row].getDate();
                 } else {
                   return "Rest";
                 }
@@ -160,31 +159,30 @@ public class PlayerView {
   private void fillMostCommonPlayersTable() {
     // name, quantity, favorite game together
 
-    PlayRatingHolder[] allPlays = selectedPlayer.allPlays;
+    Play[] allPlays = selectedPlayer.allPlays;
 
     HashMap<String, HashMap<String, Integer>> mostCommonGamesForEachPlayerMap = new HashMap<>();
-    HashMap<PlayerNodeInformationHolder, Integer> mostPlaysMap = new HashMap<>();
+    HashMap<String, Integer> mostPlaysMap = new HashMap<>();
 
-    for (PlayRatingHolder playRatingHolder : allPlays) {
-      Play play = playRatingHolder.play;
+    for (Play play : allPlays) {
       String gameName = play.getGame().getName();
-      PlayerNodeInformationHolder[] holders = play.playerInformation;
+      String[] names = play.playerNames;
 
-      for (PlayerNodeInformationHolder holder : holders) {
-        if (holder.equals(selectedPlayer.name)) {
+      for (String name : names) {
+        if (name.equals(selectedPlayer.name)) {
           continue;
         }
 
-        if (mostPlaysMap.containsKey(holder)) {
-          int currentPlays = mostPlaysMap.get(holder);
+        if (mostPlaysMap.containsKey(name)) {
+          int currentPlays = mostPlaysMap.get(name);
           currentPlays += play.getQuantity();
-          mostPlaysMap.put(holder, currentPlays);
+          mostPlaysMap.put(name, currentPlays);
         } else {
-          mostPlaysMap.put(holder, play.getQuantity());
+          mostPlaysMap.put(name, play.getQuantity());
         }
 
-        if (mostCommonGamesForEachPlayerMap.containsKey(holder)) {
-          HashMap<String, Integer> tempMap = mostCommonGamesForEachPlayerMap.get(holder);
+        if (mostCommonGamesForEachPlayerMap.containsKey(name)) {
+          HashMap<String, Integer> tempMap = mostCommonGamesForEachPlayerMap.get(name);
           if (tempMap.containsKey(gameName)) {
             int currentPlays = tempMap.get(gameName);
             currentPlays += play.getQuantity();
@@ -192,20 +190,20 @@ public class PlayerView {
           } else {
             tempMap.put(gameName, play.getQuantity());
           }
-          mostCommonGamesForEachPlayerMap.put(holder.playerName, tempMap);
+          mostCommonGamesForEachPlayerMap.put(name, tempMap);
 
         } else {
           HashMap<String, Integer> tempMap = new HashMap<>();
           tempMap.put(gameName, play.getQuantity());
-          mostCommonGamesForEachPlayerMap.put(holder.playerName, tempMap);
+          mostCommonGamesForEachPlayerMap.put(name, tempMap);
         }
       }
     }
 
     StringIntHolder[] mostCommonPlayersSorted = new StringIntHolder[mostPlaysMap.size()];
     int pos = 0;
-    for (PlayerNodeInformationHolder key : mostPlaysMap.keySet()) {
-      StringIntHolder holder = new StringIntHolder(key.playerName, mostPlaysMap.get(key));
+    for (String key : mostPlaysMap.keySet()) {
+      StringIntHolder holder = new StringIntHolder(key, mostPlaysMap.get(key));
       mostCommonPlayersSorted[pos] = holder;
       pos++;
     }

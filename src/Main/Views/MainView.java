@@ -228,16 +228,16 @@ public class MainView {
                   return allPlaysSorted[row].getDate();
                 }
                 if (col == 3) {
-                  PlayerNodeInformationHolder[] players = allPlaysSorted[row].playerInformation;
+                  String[] players = allPlaysSorted[row].playerNames;
                   if (players.length == 0) {
                     return "";
                   }
-                  String printValue = players[0].playerName;
+                  String printValue = players[0];
                   for (int i = 1; i < players.length - 1; i++) {
-                    printValue = printValue.concat(", " + players[i].playerName);
+                    printValue = printValue.concat(", " + players[i]);
                   }
                   if(players.length > 1) {
-                    printValue = printValue.concat(" and " + players[players.length - 1].playerName + ".");
+                    printValue = printValue.concat(" and " + players[players.length - 1] + ".");
                   }
                   return printValue;
                 } else {

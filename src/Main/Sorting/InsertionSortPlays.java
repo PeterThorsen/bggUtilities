@@ -23,9 +23,9 @@ public class InsertionSortPlays {
     }
 
     for (Play play : plays) {
-      PlayerNodeInformationHolder[] playerInformation = play.playerInformation;
-      playerInformation = InsertionSortPlayerInformation.sort(playerInformation);
-      play.playerInformation = playerInformation;
+      String[] names = play.playerNames;
+      names = InsertionSortStrings.sort(names);
+      play.playerNames = names;
     }
 
     return plays;
