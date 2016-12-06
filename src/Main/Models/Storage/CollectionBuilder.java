@@ -99,9 +99,9 @@ public class CollectionBuilder implements ICollectionBuilder {
     int pos = 0;
     for (PlayerNodeInformationHolder key : map.keySet()) {
       ArrayList<Play> specificPersonPlays = map.get(key);
-      Play[] asArray = new Play[specificPersonPlays.size()];
+      PlayRatingHolder[] asArray = new PlayRatingHolder[specificPersonPlays.size()];
       for (int i = 0; i < asArray.length; i++) {
-        asArray[i] = specificPersonPlays.get(i);
+        asArray[i] = new PlayRatingHolder(specificPersonPlays.get(i), 0); // TODO: 06-Dec-16 correct 0 to use actual rating 
       }
       allPlayers[pos] = new Player(key.playerName, asArray);
       pos++;

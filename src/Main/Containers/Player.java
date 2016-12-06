@@ -10,7 +10,7 @@ import java.util.HashMap;
  */
 public class Player {
   public final String name;
-  public final Play[] allPlays;
+  public final PlayRatingHolder[] allPlays;
   public int totalPlays = 0;
   public HashMap<BoardGame, Integer> gameToPlaysMap = new HashMap<>();
   public HashMap<String, Integer> playerNameToPlaysMap = new HashMap<>();
@@ -19,7 +19,7 @@ public class Player {
   private double minComplexity;
   private HashMap<BoardGame, Double> gameRatingsMap = new HashMap<>();
 
-  public Player(String name, Play[] allPlays) {
+  public Player(String name, PlayRatingHolder[] allPlays) {
     this.name = name;
     this.allPlays = allPlays;
     interpretPlays();
@@ -54,7 +54,10 @@ public class Player {
   }
 
   private void interpretPlays() {
-    for (Play play : allPlays) {
+    for (PlayRatingHolder playRatingHolder : allPlays) {
+      Play play = playRatingHolder.play;
+      double rating = playRatingHolder.rating;
+
       int quantity = play.getQuantity();
       BoardGame game = play.getGame();
       PlayerNodeInformationHolder[] allPlayers = play.playerInformation;
@@ -71,7 +74,7 @@ public class Player {
         gameToPlaysMap.put(game, quantity);
       }
 
-      // Tracking total plays of all players
+      // Tracking total plays of all other players
       for (PlayerNodeInformationHolder holder : allPlayers) {
         if (playerNameToPlaysMap.containsKey(holder.playerName)) {
           int value = playerNameToPlaysMap.get(holder.playerName);
@@ -81,6 +84,8 @@ public class Player {
           playerNameToPlaysMap.put(holder.playerName, quantity);
         }
       }
+
+      // TODO: 06-Dec-16 use rating here
     }
   }
 
@@ -117,7 +122,8 @@ public class Player {
     int mostRecentDay = 0;
     String mostRecentGame = "";
 
-    for (Play play : allPlays) {
+    for (PlayRatingHolder holder : allPlays) {
+      Play play = holder.play;
 
       String gameName = play.getGame().getName();
 

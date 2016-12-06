@@ -3,6 +3,7 @@ package Main.Views.Player;
 import Main.Containers.Holders.PlayerNodeInformationHolder;
 import Main.Containers.Holders.StringIntHolder;
 import Main.Containers.Play;
+import Main.Containers.PlayRatingHolder;
 import Main.Containers.Player;
 import Main.Controllers.FacadeController;
 import Main.Sorting.InsertionSortStringIntHolder;
@@ -44,10 +45,11 @@ public class PlayerView {
   }
 
   private void fillMostPlayedGamesTable() {
-    Play[] allPlays = selectedPlayer.allPlays;
+    PlayRatingHolder[] allPlays = selectedPlayer.allPlays;
     HashMap<String, Integer> mostPlaysMap = new HashMap<>();
 
-    for (Play play : allPlays) {
+    for (PlayRatingHolder holder : allPlays) {
+      Play play = holder.play;
       String gameName = play.getGame().getName();
 
       if (mostPlaysMap.containsKey(gameName)) {
@@ -108,7 +110,7 @@ public class PlayerView {
   }
 
   private void fillRecentPlaysTable() {
-    Play[] allPlays = selectedPlayer.allPlays;
+    PlayRatingHolder[] allPlays = selectedPlayer.allPlays;
 
 
     TableModel dataModel = new
@@ -126,13 +128,13 @@ public class PlayerView {
 
                 // Name
                 if (col == 0) {
-                  return allPlays[row].getGame().getName();
+                  return allPlays[row].play.getGame().getName();
                 }
                 if (col == 1) {
-                  return allPlays[row].getQuantity();
+                  return allPlays[row].play.getQuantity();
                 }
                 if (col == 2) {
-                  return allPlays[row].getDate();
+                  return allPlays[row].play.getDate();
                 } else {
                   return "Rest";
                 }
@@ -158,12 +160,13 @@ public class PlayerView {
   private void fillMostCommonPlayersTable() {
     // name, quantity, favorite game together
 
-    Play[] allPlays = selectedPlayer.allPlays;
+    PlayRatingHolder[] allPlays = selectedPlayer.allPlays;
 
     HashMap<String, HashMap<String, Integer>> mostCommonGamesForEachPlayerMap = new HashMap<>();
     HashMap<PlayerNodeInformationHolder, Integer> mostPlaysMap = new HashMap<>();
 
-    for (Play play : allPlays) {
+    for (PlayRatingHolder playRatingHolder : allPlays) {
+      Play play = playRatingHolder.play;
       String gameName = play.getGame().getName();
       PlayerNodeInformationHolder[] holders = play.playerInformation;
 

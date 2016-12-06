@@ -62,8 +62,8 @@ public class CollectionBuilderStub implements ICollectionBuilder {
     play = new Play(game2, "2016-09-13", names, 2);
     plays.addPlay(play);
 
-    Play[] playForPlayer = new Play[1];
-    playForPlayer[0] = play;
+    PlayRatingHolder[] playForPlayer = new PlayRatingHolder[1];
+    playForPlayer[0] = new PlayRatingHolder(play, 0);
     Player player = new Player("Peter", playForPlayer);
     players[0] = player;
 
