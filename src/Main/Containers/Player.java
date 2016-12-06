@@ -83,7 +83,10 @@ public class Player {
         }
       }
 
-      // TODO: 06-Dec-16 use rating here
+      // Finding specific rating for player on game, if any
+      double rating = play.getRating(name);
+
+      gameRatingsMap.put(game, rating);
     }
   }
 

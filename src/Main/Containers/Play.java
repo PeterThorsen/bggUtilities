@@ -34,4 +34,11 @@ public class Play {
   public BoardGame getGame() {
     return game;
   }
+
+  public double getRating(String name) {
+    if(playerRatings == null || !playerRatings.containsKey(name)) {
+      return 0;
+    }
+    return playerRatings.get(name);
+  }
 }
