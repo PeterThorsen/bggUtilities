@@ -31,8 +31,8 @@ public class LogicController implements ILogicController {
 
     for (Player player : array) {
       double currentAverage = player.getAverageComplexity();
-      if(player.getMaxComplexity() > maxComplexity) maxComplexity = player.getMaxComplexity();
-      if(player.getMinComplexity() < minComplexity) minComplexity = player.getMinComplexity();
+      if (player.getMaxComplexity() > maxComplexity) maxComplexity = player.getMaxComplexity();
+      if (player.getMinComplexity() < minComplexity) minComplexity = player.getMinComplexity();
 
       averageComplexityGivingAllPlayersEqualWeight += currentAverage;
     }
@@ -113,7 +113,7 @@ public class LogicController implements ILogicController {
    * hard max.
    */
   private BoardGameCounter[] buildBestCombination(ArrayList<BoardGame> allGamesMatchingCriteria, Player[] allPlayers,
-                                           int maxTime, double averageComplexityGivingAllPlayersEqualWeight) {
+                                                  int maxTime, double averageComplexityGivingAllPlayersEqualWeight) {
 
     BoardGameCounter[] gamesWithCounter = new BoardGameCounter[allGamesMatchingCriteria.size()];
     for (int i = 0; i < gamesWithCounter.length; i++) {
@@ -132,6 +132,7 @@ public class LogicController implements ILogicController {
 
 
   private void calculatePlayerScore(Player[] allPlayers, BoardGameCounter current) {
+    int lengthAllPlayers = allPlayers.length;
 
     // Favor games that the user haven't played much
     if (current.game.getNumberOfPlays() < 3) {
@@ -147,37 +148,60 @@ public class LogicController implements ILogicController {
         // For each day passed since last play for each player, favor the game a bit more
         Play[] allPlaysForPlayer = player.allPlays;
         for (int k = 0; k < allPlaysForPlayer.length; k++) {
-          if (allPlaysForPlayer[k].getGame().equals(current.game)) {
-            String date = allPlaysForPlayer[k].getDate();
-            Date dateFormatted;
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            try {
-              dateFormatted = df.parse(date);
-            } catch (ParseException e) {
-              dateFormatted = null;
-              e.printStackTrace();
-            }
-
-            // Calculate days since last play
-            Date dateNow = new Date();
-            Calendar cal1 = Calendar.getInstance();
-            Calendar cal2 = Calendar.getInstance();
-            cal1.setTime(dateFormatted);
-            cal2.setTime(dateNow);
-            long timeInMilisPlayTime = cal1.getTimeInMillis();
-            long timeInMilisCurrentTime = cal2.getTimeInMillis();
-            long diff = timeInMilisCurrentTime - timeInMilisPlayTime;
-            long diffInDays = diff / 1000 / 60 / 60 / 24;
-
-            double absoluteMin = 8.0 / allPlayers.length;
-            double increaseBy = absoluteMin / 200.0;
-            current.value += Math.min(absoluteMin, diffInDays * increaseBy);
+          if (!allPlaysForPlayer[k].getGame().equals(current.game)) { // Only match with current game
+            continue;
           }
+
+          // Calculating for days since last play for each player
+          double dateScore = calculateDateScore(allPlaysForPlayer[k], current.game, lengthAllPlayers);
+          current.value += dateScore;
+
+          //double personalGameRating = calculatePersonalRating(player, current.game, lengthAllPlayers);
+
         }
       }
       // How well does the type, mechanisms and categories match
-      calculateCombinationScore(current, player, allPlayers.length + 1);
+      calculateCombinationScore(current, player, lengthAllPlayers + 1);
     }
+  }
+/**
+  private double calculatePersonalRating(Player player, BoardGame game, int lengthAllPlayers) {
+    double rating = player.getPersonalRating(game);
+    if(rating == 0) {
+      System.out.println("got here inside logiccontroller");
+      rating = 5; // default to a rating of 5/10
+    }
+    // If 10/10 rating for all players, score a massive 50 points.
+    double score = rating * 5 / lengthAllPlayers;
+    return score;
+  } */
+
+  private double calculateDateScore(Play play, BoardGame game, int lengthAllPlayers) {
+
+    String date = play.getDate();
+    Date dateFormatted;
+    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    try {
+      dateFormatted = df.parse(date);
+    } catch (ParseException e) {
+      dateFormatted = null;
+      e.printStackTrace();
+    }
+
+    // Calculate days since last play
+    Date dateNow = new Date();
+    Calendar cal1 = Calendar.getInstance();
+    Calendar cal2 = Calendar.getInstance();
+    cal1.setTime(dateFormatted);
+    cal2.setTime(dateNow);
+    long timeInMilisPlayTime = cal1.getTimeInMillis(); // TODO: 06-Dec-16 never implemented
+    long timeInMilisCurrentTime = cal2.getTimeInMillis();
+    long diff = timeInMilisCurrentTime - timeInMilisPlayTime;
+    long diffInDays = diff / 1000 / 60 / 60 / 24;
+
+    double absoluteMin = 12.0 / lengthAllPlayers;
+    double increaseBy = absoluteMin / 400.0; // If above 400 days since last play, set the limit at 400 days
+    return Math.min(absoluteMin, diffInDays * increaseBy);
   }
 
   private void calculateCombinationScore(BoardGameCounter current, Player player, int numberOfPlayers) {
@@ -277,12 +301,10 @@ public class LogicController implements ILogicController {
     double approximationTime;
     if (currentMinTime == currentMaxTime) {
       approximationTime = currentMaxTime;
-    }
-    else if (currentGame.getMinPlayers() == currentGame.getMaxPlayers()) {
+    } else if (currentGame.getMinPlayers() == currentGame.getMaxPlayers()) {
       approximationTime = currentMinTime;
 
-    }
-    else {
+    } else {
       double difference = currentMaxTime - currentMinTime;
       difference = difference / (currentGame.getMaxPlayers() - currentGame.getMinPlayers());
       approximationTime = currentMinTime + (difference * (allPlayers.length + 1 - currentGame.getMinPlayers()));
