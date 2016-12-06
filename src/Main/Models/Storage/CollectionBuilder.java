@@ -410,6 +410,7 @@ public class CollectionBuilder implements ICollectionBuilder {
         while (j < playersNodeList.getLength()) {
           Node playerJ = playersNodeList.item(j);
           String playerJName = playerJ.getAttributes().getNamedItem("name").getNodeValue();
+          // TODO: 05/12/2016 get player rating here!
           playerNames[arrayPos] = playerJName;
           arrayPos++;
           j += 2;

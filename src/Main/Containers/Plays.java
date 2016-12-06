@@ -37,8 +37,9 @@ public class Plays {
     catch (Exception e) {
       System.out.println("ex, play is: " + play.getGame()); // TODO: 09/11/2016 null ved agentkuo, hvorfor findes game ikke
     }
-    for (String player : play.playerNames) {
+    for (String player : play.playerNames) { // TODO: 05/12/2016 change this to playerRatingHolder
 
+      // TODO: 05/12/2016 change below maps to use Player as map.. add ratings 
       if (!allPlayers.containsKey(player)) {
         allPlayers.put(player, play.getQuantity());
         HashMap<String, Integer> gamePlaysByPlayer = new HashMap<>();
