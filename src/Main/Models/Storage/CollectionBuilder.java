@@ -18,7 +18,6 @@ public class CollectionBuilder implements ICollectionBuilder {
   private String username;
   private Document collectionDocument;
   private final Plays plays;
-  private Player[] players = null;
 
   public CollectionBuilder(IConnectionHandler connectionHandler) {
     this.connectionHandler = connectionHandler;
