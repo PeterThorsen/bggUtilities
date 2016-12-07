@@ -1,7 +1,6 @@
 package Main.Containers;
 
 import Main.Containers.Holders.GamePlayHolder;
-import Main.Containers.Holders.PlayerNodeInformationHolder;
 
 import java.util.HashMap;
 
@@ -20,10 +19,21 @@ public class Player {
   private HashMap<BoardGame, Double> gameRatingsMap = new HashMap<>();
 
   public Player(String name, Play[] allPlays) {
+    allPlays = reverseArray(allPlays);
     this.name = name;
     this.allPlays = allPlays;
     interpretPlays();
     calculateComplexity();
+  }
+
+  private Play[] reverseArray(Play[] allPlays) {
+    for(int i = 0; i < allPlays.length / 2; i++)
+    {
+      Play temp = allPlays[i];
+      allPlays[i] = allPlays[allPlays.length - i - 1];
+      allPlays[allPlays.length - i - 1] = temp;
+    }
+    return allPlays;
   }
 
   private void calculateComplexity() {
@@ -85,14 +95,11 @@ public class Player {
 
       // Finding specific rating for player on game, if any
       double rating = play.getRating(name);
-      if(play.getGame().getName().equals("Codenames") && name.equals("Charlotte")) {
-        System.out.println("Codenames(" + deleteCounter + ") for date " + play.getDate() + " is " + rating);
-        deleteCounter++;
+      if(rating != 0) {
+        gameRatingsMap.put(game, rating);
       }
-      gameRatingsMap.put(game, rating);
     }
   }
-  private int deleteCounter = 0;
 
   public GamePlayHolder getMostPlayedGame() {
     int maxValue = 0;

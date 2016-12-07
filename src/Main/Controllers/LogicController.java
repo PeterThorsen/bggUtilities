@@ -140,7 +140,6 @@ public class LogicController implements ILogicController {
     }
     // For all players
     for (Player player : allPlayers) {
-      System.out.println(player);
 
       if (player.gameToPlaysMap.containsKey(current.game)) {
         // If players have played the game, recommend it more
@@ -156,11 +155,10 @@ public class LogicController implements ILogicController {
           // Calculating for days since last play for each player
           double dateScore = calculateDateScore(allPlaysForPlayer[k], current.game, lengthAllPlayers);
           current.value += dateScore;
-
-          double personalGameRating = calculatePersonalRating(player, current.game, lengthAllPlayers);
-          System.out.println(player + " : " + personalGameRating + " for " + current.game);
-          current.value += personalGameRating;
         }
+
+        double personalGameRating = calculatePersonalRating(player, current.game, lengthAllPlayers);
+        current.value += personalGameRating;
       }
       // How well does the type, mechanisms and categories match
       calculateCombinationScore(current, player, lengthAllPlayers + 1);
@@ -375,7 +373,12 @@ public class LogicController implements ILogicController {
 
   private BoardGameCounter[] calculateSuggestedGames(BoardGameCounter[] gamesWithCounter, int maxTime) {
     gamesWithCounter = InsertionSortGamesWithCounter.sort(gamesWithCounter);
-
+/*
+    System.out.println("Ratings for each game");
+    for (BoardGameCounter counter : gamesWithCounter) {
+      System.out.println(counter.game + " : " + counter.value);
+    }
+*/
     ArrayList<BoardGameCounter> suggestedCombinationList = new ArrayList<>();
     int posOfFirstElement = 0;
     double currentTimeSpent = 0;
@@ -398,6 +401,7 @@ public class LogicController implements ILogicController {
     BoardGameCounter[] suggestedCombination = new BoardGameCounter[suggestedCombinationList.size()];
     for (int i = 0; i < suggestedCombination.length; i++) {
       suggestedCombination[i] = suggestedCombinationList.get(i);
+      //System.out.println(suggestedCombination[i].game + " : " + suggestedCombination[i].value); // TODO: 07/12/2016
     }
     return suggestedCombination;
   }
