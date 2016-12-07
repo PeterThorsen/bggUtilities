@@ -147,6 +147,7 @@ public class LogicController implements ILogicController {
 
         // For each day passed since last play for each player, favor the game a bit more
         Play[] allPlaysForPlayer = player.allPlays;
+
         for (int k = 0; k < allPlaysForPlayer.length; k++) {
           if (!allPlaysForPlayer[k].getGame().equals(current.game)) { // Only match with current game
             continue;
@@ -155,6 +156,7 @@ public class LogicController implements ILogicController {
           // Calculating for days since last play for each player
           double dateScore = calculateDateScore(allPlaysForPlayer[k], current.game, lengthAllPlayers);
           current.value += dateScore;
+          break; // Only add scores once
         }
 
         double personalGameRating = calculatePersonalRating(player, current.game, lengthAllPlayers);
@@ -168,7 +170,6 @@ public class LogicController implements ILogicController {
   private double calculatePersonalRating(Player player, BoardGame game, int lengthAllPlayers) {
     double rating = player.getPersonalRating(game);
     if(rating == 0) {
-      System.out.println("got here inside logiccontroller");
       rating = 5; // default to a rating of 5/10
     }
     // If 10/10 rating for all players, score a massive 50 points.
@@ -194,7 +195,7 @@ public class LogicController implements ILogicController {
     Calendar cal2 = Calendar.getInstance();
     cal1.setTime(dateFormatted);
     cal2.setTime(dateNow);
-    long timeInMilisPlayTime = cal1.getTimeInMillis(); // TODO: 06-Dec-16 never implemented
+    long timeInMilisPlayTime = cal1.getTimeInMillis();
     long timeInMilisCurrentTime = cal2.getTimeInMillis();
     long diff = timeInMilisCurrentTime - timeInMilisPlayTime;
     long diffInDays = diff / 1000 / 60 / 60 / 24;
@@ -373,7 +374,7 @@ public class LogicController implements ILogicController {
 
   private BoardGameCounter[] calculateSuggestedGames(BoardGameCounter[] gamesWithCounter, int maxTime) {
     gamesWithCounter = InsertionSortGamesWithCounter.sort(gamesWithCounter);
-/*
+/**
     System.out.println("Ratings for each game");
     for (BoardGameCounter counter : gamesWithCounter) {
       System.out.println(counter.game + " : " + counter.value);
@@ -401,7 +402,7 @@ public class LogicController implements ILogicController {
     BoardGameCounter[] suggestedCombination = new BoardGameCounter[suggestedCombinationList.size()];
     for (int i = 0; i < suggestedCombination.length; i++) {
       suggestedCombination[i] = suggestedCombinationList.get(i);
-      //System.out.println(suggestedCombination[i].game + " : " + suggestedCombination[i].value); // TODO: 07/12/2016
+      //System.out.println("Choose game: " + suggestedCombination[i].game + " : " + suggestedCombination[i].value); // TODO: 07/12/2016
     }
     return suggestedCombination;
   }
