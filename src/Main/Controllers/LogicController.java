@@ -284,7 +284,7 @@ public class LogicController implements ILogicController {
     } else {
       personalRating = Double.valueOf(personalRatingString);
     }
-    current.value += personalRating * 3.5;
+    current.value += personalRating * 2;
 
     // If personal rating is higher than average rating
     String averageRatingString = currentGame.getAverageRating();

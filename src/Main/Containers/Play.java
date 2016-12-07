@@ -1,7 +1,5 @@
 package Main.Containers;
 
-import Main.Containers.Holders.PlayerNodeInformationHolder;
-
 import java.util.HashMap;
 
 /**

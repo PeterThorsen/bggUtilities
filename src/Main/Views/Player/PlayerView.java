@@ -1,9 +1,7 @@
 package Main.Views.Player;
 
-import Main.Containers.Holders.PlayerNodeInformationHolder;
 import Main.Containers.Holders.StringIntHolder;
 import Main.Containers.Play;
-import Main.Containers.PlayRatingHolder;
 import Main.Containers.Player;
 import Main.Controllers.FacadeController;
 import Main.Sorting.InsertionSortStringIntHolder;
