@@ -178,7 +178,7 @@ public class CollectionBuilder implements ICollectionBuilder {
       ArrayList<Play> specificPersonPlays = map.get(key);
       Play[] asArray = new Play[specificPersonPlays.size()];
       for (int i = 0; i < asArray.length; i++) {
-        asArray[i] = specificPersonPlays.get(i); // TODO: 06-Dec-16 correct 0 to use actual rating
+        asArray[i] = specificPersonPlays.get(i);
       }
       allPlayers[pos] = new Player(key, asArray);
       pos++;

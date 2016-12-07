@@ -85,10 +85,14 @@ public class Player {
 
       // Finding specific rating for player on game, if any
       double rating = play.getRating(name);
-
+      if(play.getGame().getName().equals("Codenames") && name.equals("Charlotte")) {
+        System.out.println("Codenames(" + deleteCounter + ") for date " + play.getDate() + " is " + rating);
+        deleteCounter++;
+      }
       gameRatingsMap.put(game, rating);
     }
   }
+  private int deleteCounter = 0;
 
   public GamePlayHolder getMostPlayedGame() {
     int maxValue = 0;

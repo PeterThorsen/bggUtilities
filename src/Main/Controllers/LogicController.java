@@ -140,8 +140,9 @@ public class LogicController implements ILogicController {
     }
     // For all players
     for (Player player : allPlayers) {
+      System.out.println(player);
 
-      if (player.gameToPlaysMap.containsKey(current.game.getName())) {
+      if (player.gameToPlaysMap.containsKey(current.game)) {
         // If players have played the game, recommend it more
         current.value += 12.0 / allPlayers.length;
 
@@ -157,7 +158,8 @@ public class LogicController implements ILogicController {
           current.value += dateScore;
 
           double personalGameRating = calculatePersonalRating(player, current.game, lengthAllPlayers);
-          // TODO: 06-Dec-16 use personalGameRating
+          System.out.println(player + " : " + personalGameRating + " for " + current.game);
+          current.value += personalGameRating;
         }
       }
       // How well does the type, mechanisms and categories match
