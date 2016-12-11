@@ -45,6 +45,22 @@ public class BoardGame {
     this.recommendedWith = recommendedWith;
   }
 
+  @Override
+  public String toString(){
+    return name;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    BoardGame object = (BoardGame) obj;
+    return object.name.equals(name);
+  }
+
+  @Override
+  public int hashCode() {
+    return name.hashCode();
+  }
+
   public String getName() {
     return name;
   }
@@ -77,28 +93,12 @@ public class BoardGame {
     return numPlays;
   }
 
-  @Override
-  public String toString(){
-    return name;
-  }
-
   public double getComplexity() {
     return complexity;
   }
 
   public String getAverageRating() {
     return averageRating;
-  }
-
-  @Override
-  public int hashCode() {
-    return name.hashCode();
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    BoardGame object = (BoardGame) obj;
-    return object.name.equals(name);
   }
 
   public boolean isExpansion() {

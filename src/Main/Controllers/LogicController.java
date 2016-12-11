@@ -173,8 +173,7 @@ public class LogicController implements ILogicController {
       rating = 5; // default to a rating of 5/10
     }
     // If 10/10 rating for all players, score a massive 50 points.
-    double score = rating * 5 / lengthAllPlayers;
-    return score;
+    return rating * 5 / lengthAllPlayers;
   }
 
   private double calculateDateScore(Play play, BoardGame game, int lengthAllPlayers) {

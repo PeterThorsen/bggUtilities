@@ -13,10 +13,10 @@ public class Player {
   public int totalPlays = 0;
   public HashMap<BoardGame, Integer> gameToPlaysMap = new HashMap<>();
   public HashMap<String, Integer> playerNameToPlaysMap = new HashMap<>();
+  private HashMap<BoardGame, Double> gameRatingsMap = new HashMap<>();
   private double averageComplexity;
   private double maxComplexity;
   private double minComplexity;
-  private HashMap<BoardGame, Double> gameRatingsMap = new HashMap<>();
 
   public Player(String name, Play[] allPlays) {
     allPlays = reverseArray(allPlays);

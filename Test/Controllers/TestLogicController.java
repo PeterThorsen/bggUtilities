@@ -199,50 +199,54 @@ public class TestLogicController {
     assertFalse(foundExpansion);
   }
 
-  // Jaipur is close to the average complexity of the current player. It is a 2 player only game and holds a high
-  // personal rating by me. It is also a family (type) card game (category) utilising hand management mechanisms,
-  // which is similar to sequence.
-  @Ignore
+  // As Hive is rated low by her
   @Test
-  public void recommendedGamesShouldContainJaipur() {
+  public void recommendedGamesForCharlotteShouldNotContainHiveOn30MinSuggestion() {
     Player[] players = new Player[1];
-    players[0] = allPlayers[10];
-    System.out.println(players[0]);
-    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 60);
+    players[0] = allPlayers[6];
+    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 30);
     BoardGameCounter[] suggestedCombination = suggestions.suggestedCombination;
 
     boolean found = false;
     for (BoardGameCounter gameCounter : suggestedCombination) {
-      if(gameCounter.game.getName().equals("Jaipur")) {
+      if(gameCounter.game.getName().equals("Hive")) {
         found = true;
       }
     }
-    assertTrue(found);
+    assertFalse(found);
   }
 
-  @Ignore
+  // She still doesn't like the game. Suggest longer games instead
   @Test
-  public void recommendedGamesShouldContainJaipurAndCarcassonne() {
+  public void recommendedGamesForCharlotteShouldNotContainHiveOn150MinSuggestion() {
     Player[] players = new Player[1];
-    players[0] = allPlayers[10];
-    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 80);
+    players[0] = allPlayers[6];
+    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 150);
     BoardGameCounter[] suggestedCombination = suggestions.suggestedCombination;
 
-    boolean foundJaipur = false;
-    boolean foundCarcassonne = false;
-
+    boolean found = false;
     for (BoardGameCounter gameCounter : suggestedCombination) {
-      if(gameCounter.game.getName().equals("Jaipur")) {
-        foundJaipur = true;
-      }
-      else if(gameCounter.game.getName().equals("Carcassonne")) {
-        foundCarcassonne = true;
-      }
-      else {
-        break; // Too many suggestions, should be exactly these two
+      if(gameCounter.game.getName().equals("Hive")) {
+        found = true;
       }
     }
-    assertTrue(foundJaipur);
-    assertTrue(foundCarcassonne);
+    assertFalse(found);
   }
+/**
+  // Suggest
+  @Test
+  public void recommendedGamesForCharlotteShouldNotContainHiveOn150MinSuggestion() {
+    Player[] players = new Player[1];
+    players[0] = allPlayers[6];
+    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 150);
+    BoardGameCounter[] suggestedCombination = suggestions.suggestedCombination;
+
+    boolean found = false;
+    for (BoardGameCounter gameCounter : suggestedCombination) {
+      if(gameCounter.game.getName().equals("Hive")) {
+        found = true;
+      }
+    }
+    assertFalse(found);
+  } */
 }

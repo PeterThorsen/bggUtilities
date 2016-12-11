@@ -2,10 +2,8 @@ package Sorting;
 
 import Main.Containers.*;
 import Main.Containers.Holders.StringIntHolder;
-import Main.Sorting.InsertionSortGamesWithCounter;
-import Main.Sorting.InsertionSortPlayers;
-import Main.Sorting.InsertionSortStringIntHolder;
-import Main.Sorting.InsertionSortStrings;
+import Main.Containers.Holders.StringIntHolder;
+import Main.Sorting.*;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

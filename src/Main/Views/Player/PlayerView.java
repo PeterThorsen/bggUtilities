@@ -1,9 +1,12 @@
 package Main.Views.Player;
 
+import Main.Containers.BoardGame;
+import Main.Containers.Holders.BoardGameIntHolder;
 import Main.Containers.Holders.StringIntHolder;
 import Main.Containers.Play;
 import Main.Containers.Player;
 import Main.Controllers.FacadeController;
+import Main.Sorting.InsertionSortBoardGameIntHolder;
 import Main.Sorting.InsertionSortStringIntHolder;
 
 import javax.swing.*;
@@ -39,40 +42,39 @@ public class PlayerView {
     fillRecentPlaysTable();
     fillMostCommonPlayersTable();
     addListeners();
-
   }
 
   private void fillMostPlayedGamesTable() {
     Play[] allPlays = selectedPlayer.allPlays;
-    HashMap<String, Integer> mostPlaysMap = new HashMap<>();
+    HashMap<BoardGame, Integer> mostPlaysMap = new HashMap<>();
 
     for (Play play : allPlays) {
-      String gameName = play.getGame().getName();
+      BoardGame game = play.getGame();
 
-      if (mostPlaysMap.containsKey(gameName)) {
-        int currentPlays = mostPlaysMap.get(gameName);
+      if (mostPlaysMap.containsKey(game)) {
+        int currentPlays = mostPlaysMap.get(game);
         currentPlays += play.getQuantity();
-        mostPlaysMap.put(gameName, currentPlays);
+        mostPlaysMap.put(game, currentPlays);
       } else {
-        mostPlaysMap.put(gameName, play.getQuantity());
+        mostPlaysMap.put(game, play.getQuantity());
       }
     }
 
     int pos = 0;
-    StringIntHolder[] gamesSortedByPlays = new StringIntHolder[mostPlaysMap.size()];
-    for (String key : mostPlaysMap.keySet()) {
-      gamesSortedByPlays[pos] = new StringIntHolder(key, mostPlaysMap.get(key));
+    BoardGameIntHolder[] gamesSortedByPlays = new BoardGameIntHolder[mostPlaysMap.size()];
+    for (BoardGame key : mostPlaysMap.keySet()) {
+      gamesSortedByPlays[pos] = new BoardGameIntHolder(key, mostPlaysMap.get(key));
       pos++;
     }
 
-    gamesSortedByPlays = InsertionSortStringIntHolder.sort(gamesSortedByPlays);
-    StringIntHolder[] finalGamesSortedByPlays = gamesSortedByPlays;
+    gamesSortedByPlays = InsertionSortBoardGameIntHolder.sort(gamesSortedByPlays);
+    BoardGameIntHolder[] finalGamesSortedByPlays = gamesSortedByPlays;
 
     TableModel dataModel = new
             AbstractTableModel() {
 
               public int getColumnCount() {
-                return 2;
+                return 3;
               }
 
               public int getRowCount() {
@@ -83,9 +85,20 @@ public class PlayerView {
 
                 // Name
                 if (col == 0) {
-                  return finalGamesSortedByPlays[row].str;
+                  return finalGamesSortedByPlays[row].game;
                 }
-                if (col == 1) {
+
+                // Personal rating
+                if(col == 1) {
+                  double personalRating = selectedPlayer.getPersonalRating(finalGamesSortedByPlays[row].game);
+                  if(personalRating == 0.0) {
+                    return "N/A";
+                  }
+                  return (int) selectedPlayer.getPersonalRating(finalGamesSortedByPlays[row].game) + "/10";
+                }
+
+                // Quantity
+                if (col == 2) {
                   return finalGamesSortedByPlays[row].num;
                 } else {
                   return "Rest";
@@ -97,6 +110,8 @@ public class PlayerView {
                   case 0:
                     return "Name";
                   case 1:
+                    return "Rating";
+                  case 2:
                     return "Quantity";
                   default:
                     return "REST";
