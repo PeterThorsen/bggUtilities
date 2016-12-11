@@ -162,7 +162,7 @@ public class LogicController implements ILogicController {
         double personalGameRating = calculatePersonalRating(player, current.game, lengthAllPlayers);
         current.value += personalGameRating;
       }
-      // How well does the type, mechanisms and categories match
+      // How well does the complexity, type, mechanisms and categories match
       calculateCombinationScore(current, player, lengthAllPlayers + 1);
     }
   }
@@ -230,9 +230,15 @@ public class LogicController implements ILogicController {
     }
 
     BoardGame currentGame = current.game;
+    double combinationScore = 0;
+
+    // Favor high complexity
+    if((player.getMaxComplexity() > 2.5) && Math.abs(player.getMaxComplexity() - currentGame.getComplexity()) <= 1) {
+      combinationScore += 20 / (numberOfPlayers - 1);
+    }
+
     GameMechanism[] currentMechanisms = currentGame.getMechanisms();
     GameCategory[] currentCategories = currentGame.getCategories();
-    double combinationScore = 0;
 
     for (int i = 0; i < allGames.length; i++) {
       BoardGame otherGame = allGames[i];
@@ -361,6 +367,14 @@ public class LogicController implements ILogicController {
       }
     }
 
+    // Prefer longer games
+    int quartersPassed = (int) approximationTime / 15; // Rounding down due to using integers
+
+    // Only add additional rating if actually a longer game
+    if(quartersPassed > 3) {
+      current.value += quartersPassed * 5; // An additional five points for every quarter of the game
+    }
+
     // Finally, if the game is best with the player number, recommend it more
     int[] bestWith = currentGame.getBestWith();
     for (int i : bestWith) {
@@ -378,7 +392,8 @@ public class LogicController implements ILogicController {
     for (BoardGameCounter counter : gamesWithCounter) {
       System.out.println(counter.game + " : " + counter.value);
     }
-*/
+ */
+
     ArrayList<BoardGameCounter> suggestedCombinationList = new ArrayList<>();
     int posOfFirstElement = 0;
     double currentTimeSpent = 0;

@@ -232,21 +232,21 @@ public class TestLogicController {
     }
     assertFalse(found);
   }
-/**
-  // Suggest
+
+  // Rated 9/10 by Charlotte and 8/10 by me. Takes 90 minutes and is somewhat complex
   @Test
-  public void recommendedGamesForCharlotteShouldNotContainHiveOn150MinSuggestion() {
+  public void recommendedGamesForCharlotteWhenHavingTwoHoursShouldContainSuburbia() {
     Player[] players = new Player[1];
     players[0] = allPlayers[6];
-    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 150);
+    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 120);
     BoardGameCounter[] suggestedCombination = suggestions.suggestedCombination;
 
     boolean found = false;
     for (BoardGameCounter gameCounter : suggestedCombination) {
-      if(gameCounter.game.getName().equals("Hive")) {
+      if(gameCounter.game.getName().equals("Suburbia")) {
         found = true;
       }
     }
-    assertFalse(found);
-  } */
+    assertTrue(found);
+  }
 }
