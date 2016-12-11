@@ -135,8 +135,8 @@ public class LogicController implements ILogicController {
     int lengthAllPlayers = allPlayers.length;
 
     // Favor games that the user haven't played much
-    if (current.game.getNumberOfPlays() < 3) {
-      current.value += 10;
+    if (current.game.getNumberOfPlays() < 5) {
+      current.value += 25;
     }
     // For all players
     for (Player player : allPlayers) {
