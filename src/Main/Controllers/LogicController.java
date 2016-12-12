@@ -1,6 +1,7 @@
 package Main.Controllers;
 
 import Main.Containers.*;
+import Main.Containers.Holders.Reason;
 import Main.Sorting.InsertionSortGamesWithCounter;
 
 import java.text.DateFormat;
@@ -135,14 +136,19 @@ public class LogicController implements ILogicController {
 
     // Favor games that the user haven't played much
     if (current.game.getNumberOfPlays() < 5) {
-      current.value += 25;
+      double value = 25;
+      current.value += value;
+      current.reasons.add(new Reason("Owner of the game has played the game less than 5 times(25).", value));
     }
     // For all players
     for (Player player : allPlayers) {
 
       if (player.gameToPlaysMap.containsKey(current.game)) {
         // If players have played the game, recommend it more
-        current.value += 12.0 / allPlayers.length;
+        double playedValue = 12.0 / allPlayers.length;
+        current.value += playedValue;
+        current.reasons.add(new Reason("Player has played the game(" + playedValue + ").", playedValue));
+
 
         // For each day passed since last play for each player, favor the game a bit more
         Play[] allPlaysForPlayer = player.allPlays;
@@ -155,27 +161,33 @@ public class LogicController implements ILogicController {
           // Calculating for days since last play for each player
           double dateScore = calculateDateScore(allPlaysForPlayer[k], current.game, lengthAllPlayers);
           current.value += dateScore;
+          current.reasons.add(new Reason("Date score: " + dateScore, dateScore));
+
           break; // Only add scores once
         }
 
-        double personalGameRating = calculatePersonalRating(player, current.game, lengthAllPlayers);
-        current.value += personalGameRating;
+        calculatePersonalRating(player, current, lengthAllPlayers);
+
       }
       // How well does the complexity, type, mechanisms and categories match
       calculateCombinationScore(current, player, lengthAllPlayers + 1);
     }
   }
 
-  private double calculatePersonalRating(Player player, BoardGame game, int lengthAllPlayers) {
-    double rating = player.getPersonalRating(game);
+  private void calculatePersonalRating(Player player, BoardGameCounter gameCounter, int lengthAllPlayers) {
+    double rating = player.getPersonalRating(gameCounter.game);
     if(rating == 0) {
       rating = 5; // default to a rating of 5/10
     }
     if(rating < 5) {
-      return - 100 / lengthAllPlayers; // Decrease recommendation massively
+      double value = - 100 / lengthAllPlayers;
+      gameCounter.reasons.add(new Reason("Rating less than 5(" + value + ").", value));
+      gameCounter.value -= 100 / lengthAllPlayers; // Decrease recommendation massively
     }
     // If 10/10 rating for all players, score a massive 50 points.
-    return rating * 5 / lengthAllPlayers;
+    double value = rating * 5 /lengthAllPlayers;
+    gameCounter.reasons.add(new Reason("Rating is " + rating + "(" + value + ").", value));
+    gameCounter.value += value;
   }
 
   private double calculateDateScore(Play play, BoardGame game, int lengthAllPlayers) {
@@ -232,15 +244,19 @@ public class LogicController implements ILogicController {
     }
 
     BoardGame currentGame = current.game;
-    double combinationScore = 0;
 
     // Favor high complexity if player likes such games
     if((player.getMaxComplexity() > 2.5) && Math.abs(player.getMaxComplexity() - currentGame.getComplexity()) <= 1) {
       if(player.getAverageRatingOfGamesAboveComplexity(2.5) > 5) {
-        combinationScore += 20 / (numberOfPlayers - 1);
+        double value = 20 / (numberOfPlayers - 1);
+        current.value += value;
+        current.reasons.add(new Reason("Player has played games of similar high complexity and liked them(" + value + ").", value));
       }
       else {
-        combinationScore -= 40 / (numberOfPlayers - 1); // Should try to not force players to play too complex games
+        double value = - 40 / (numberOfPlayers - 1); // Should try to not force players to play too complex games
+        current.value += value;
+        current.reasons.add(new Reason("Player has played games of similar high complexity and disliked them(" + value + ").", value));
+
       }
     }
 
@@ -256,9 +272,11 @@ public class LogicController implements ILogicController {
 
       if(player.getPersonalRating(otherGame) < 6) continue;
 
-      // Up to 15 points based on type match
+      // Up to 6 points based on type match
       if (currentGame.getType().equals(otherGame.getType())) {
-        combinationScore += 6.0 / numberOfPlayers / allGames.length;
+        double value = 6.0 / numberOfPlayers / allGames.length;
+        current.value += value;
+        current.reasons.add(new Reason("Type matches other game " + otherGame + " for " + player.name + "(" + value + ").", value));
       }
 
       // Up to 7 points based on mechanisms match
@@ -267,7 +285,10 @@ public class LogicController implements ILogicController {
         for (int k = 0; k < otherMechanisms.length; k++) {
           GameMechanism oMech = otherMechanisms[k];
           if (cMech.equals(oMech)) {
-            combinationScore += 7.0 / numberOfPlayers / allGames.length / otherMechanisms.length / currentMechanisms.length;
+            double value = 7.0 / numberOfPlayers / allGames.length / otherMechanisms.length / currentMechanisms.length;
+            current.value += value;
+            current.reasons.add(new Reason("Mechanisms " + cMech + " matches other game " + otherGame + " for " + player.name + "(" + value + ").", value));
+
           }
         }
       }
@@ -278,12 +299,14 @@ public class LogicController implements ILogicController {
         for (int k = 0; k < otherCategories.length; k++) {
           GameCategory oCat = otherCategories[k];
           if (cCat.equals(oCat)) {
-            combinationScore += 7.0 / numberOfPlayers / allGames.length / otherCategories.length / currentCategories.length;
+            double value = 7.0 / numberOfPlayers / allGames.length / otherCategories.length / currentCategories.length;
+            current.value += value;
+            current.reasons.add(new Reason("Category " + cCat + " matches other game " + otherGame + " for " + player.name + "(" + value + ").", value));
+
           }
         }
       }
     }
-    current.value += combinationScore;
   }
 
   private void calculateAbsoluteFactorsScore(BoardGameCounter current, int maxTime, Player[] allPlayers,
@@ -298,14 +321,19 @@ public class LogicController implements ILogicController {
     } else {
       personalRating = Double.valueOf(personalRatingString);
     }
-    current.value += personalRating * 2;
+    double ownersRatingScore = personalRating * 2;
+    current.value += ownersRatingScore;
+    current.reasons.add(new Reason("Owners personal rating of " + personalRatingString + "(" + ownersRatingScore + ")", ownersRatingScore));
 
     // If personal rating is higher than average rating
     String averageRatingString = currentGame.getAverageRating();
     if (!averageRatingString.equals("N/A")) {
       double averageRating = Double.valueOf(averageRatingString);
       if (averageRating < personalRating) {
-        current.value += Math.min(5, (personalRating - averageRating) * 3);
+        double value = Math.min(5, (personalRating - averageRating) * 3);
+        current.value += value;
+        current.reasons.add(new Reason("Owners personal rating is higher than average rating(" + value + ")", value));
+
       }
     }
 
@@ -334,8 +362,10 @@ public class LogicController implements ILogicController {
     }
     current.approximateTime = approximationTime;
 
-    if (approximationTime < maxTime) {
-      current.value += 20;
+    if (approximationTime <= maxTime) {
+      double value = 20;
+      current.value += value;
+      current.reasons.add(new Reason("ApproximationTime is lower than maxTime(" + value +").", value));
     }
 
     // How fitting is the complexity
@@ -344,35 +374,56 @@ public class LogicController implements ILogicController {
 
     // First, lower rating if complexity is too different
     if (difference >= 0.8) {
-      current.value -= 5;
+      double value = -5;
+      current.value += value;
+      current.reasons.add(new Reason("Difference in complexity bigger than 0.8(" + value +").", value));
+
       if (difference >= 1.0) {
-        current.value -= 2;
+        value = -2;
+        current.value += value;
+        current.reasons.add(new Reason("Difference in complexity bigger than 1.0(" + value +").", value));
       }
       if (difference >= 1.2) {
-        current.value -= 2;
+        value = -2;
+        current.value += value;
+        current.reasons.add(new Reason("Difference in complexity bigger than 1.2(" + value +").", value));
       }
       if (difference >= 1.4) {
-        current.value -= 2;
+        value = -2;
+        current.value += value;
+        current.reasons.add(new Reason("Difference in complexity bigger than 1.4(" + value +").", value));
       }
       if (difference >= 1.5) {
-        current.value -= 4;
+        value = -4;
+        current.value += value;
+        current.reasons.add(new Reason("Difference in complexity bigger than 1.5(" + value +").", value));
       }
     }
-    // If low different, recommend more!
+    // If low difference, recommend more!
     else if (difference <= 0.8) {
-      current.value += 5;
+      double value = 5;
+      current.value += value;
+      current.reasons.add(new Reason("Difference in complexity smaller than 0.8(" + value +").",value));
 
       if (difference <= 0.5) {
-        current.value += 5;
+        value = 5;
+        current.value += value;
+        current.reasons.add(new Reason("Difference in complexity smaller than 0.8(" + value +").",value));
       }
       if (difference <= 0.4) {
-        current.value += 3;
+        value = 3;
+        current.value += value;
+        current.reasons.add(new Reason("Difference in complexity smaller than 0.8(" + value +").",value));
       }
       if (difference <= 0.3) {
-        current.value += 3;
+        value = 3;
+        current.value += value;
+        current.reasons.add(new Reason("Difference in complexity smaller than 0.8(" + value +").",value));
       }
       if (difference <= 0.2) {
-        current.value += 4;
+        value = 4;
+        current.value += value;
+        current.reasons.add(new Reason("Difference in complexity smaller than 0.8(" + value +").", value));
       }
     }
 
@@ -381,14 +432,19 @@ public class LogicController implements ILogicController {
 
     // Only add additional rating if actually a longer game
     if(quartersPassed > 3) {
-      current.value += quartersPassed * 5; // An additional five points for every quarter of the game
+      double value = quartersPassed * 5; // An additional five points for every quarter of the game
+      current.value += value;
+      current.reasons.add(new Reason(quartersPassed + " quarters passed, we prefer long games(" + value +").", value));
+
     }
 
     // Finally, if the game is best with the player number, recommend it more
     int[] bestWith = currentGame.getBestWith();
     for (int i : bestWith) {
       if (i == allPlayers.length + 1) {
-        current.value += 20;
+        double value = 20;
+        current.value += value;
+        current.reasons.add(new Reason("Game is best with " + i + ", matching player number(" + value +").", value));
         break;
       }
     }

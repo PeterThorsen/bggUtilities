@@ -16,4 +16,9 @@ public class GameCategory {
     return category.equals(correctOther.category);
   }
 
+  @Override
+  public String toString() {
+    return category;
+  }
+
 }

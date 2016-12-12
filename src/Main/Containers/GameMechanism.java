@@ -15,4 +15,9 @@ public class GameMechanism {
     GameMechanism correctOther = (GameMechanism)other;
     return mechanism.equals(correctOther.mechanism);
   }
+
+  @Override
+  public String toString() {
+    return mechanism;
+  }
 }
