@@ -11,6 +11,7 @@ import Main.Models.Storage.CollectionBuilder;
 import Main.Models.Storage.ICollectionBuilder;
 import Models.StubsAndMocks.ConnectionHandlerStub;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -345,6 +346,7 @@ public class TestLogicController {
   }
 
   // delete
+  @Ignore
   @Test
   public void testing() {
     Player[] players = new Player[1];
