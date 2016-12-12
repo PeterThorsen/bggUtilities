@@ -248,4 +248,96 @@ public class TestLogicController {
     }
     assertTrue(found);
   }
+
+  @Test
+  public void recommendedGamesForGroupWithLowComplexityGameShouldBeOfLowComplexityGiven60Minutes() {
+    Player[] players = new Player[5];
+    players[0] = allPlayers[0];
+    players[1] = allPlayers[6];
+    players[2] = allPlayers[10];
+    players[3] = allPlayers[15];
+    players[4] = allPlayers[22];
+    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 60);
+    BoardGameCounter[] suggestedCombination = suggestions.suggestedCombination;
+
+    boolean found = false;
+    for (BoardGameCounter gameCounter : suggestedCombination) {
+      if(gameCounter.game.getComplexity() > 1.8) {
+        found = true;
+      }
+    }
+    assertFalse(found);
+  }
+  @Test
+  public void recommendedGamesForGroupWithLowComplexityGameShouldBeOfLowComplexityGiven120Minutes() {
+    Player[] players = new Player[5];
+    players[0] = allPlayers[0];
+    players[1] = allPlayers[6];
+    players[2] = allPlayers[10];
+    players[3] = allPlayers[15];
+    players[4] = allPlayers[22];
+    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 120);
+    BoardGameCounter[] suggestedCombination = suggestions.suggestedCombination;
+
+    boolean found = false;
+    for (BoardGameCounter gameCounter : suggestedCombination) {
+      if(gameCounter.game.getComplexity() > 1.85) {
+        found = true;
+      }
+    }
+    assertFalse(found);
+  }
+
+  @Test
+  public void recommendedGamesForGroupWithExperienceOfLongerGamesShouldContainHigherComplexityGamesGiven120Minutes() {
+    Player[] players = new Player[5];
+    players[0] = allPlayers[0];
+    players[1] = allPlayers[3];
+    players[2] = allPlayers[6];
+    players[3] = allPlayers[15];
+    players[4] = allPlayers[22];
+    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 120);
+    BoardGameCounter[] suggestedCombination = suggestions.suggestedCombination;
+
+    boolean found = false;
+    for (BoardGameCounter gameCounter : suggestedCombination) {
+      if(gameCounter.game.getComplexity() > 1.85) {
+        found = true;
+      }
+    }
+    assertTrue(found);
+  }
+
+  // He dislikes Hive and Hey thats my fish.
+  @Test
+  public void recommendedGamesForJesperShouldNotBeAbstract() {
+    Player[] players = new Player[1];
+    players[0] = allPlayers[12];
+    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 60);
+    BoardGameCounter[] suggestedCombination = suggestions.suggestedCombination;
+
+    boolean found = false;
+    for (BoardGameCounter gameCounter : suggestedCombination) {
+      if(gameCounter.game.getType().equals("abstracts")) {
+        found = true;
+      }
+    }
+    assertFalse(found);
+  }
+  // He dislikes Agricola (too complex at 3.63), but likes Suburbia at 2.78 complexity
+  @Test
+  public void recommendedGamesForJesperShouldNotBeTooComplex() {
+    Player[] players = new Player[1];
+    players[0] = allPlayers[12];
+    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 120);
+    BoardGameCounter[] suggestedCombination = suggestions.suggestedCombination;
+
+    boolean found = false;
+    for (BoardGameCounter gameCounter : suggestedCombination) {
+      if(gameCounter.game.getComplexity() >= 3.0) {
+        found = true;
+      }
+    }
+    assertFalse(found);
+  }
 }

@@ -27,8 +27,7 @@ public class Player {
   }
 
   private Play[] reverseArray(Play[] allPlays) {
-    for(int i = 0; i < allPlays.length / 2; i++)
-    {
+    for (int i = 0; i < allPlays.length / 2; i++) {
       Play temp = allPlays[i];
       allPlays[i] = allPlays[allPlays.length - i - 1];
       allPlays[allPlays.length - i - 1] = temp;
@@ -50,7 +49,7 @@ public class Player {
         max = keyComplexity;
       }
       // Finding min complexity
-      if(keyComplexity < min) {
+      if (keyComplexity < min) {
         min = keyComplexity;
       }
 
@@ -95,7 +94,7 @@ public class Player {
 
       // Finding specific rating for player on game, if any
       double rating = play.getRating(name);
-      if(rating != 0) {
+      if (rating != 0) {
         gameRatingsMap.put(game, rating);
       }
     }
@@ -191,7 +190,7 @@ public class Player {
 
   public double getMinComplexity() {
     return minComplexity;
-    
+
   }
 
   @Override
@@ -200,10 +199,25 @@ public class Player {
   }
 
   public double getPersonalRating(BoardGame game) {
-    if(!gameRatingsMap.containsKey(game)) {
+    if (!gameRatingsMap.containsKey(game)) {
       return 0;
     }
     double rating = gameRatingsMap.get(game);
     return rating;
+  }
+
+  public double getAverageRatingOfGamesAboveComplexity(double givenComplexity) {
+
+    double counter = 0;
+    double totalRating = 0;
+    for (BoardGame game : gameRatingsMap.keySet()) {
+      if (game.getComplexity() < givenComplexity) continue;
+
+      counter++;
+      double currentRating = gameRatingsMap.get(game);
+      totalRating += currentRating;
+    }
+
+    return totalRating / counter;
   }
 }

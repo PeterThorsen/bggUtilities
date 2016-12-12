@@ -26,7 +26,6 @@ public class LogicController implements ILogicController {
     int numberOfPlayers = array.length + 1; // +1 to include bgg user herself
     double minComplexity = 6.0;
     double maxComplexity = 0.0;
-
     double averageComplexityGivingAllPlayersEqualWeight = 0;
 
     for (Player player : array) {
@@ -172,6 +171,9 @@ public class LogicController implements ILogicController {
     if(rating == 0) {
       rating = 5; // default to a rating of 5/10
     }
+    if(rating < 5) {
+      return - 100 / lengthAllPlayers; // Decrease recommendation massively
+    }
     // If 10/10 rating for all players, score a massive 50 points.
     return rating * 5 / lengthAllPlayers;
   }
@@ -232,9 +234,14 @@ public class LogicController implements ILogicController {
     BoardGame currentGame = current.game;
     double combinationScore = 0;
 
-    // Favor high complexity
+    // Favor high complexity if player likes such games
     if((player.getMaxComplexity() > 2.5) && Math.abs(player.getMaxComplexity() - currentGame.getComplexity()) <= 1) {
-      combinationScore += 20 / (numberOfPlayers - 1);
+      if(player.getAverageRatingOfGamesAboveComplexity(2.5) > 5) {
+        combinationScore += 20 / (numberOfPlayers - 1);
+      }
+      else {
+        combinationScore -= 40 / (numberOfPlayers - 1); // Should try to not force players to play too complex games
+      }
     }
 
     GameMechanism[] currentMechanisms = currentGame.getMechanisms();
@@ -247,7 +254,9 @@ public class LogicController implements ILogicController {
       GameCategory[] otherCategories = otherGame.getCategories();
       if (currentGame.equals(otherGame)) continue;
 
-      // Up to 6 points based on type match
+      if(player.getPersonalRating(otherGame) < 6) continue;
+
+      // Up to 15 points based on type match
       if (currentGame.getType().equals(otherGame.getType())) {
         combinationScore += 6.0 / numberOfPlayers / allGames.length;
       }
@@ -388,10 +397,10 @@ public class LogicController implements ILogicController {
   private BoardGameCounter[] calculateSuggestedGames(BoardGameCounter[] gamesWithCounter, int maxTime) {
     gamesWithCounter = InsertionSortGamesWithCounter.sort(gamesWithCounter);
 /**
-    System.out.println("Ratings for each game");
-    for (BoardGameCounter counter : gamesWithCounter) {
-      System.out.println(counter.game + " : " + counter.value);
-    }
+ System.out.println("Ratings for each game");
+ for (BoardGameCounter counter : gamesWithCounter) {
+ System.out.println(counter.game + " : " + counter.value);
+ }
  */
 
     ArrayList<BoardGameCounter> suggestedCombinationList = new ArrayList<>();
