@@ -10,7 +10,6 @@ import Main.Models.Storage.CollectionBuilder;
 import Main.Models.Storage.ICollectionBuilder;
 import Models.StubsAndMocks.ConnectionHandlerStub;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -233,9 +232,9 @@ public class TestLogicController {
     assertFalse(found);
   }
 
-  // Rated 9/10 by Charlotte and 8/10 by me. Takes 90 minutes and is somewhat complex
+  // Long games should be favored when having the time
   @Test
-  public void recommendedGamesForCharlotteWhenHavingTwoHoursShouldContainSuburbia() {
+  public void recommendedGamesForCharlotteWhenHavingTwoHoursShouldContainLongGame() {
     Player[] players = new Player[1];
     players[0] = allPlayers[6];
     BoardGameSuggestion suggestions = facadeController.suggestGames(players, 120);
@@ -243,7 +242,7 @@ public class TestLogicController {
 
     boolean found = false;
     for (BoardGameCounter gameCounter : suggestedCombination) {
-      if(gameCounter.game.getName().equals("Suburbia")) {
+      if(gameCounter.approximateTime >= 60) {
         found = true;
       }
     }
