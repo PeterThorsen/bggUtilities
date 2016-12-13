@@ -33,6 +33,6 @@ public class FacadeController {
   }
 
   public BoardGameSuggestion suggestGames(Player[] array, int maxTime) {
-    return logicController.suggestGames(array, maxTime);
+    return logicController.suggestGamesForGameNight(array, maxTime);
   }
 }
