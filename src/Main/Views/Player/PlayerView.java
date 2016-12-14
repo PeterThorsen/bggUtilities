@@ -1,10 +1,10 @@
 package Main.Views.Player;
 
-import Main.Containers.BoardGame;
-import Main.Containers.Holders.BoardGameIntHolder;
-import Main.Containers.Holders.StringIntHolder;
-import Main.Containers.Play;
-import Main.Containers.Player;
+import Main.Models.Structure.BoardGame;
+import Main.Models.Structure.Holders.BoardGameIntHolder;
+import Main.Models.Structure.Holders.StringIntHolder;
+import Main.Models.Structure.Play;
+import Main.Models.Structure.Player;
 import Main.Controllers.FacadeController;
 import Main.Sorting.InsertionSortBoardGameIntHolder;
 import Main.Sorting.InsertionSortStringIntHolder;
@@ -49,14 +49,14 @@ public class PlayerView {
     HashMap<BoardGame, Integer> mostPlaysMap = new HashMap<>();
 
     for (Play play : allPlays) {
-      BoardGame game = play.getGame();
+      BoardGame game = play.game;
 
       if (mostPlaysMap.containsKey(game)) {
         int currentPlays = mostPlaysMap.get(game);
-        currentPlays += play.getQuantity();
+        currentPlays += play.noOfPlays;
         mostPlaysMap.put(game, currentPlays);
       } else {
-        mostPlaysMap.put(game, play.getQuantity());
+        mostPlaysMap.put(game, play.noOfPlays);
       }
     }
 
@@ -140,13 +140,13 @@ public class PlayerView {
 
                 // Name
                 if (col == 0) {
-                  return allPlays[row].getGame().getName();
+                  return allPlays[row].game.getName();
                 }
                 if (col == 1) {
-                  return allPlays[row].getQuantity();
+                  return allPlays[row].noOfPlays;
                 }
                 if (col == 2) {
-                  return allPlays[row].getDate();
+                  return allPlays[row].date;
                 } else {
                   return "Rest";
                 }
@@ -178,7 +178,7 @@ public class PlayerView {
     HashMap<String, Integer> mostPlaysMap = new HashMap<>();
 
     for (Play play : allPlays) {
-      String gameName = play.getGame().getName();
+      String gameName = play.game.getName();
       String[] names = play.playerNames;
 
       for (String name : names) {
@@ -188,26 +188,26 @@ public class PlayerView {
 
         if (mostPlaysMap.containsKey(name)) {
           int currentPlays = mostPlaysMap.get(name);
-          currentPlays += play.getQuantity();
+          currentPlays += play.noOfPlays;
           mostPlaysMap.put(name, currentPlays);
         } else {
-          mostPlaysMap.put(name, play.getQuantity());
+          mostPlaysMap.put(name, play.noOfPlays);
         }
 
         if (mostCommonGamesForEachPlayerMap.containsKey(name)) {
           HashMap<String, Integer> tempMap = mostCommonGamesForEachPlayerMap.get(name);
           if (tempMap.containsKey(gameName)) {
             int currentPlays = tempMap.get(gameName);
-            currentPlays += play.getQuantity();
+            currentPlays += play.noOfPlays;
             tempMap.put(gameName, currentPlays);
           } else {
-            tempMap.put(gameName, play.getQuantity());
+            tempMap.put(gameName, play.noOfPlays);
           }
           mostCommonGamesForEachPlayerMap.put(name, tempMap);
 
         } else {
           HashMap<String, Integer> tempMap = new HashMap<>();
-          tempMap.put(gameName, play.getQuantity());
+          tempMap.put(gameName, play.noOfPlays);
           mostCommonGamesForEachPlayerMap.put(name, tempMap);
         }
       }

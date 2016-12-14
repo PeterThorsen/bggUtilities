@@ -1,8 +1,8 @@
 package Main.Controllers;
 
-import Main.Containers.BoardGame;
-import Main.Containers.Play;
-import Main.Containers.Player;
+import Main.Models.Structure.BoardGame;
+import Main.Models.Structure.Play;
+import Main.Models.Structure.Player;
 
 /**
  * Created by Peter on 06/10/2016.

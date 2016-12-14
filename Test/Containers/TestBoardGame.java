@@ -1,6 +1,6 @@
 package Containers;
 
-import Main.Containers.BoardGame;
+import Main.Models.Structure.BoardGame;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

@@ -1,10 +1,9 @@
 package Containers;
 
-import Main.Containers.BoardGame;
-import Main.Containers.BoardGameCollection;
-import Main.Containers.Holders.PlayerNodeInformationHolder;
-import Main.Containers.Play;
-import Main.Containers.Plays;
+import Main.Models.Structure.BoardGame;
+import Main.Models.Structure.BoardGameCollection;
+import Main.Models.Structure.Play;
+import Main.Models.Structure.Plays;
 import Main.Models.Network.IConnectionHandler;
 import Main.Models.Storage.CollectionBuilder;
 import Main.Models.Storage.ICollectionBuilder;
@@ -52,7 +51,7 @@ public class TestPlays {
     ArrayList<Play> hivePlays = plays.getPlays("Hive");
     boolean exists = false;
     for (Play play : hivePlays) {
-      if (play.getDate().equals("2016-09-14")) {
+      if (play.date.equals("2016-09-14")) {
         exists = true;
         break;
       }
@@ -66,7 +65,7 @@ public class TestPlays {
     ArrayList<Play> dixitPlays = plays.getPlays("Dixit Odyssey");
     boolean exists = false;
     for (Play play : dixitPlays) {
-      if (play.getDate().equals("2016-09-09")) {
+      if (play.date.equals("2016-09-09")) {
         exists = true;
         break;
       }
@@ -79,7 +78,7 @@ public class TestPlays {
     ArrayList<Play> dixitPlays = plays.getPlays(92828);
     boolean exists = false;
     for (Play play : dixitPlays) {
-      if (play.getDate().equals("2016-09-09") && play.getQuantity() == 2) {
+      if (play.date.equals("2016-09-09") && play.noOfPlays == 2) {
         exists = true;
         break;
 
@@ -93,7 +92,7 @@ public class TestPlays {
     ArrayList<Play> dixitPlays = plays.getPlays(92828);
     boolean exists = false;
     for (Play play : dixitPlays) {
-      if (play.getDate().equals("2016-09-09")) {
+      if (play.date.equals("2016-09-09")) {
         for (String name : play.playerNames) {
           if(name.equals("Martin")) {
             exists = true;

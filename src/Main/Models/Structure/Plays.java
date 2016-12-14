@@ -1,6 +1,5 @@
-package Main.Containers;
+package Main.Models.Structure;
 
-import Main.Containers.Holders.PlayerNodeInformationHolder;
 import Main.Sorting.InsertionSortPlays;
 
 import java.util.ArrayList;
@@ -33,42 +32,42 @@ public class Plays {
   public void addPlay(Play play) {
     String gameName = "";
     try {
-      gameName = play.getGame().getName();
+      gameName = play.game.getName();
     }
     catch (Exception e) {
-      System.out.println("ex, play is: " + play.getGame());
+      System.out.println("ex, play is: " + play.game);
     }
     for (String name : play.playerNames) {
 
       if (!allPlayers.containsKey(name)) {
-        allPlayers.put(name, play.getQuantity());
+        allPlayers.put(name, play.noOfPlays);
         HashMap<String, Integer> gamePlaysByPlayer = new HashMap<>();
-        gamePlaysByPlayer.put(gameName, play.getQuantity());
+        gamePlaysByPlayer.put(gameName, play.noOfPlays);
         playsByPerson.put(name, gamePlaysByPlayer);
         continue;
       }
-      allPlayers.put(name, allPlayers.get(name) + play.getQuantity());
+      allPlayers.put(name, allPlayers.get(name) + play.noOfPlays);
 
       if (!playsByPerson.containsKey(name)) {
         HashMap<String, Integer> gamePlaysByPlayer = new HashMap<>();
-        gamePlaysByPlayer.put(gameName, play.getQuantity());
+        gamePlaysByPlayer.put(gameName, play.noOfPlays);
         playsByPerson.put(name, gamePlaysByPlayer);
         continue;
       }
 
       HashMap<String, Integer> gamePlaysByPlayer = playsByPerson.get(name);
       if (!gamePlaysByPlayer.containsKey(gameName)) {
-        gamePlaysByPlayer.put(gameName, play.getQuantity());
+        gamePlaysByPlayer.put(gameName, play.noOfPlays);
         playsByPerson.put(name, gamePlaysByPlayer);
         continue;
       }
       int noOfPlays = gamePlaysByPlayer.get(gameName);
-      noOfPlays += play.getQuantity();
+      noOfPlays += play.noOfPlays;
       gamePlaysByPlayer.put(gameName, noOfPlays);
       playsByPerson.put(name, gamePlaysByPlayer);
     }
 
-    BoardGame game = play.getGame();
+    BoardGame game = play.game;
     int id = game.getID();
     nameToIDMap.put(gameName, id); // For getPlays with name
 

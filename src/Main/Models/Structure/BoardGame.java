@@ -1,4 +1,4 @@
-package Main.Containers;
+package Main.Models.Structure;
 
 /**
  * Created by Peter on 28/09/16.

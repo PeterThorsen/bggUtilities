@@ -1,4 +1,4 @@
-package Main.Containers;
+package Main.Models.Structure;
 
 import java.util.HashMap;
 
@@ -7,10 +7,10 @@ import java.util.HashMap;
  */
 public class Play {
   public String[] playerNames;
-  private final BoardGame game;
-  private final String date;
-  private final int noOfPlays;
-  public final HashMap<String, Double> playerRatings;
+  public final BoardGame game;
+  public final String date;
+  public final int noOfPlays;
+  private final HashMap<String, Double> playerRatings;
 
   public Play(BoardGame game, String date, String[] playerNames, int noOfPlays,
               HashMap<String, Double> playerRatings) {
@@ -19,18 +19,6 @@ public class Play {
     this.playerNames = playerNames;
     this.noOfPlays = noOfPlays;
     this.playerRatings = playerRatings;
-  }
-
-  public String getDate() {
-    return date;
-  }
-
-  public int getQuantity() {
-    return noOfPlays;
-  }
-
-  public BoardGame getGame() {
-    return game;
   }
 
   public double getRating(String name) {

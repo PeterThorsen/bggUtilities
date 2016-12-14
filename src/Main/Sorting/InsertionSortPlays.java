@@ -1,7 +1,6 @@
 package Main.Sorting;
 
-import Main.Containers.Holders.PlayerNodeInformationHolder;
-import Main.Containers.Play;
+import Main.Models.Structure.Play;
 
 /**
  * Created by Peter on 12-Nov-16.
@@ -15,7 +14,7 @@ public class InsertionSortPlays {
     for (j = 1; j < plays.length; j++)    // Start with 1 (not 0)
     {
       key = plays[j];
-      for(i = j - 1; (i >= 0) && (plays[i].getDate().compareTo(key.getDate()) < 0); i--)   // Smaller values are moving up
+      for(i = j - 1; (i >= 0) && (plays[i].date.compareTo(key.date) < 0); i--)   // Smaller values are moving up
       {
         plays[ i+1 ] = plays[i];
       }

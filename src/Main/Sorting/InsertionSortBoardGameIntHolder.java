@@ -1,6 +1,6 @@
 package Main.Sorting;
 
-import Main.Containers.Holders.BoardGameIntHolder;
+import Main.Models.Structure.Holders.BoardGameIntHolder;
 
 /**
  * Created by Peter on 13-Nov-16.

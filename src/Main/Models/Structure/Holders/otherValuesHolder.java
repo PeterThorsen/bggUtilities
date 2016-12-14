@@ -1,7 +1,7 @@
-package Main.Containers.Holders;
+package Main.Models.Structure.Holders;
 
-import Main.Containers.GameCategory;
-import Main.Containers.GameMechanism;
+import Main.Models.Structure.GameCategory;
+import Main.Models.Structure.GameMechanism;
 
 /**
  * Created by Peter on 06-Dec-16.

@@ -1,6 +1,6 @@
-package Main.Containers.Holders;
+package Main.Models.Structure.Holders;
 
-import Main.Containers.BoardGame;
+import Main.Models.Structure.BoardGame;
 
 /**
  * Created by Peter on 13-Nov-16.

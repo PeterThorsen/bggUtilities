@@ -1,7 +1,7 @@
 package Main.Models.Logic;
 
-import Main.Containers.*;
-import Main.Containers.Holders.Reason;
+import Main.Models.Structure.Reason;
+import Main.Models.Structure.*;
 import Main.Sorting.InsertionSortGamesWithCounter;
 
 import java.text.DateFormat;
@@ -114,7 +114,7 @@ public class GameNightRecommender {
         Play[] allPlaysForPlayer = player.allPlays;
 
         for (int k = 0; k < allPlaysForPlayer.length; k++) {
-          if (!allPlaysForPlayer[k].getGame().equals(current.game)) { // Only match with current game
+          if (!allPlaysForPlayer[k].game.equals(current.game)) { // Only match with current game
             continue;
           }
 
@@ -152,7 +152,7 @@ public class GameNightRecommender {
 
   public double calculateDateScore(Play play, BoardGame game, int lengthAllPlayers) {
 
-    String date = play.getDate();
+    String date = play.date;
     Date dateFormatted;
     DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     try {

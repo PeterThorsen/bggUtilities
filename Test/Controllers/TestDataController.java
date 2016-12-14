@@ -1,8 +1,8 @@
 package Controllers;
 
-import Main.Containers.BoardGame;
-import Main.Containers.BoardGameCollection;
-import Main.Containers.Play;
+import Main.Models.Structure.BoardGame;
+import Main.Models.Structure.BoardGameCollection;
+import Main.Models.Structure.Play;
 import Main.Controllers.DataDisplayController;
 import Main.Models.Storage.ICollectionBuilder;
 import Models.StubsAndMocks.CollectionBuilderStub;

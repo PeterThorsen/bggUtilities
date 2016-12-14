@@ -1,9 +1,9 @@
 package Main.Controllers;
 
-import Main.Containers.BoardGame;
-import Main.Containers.BoardGameSuggestion;
-import Main.Containers.Play;
-import Main.Containers.Player;
+import Main.Models.Structure.BoardGame;
+import Main.Models.Structure.BoardGameSuggestion;
+import Main.Models.Structure.Play;
+import Main.Models.Structure.Player;
 import Main.Models.Storage.ICollectionBuilder;
 
 /**

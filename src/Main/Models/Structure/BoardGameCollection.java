@@ -1,6 +1,4 @@
-package Main.Containers;
-
-import java.util.ArrayList;
+package Main.Models.Structure;
 
 /**
  * Created by Peter on 27/09/16.

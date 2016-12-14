@@ -1,6 +1,6 @@
 package Main.Sorting;
 
-import Main.Containers.Player;
+import Main.Models.Structure.Player;
 
 /**
  * Created by Peter on 12-Nov-16.

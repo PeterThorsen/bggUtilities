@@ -1,6 +1,6 @@
-package Main.Containers;
+package Main.Models.Structure;
 
-import Main.Containers.Holders.GamePlayHolder;
+import Main.Models.Structure.Holders.GamePlayHolder;
 
 import java.util.HashMap;
 
@@ -25,7 +25,6 @@ public class Player {
     interpretPlays();
     calculateComplexity();
   }
-
   private Play[] reverseArray(Play[] allPlays) {
     for (int i = 0; i < allPlays.length / 2; i++) {
       Play temp = allPlays[i];
@@ -33,6 +32,11 @@ public class Player {
       allPlays[allPlays.length - i - 1] = temp;
     }
     return allPlays;
+  }
+
+  @Override
+  public String toString() {
+    return name;
   }
 
   private void calculateComplexity() {
@@ -65,8 +69,8 @@ public class Player {
   private void interpretPlays() {
     for (Play play : allPlays) {
 
-      int quantity = play.getQuantity();
-      BoardGame game = play.getGame();
+      int quantity = play.noOfPlays;
+      BoardGame game = play.game;
       String[] allPlayers = play.playerNames;
 
       totalPlays += quantity;
@@ -135,9 +139,9 @@ public class Player {
 
     for (Play play : allPlays) {
 
-      String gameName = play.getGame().getName();
+      String gameName = play.game.getName();
 
-      String date = play.getDate();
+      String date = play.date;
       String[] splitDate = date.split("-");
       int year = Integer.valueOf(splitDate[0]);
       int month = Integer.valueOf(splitDate[1]);
@@ -191,11 +195,6 @@ public class Player {
   public double getMinComplexity() {
     return minComplexity;
 
-  }
-
-  @Override
-  public String toString() {
-    return name;
   }
 
   public double getPersonalRating(BoardGame game) {

@@ -1,8 +1,7 @@
 package Models.StubsAndMocks;
 
-import Main.Containers.*;
-import Main.Containers.Holders.PlayerNodeInformationHolder;
 import Main.Models.Storage.ICollectionBuilder;
+import Main.Models.Structure.*;
 
 import java.util.ArrayList;
 

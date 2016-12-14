@@ -1,7 +1,7 @@
 package Main.Views.Player;
 
-import Main.Containers.BoardGameCounter;
-import Main.Containers.BoardGameSuggestion;
+import Main.Models.Structure.BoardGameCounter;
+import Main.Models.Structure.BoardGameSuggestion;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;

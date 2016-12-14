@@ -1,6 +1,6 @@
 package Main.Sorting;
 
-import Main.Containers.BoardGameCounter;
+import Main.Models.Structure.BoardGameCounter;
 
 /**
  * Created by Peter on 14/11/2016.

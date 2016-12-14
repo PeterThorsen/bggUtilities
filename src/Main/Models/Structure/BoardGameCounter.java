@@ -1,6 +1,4 @@
-package Main.Containers;
-
-import Main.Containers.Holders.Reason;
+package Main.Models.Structure;
 
 import java.util.ArrayList;
 

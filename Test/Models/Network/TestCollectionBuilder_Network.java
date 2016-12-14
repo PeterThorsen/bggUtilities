@@ -1,6 +1,6 @@
 package Models.Network;
 
-import Main.Containers.BoardGameCollection;
+import Main.Models.Structure.BoardGameCollection;
 import Main.Models.Network.ConnectionHandler;
 import Main.Models.Network.IConnectionHandler;
 import Main.Models.Storage.CollectionBuilder;

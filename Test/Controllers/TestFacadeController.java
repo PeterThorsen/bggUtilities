@@ -1,8 +1,8 @@
 package Controllers;
 
-import Main.Containers.BoardGame;
-import Main.Containers.Play;
-import Main.Containers.Player;
+import Main.Models.Structure.BoardGame;
+import Main.Models.Structure.Play;
+import Main.Models.Structure.Player;
 import Main.Controllers.FacadeController;
 import Main.Models.Storage.ICollectionBuilder;
 import Models.StubsAndMocks.CollectionBuilderStub;
@@ -49,8 +49,8 @@ public class TestFacadeController {
   @Test
   public void shouldReturnListOfAllPlaysSorted() {
     Play[] allPlays = facadeController.getAllPlaysSorted();
-    assertEquals("2016-09-14", allPlays[0].getDate());
-    assertEquals("2016-09-13", allPlays[1].getDate());
+    assertEquals("2016-09-14", allPlays[0].date);
+    assertEquals("2016-09-13", allPlays[1].date);
   }
 
 }

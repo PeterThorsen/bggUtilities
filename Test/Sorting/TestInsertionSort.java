@@ -1,8 +1,7 @@
 package Sorting;
 
-import Main.Containers.*;
-import Main.Containers.Holders.StringIntHolder;
-import Main.Containers.Holders.StringIntHolder;
+import Main.Models.Structure.Holders.StringIntHolder;
+import Main.Models.Structure.*;
 import Main.Sorting.*;
 import org.junit.Test;
 

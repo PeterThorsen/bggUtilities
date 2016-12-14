@@ -1,10 +1,10 @@
 package Controllers;
 
-import Main.Containers.BoardGame;
-import Main.Containers.BoardGameCounter;
-import Main.Containers.BoardGameSuggestion;
-import Main.Containers.Holders.Reason;
-import Main.Containers.Player;
+import Main.Models.Structure.BoardGame;
+import Main.Models.Structure.BoardGameCounter;
+import Main.Models.Structure.BoardGameSuggestion;
+import Main.Models.Structure.Reason;
+import Main.Models.Structure.Player;
 import Main.Controllers.FacadeController;
 import Main.Models.Network.IConnectionHandler;
 import Main.Models.Storage.CollectionBuilder;
@@ -54,7 +54,7 @@ import static org.junit.Assert.assertTrue;
  28 : Thomas
  29 : Ulrik
  */
-public class TestLogicController {
+public class TestGameNightRecommender {
   private FacadeController facadeController;
   private Player[] allPlayers;
 

@@ -1,16 +1,10 @@
 package Main.Controllers;
 
-import Main.Containers.*;
-import Main.Containers.Holders.Reason;
 import Main.Models.Logic.GameNightRecommender;
-import Main.Sorting.InsertionSortGamesWithCounter;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+import Main.Models.Structure.BoardGame;
+import Main.Models.Structure.BoardGameCounter;
+import Main.Models.Structure.BoardGameSuggestion;
+import Main.Models.Structure.Player;
 
 /**
  * Created by Peter on 14/11/2016.

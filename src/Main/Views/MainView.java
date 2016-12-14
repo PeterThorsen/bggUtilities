@@ -1,10 +1,9 @@
 package Main.Views;
 
-import Main.Containers.BoardGame;
-import Main.Containers.Holders.GamePlayHolder;
-import Main.Containers.Holders.PlayerNodeInformationHolder;
-import Main.Containers.Play;
-import Main.Containers.Player;
+import Main.Models.Structure.BoardGame;
+import Main.Models.Structure.Holders.GamePlayHolder;
+import Main.Models.Structure.Play;
+import Main.Models.Structure.Player;
 import Main.Controllers.FacadeController;
 import Main.Views.Player.PlayerView;
 
@@ -219,13 +218,13 @@ public class MainView {
 
                 // Name
                 if (col == 0) {
-                  return allPlaysSorted[row].getGame().getName();
+                  return allPlaysSorted[row].game.getName();
                 }
                 if (col == 1) {
-                  return allPlaysSorted[row].getQuantity();
+                  return allPlaysSorted[row].noOfPlays;
                 }
                 if (col == 2) {
-                  return allPlaysSorted[row].getDate();
+                  return allPlaysSorted[row].date;
                 }
                 if (col == 3) {
                   String[] players = allPlaysSorted[row].playerNames;
