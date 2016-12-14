@@ -45,7 +45,7 @@ public class Player {
     double max = 1;
     double min = 5;
     for (BoardGame key : gameToPlaysMap.keySet()) {
-      double keyComplexity = key.getComplexity();
+      double keyComplexity = key.complexity;
       counter++;
       totalComplexity += keyComplexity;
       // Finding max complexity
@@ -139,7 +139,7 @@ public class Player {
 
     for (Play play : allPlays) {
 
-      String gameName = play.game.getName();
+      String gameName = play.game.name;
 
       String date = play.date;
       String[] splitDate = date.split("-");
@@ -210,7 +210,7 @@ public class Player {
     double counter = 0;
     double totalRating = 0;
     for (BoardGame game : gameRatingsMap.keySet()) {
-      if (game.getComplexity() < givenComplexity) continue;
+      if (game.complexity < givenComplexity) continue;
 
       counter++;
       double currentRating = gameRatingsMap.get(game);

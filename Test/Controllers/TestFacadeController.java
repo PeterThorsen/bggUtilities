@@ -36,8 +36,8 @@ public class TestFacadeController {
   @Test
   public void listOfGamesShouldContain() {
     BoardGame[] allGames = facadeController.getAllGames();
-    assertEquals("Agricola", allGames[0].getName());
-    assertEquals("Hive", allGames[1].getName());
+    assertEquals("Agricola", allGames[0].name);
+    assertEquals("Hive", allGames[1].name);
   }
 
   @Test

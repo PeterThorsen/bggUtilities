@@ -77,7 +77,7 @@ public class TestGameNightRecommender {
     BoardGame[] allGames = facadeController.suggestGames(players, 40).allOptions;
     boolean foundGame = false;
     for (BoardGame game : allGames) {
-      if(game.getName().equals("Sequence")) {
+      if(game.name.equals("Sequence")) {
         foundGame = true;
         break;
       }
@@ -100,7 +100,7 @@ public class TestGameNightRecommender {
 
     boolean foundGame = false;
     for (BoardGame game : allGames) {
-      if(game.getName().equals("Camel Up")) {
+      if(game.name.equals("Camel Up")) {
         foundGame = true;
         break;
       }
@@ -116,7 +116,7 @@ public class TestGameNightRecommender {
 
     boolean foundGame = false;
     for (BoardGame game : allGames) {
-      if(game.getName().equals("The Resistance")) {
+      if(game.name.equals("The Resistance")) {
         foundGame = true;
         break;
       }
@@ -136,7 +136,7 @@ public class TestGameNightRecommender {
 
     boolean foundGame = false;
     for (BoardGame game : allGames) {
-      if(game.getName().equals("The Resistance")) {
+      if(game.name.equals("The Resistance")) {
         foundGame = true;
         break;
       }
@@ -156,7 +156,7 @@ public class TestGameNightRecommender {
 
     boolean foundGame = false;
     for (BoardGame game : allGames) {
-      if(game.getName().equals("Dixit Odyssey")) {
+      if(game.name.equals("Dixit Odyssey")) {
         foundGame = true;
         break;
       }
@@ -174,10 +174,10 @@ public class TestGameNightRecommender {
     boolean foundCodenames = false;
     boolean foundBohnanza = false;
     for (BoardGame game : allGames) {
-      if(game.getName().equals("Codenames")) {
+      if(game.name.equals("Codenames")) {
         foundCodenames = true;
       }
-      if(game.getName().equals("Bohnanza")) {
+      if(game.name.equals("Bohnanza")) {
         foundBohnanza = true;
       }
     }
@@ -195,7 +195,7 @@ public class TestGameNightRecommender {
 
     boolean foundExpansion = false;
     for (BoardGame game : allGames) {
-      if(game.getName().equals("Carcassonne: Expansion 1 – Inns & Cathedrals")) {
+      if(game.name.equals("Carcassonne: Expansion 1 – Inns & Cathedrals")) {
         foundExpansion = true;
       }
     }
@@ -212,7 +212,7 @@ public class TestGameNightRecommender {
 
     boolean found = false;
     for (BoardGameCounter gameCounter : suggestedCombination) {
-      if(gameCounter.game.getName().equals("Hive")) {
+      if(gameCounter.game.name.equals("Hive")) {
         found = true;
       }
     }
@@ -229,7 +229,7 @@ public class TestGameNightRecommender {
 
     boolean found = false;
     for (BoardGameCounter gameCounter : suggestedCombination) {
-      if(gameCounter.game.getName().equals("Hive")) {
+      if(gameCounter.game.name.equals("Hive")) {
         found = true;
       }
     }
@@ -266,7 +266,7 @@ public class TestGameNightRecommender {
 
     boolean found = false;
     for (BoardGameCounter gameCounter : suggestedCombination) {
-      if(gameCounter.game.getComplexity() > 1.8) {
+      if(gameCounter.game.complexity > 1.8) {
         found = true;
       }
     }
@@ -285,7 +285,7 @@ public class TestGameNightRecommender {
 
     boolean found = false;
     for (BoardGameCounter gameCounter : suggestedCombination) {
-      if(gameCounter.game.getComplexity() > 1.85) {
+      if(gameCounter.game.complexity > 1.85) {
         found = true;
       }
     }
@@ -305,7 +305,7 @@ public class TestGameNightRecommender {
 
     boolean found = false;
     for (BoardGameCounter gameCounter : suggestedCombination) {
-      if(gameCounter.game.getComplexity() > 1.85) {
+      if(gameCounter.game.complexity > 1.85) {
         found = true;
       }
     }
@@ -322,7 +322,7 @@ public class TestGameNightRecommender {
 
     boolean found = false;
     for (BoardGameCounter gameCounter : suggestedCombination) {
-      if(gameCounter.game.getType().equals("abstracts")) {
+      if(gameCounter.game.type.equals("abstracts")) {
         found = true;
       }
     }
@@ -338,7 +338,7 @@ public class TestGameNightRecommender {
 
     boolean found = false;
     for (BoardGameCounter gameCounter : suggestedCombination) {
-      if(gameCounter.game.getComplexity() >= 3.0) {
+      if(gameCounter.game.complexity >= 3.0) {
         found = true;
       }
     }

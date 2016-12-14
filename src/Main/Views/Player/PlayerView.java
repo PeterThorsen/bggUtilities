@@ -140,7 +140,7 @@ public class PlayerView {
 
                 // Name
                 if (col == 0) {
-                  return allPlays[row].game.getName();
+                  return allPlays[row].game.name;
                 }
                 if (col == 1) {
                   return allPlays[row].noOfPlays;
@@ -178,7 +178,7 @@ public class PlayerView {
     HashMap<String, Integer> mostPlaysMap = new HashMap<>();
 
     for (Play play : allPlays) {
-      String gameName = play.game.getName();
+      String gameName = play.game.name;
       String[] names = play.playerNames;
 
       for (String name : names) {

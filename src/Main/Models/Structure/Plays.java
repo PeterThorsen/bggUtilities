@@ -32,7 +32,7 @@ public class Plays {
   public void addPlay(Play play) {
     String gameName = "";
     try {
-      gameName = play.game.getName();
+      gameName = play.game.name;
     }
     catch (Exception e) {
       System.out.println("ex, play is: " + play.game);
@@ -68,7 +68,7 @@ public class Plays {
     }
 
     BoardGame game = play.game;
-    int id = game.getID();
+    int id = game.id;
     nameToIDMap.put(gameName, id); // For getPlays with name
 
     if (allPlays.containsKey(id)) {

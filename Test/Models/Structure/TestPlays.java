@@ -1,4 +1,4 @@
-package Containers;
+package Models.Structure;
 
 import Main.Models.Structure.BoardGame;
 import Main.Models.Structure.BoardGameCollection;

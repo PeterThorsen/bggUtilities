@@ -47,7 +47,7 @@ public class TestCollectionBuilder_WithStub {
     boolean agricolaExists = false;
 
     for (BoardGame game : games) {
-      if (game.getName().equals("Agricola")) {
+      if (game.name.equals("Agricola")) {
         agricolaExists = true;
         break;
       }
@@ -60,7 +60,7 @@ public class TestCollectionBuilder_WithStub {
     boolean hiveExists = false;
 
     for (BoardGame game : games) {
-      if (game.getName().equals("Hive")) {
+      if (game.name.equals("Hive")) {
         hiveExists = true;
         break;
       }
@@ -73,7 +73,7 @@ public class TestCollectionBuilder_WithStub {
     boolean monopolyExists = false;
 
     for (BoardGame game : games) {
-      if (game.getName().equals("Monopoly")) {
+      if (game.name.equals("Monopoly")) {
         monopolyExists = true;
         break;
       }
@@ -85,7 +85,7 @@ public class TestCollectionBuilder_WithStub {
   public void agricolaShouldHaveUniqueID31260() {
     int uniqueID = 0;
     BoardGame game = games[0];
-    uniqueID = game.getID();
+    uniqueID = game.id;
     assertEquals(31260, uniqueID);
   }
 
@@ -93,7 +93,7 @@ public class TestCollectionBuilder_WithStub {
   public void hiveShouldHaveUniqueID2655() {
     int uniqueID = 0;
     BoardGame game = games[23];
-    uniqueID = game.getID();
+    uniqueID = game.id;
     assertEquals(2655, uniqueID);
   }
 
@@ -101,7 +101,7 @@ public class TestCollectionBuilder_WithStub {
   public void agricolaShouldHaveMinPlayers1() {
     int minPlayers = 0;
     BoardGame game = games[0];
-    minPlayers = game.getMinPlayers();
+    minPlayers = game.minPlayers;
     assertEquals(1, minPlayers);
   }
 
@@ -109,7 +109,7 @@ public class TestCollectionBuilder_WithStub {
   public void hiveShouldHaveMinPlayers2() {
     int minPlayers = 0;
     BoardGame game = games[23];
-    minPlayers = game.getMinPlayers();
+    minPlayers = game.minPlayers;
     assertEquals(2, minPlayers);
   }
 
@@ -117,7 +117,7 @@ public class TestCollectionBuilder_WithStub {
   public void hiveShouldHaveMaxPlayers2() {
     int maxPlayers = 0;
     BoardGame game = games[23];
-    maxPlayers = game.getMaxPlayers();
+    maxPlayers = game.maxPlayers;
     assertEquals(2, maxPlayers);
   }
 
@@ -125,7 +125,7 @@ public class TestCollectionBuilder_WithStub {
   public void agricolaShouldHaveMaxPlayers5() {
     int maxPlayers = 0;
     BoardGame game = games[0];
-    maxPlayers = game.getMaxPlayers();
+    maxPlayers = game.maxPlayers;
     assertEquals(5, maxPlayers);
   }
 
@@ -133,7 +133,7 @@ public class TestCollectionBuilder_WithStub {
   public void agricolaShouldHaveMinPlaytime30Min() {
     int minPlaytime = 0;
     BoardGame game = games[0];
-    minPlaytime = game.getMinPlaytime();
+    minPlaytime = game.minPlaytime;
     assertEquals(30, minPlaytime);
   }
 
@@ -141,7 +141,7 @@ public class TestCollectionBuilder_WithStub {
   public void agricolaShouldHaveMaxPlaytime150Min() {
     int maxPlaytime;
     BoardGame game = games[0];
-    maxPlaytime = game.getMaxPlaytime();
+    maxPlaytime = game.maxPlaytime;
     assertEquals(150, maxPlaytime);
   }
 
@@ -149,7 +149,7 @@ public class TestCollectionBuilder_WithStub {
   public void agricolaShouldHavePersonalRating8() {
     String personalRating;
     BoardGame game = games[0];
-    personalRating = game.getPersonalRating();
+    personalRating = game.personalRating;
     int rating = Integer.valueOf(personalRating);
     assertEquals(8, rating);
   }
@@ -158,7 +158,7 @@ public class TestCollectionBuilder_WithStub {
   public void hiveShouldHavePersonalRating10() {
     String personalRating;
     BoardGame game = games[23];
-    personalRating = game.getPersonalRating();
+    personalRating = game.personalRating;
     int rating = Integer.valueOf(personalRating);
     assertEquals(10, rating);
   }
@@ -167,7 +167,7 @@ public class TestCollectionBuilder_WithStub {
   public void agricolaShouldHaveNumPlays7() {
     int numPlays;
     BoardGame game = games[0];
-    numPlays = game.getNumberOfPlays();
+    numPlays = game.numPlays;
     assertEquals(7, numPlays);
   }
 
@@ -175,7 +175,7 @@ public class TestCollectionBuilder_WithStub {
   public void hiveShouldHaveNumPlays26() {
     int numPlays;
     BoardGame game = games[23];
-    numPlays = game.getNumberOfPlays();
+    numPlays = game.numPlays;
     assertEquals(26, numPlays);
   }
 
@@ -183,7 +183,7 @@ public class TestCollectionBuilder_WithStub {
   public void hiveShouldHaveComplexityBetween2And3() {
     double complexity;
     BoardGame game = games[23];
-    complexity = game.getComplexity();
+    complexity = game.complexity;
     assertTrue(complexity > 2.0 && complexity < 3.0);
   }
 
@@ -191,14 +191,14 @@ public class TestCollectionBuilder_WithStub {
   public void agricolaShouldHaveComplexityBetween3And4() {
     double complexity;
     BoardGame game = games[0];
-    complexity = game.getComplexity();
+    complexity = game.complexity;
     assertTrue(complexity > 3.0 && complexity < 4.0);
   }
 
   @Test
   public void dixitShouldHaveAverageRating7Dot54213() {
     BoardGame game = games[14];
-    assertEquals(7.54213, Double.valueOf(game.getAverageRating()));
+    assertEquals(7.54213, Double.valueOf(game.averageRating));
   }
 
   @Test
@@ -210,19 +210,19 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void agricolaShouldNotBeDefinedAsExpansion() {
     BoardGame game = games[0];
-    assertFalse(game.isExpansion());
+    assertFalse(game.isExpansion);
   }
 
   @Test
   public void HiveTheLadybugShouldBeDefinedAsExpansion() {
     BoardGame game = games[24];
-    assertTrue(game.isExpansion());
+    assertTrue(game.isExpansion);
   }
 
   @Test
   public void agricolaShouldHaveCategoryArrayContainingAnimalsEconomicAndFarming() {
     BoardGame game = games[0];
-    GameCategory[] categories = game.getCategories();
+    GameCategory[] categories = game.categories;
     boolean foundAnimals = false;
     boolean foundEconomic = false;
     boolean foundFarming = false;
@@ -242,7 +242,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void hiveShouldHaveCategoryArrayContainingAbstractStrategyAndAnimals() {
     BoardGame game = games[23];
-    GameCategory[] categories = game.getCategories();
+    GameCategory[] categories = game.categories;
     boolean foundAnimals = false;
     boolean foundAbstractStrategy = false;
 
@@ -259,7 +259,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void agricolaShouldHaveMechanicsArrayOf_AreaEnclosure_CardDrafting_HandManagement_WorkerPlacement() {
     BoardGame game = games[0];
-    GameMechanism[] mechanisms = game.getMechanisms();
+    GameMechanism[] mechanisms = game.mechanisms;
     boolean foundAreaEnclosure = false;
     boolean foundCardDrafting = false;
     boolean foundHandManagement = false;
@@ -282,7 +282,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void hiveShouldHaveMechanicsArrayOf_GridMovement_TilePlacement() {
     BoardGame game = games[23];
-    GameMechanism[] mechanisms = game.getMechanisms();
+    GameMechanism[] mechanisms = game.mechanisms;
     boolean foundGridMovement = false;
     boolean foundTilePlacement = false;
 
@@ -299,7 +299,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void agricolaShouldHaveBestWith3And4() {
     BoardGame game = games[0];
-    int[] bestWith = game.getBestWith();
+    int[] bestWith = game.bestWith;
     
     boolean found3 = false;
     boolean found4 = false;
@@ -319,7 +319,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void agricolaShouldHaveRecommendedWith3And4() {
     BoardGame game = games[0];
-    int[] recommendedWith = game.getRecommendedWith();
+    int[] recommendedWith = game.recommendedWith;
 
     boolean found1 = false;
     boolean found2 = false;
@@ -339,7 +339,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void camelUpShouldHaveBestWith4_5() {
     BoardGame game = games[3];
-    int[] bestWith = game.getBestWith();
+    int[] bestWith = game.bestWith;
 
     boolean found4 = false;
     boolean found5 = false;
@@ -360,7 +360,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void camelUpShouldHaveRecommendedWith2_3_6_7_8() {
     BoardGame game = games[3];
-    int[] recommendedWith = game.getRecommendedWith();
+    int[] recommendedWith = game.recommendedWith;
 
     boolean found2 = false;
     boolean found3 = false;
@@ -395,7 +395,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void camelUpShouldNotHaveRecommendedWith4_5() {
     BoardGame game = games[3];
-    int[] recommendedWith = game.getRecommendedWith();
+    int[] recommendedWith = game.recommendedWith;
 
     boolean found4 = false;
     boolean found5 = false;
@@ -415,7 +415,7 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void camelUpShouldNotHaveBestWith2_3_6_7_8() {
     BoardGame game = games[3];
-    int[] bestWith = game.getBestWith();
+    int[] bestWith = game.bestWith;
 
     boolean found2 = false;
     boolean found3 = false;
@@ -450,13 +450,13 @@ public class TestCollectionBuilder_WithStub {
   @Test
   public void agricolaShouldHaveType_strategygames() {
     BoardGame game = games[0];
-    String type = game.getType();
+    String type = game.type;
     assertEquals("strategygames", type);
   }
 
   @Test
   public void bohnanzaShouldHaveType_familygames() {
     BoardGame game = games[2];
-    String type = game.getType();
+    String type = game.type;
     assertEquals("familygames", type);  }
 }

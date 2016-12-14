@@ -43,28 +43,28 @@ public class GameNightRecommender {
     for (BoardGame game : allGames) {
 
       // Don't include expansions
-      if (game.isExpansion()) continue;
+      if (game.isExpansion) continue;
 
-      if (numberOfPlayers > game.getMaxPlayers() || numberOfPlayers < game.getMinPlayers()) {
+      if (numberOfPlayers > game.maxPlayers || numberOfPlayers < game.minPlayers) {
         continue;
       }
-      if (maxTime < game.getMinPlaytime()) {
+      if (maxTime < game.minPlaytime) {
         continue;
       }
-      if (minComplexity - 0.50 > game.getComplexity() || maxComplexity + 0.50 < game.getComplexity()) {
+      if (minComplexity - 0.50 > game.complexity || maxComplexity + 0.50 < game.complexity) {
         continue;
       }
       // only add games within recommended games
       boolean found = false;
-      for (int i = 0; i < game.getBestWith().length; i++) {
-        if (game.getBestWith()[i] == numberOfPlayers) {
+      for (int i = 0; i < game.bestWith.length; i++) {
+        if (game.bestWith[i] == numberOfPlayers) {
           found = true;
           break;
         }
       }
       if (!found) {
-        for (int i = 0; i < game.getRecommendedWith().length; i++) {
-          if (game.getRecommendedWith()[i] == numberOfPlayers) {
+        for (int i = 0; i < game.recommendedWith.length; i++) {
+          if (game.recommendedWith[i] == numberOfPlayers) {
             found = true;
             break;
           }
@@ -95,7 +95,7 @@ public class GameNightRecommender {
     int lengthAllPlayers = allPlayers.length;
 
     // Favor games that the user haven't played much
-    if (current.game.getNumberOfPlays() < 5) {
+    if (current.game.numPlays < 5) {
       double value = 25;
       current.value += value;
       current.reasons.add(new Reason("Owner of the game has played the game less than 5 times(25).", value));
@@ -195,7 +195,7 @@ public class GameNightRecommender {
     // Don't include expansions
     ArrayList<BoardGame> noExpansions = new ArrayList<>();
     for (int i = 0; i < allGames.length; i++) {
-      if (!allGames[i].isExpansion())
+      if (!allGames[i].isExpansion)
         noExpansions.add(allGames[i]);
     }
     allGames = new BoardGame[noExpansions.size()];
@@ -206,7 +206,7 @@ public class GameNightRecommender {
     BoardGame currentGame = current.game;
 
     // Favor high complexity if player likes such games
-    if((player.getMaxComplexity() > 2.5) && Math.abs(player.getMaxComplexity() - currentGame.getComplexity()) <= 1) {
+    if((player.getMaxComplexity() > 2.5) && Math.abs(player.getMaxComplexity() - currentGame.complexity) <= 1) {
       if(player.getAverageRatingOfGamesAboveComplexity(2.5) > 5) {
         double value = 20 / (numberOfPlayers - 1);
         current.value += value;
@@ -220,20 +220,20 @@ public class GameNightRecommender {
       }
     }
 
-    GameMechanism[] currentMechanisms = currentGame.getMechanisms();
-    GameCategory[] currentCategories = currentGame.getCategories();
+    GameMechanism[] currentMechanisms = currentGame.mechanisms;
+    GameCategory[] currentCategories = currentGame.categories;
 
     for (int i = 0; i < allGames.length; i++) {
       BoardGame otherGame = allGames[i];
 
-      GameMechanism[] otherMechanisms = otherGame.getMechanisms();
-      GameCategory[] otherCategories = otherGame.getCategories();
+      GameMechanism[] otherMechanisms = otherGame.mechanisms;
+      GameCategory[] otherCategories = otherGame.categories;
       if (currentGame.equals(otherGame)) continue;
 
       if(player.getPersonalRating(otherGame) < 6) continue;
 
       // Up to 6 points based on type match
-      if (currentGame.getType().equals(otherGame.getType())) {
+      if (currentGame.type.equals(otherGame.type)) {
         double value = 6.0 / numberOfPlayers / allGames.length;
         current.value += value;
         current.reasons.add(new Reason("Type matches other game " + otherGame + " for " + player.name + "(" + value + ").", value));
@@ -274,7 +274,7 @@ public class GameNightRecommender {
     BoardGame currentGame = current.game;
 
     // Personal rating should matter
-    String personalRatingString = currentGame.getPersonalRating();
+    String personalRatingString = currentGame.personalRating;
     double personalRating;
     if (personalRatingString.equals("N/A")) {
       personalRating = 5;
@@ -286,7 +286,7 @@ public class GameNightRecommender {
     current.reasons.add(new Reason("Owners personal rating of " + personalRatingString + "(" + ownersRatingScore + ")", ownersRatingScore));
 
     // If personal rating is higher than average rating
-    String averageRatingString = currentGame.getAverageRating();
+    String averageRatingString = currentGame.averageRating;
     if (!averageRatingString.equals("N/A")) {
       double averageRating = Double.valueOf(averageRatingString);
       if (averageRating < personalRating) {
@@ -298,19 +298,19 @@ public class GameNightRecommender {
     }
 
     // Can we easily play this game within time limit
-    int currentMinTime = currentGame.getMinPlaytime();
-    int currentMaxTime = currentGame.getMaxPlaytime();
+    int currentMinTime = currentGame.minPlaytime;
+    int currentMaxTime = currentGame.maxPlaytime;
 
     double approximationTime;
     if (currentMinTime == currentMaxTime) {
       approximationTime = currentMaxTime;
-    } else if (currentGame.getMinPlayers() == currentGame.getMaxPlayers()) {
+    } else if (currentGame.minPlayers == currentGame.maxPlayers) {
       approximationTime = currentMinTime;
 
     } else {
       double difference = currentMaxTime - currentMinTime;
-      difference = difference / (currentGame.getMaxPlayers() - currentGame.getMinPlayers());
-      approximationTime = currentMinTime + (difference * (allPlayers.length + 1 - currentGame.getMinPlayers()));
+      difference = difference / (currentGame.maxPlayers - currentGame.minPlayers);
+      approximationTime = currentMinTime + (difference * (allPlayers.length + 1 - currentGame.minPlayers));
     }
 
     // Add time to approximation if someone has to learn the game
@@ -329,7 +329,7 @@ public class GameNightRecommender {
     }
 
     // How fitting is the complexity
-    double currentComplexity = currentGame.getComplexity();
+    double currentComplexity = currentGame.complexity;
     double difference = Math.abs(currentComplexity - averageComplexityGivingAllPlayersEqualWeight);
 
     // First, lower rating if complexity is too different
@@ -399,7 +399,7 @@ public class GameNightRecommender {
     }
 
     // Finally, if the game is best with the player number, recommend it more
-    int[] bestWith = currentGame.getBestWith();
+    int[] bestWith = currentGame.bestWith;
     for (int i : bestWith) {
       if (i == allPlayers.length + 1) {
         double value = 20;

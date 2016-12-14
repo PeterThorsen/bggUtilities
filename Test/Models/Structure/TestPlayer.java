@@ -1,4 +1,4 @@
-package Containers;
+package Models.Structure;
 
 import Main.Models.Structure.*;
 import org.junit.Before;
@@ -141,7 +141,7 @@ public class TestPlayer {
     plays[1] = play2;
     buildPlayer(plays, "Martin");
 
-    assertEquals("Agricola", player.getMostPlayedGame().game.getName());
+    assertEquals("Agricola", player.getMostPlayedGame().game.name);
   }
 
   @Test
@@ -153,7 +153,7 @@ public class TestPlayer {
     plays[1] = play2;
     buildPlayer(plays, "Martin");
 
-    assertEquals("Camel Up", player.getMostPlayedGame().game.getName());
+    assertEquals("Camel Up", player.getMostPlayedGame().game.name);
   }
 
   @Test
@@ -261,7 +261,7 @@ public class TestPlayer {
     plays[0] = play1;
     buildPlayer(plays, "Martin");
 
-    assertEquals(player.getAverageComplexity(), gameAgricola.getComplexity(), 0);
+    assertEquals(player.getAverageComplexity(), gameAgricola.complexity, 0);
   }
 
   @Test
@@ -273,7 +273,7 @@ public class TestPlayer {
     plays[1] = play2;
     buildPlayer(plays, "Martin");
 
-    double expected = (gameAgricola.getComplexity() + gameHive.getComplexity())/2;
+    double expected = (gameAgricola.complexity + gameHive.complexity)/2;
 
     assertEquals(expected, player.getAverageComplexity(), 0);
   }
@@ -285,7 +285,7 @@ public class TestPlayer {
     plays[0] = play1;
     buildPlayer(plays, "Martin");
 
-    assertEquals(player.getMaxComplexity(), gameAgricola.getComplexity(), 0);
+    assertEquals(player.getMaxComplexity(), gameAgricola.complexity, 0);
   }
 
   @Test
@@ -297,7 +297,7 @@ public class TestPlayer {
     plays[1] = play2;
     buildPlayer(plays, "Martin");
 
-    double expected = Math.max(gameAgricola.getComplexity(), gameHive.getComplexity());
+    double expected = Math.max(gameAgricola.complexity, gameHive.complexity);
 
     assertEquals(expected, player.getMaxComplexity(), 0);
   }
@@ -308,7 +308,7 @@ public class TestPlayer {
     plays[0] = play1;
     buildPlayer(plays, "Martin");
 
-    assertEquals(gameAgricola.getComplexity(), player.getMinComplexity(), 0);
+    assertEquals(gameAgricola.complexity, player.getMinComplexity(), 0);
   }
 
   @Test
@@ -320,7 +320,7 @@ public class TestPlayer {
     plays[1] = play2;
     buildPlayer(plays, "Martin");
 
-    double expected = Math.min(gameAgricola.getComplexity(), gameHive.getComplexity());
+    double expected = Math.min(gameAgricola.complexity, gameHive.complexity);
 
     assertEquals(expected, player.getMinComplexity(), 0);
   }

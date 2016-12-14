@@ -59,7 +59,7 @@ public class TestDataController {
     boolean foundHive = false;
 
     for(BoardGame game : games) {
-      if(game.getName().equals("Hive")) {
+      if(game.name.equals("Hive")) {
         foundHive = true;
       }
     }
@@ -73,7 +73,7 @@ public class TestDataController {
     boolean foundAgricola = false;
 
     for(BoardGame game : games) {
-      if(game.getName().equals("Agricola")) {
+      if(game.name.equals("Agricola")) {
         foundAgricola = true;
       }
     }

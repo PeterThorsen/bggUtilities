@@ -211,7 +211,7 @@ public class TestInsertionSort {
     BoardGameCounter[] arr = new BoardGameCounter[1];
     arr[0] = counter;
     arr = InsertionSortGamesWithCounter.sort(arr);
-    assertEquals("Agricola", arr[0].game.getName());
+    assertEquals("Agricola", arr[0].game.name);
   }
 
   @Test
@@ -262,8 +262,8 @@ public class TestInsertionSort {
     arr[0] = counter;
     arr[1] = counter2;
     arr = InsertionSortGamesWithCounter.sort(arr);
-    assertEquals("Hive", arr[0].game.getName());
-    assertEquals("Agricola", arr[1].game.getName());
+    assertEquals("Hive", arr[0].game.name);
+    assertEquals("Agricola", arr[1].game.name);
   }
 
   @Test
@@ -317,9 +317,9 @@ public class TestInsertionSort {
     arr[1] = counter1;
     arr[2] = counter2;
     arr = InsertionSortGamesWithCounter.sort(arr);
-    assertEquals("Agricola", arr[0].game.getName());
+    assertEquals("Agricola", arr[0].game.name);
     assertEquals(5, arr[0].value, 0); // last is how much the values can be off by
-    assertEquals("Hive", arr[1].game.getName());
-    assertEquals("Agricola", arr[2].game.getName());
+    assertEquals("Hive", arr[1].game.name);
+    assertEquals("Agricola", arr[2].game.name);
   }
 }

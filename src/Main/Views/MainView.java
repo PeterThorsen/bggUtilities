@@ -63,33 +63,33 @@ public class MainView {
 
                 // Name
                 if (col == 0) {
-                  return allGames[row].getName();
+                  return allGames[row].name;
                 }
                 if (col == 1) {
-                  if (allGames[row].getMinPlaytime() == allGames[row].getMaxPlaytime()) {
-                    return allGames[row].getMinPlaytime();
+                  if (allGames[row].minPlaytime == allGames[row].maxPlaytime) {
+                    return allGames[row].minPlaytime;
                   }
-                  return allGames[row].getMinPlaytime() + "-" + allGames[row].getMaxPlaytime();
+                  return allGames[row].minPlaytime + "-" + allGames[row].maxPlaytime;
                 }
                 if (col == 2) {
-                  return df.format(allGames[row].getComplexity());
+                  return df.format(allGames[row].complexity);
                 }
 
                 if (col == 3) {
-                  if (allGames[row].getMinPlayers() == allGames[row].getMaxPlayers()) {
-                    return allGames[row].getMinPlayers();
+                  if (allGames[row].minPlayers == allGames[row].maxPlayers) {
+                    return allGames[row].minPlayers;
                   }
-                  return allGames[row].getMinPlayers() + "-" + allGames[row].getMaxPlayers();
+                  return allGames[row].minPlayers + "-" + allGames[row].maxPlayers;
                 }
                 if (col == 4) {
-                  return allGames[row].getNumberOfPlays();
+                  return allGames[row].numPlays;
                 }
                 if (col == 5) {
-                  return allGames[row].getPersonalRating();
+                  return allGames[row].personalRating;
                 }
 
                 if (col == 6) {
-                  String temp = allGames[row].getAverageRating();
+                  String temp = allGames[row].averageRating;
                   double avgRatingAsDouble = Double.valueOf(temp);
                   return df.format(avgRatingAsDouble);
                 } else {
@@ -218,7 +218,7 @@ public class MainView {
 
                 // Name
                 if (col == 0) {
-                  return allPlaysSorted[row].game.getName();
+                  return allPlaysSorted[row].game.name;
                 }
                 if (col == 1) {
                   return allPlaysSorted[row].noOfPlays;

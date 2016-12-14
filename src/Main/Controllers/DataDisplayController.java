@@ -30,7 +30,7 @@ public class DataDisplayController implements IDataController {
     String[] names = new String[collection.getGames().length];
 
     for(int i = 0; i<collection.getGames().length; i++) {
-      names[i] = collection.getGames()[i].getName();
+      names[i] = collection.getGames()[i].name;
     }
     return names;
   }

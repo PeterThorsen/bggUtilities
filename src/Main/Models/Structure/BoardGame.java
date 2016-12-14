@@ -4,29 +4,29 @@ package Main.Models.Structure;
  * Created by Peter on 28/09/16.
  */
 public class BoardGame {
-  private final int maxPlaytime;
-  private final int minPlaytime;
-  private final int max;
-  private final int minimum;
-  private final int id;
-  private final String name;
-  private final String personalRating;
-  private final int numPlays;
-  private final String averageRating;
-  private double complexity = 0.0;
-  private boolean isExpansion;
-  private GameCategory[] categories;
-  private GameMechanism[] mechanisms;
-  private int[] bestWith;
-  private int[] recommendedWith;
-  private String type; // Type might be null, always check for null
+  public final int maxPlaytime;
+  public final int minPlaytime;
+  public final int maxPlayers;
+  public final int minPlayers;
+  public final int id;
+  public final String name;
+  public final String personalRating;
+  public final int numPlays;
+  public final String averageRating;
+  public double complexity = 0.0;
+  public boolean isExpansion;
+  public GameCategory[] categories;
+  public GameMechanism[] mechanisms;
+  public int[] bestWith;
+  public int[] recommendedWith;
+  public final String type; // Type might be null, always check for null
 
   public BoardGame(String name, int uniqueID, int minPlayers, int maxPlayers, int minPlaytime,
                    int maxPlaytime, String personalRating, int numberOfPlays, String averageRating, String type) {
     this.name = name;
     id = uniqueID;
-    minimum = minPlayers;
-    max = maxPlayers;
+    this.minPlayers = minPlayers;
+    this.maxPlayers = maxPlayers;
     this.minPlaytime = minPlaytime;
     this.maxPlaytime = maxPlaytime;
     this.personalRating = personalRating;
@@ -59,69 +59,5 @@ public class BoardGame {
   @Override
   public int hashCode() {
     return name.hashCode();
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public int getID() {
-    return id;
-  }
-
-  public int getMinPlayers() {
-    return minimum;
-  }
-
-  public int getMaxPlayers() {
-    return max;
-  }
-
-  public int getMinPlaytime() {
-    return minPlaytime;
-  }
-
-  public int getMaxPlaytime() {
-    return maxPlaytime;
-  }
-
-  public String getPersonalRating() {
-    return personalRating;
-  }
-
-  public int getNumberOfPlays() {
-    return numPlays;
-  }
-
-  public double getComplexity() {
-    return complexity;
-  }
-
-  public String getAverageRating() {
-    return averageRating;
-  }
-
-  public boolean isExpansion() {
-    return isExpansion;
-  }
-
-  public GameCategory[] getCategories() {
-    return categories;
-  }
-
-  public GameMechanism[] getMechanisms() {
-    return mechanisms;
-  }
-
-  public int[] getBestWith() {
-    return bestWith;
-  }
-
-  public int[] getRecommendedWith() {
-    return recommendedWith;
-  }
-
-  public String getType() {
-    return type;
   }
 }

@@ -34,7 +34,7 @@ public class SuggestedBoardGamesView {
 
                 // Name
                 if (col == 0) {
-                  return suggestedGames[row].game.getName();
+                  return suggestedGames[row].game.name;
                 }
                 if (col == 1) {
                   return suggestedGames[row].approximateTime;
