@@ -140,13 +140,13 @@ public class PlayerView {
 
                 // Name
                 if (col == 0) {
-                  return allPlays[row].game.name;
+                  return allPlays[allPlays.length-row-1].game.name;
                 }
                 if (col == 1) {
-                  return allPlays[row].noOfPlays;
+                  return allPlays[allPlays.length-row-1].noOfPlays;
                 }
                 if (col == 2) {
-                  return allPlays[row].date;
+                  return allPlays[allPlays.length-row-1].date;
                 } else {
                   return "Rest";
                 }
