@@ -5,6 +5,7 @@ import org.w3c.dom.Document;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.net.URL;
+import java.util.ArrayList;
 
 /**
  * Created by Peter on 27/09/16.
@@ -31,15 +32,14 @@ public class ConnectionHandler implements IConnectionHandler {
 
     // Below section fixes bug caused by bgg's API when loading an user for the first time.
     if (xmlResponseInDocument.getElementsByTagName("item").getLength() == 0) {
-      if(!firstTime) {
+      if (!firstTime) {
         return null;
       }
       try {
         Thread.sleep(5000);
       } catch (InterruptedException e) {
         e.printStackTrace();
-      }
-      finally {
+      } finally {
         firstTime = false;
       }
       return getCollection(username);
@@ -59,15 +59,33 @@ public class ConnectionHandler implements IConnectionHandler {
   }
 
   @Override
-  public Document getPlays(String username) {
-    String url = buildPlaysURL(username);
+  public ArrayList<Document> getPlays(String username) {
+    String url = buildPlaysURL(username, 1);
     Document xmlResponseInDocument = sendRequest(url);
-    if(xmlResponseInDocument.getElementsByTagName("play").getLength() == 0) {
+    if (xmlResponseInDocument.getElementsByTagName("play").getLength() == 0) {
       // No plays found for username. Either because of wrong username or no plays logged.
       return null;
     }
-    return xmlResponseInDocument;
+    ArrayList<Document> allPages = new ArrayList<>();
+    allPages.add(xmlResponseInDocument);
+    if (xmlResponseInDocument.getElementsByTagName("play").getLength() != 100) {
+      return allPages;
+    }
+
+    int counter = 2;
+    while (true) {
+
+      url = buildPlaysURL(username, counter);
+      Document nextPage = sendRequest(url);
+      allPages.add(nextPage);
+      if (nextPage.getElementsByTagName("play").getLength() == 0 || nextPage.getElementsByTagName("play").getLength() < 100) {
+        break;
+      }
+      counter++;
+    }
+    return allPages;
   }
+
 
   /**
    * Used to build the bgg url to avoid errors. Works for collection and plays.
@@ -75,8 +93,8 @@ public class ConnectionHandler implements IConnectionHandler {
    * @param username is the username for which the collection or plays should be fetched.
    * @return built url
    */
-  private String buildPlaysURL(String username) {
-    return String.format("https://www.boardgamegeek.com/xmlapi2/plays?username=%s", username);
+  private String buildPlaysURL(String username, int pageNumber) {
+    return String.format("https://www.boardgamegeek.com/xmlapi2/plays?username=%s&page=%d", username, pageNumber);
   }
 
   /**

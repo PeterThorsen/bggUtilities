@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
+import java.util.ArrayList;
+
 import static junit.framework.TestCase.*;
 
 /**
@@ -87,21 +89,22 @@ public class TestConnectionHandler {
   @Test
   public void plays_invalidUsernameShouldReturnNull() {
     String username = "notanusername";
-    Document document = connectionHandler.getPlays(username);
+    ArrayList<Document> document = connectionHandler.getPlays(username);
     assertNull(document);
   }
 
   @Test
   public void plays_validUsernameShouldReturnDocument() {
     String username = "cwaq";
-    Document document = connectionHandler.getPlays(username);
+    ArrayList<Document> document = connectionHandler.getPlays(username);
     assertNotNull(document);
   }
 
   @Test
   public void plays_validUsernameShouldReturnDocumentWithLengthMoreThan0() {
     String username = "cwaq";
-    Document document = connectionHandler.getPlays(username);
+    ArrayList<Document> documents = connectionHandler.getPlays(username);
+    Document document = documents.get(0);
     assertTrue(document.getElementsByTagName("play").getLength() > 0);
   }
 

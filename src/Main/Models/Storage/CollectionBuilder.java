@@ -187,55 +187,56 @@ public class CollectionBuilder implements ICollectionBuilder {
   }
 
   private void addPlays(HashMap<Integer, BoardGame> idToGameMap) {
-    Document playsDoc = connectionHandler.getPlays(username);
+    ArrayList<Document> playsDocs = connectionHandler.getPlays(username);
 
     // If no plays are registered
-    if (playsDoc == null) {
+    if (playsDocs == null) {
       return;
     }
-    NodeList playsList = playsDoc.getElementsByTagName("play");
-    for (int i = 0; i < playsList.getLength(); i++) {
+    for (Document playsDoc : playsDocs) {
+      NodeList playsList = playsDoc.getElementsByTagName("play");
+      for (int i = 0; i < playsList.getLength(); i++) {
 
-      Node currentItem = playsList.item(i);
+        Node currentItem = playsList.item(i);
 
-      // Calculating item and players nodes
-      ItemPlayersNodesHolder holder = calculateItemAndPlayersNodes(currentItem);
-      Node itemNode = holder.itemNode;
-      Node playersNode = holder.playersNode;
+        // Calculating item and players nodes
+        ItemPlayersNodesHolder holder = calculateItemAndPlayersNodes(currentItem);
+        Node itemNode = holder.itemNode;
+        Node playersNode = holder.playersNode;
 
 
-      // Get game
-      int uniqueID = Integer.valueOf(itemNode.getAttributes().getNamedItem("objectid").getNodeValue());
-      BoardGame game = idToGameMap.get(uniqueID);
+        // Get game
+        int uniqueID = Integer.valueOf(itemNode.getAttributes().getNamedItem("objectid").getNodeValue());
+        BoardGame game = idToGameMap.get(uniqueID);
 
-      // Skipping plays of games not owned by the user. Can be modified to search for game info at the cost of another network call
-      if (game == null) {
-        continue;
+        // Skipping plays of games not owned by the user. Can be modified to search for game info at the cost of another network call
+        if (game == null) {
+          continue;
+        }
+
+        NamedNodeMap playAttributes = currentItem.getAttributes();
+
+        // Get date and quantity
+        String date = playAttributes.getNamedItem("date").getNodeValue();
+        int quantity = Integer.valueOf(playAttributes.getNamedItem("quantity").getNodeValue());
+
+        PlayerNodeInformationHolder[] playerInformationArray = calculatePlayerInformation(playersNode);
+        HashMap<String, Double> playerRatings = new HashMap<>();
+        String[] names = new String[playerInformationArray.length];
+        for (int j = 0; j < playerInformationArray.length; j++) {
+          String name = playerInformationArray[j].playerName;
+          double rating = playerInformationArray[j].rating;
+
+          playerRatings.put(name, rating);
+          names[j] = name;
+        }
+
+        // Adding the plays
+        Play play = new Play(game, date, names, quantity, playerRatings);
+        plays.addPlay(play);
       }
-
-      NamedNodeMap playAttributes = currentItem.getAttributes();
-
-      // Get date and quantity
-      String date = playAttributes.getNamedItem("date").getNodeValue();
-      int quantity = Integer.valueOf(playAttributes.getNamedItem("quantity").getNodeValue());
-
-      PlayerNodeInformationHolder[] playerInformationArray = calculatePlayerInformation(playersNode);
-      HashMap<String, Double> playerRatings = new HashMap<>();
-      String[] names = new String[playerInformationArray.length];
-      for (int j = 0; j < playerInformationArray.length; j++) {
-        String name = playerInformationArray[j].playerName;
-        double rating = playerInformationArray[j].rating;
-
-        playerRatings.put(name, rating);
-        names[j] = name;
-      }
-
-
-
-      // Adding the plays
-      Play play = new Play(game, date, names, quantity, playerRatings);
-      plays.addPlay(play);
     }
+
   }
 
   private PlayerNodeInformationHolder[] calculatePlayerInformation(Node playersNode) {

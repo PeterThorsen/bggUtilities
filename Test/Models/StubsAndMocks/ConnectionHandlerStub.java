@@ -5,6 +5,7 @@ import org.w3c.dom.Document;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * Created by Peter on 28/09/16.
@@ -34,10 +35,12 @@ public class ConnectionHandlerStub implements Main.Models.Network.IConnectionHan
   }
 
   @Override
-  public Document getPlays(String username) {
+  public ArrayList<Document> getPlays(String username) {
     try {
       File file = new File("Test/res/playsData.xml");
-      return buildDoc(file);
+      ArrayList<Document> arr = new ArrayList<>();
+      arr.add(buildDoc(file));
+      return arr;
     } catch (Exception e) {
       e.printStackTrace();
       return null;
