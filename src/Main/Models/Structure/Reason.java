@@ -11,4 +11,9 @@ public class Reason {
     this.reason = reason;
     this.value = value;
   }
+
+  @Override
+  public String toString() {
+    return reason;
+  }
 }

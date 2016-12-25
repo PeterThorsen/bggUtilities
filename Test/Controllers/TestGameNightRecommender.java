@@ -1,20 +1,15 @@
 package Controllers;
 
-import Main.Models.Structure.BoardGame;
-import Main.Models.Structure.BoardGameCounter;
-import Main.Models.Structure.BoardGameSuggestion;
-import Main.Models.Structure.Reason;
-import Main.Models.Structure.Player;
 import Main.Controllers.FacadeController;
 import Main.Models.Network.IConnectionHandler;
 import Main.Models.Storage.CollectionBuilder;
 import Main.Models.Storage.ICollectionBuilder;
+import Main.Models.Structure.*;
+import Main.Sorting.InsertionSortReasons;
 import Models.StubsAndMocks.ConnectionHandlerStub;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -356,34 +351,11 @@ public class TestGameNightRecommender {
 
     for (BoardGameCounter gameCounter : suggestedCombination) {
       System.out.println(gameCounter.game);
-      Reason[] reasons = sortReasons(gameCounter.reasons);
+      Reason[] reasons = InsertionSortReasons.sort(gameCounter.reasons);
       for (Reason reason : reasons) {
         System.out.println(reason.reason);
       }
       System.out.println("\n\n\n\n");
     }
-  }
-
-  private Reason[] sortReasons(ArrayList<Reason> arrList) {
-
-    Reason[] arr = new Reason[arrList.size()];
-    for (int i = 0; i < arr.length; i++) {
-      arr[i] = arrList.get(i);
-    }
-
-    int j;
-    Reason key;
-    int i;
-
-    for (j = 1; j < arr.length; j++)
-    {
-      key = arr[j];
-      for (i = j - 1; (i >= 0) && (arr[i].value < key.value); i--)
-      {
-        arr[i + 1] = arr[i];
-      }
-      arr[i + 1] = key;
-    }
-    return arr;
   }
 }

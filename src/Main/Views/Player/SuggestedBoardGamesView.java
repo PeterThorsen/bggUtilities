@@ -2,6 +2,8 @@ package Main.Views.Player;
 
 import Main.Models.Structure.BoardGameCounter;
 import Main.Models.Structure.BoardGameSuggestion;
+import Main.Models.Structure.Reason;
+import Main.Sorting.InsertionSortReasons;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -23,7 +25,7 @@ public class SuggestedBoardGamesView {
             AbstractTableModel() {
 
               public int getColumnCount() {
-                return 2;
+                return 3;
               }
 
               public int getRowCount() {
@@ -38,6 +40,15 @@ public class SuggestedBoardGamesView {
                 }
                 if (col == 1) {
                   return suggestedGames[row].approximateTime;
+                }
+                if (col == 2) {
+                  Reason[] reasons = InsertionSortReasons.sort(suggestedGames[row].reasons);
+                  StringBuilder sb = new StringBuilder();
+                  sb.append(reasons[0]);
+                  for (int i = 1; i < 3; i++) {
+                    sb.append(", ").append(reasons[i]);
+                  }
+                  return sb.toString();
                 }
                 else {
                   return "Rest";
@@ -54,7 +65,6 @@ public class SuggestedBoardGamesView {
                     return "REST";
                 }
               }
-
             };
 
     table1.setModel(dataModel);

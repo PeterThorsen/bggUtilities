@@ -74,7 +74,6 @@ public class ConnectionHandler implements IConnectionHandler {
 
     int counter = 2;
     while (true) {
-
       url = buildPlaysURL(username, counter);
       Document nextPage = sendRequest(url);
       allPages.add(nextPage);
@@ -136,8 +135,10 @@ public class ConnectionHandler implements IConnectionHandler {
     try {
       DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
       DocumentBuilder db = dbf.newDocumentBuilder();
+      System.out.println(urlString);
       URL url = new URL(urlString);
       document = db.parse(url.openStream());
+      System.out.println("Returning");
       return document;
 
     } catch (Exception e) {

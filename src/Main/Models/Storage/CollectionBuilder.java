@@ -1,11 +1,11 @@
 package Main.Models.Storage;
 
+import Main.Models.Network.IConnectionHandler;
+import Main.Models.Structure.*;
 import Main.Models.Structure.Holders.ItemPlayersNodesHolder;
 import Main.Models.Structure.Holders.NodeHolder;
 import Main.Models.Structure.Holders.PlayerNodeInformationHolder;
 import Main.Models.Structure.Holders.otherValuesHolder;
-import Main.Models.Network.IConnectionHandler;
-import Main.Models.Structure.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -13,6 +13,7 @@ import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.Semaphore;
 
 /**
  * Created by Peter on 28/09/16.
@@ -23,6 +24,9 @@ public class CollectionBuilder implements ICollectionBuilder {
   private Document collectionDocument;
   private final Plays plays;
   private Player[] allPlayers;
+  private Semaphore expandedSem = new Semaphore(0);
+  private Semaphore playsSem = new Semaphore(0);
+  private Semaphore playersSem = new Semaphore(0);
 
   public CollectionBuilder(IConnectionHandler connectionHandler) {
     this.connectionHandler = connectionHandler;
@@ -44,7 +48,7 @@ public class CollectionBuilder implements ICollectionBuilder {
    * @return a boardGameCollection containing a list of games including features for the games
    */
   @Override
-  public BoardGameCollection getCollection(String username) {
+  public synchronized BoardGameCollection getCollection(String username) {
     this.username = username;
 
     if (collectionDocument == null) {
@@ -56,6 +60,16 @@ public class CollectionBuilder implements ICollectionBuilder {
       }
     }
     BoardGame[] games = buildCollection(collectionDocument);
+    /**try {
+     expandedSem.acquire();
+     expandedSem.release();
+     playsSem.acquire();
+     playsSem.release();
+     }
+     catch (InterruptedException e) {
+     e.printStackTrace();
+     System.out.println("!!!");
+     } */
     return new BoardGameCollection(games);
   }
 
@@ -74,10 +88,17 @@ public class CollectionBuilder implements ICollectionBuilder {
 
   @Override
   public Player[] getPlayers() {
-    return allPlayers;
+    try {
+      playersSem.acquire();
+      playersSem.release();
+      return allPlayers;
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 
-  private BoardGame[] buildCollection(Document document) {
+  private synchronized BoardGame[] buildCollection(Document document) {
     NodeList nodeList = document.getElementsByTagName("item");
     ArrayList<BoardGame> games = new ArrayList<>();
     int[] uniqueIDArray = new int[nodeList.getLength()];
@@ -120,33 +141,112 @@ public class CollectionBuilder implements ICollectionBuilder {
       return asArray(games);
     }
 
-    // Expanded game info: Complexity, whether it is expansion, categories,
-    Document gamesDoc = connectionHandler.getGames(uniqueIDArray);
-    NodeList gamesList = gamesDoc.getElementsByTagName("item");
-    for (int i = 0; i < gamesList.getLength(); i++) {
-      Node item = gamesList.item(i);
+    addExpandedGameInfo(idToGameMap, uniqueIDArray);
+    addPlays(idToGameMap, uniqueIDArray);
+    try {
+      expandedSem.acquire();
+      expandedSem.release();
+      playsSem.acquire();
+      playsSem.release();
 
-      // Connecting the item to our own data through unique id
-      int uniqueID = Integer.valueOf(item.getAttributes().getNamedItem("id").getNodeValue());
-
-      boolean isExpansion = calculateIfExpansion(item);
-      otherValuesHolder otherValues = calculateMissingInformation(item);
-
-      // Add expanded info to game
-      BoardGame game = idToGameMap.get(uniqueID);
-      game.addExpandedGameInfo(otherValues.complexity, isExpansion, otherValues.categories, otherValues.mechanisms,
-              otherValues.bestPlayerCount, otherValues.recommendedPlayerCount);
+      buildPlayers();
+      playersSem.release();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
     }
-
-
-    // Adding specific plays
-    addPlays(idToGameMap);
-
-    // Building players
-    buildPlayers();
 
     // Finally, return all games with full information
     return asArray(games);
+  }
+
+  // Expanded game info: Complexity, whether it is expansion, categories,
+  private synchronized void addExpandedGameInfo(HashMap<Integer, BoardGame> idToGameMap, int[] uniqueIDArray) {
+
+    new Thread(new Runnable() {
+      @Override
+      public void run() {
+        Document gamesDoc = connectionHandler.getGames(uniqueIDArray);
+        NodeList gamesList = gamesDoc.getElementsByTagName("item");
+        for (int i = 0; i < gamesList.getLength(); i++) {
+          Node item = gamesList.item(i);
+
+          // Connecting the item to our own data through unique id
+          int uniqueID = Integer.valueOf(item.getAttributes().getNamedItem("id").getNodeValue());
+
+          boolean isExpansion = calculateIfExpansion(item);
+          otherValuesHolder otherValues = calculateMissingInformation(item);
+
+          // Add expanded info to game
+          BoardGame game = idToGameMap.get(uniqueID);
+          game.addExpandedGameInfo(otherValues.complexity, isExpansion, otherValues.categories, otherValues.mechanisms,
+                  otherValues.bestPlayerCount, otherValues.recommendedPlayerCount);
+        }
+        expandedSem.release();
+      }
+    }).start();
+  }
+
+  // Adding specific plays
+  private synchronized void addPlays(HashMap<Integer, BoardGame> idToGameMap, int[] uniqueIDArray) {
+    new Thread(new Runnable() {
+      @Override
+      public void run() {
+
+        ArrayList<Document> playsDocs = connectionHandler.getPlays(username);
+
+        // If no plays are registered
+        if (playsDocs == null) {
+          return;
+        }
+        for (Document playsDoc : playsDocs) {
+          NodeList playsList = playsDoc.getElementsByTagName("play");
+          for (int i = 0; i < playsList.getLength(); i++) {
+
+            Node currentItem = playsList.item(i);
+
+            // Calculating item and players nodes
+            ItemPlayersNodesHolder holder = calculateItemAndPlayersNodes(currentItem);
+            Node itemNode = holder.itemNode;
+            Node playersNode = holder.playersNode;
+
+
+            // Get game
+            int uniqueID = Integer.valueOf(itemNode.getAttributes().getNamedItem("objectid").getNodeValue());
+            BoardGame game = idToGameMap.get(uniqueID);
+
+            // Skipping plays of games not owned by the user. Can be modified to search for game info at the cost of another network call
+            if (game == null) {
+              continue;
+            }
+
+            NamedNodeMap playAttributes = currentItem.getAttributes();
+
+            // Get date and quantity
+            String date = playAttributes.getNamedItem("date").getNodeValue();
+            int quantity = Integer.valueOf(playAttributes.getNamedItem("quantity").getNodeValue());
+
+            PlayerNodeInformationHolder[] playerInformationArray = calculatePlayerInformation(playersNode);
+            HashMap<String, Double> playerRatings = new HashMap<>();
+            String[] names = new String[playerInformationArray.length];
+            for (int j = 0; j < playerInformationArray.length; j++) {
+              String name = playerInformationArray[j].playerName;
+              double rating = playerInformationArray[j].rating;
+
+              playerRatings.put(name, rating);
+              names[j] = name;
+            }
+
+            // Adding the plays
+            Play play = new Play(game, date, names, quantity, playerRatings);
+            plays.addPlay(play);
+          }
+        }
+        playsSem.release();
+
+      }
+
+    }).start();
+
   }
 
   private void buildPlayers() {
@@ -186,59 +286,6 @@ public class CollectionBuilder implements ICollectionBuilder {
     }
   }
 
-  private void addPlays(HashMap<Integer, BoardGame> idToGameMap) {
-    ArrayList<Document> playsDocs = connectionHandler.getPlays(username);
-
-    // If no plays are registered
-    if (playsDocs == null) {
-      return;
-    }
-    for (Document playsDoc : playsDocs) {
-      NodeList playsList = playsDoc.getElementsByTagName("play");
-      for (int i = 0; i < playsList.getLength(); i++) {
-
-        Node currentItem = playsList.item(i);
-
-        // Calculating item and players nodes
-        ItemPlayersNodesHolder holder = calculateItemAndPlayersNodes(currentItem);
-        Node itemNode = holder.itemNode;
-        Node playersNode = holder.playersNode;
-
-
-        // Get game
-        int uniqueID = Integer.valueOf(itemNode.getAttributes().getNamedItem("objectid").getNodeValue());
-        BoardGame game = idToGameMap.get(uniqueID);
-
-        // Skipping plays of games not owned by the user. Can be modified to search for game info at the cost of another network call
-        if (game == null) {
-          continue;
-        }
-
-        NamedNodeMap playAttributes = currentItem.getAttributes();
-
-        // Get date and quantity
-        String date = playAttributes.getNamedItem("date").getNodeValue();
-        int quantity = Integer.valueOf(playAttributes.getNamedItem("quantity").getNodeValue());
-
-        PlayerNodeInformationHolder[] playerInformationArray = calculatePlayerInformation(playersNode);
-        HashMap<String, Double> playerRatings = new HashMap<>();
-        String[] names = new String[playerInformationArray.length];
-        for (int j = 0; j < playerInformationArray.length; j++) {
-          String name = playerInformationArray[j].playerName;
-          double rating = playerInformationArray[j].rating;
-
-          playerRatings.put(name, rating);
-          names[j] = name;
-        }
-
-        // Adding the plays
-        Play play = new Play(game, date, names, quantity, playerRatings);
-        plays.addPlay(play);
-      }
-    }
-
-  }
-
   private PlayerNodeInformationHolder[] calculatePlayerInformation(Node playersNode) {
 
     // Get plays
@@ -255,11 +302,10 @@ public class CollectionBuilder implements ICollectionBuilder {
         double rating;
         try {
           rating = Double.valueOf(ratingString);
-          if(rating > 10 || rating < 0) {
+          if (rating > 10 || rating < 0) {
             rating = 0;
           }
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
           rating = 0;
         }
         players[arrayPos] = new PlayerNodeInformationHolder(playerJName, rating);
@@ -317,8 +363,7 @@ public class CollectionBuilder implements ICollectionBuilder {
             String numPlayersString;
             try {
               numPlayersString = pollResultHeader.getAttributes().getNamedItem("numplayers").getNodeValue();
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
               // every other node will be null
               continue;
             }
@@ -340,8 +385,7 @@ public class CollectionBuilder implements ICollectionBuilder {
               int numVotes;
               try {
                 numVotes = Integer.parseInt(result.getAttributes().getNamedItem("numvotes").getNodeValue()); // No votes = 0
-              }
-              catch (NullPointerException e) {
+              } catch (NullPointerException e) {
                 // Every other node will be null
                 continue;
               }
@@ -457,8 +501,7 @@ public class CollectionBuilder implements ICollectionBuilder {
     String type;
     try {
       type = statsNode.getChildNodes().item(1).getChildNodes().item(11).getChildNodes().item(3).getAttributes().getNamedItem("name").getTextContent();
-    }
-    catch (NullPointerException e) {
+    } catch (NullPointerException e) {
       type = null; // On some games, this isn't set
     }
     return type;
