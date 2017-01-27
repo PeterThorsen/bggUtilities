@@ -43,6 +43,11 @@ public class SuggestedBoardGamesView {
                 }
                 if (col == 2) {
                   Reason[] reasons = InsertionSortReasons.sort(suggestedGames[row].reasons);
+                  System.out.println("------ REASONS " + suggestedGames[row].game.name +" ------");
+                  for (Reason reason : reasons) {
+                    System.out.println(reason);
+                  }
+                  System.out.println("------ REASONS " + suggestedGames[row].game.name +" ------\n\n\n\n");
                   StringBuilder sb = new StringBuilder();
                   sb.append(reasons[0]);
                   for (int i = 1; i < 3; i++) {

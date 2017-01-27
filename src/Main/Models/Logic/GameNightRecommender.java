@@ -391,7 +391,7 @@ public class GameNightRecommender {
     int quartersPassed = (int) approximationTime / 15; // Rounding down due to using integers
 
     // Only add additional rating if actually a longer game
-    if(quartersPassed > 3) {
+    if(quartersPassed >= 2) {
       double value = quartersPassed * 5; // An additional five points for every quarter of the game
       current.value += value;
       current.reasons.add(new Reason(quartersPassed + " quarters passed, we prefer long games(" + value +").", value));
