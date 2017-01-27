@@ -261,8 +261,9 @@ public class TestGameNightRecommender {
 
     boolean found = false;
     for (BoardGameCounter gameCounter : suggestedCombination) {
-      if(gameCounter.game.complexity > 1.8) {
+      if(gameCounter.game.complexity > 2) {
         found = true;
+        System.out.println(gameCounter.game);
       }
     }
     assertFalse(found);
@@ -338,24 +339,5 @@ public class TestGameNightRecommender {
       }
     }
     assertFalse(found);
-  }
-
-  // delete
-  @Ignore
-  @Test
-  public void testing() {
-    Player[] players = new Player[1];
-    players[0] = allPlayers[6];
-    BoardGameSuggestion suggestions = facadeController.suggestGames(players, 150);
-    BoardGameCounter[] suggestedCombination = suggestions.suggestedCombination;
-
-    for (BoardGameCounter gameCounter : suggestedCombination) {
-      System.out.println(gameCounter.game);
-      Reason[] reasons = InsertionSortReasons.sort(gameCounter.reasons);
-      for (Reason reason : reasons) {
-        System.out.println(reason.reason);
-      }
-      System.out.println("\n\n\n\n");
-    }
   }
 }
