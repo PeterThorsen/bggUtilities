@@ -1,6 +1,7 @@
 package Main.Controllers;
 
-import Main.Models.Logic.GameNightRecommender;
+import Main.Models.Logic.GameNightUtil;
+import Main.Models.Logic.IGameNightRecommender;
 import Main.Models.Structure.BoardGame;
 import Main.Models.Structure.BoardGameCounter;
 import Main.Models.Structure.BoardGameSuggestion;
@@ -10,12 +11,14 @@ import Main.Models.Structure.Player;
  * Created by Peter on 14/11/2016.
  */
 public class LogicController implements ILogicController {
-  private final GameNightRecommender gameNightRecommender;
+  private final IGameNightRecommender gameNightRecommender;
+  private final GameNightUtil gameNightUtil;
   private FacadeController facadeController;
 
-  public LogicController(FacadeController facadeController) {
+  public LogicController(FacadeController facadeController, IGameNightRecommender gameNightRecommender) {
     this.facadeController = facadeController;
-    gameNightRecommender = new GameNightRecommender();
+    this.gameNightRecommender = gameNightRecommender;
+    gameNightUtil = new GameNightUtil();
   }
 
 
@@ -30,33 +33,18 @@ public class LogicController implements ILogicController {
 
     // Calculate or retrieve data
     BoardGame[] allGames = facadeController.getAllGames();
-    double[] complexities = gameNightRecommender.calculateAverageComplexity(players);
+    double[] complexities = gameNightUtil.calculateAverageComplexity(players);
     double minComplexity = complexities[0];
     double maxComplexity = complexities[1];
     double averageComplexityGivingAllPlayersEqualWeight = complexities[2];
 
     // Calculate valid games and best combination for given time and players
-    BoardGame[] allValid = gameNightRecommender.getAllValidBoardgames(players, maxTime, allGames, minComplexity, maxComplexity);
-    BoardGameCounter[] bestCombination = buildBestGameNight(allValid, players, maxTime, averageComplexityGivingAllPlayersEqualWeight);
+    BoardGame[] allValid = gameNightUtil.getAllValidBoardgames(players, maxTime, allGames, minComplexity, maxComplexity);
+    BoardGameCounter[] bestCombination = gameNightRecommender.buildBestGameNight(allValid, players, maxTime, averageComplexityGivingAllPlayersEqualWeight);
 
     // Return calculated data
     BoardGameSuggestion suggestedGames = new BoardGameSuggestion(bestCombination, allValid);
     return suggestedGames;
-  }
-
-  /**
-   * Used inside suggestGamesForGameNight to control the calculations for best game recommendations.
-   */
-  private BoardGameCounter[] buildBestGameNight(BoardGame[] allValid, Player[] players, int maxTime, double averageComplexityGivingAllPlayersEqualWeight) {
-    BoardGameCounter[] gamesWithCounter = gameNightRecommender.convertToCounter(allValid);
-
-    for (int i = 0; i < gamesWithCounter.length; i++) {
-      BoardGameCounter current = gamesWithCounter[i];
-
-      gameNightRecommender.calculatePlayerScore(players, current);
-      gameNightRecommender.calculateAbsoluteFactorsScore(current, maxTime, players, averageComplexityGivingAllPlayersEqualWeight);
-    }
-    return gameNightRecommender.calculateSuggestedGames(gamesWithCounter, maxTime);
   }
 
 

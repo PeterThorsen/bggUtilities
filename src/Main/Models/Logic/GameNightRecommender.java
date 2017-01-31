@@ -14,76 +14,24 @@ import java.util.Date;
 /**
  * Created by Peter on 13-Dec-16.
  */
-public class GameNightRecommender {
+public class GameNightRecommender implements IGameNightRecommender {
 
 
-  public double[] calculateAverageComplexity(Player[] players) {
-    double minComplexity = 6.0;
-    double maxComplexity = 0.0;
-    double averageComplexityGivingAllPlayersEqualWeight = 0;
+  @Override
+  public BoardGameCounter[] buildBestGameNight(BoardGame[] allValid, Player[] players, int maxTime, double averageComplexityGivingAllPlayersEqualWeight) {
+    BoardGameCounter[] gamesWithCounter = convertToCounter(allValid);
 
-    for (Player player : players) {
-      double currentAverage = player.getAverageComplexity();
-      if (player.getMaxComplexity() > maxComplexity) maxComplexity = player.getMaxComplexity();
-      if (player.getMinComplexity() < minComplexity) minComplexity = player.getMinComplexity();
+    for (int i = 0; i < gamesWithCounter.length; i++) {
+      BoardGameCounter current = gamesWithCounter[i];
 
-      averageComplexityGivingAllPlayersEqualWeight += currentAverage;
+      calculatePlayerScore(players, current);
+      calculateAbsoluteFactorsScore(current, maxTime, players, averageComplexityGivingAllPlayersEqualWeight);
     }
-
-    // To direct algorithm towards better recommendations
-    averageComplexityGivingAllPlayersEqualWeight = averageComplexityGivingAllPlayersEqualWeight / Double.valueOf(players.length);
-    return new double[] {minComplexity, maxComplexity, averageComplexityGivingAllPlayersEqualWeight};
+    return calculateSuggestedGames(gamesWithCounter, maxTime);
   }
 
-  public BoardGame[] getAllValidBoardgames(Player[] players, int maxTime, BoardGame[] allGames, double minComplexity, double maxComplexity) {
-    int numberOfPlayers = players.length + 1; // +1 to include bgg user herself
-    ArrayList<BoardGame> allGamesMatchingCriteria = new ArrayList<>();
 
-
-    for (BoardGame game : allGames) {
-
-      // Don't include expansions
-      if (game.isExpansion) continue;
-
-      if (numberOfPlayers > game.maxPlayers || numberOfPlayers < game.minPlayers) {
-        continue;
-      }
-      if (maxTime < game.minPlaytime) {
-        continue;
-      }
-      if (minComplexity - 0.50 > game.complexity || maxComplexity + 0.50 < game.complexity) {
-        continue;
-      }
-      // only add games within recommended games
-      boolean found = false;
-      for (int i = 0; i < game.bestWith.length; i++) {
-        if (game.bestWith[i] == numberOfPlayers) {
-          found = true;
-          break;
-        }
-      }
-      if (!found) {
-        for (int i = 0; i < game.recommendedWith.length; i++) {
-          if (game.recommendedWith[i] == numberOfPlayers) {
-            found = true;
-            break;
-          }
-        }
-      }
-      if (!found) continue;
-
-      allGamesMatchingCriteria.add(game);
-    }
-
-    BoardGame[] allValid = new BoardGame[allGamesMatchingCriteria.size()];
-
-    for (int i = 0; i < allValid.length; i++) {
-      allValid[i] = allGamesMatchingCriteria.get(i);
-    }
-    return allValid;
-  }
-
-  public BoardGameCounter[] convertToCounter(BoardGame[] allGames) {
+  private BoardGameCounter[] convertToCounter(BoardGame[] allGames) {
     BoardGameCounter[] gamesWithCounter = new BoardGameCounter[allGames.length];
     for (int i = 0; i < gamesWithCounter.length; i++) {
       gamesWithCounter[i] = new BoardGameCounter(allGames[i]);
@@ -91,7 +39,7 @@ public class GameNightRecommender {
     return gamesWithCounter;
   }
 
-  public void calculatePlayerScore(Player[] allPlayers, BoardGameCounter current) {
+  private void calculatePlayerScore(Player[] allPlayers, BoardGameCounter current) {
     int lengthAllPlayers = allPlayers.length;
 
     // Favor games that the user haven't played much
@@ -134,23 +82,23 @@ public class GameNightRecommender {
     }
   }
 
-  public void calculatePersonalRating(Player player, BoardGameCounter gameCounter, int lengthAllPlayers) {
+  private void calculatePersonalRating(Player player, BoardGameCounter gameCounter, int lengthAllPlayers) {
     double rating = player.getPersonalRating(gameCounter.game);
-    if(rating == 0) {
+    if (rating == 0) {
       rating = 5; // default to a rating of 5/10
     }
-    if(rating < 5) {
-      double value = - 100 / lengthAllPlayers;
+    if (rating < 5) {
+      double value = -100 / lengthAllPlayers;
       gameCounter.reasons.add(new Reason("Rating less than 5(" + value + ").", value));
       gameCounter.value -= 100 / lengthAllPlayers; // Decrease recommendation massively
     }
     // If 10/10 rating for all players, score a massive 50 points.
-    double value = rating * 5 /lengthAllPlayers;
+    double value = rating * 5 / lengthAllPlayers;
     gameCounter.reasons.add(new Reason("Rating is " + rating + "(" + value + ").", value));
     gameCounter.value += value;
   }
 
-  public double calculateDateScore(Play play, BoardGame game, int lengthAllPlayers) {
+  private double calculateDateScore(Play play, BoardGame game, int lengthAllPlayers) {
 
     String date = play.date;
     Date dateFormatted;
@@ -178,7 +126,7 @@ public class GameNightRecommender {
     return Math.min(absoluteMin, diffInDays * increaseBy);
   }
 
-  public void calculateCombinationScore(BoardGameCounter current, Player player, int numberOfPlayers) {
+  private void calculateCombinationScore(BoardGameCounter current, Player player, int numberOfPlayers) {
 
     ArrayList<BoardGame> listOfMap = new ArrayList<>();
 
@@ -206,14 +154,13 @@ public class GameNightRecommender {
     BoardGame currentGame = current.game;
 
     // Favor high complexity if player likes such games
-    if((player.getMaxComplexity() > 2.5) && Math.abs(player.getMaxComplexity() - currentGame.complexity) <= 1) {
-      if(player.getAverageRatingOfGamesAboveComplexity(2.5) > 5) {
+    if ((player.getMaxComplexity() > 2.5) && Math.abs(player.getMaxComplexity() - currentGame.complexity) <= 1) {
+      if (player.getAverageRatingOfGamesAboveComplexity(2.5) > 5) {
         double value = 20 / (numberOfPlayers - 1);
         current.value += value;
         current.reasons.add(new Reason("Player has played games of similar high complexity and liked them(" + value + ").", value));
-      }
-      else {
-        double value = - 40 / (numberOfPlayers - 1); // Should try to not force players to play too complex games
+      } else {
+        double value = -40 / (numberOfPlayers - 1); // Should try to not force players to play too complex games
         current.value += value;
         current.reasons.add(new Reason("Player has played games of similar high complexity and disliked them(" + value + ").", value));
 
@@ -230,7 +177,7 @@ public class GameNightRecommender {
       GameCategory[] otherCategories = otherGame.categories;
       if (currentGame.equals(otherGame)) continue;
 
-      if(player.getPersonalRating(otherGame) < 6) continue;
+      if (player.getPersonalRating(otherGame) < 6) continue;
 
       // Up to 6 points based on type match
       if (currentGame.type.equals(otherGame.type)) {
@@ -269,8 +216,8 @@ public class GameNightRecommender {
     }
   }
 
-  public void calculateAbsoluteFactorsScore(BoardGameCounter current, int maxTime, Player[] allPlayers,
-                                             double averageComplexityGivingAllPlayersEqualWeight) {
+  private void calculateAbsoluteFactorsScore(BoardGameCounter current, int maxTime, Player[] allPlayers,
+                                            double averageComplexityGivingAllPlayersEqualWeight) {
     BoardGame currentGame = current.game;
 
     // Personal rating should matter
@@ -325,7 +272,7 @@ public class GameNightRecommender {
     if (approximationTime <= maxTime) {
       double value = 20;
       current.value += value;
-      current.reasons.add(new Reason("ApproximationTime is lower than maxTime(" + value +").", value));
+      current.reasons.add(new Reason("ApproximationTime is lower than maxTime(" + value + ").", value));
     }
 
     // How fitting is the complexity
@@ -336,54 +283,54 @@ public class GameNightRecommender {
     if (difference >= 0.8) {
       double value = -5;
       current.value += value;
-      current.reasons.add(new Reason("Difference in complexity bigger than 0.8(" + value +").", value));
+      current.reasons.add(new Reason("Difference in complexity bigger than 0.8(" + value + ").", value));
 
       if (difference >= 1.0) {
         value = -2;
         current.value += value;
-        current.reasons.add(new Reason("Difference in complexity bigger than 1.0(" + value +").", value));
+        current.reasons.add(new Reason("Difference in complexity bigger than 1.0(" + value + ").", value));
       }
       if (difference >= 1.2) {
         value = -2;
         current.value += value;
-        current.reasons.add(new Reason("Difference in complexity bigger than 1.2(" + value +").", value));
+        current.reasons.add(new Reason("Difference in complexity bigger than 1.2(" + value + ").", value));
       }
       if (difference >= 1.4) {
         value = -2;
         current.value += value;
-        current.reasons.add(new Reason("Difference in complexity bigger than 1.4(" + value +").", value));
+        current.reasons.add(new Reason("Difference in complexity bigger than 1.4(" + value + ").", value));
       }
       if (difference >= 1.5) {
         value = -4;
         current.value += value;
-        current.reasons.add(new Reason("Difference in complexity bigger than 1.5(" + value +").", value));
+        current.reasons.add(new Reason("Difference in complexity bigger than 1.5(" + value + ").", value));
       }
     }
     // If low difference, recommend more!
     else if (difference <= 0.8) {
       double value = 5;
       current.value += value;
-      current.reasons.add(new Reason("Difference in complexity smaller than 0.8(" + value +").",value));
+      current.reasons.add(new Reason("Difference in complexity smaller than 0.8(" + value + ").", value));
 
       if (difference <= 0.5) {
         value = 5;
         current.value += value;
-        current.reasons.add(new Reason("Difference in complexity smaller than 0.8(" + value +").",value));
+        current.reasons.add(new Reason("Difference in complexity smaller than 0.8(" + value + ").", value));
       }
       if (difference <= 0.4) {
         value = 3;
         current.value += value;
-        current.reasons.add(new Reason("Difference in complexity smaller than 0.8(" + value +").",value));
+        current.reasons.add(new Reason("Difference in complexity smaller than 0.8(" + value + ").", value));
       }
       if (difference <= 0.3) {
         value = 3;
         current.value += value;
-        current.reasons.add(new Reason("Difference in complexity smaller than 0.8(" + value +").",value));
+        current.reasons.add(new Reason("Difference in complexity smaller than 0.8(" + value + ").", value));
       }
       if (difference <= 0.2) {
         value = 4;
         current.value += value;
-        current.reasons.add(new Reason("Difference in complexity smaller than 0.8(" + value +").", value));
+        current.reasons.add(new Reason("Difference in complexity smaller than 0.8(" + value + ").", value));
       }
     }
 
@@ -391,10 +338,10 @@ public class GameNightRecommender {
     int quartersPassed = (int) approximationTime / 15; // Rounding down due to using integers
 
     // Only add additional rating if actually a longer game
-    if(quartersPassed >= 2) {
+    if (quartersPassed >= 2) {
       double value = quartersPassed * 5; // An additional five points for every quarter of the game
       current.value += value;
-      current.reasons.add(new Reason(quartersPassed + " quarters passed, we prefer long games(" + value +").", value));
+      current.reasons.add(new Reason(quartersPassed + " quarters passed, we prefer long games(" + value + ").", value));
 
     }
 
@@ -404,13 +351,13 @@ public class GameNightRecommender {
       if (i == allPlayers.length + 1) {
         double value = 20;
         current.value += value;
-        current.reasons.add(new Reason("Game is best with " + i + ", matching player number(" + value +").", value));
+        current.reasons.add(new Reason("Game is best with " + i + ", matching player number(" + value + ").", value));
         break;
       }
     }
   }
 
-  public BoardGameCounter[] calculateSuggestedGames(BoardGameCounter[] gamesWithCounter, int maxTime) {
+  private BoardGameCounter[] calculateSuggestedGames(BoardGameCounter[] gamesWithCounter, int maxTime) {
     gamesWithCounter = InsertionSort.sortGamesWithCounter(gamesWithCounter);
 /**
  System.out.println("Ratings for each game");

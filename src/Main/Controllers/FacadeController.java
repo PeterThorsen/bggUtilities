@@ -1,5 +1,6 @@
 package Main.Controllers;
 
+import Main.Models.Logic.GameNightRecommender;
 import Main.Models.Structure.BoardGame;
 import Main.Models.Structure.BoardGameSuggestion;
 import Main.Models.Structure.Play;
@@ -17,7 +18,7 @@ public class FacadeController {
   public FacadeController(ICollectionBuilder collectionBuilder, String username) {
     this.username = username;
     dataController = new DataDisplayController(collectionBuilder, username);
-    logicController = new LogicController(this);
+    logicController = new LogicController(this, new GameNightRecommender());
   }
 
   public BoardGame[] getAllGames() {
