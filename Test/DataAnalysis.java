@@ -5,14 +5,12 @@ import Main.Models.Storage.ICollectionBuilder;
 import Main.Models.Structure.BoardGame;
 import Main.Models.Structure.Play;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.HashMap;
 
-/**
- * Created by Peter on 24/01/2017.
- */
-
+@Ignore
 public class DataAnalysis {
   private FacadeController facadeController;
   private Play[] allPlays;

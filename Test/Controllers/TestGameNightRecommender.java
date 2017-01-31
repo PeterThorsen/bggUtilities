@@ -4,11 +4,12 @@ import Main.Controllers.FacadeController;
 import Main.Models.Network.IConnectionHandler;
 import Main.Models.Storage.CollectionBuilder;
 import Main.Models.Storage.ICollectionBuilder;
-import Main.Models.Structure.*;
-import Main.Sorting.InsertionSortReasons;
+import Main.Models.Structure.BoardGame;
+import Main.Models.Structure.BoardGameCounter;
+import Main.Models.Structure.BoardGameSuggestion;
+import Main.Models.Structure.Player;
 import Models.StubsAndMocks.ConnectionHandlerStub;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -263,7 +264,7 @@ public class TestGameNightRecommender {
     for (BoardGameCounter gameCounter : suggestedCombination) {
       if(gameCounter.game.complexity > 2) {
         found = true;
-        System.out.println(gameCounter.game);
+        break;
       }
     }
     assertFalse(found);
