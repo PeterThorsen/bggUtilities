@@ -3,7 +3,7 @@ package Main.Views.Player;
 import Main.Models.Structure.BoardGameCounter;
 import Main.Models.Structure.BoardGameSuggestion;
 import Main.Models.Structure.Reason;
-import Main.Sorting.InsertionSortReasons;
+import Main.Sorting.InsertionSort;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -42,7 +42,7 @@ public class SuggestedBoardGamesView {
                   return suggestedGames[row].approximateTime;
                 }
                 if (col == 2) {
-                  Reason[] reasons = InsertionSortReasons.sort(suggestedGames[row].reasons);
+                  Reason[] reasons = InsertionSort.sortReasons(suggestedGames[row].reasons);
                   System.out.println("------ REASONS " + suggestedGames[row].game.name +" ------");
                   for (Reason reason : reasons) {
                     System.out.println(reason);

@@ -2,7 +2,7 @@ package Main.Controllers;
 
 import Main.Models.Storage.ICollectionBuilder;
 import Main.Models.Structure.*;
-import Main.Sorting.InsertionSortPlayers;
+import Main.Sorting.InsertionSort;
 
 import java.util.ArrayList;
 
@@ -42,7 +42,7 @@ public class DataDisplayController implements IDataController {
 
   @Override
   public Player[] getAllPlayers() {
-    players = InsertionSortPlayers.sort(players);
+    players = InsertionSort.sortPlayers(players);
     return players;
   }
 

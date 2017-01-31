@@ -18,7 +18,7 @@ public class TestInsertionSort {
     Player[] allPlayers = new Player[1];
     allPlayers[0] = player1;
 
-    allPlayers = InsertionSortPlayers.sort(allPlayers);
+    allPlayers = InsertionSort.sortPlayers(allPlayers);
     assertEquals("Peter", allPlayers[0].name);
   }
 
@@ -30,7 +30,7 @@ public class TestInsertionSort {
     allPlayers[0] = player1;
     allPlayers[1] = player2;
 
-    allPlayers = InsertionSortPlayers.sort(allPlayers);
+    allPlayers = InsertionSort.sortPlayers(allPlayers);
     assertEquals("Anna", allPlayers[0].name);
     assertEquals("Peter", allPlayers[1].name);
   }
@@ -43,7 +43,7 @@ public class TestInsertionSort {
     allPlayers[0] = player1;
     allPlayers[1] = player2;
 
-    allPlayers = InsertionSortPlayers.sort(allPlayers);
+    allPlayers = InsertionSort.sortPlayers(allPlayers);
     assertEquals("anna", allPlayers[0].name);
     assertEquals("Peter", allPlayers[1].name);
   }
@@ -58,7 +58,7 @@ public class TestInsertionSort {
     allPlayers[1] = player2;
     allPlayers[2] = player3;
 
-    allPlayers = InsertionSortPlayers.sort(allPlayers);
+    allPlayers = InsertionSort.sortPlayers(allPlayers);
     assertEquals("Anna", allPlayers[0].name);
     assertEquals("Ben", allPlayers[1].name);
     assertEquals("Peter", allPlayers[2].name);
@@ -71,7 +71,7 @@ public class TestInsertionSort {
     String[] allStrings = new String[1];
     allStrings[0] = str1;
 
-    allStrings = InsertionSortStrings.sort(allStrings);
+    allStrings = InsertionSort.sortStrings(allStrings);
     assertEquals(str1, allStrings[0]);
   }
 
@@ -85,7 +85,7 @@ public class TestInsertionSort {
     allStrings[0] = str1;
     allStrings[1] = str2;
 
-    allStrings = InsertionSortStrings.sort(allStrings);
+    allStrings = InsertionSort.sortStrings(allStrings);
     assertEquals(str2, allStrings[0]);
     assertEquals(str1, allStrings[1]);
   }
@@ -100,7 +100,7 @@ public class TestInsertionSort {
     allStrings[0] = str1;
     allStrings[1] = str2;
 
-    allStrings = InsertionSortStrings.sort(allStrings);
+    allStrings = InsertionSort.sortStrings(allStrings);
     assertEquals(str2, allStrings[0]);
     assertEquals(str1, allStrings[1]);
   }
@@ -118,7 +118,7 @@ public class TestInsertionSort {
     allStrings[2] = str3;
 
 
-    allStrings = InsertionSortStrings.sort(allStrings);
+    allStrings = InsertionSort.sortStrings(allStrings);
     assertEquals(str2, allStrings[0]);
     assertEquals(str3, allStrings[1]);
     assertEquals(str1, allStrings[2]);
@@ -130,7 +130,7 @@ public class TestInsertionSort {
     StringIntHolder[] arr = new StringIntHolder[1];
     arr[0] = holder1;
 
-    arr = InsertionSortStringIntHolder.sort(arr);
+    arr = InsertionSort.sortStringIntHolder(arr);
     assertEquals("a", arr[0].str);
   }
 
@@ -143,7 +143,7 @@ public class TestInsertionSort {
     arr[1] = holder2;
 
 
-    arr = InsertionSortStringIntHolder.sort(arr);
+    arr = InsertionSort.sortStringIntHolder(arr);
     assertEquals("b", arr[0].str);
     assertEquals("a", arr[1].str);
   }
@@ -160,7 +160,7 @@ public class TestInsertionSort {
     arr[0] = holder3;
 
 
-    arr = InsertionSortStringIntHolder.sort(arr);
+    arr = InsertionSort.sortStringIntHolder(arr);
     assertEquals("c", arr[0].str);
     assertEquals("b", arr[1].str);
     assertEquals("a", arr[2].str);
@@ -210,7 +210,7 @@ public class TestInsertionSort {
 
     BoardGameCounter[] arr = new BoardGameCounter[1];
     arr[0] = counter;
-    arr = InsertionSortGamesWithCounter.sort(arr);
+    arr = InsertionSort.sortGamesWithCounter(arr);
     assertEquals("Agricola", arr[0].game.name);
   }
 
@@ -261,7 +261,7 @@ public class TestInsertionSort {
     BoardGameCounter[] arr = new BoardGameCounter[2];
     arr[0] = counter;
     arr[1] = counter2;
-    arr = InsertionSortGamesWithCounter.sort(arr);
+    arr = InsertionSort.sortGamesWithCounter(arr);
     assertEquals("Hive", arr[0].game.name);
     assertEquals("Agricola", arr[1].game.name);
   }
@@ -316,7 +316,7 @@ public class TestInsertionSort {
     arr[0] = counter;
     arr[1] = counter1;
     arr[2] = counter2;
-    arr = InsertionSortGamesWithCounter.sort(arr);
+    arr = InsertionSort.sortGamesWithCounter(arr);
     assertEquals("Agricola", arr[0].game.name);
     assertEquals(5, arr[0].value, 0); // last is how much the values can be off by
     assertEquals("Hive", arr[1].game.name);

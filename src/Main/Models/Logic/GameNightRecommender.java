@@ -2,7 +2,7 @@ package Main.Models.Logic;
 
 import Main.Models.Structure.Reason;
 import Main.Models.Structure.*;
-import Main.Sorting.InsertionSortGamesWithCounter;
+import Main.Sorting.InsertionSort;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -411,7 +411,7 @@ public class GameNightRecommender {
   }
 
   public BoardGameCounter[] calculateSuggestedGames(BoardGameCounter[] gamesWithCounter, int maxTime) {
-    gamesWithCounter = InsertionSortGamesWithCounter.sort(gamesWithCounter);
+    gamesWithCounter = InsertionSort.sortGamesWithCounter(gamesWithCounter);
 /**
  System.out.println("Ratings for each game");
  for (BoardGameCounter counter : gamesWithCounter) {

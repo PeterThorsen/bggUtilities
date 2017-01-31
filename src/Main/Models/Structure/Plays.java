@@ -1,6 +1,6 @@
 package Main.Models.Structure;
 
-import Main.Sorting.InsertionSortPlays;
+import Main.Sorting.InsertionSort;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -108,7 +108,7 @@ public class Plays {
       sortedPlays[i] = unsortedPlays.get(i);
     }
 
-    sortedPlays = InsertionSortPlays.sort(sortedPlays);
+    sortedPlays = InsertionSort.sortPlays(sortedPlays);
 
     return sortedPlays;
   }

@@ -1,13 +1,12 @@
 package Main.Views.Player;
 
+import Main.Controllers.FacadeController;
 import Main.Models.Structure.BoardGame;
 import Main.Models.Structure.Holders.BoardGameIntHolder;
 import Main.Models.Structure.Holders.StringIntHolder;
 import Main.Models.Structure.Play;
 import Main.Models.Structure.Player;
-import Main.Controllers.FacadeController;
-import Main.Sorting.InsertionSortBoardGameIntHolder;
-import Main.Sorting.InsertionSortStringIntHolder;
+import Main.Sorting.InsertionSort;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -67,7 +66,7 @@ public class PlayerView {
       pos++;
     }
 
-    gamesSortedByPlays = InsertionSortBoardGameIntHolder.sort(gamesSortedByPlays);
+    gamesSortedByPlays = InsertionSort.sortBoardGameIntHolder(gamesSortedByPlays);
     BoardGameIntHolder[] finalGamesSortedByPlays = gamesSortedByPlays;
 
     TableModel dataModel = new
@@ -221,7 +220,7 @@ public class PlayerView {
       pos++;
     }
 
-    mostCommonPlayersSorted = InsertionSortStringIntHolder.sort(mostCommonPlayersSorted);
+    mostCommonPlayersSorted = InsertionSort.sortStringIntHolder(mostCommonPlayersSorted);
 
     StringIntHolder[] finalMostCommonPlayersSorted = mostCommonPlayersSorted;
 
