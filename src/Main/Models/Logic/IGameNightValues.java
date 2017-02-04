@@ -32,7 +32,7 @@ public interface IGameNightValues {
 
   double ownersPersonalRatingIsHigherThanAverage(double personalRating, double averageRating);
 
-  double averageRatingIsHigherThanOwnersPersonalRating(double personalRating, double averageComplexityGivingAllPlayersEqualWeight);
+  double averageRatingIsHigherThanOwnersPersonalRating(double personalRating, double averageRating);
 
   double canEasilyPlayGameWithinTimeLimit();
 

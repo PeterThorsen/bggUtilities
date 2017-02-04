@@ -5,7 +5,7 @@ import Main.Models.Structure.Holders.GamePlayHolder;
 import java.util.HashMap;
 
 /**
- * Created by Peter on 10/11/2016.
+ * Holds information on each co-players of the user.
  */
 public class Player {
   public final String name;
@@ -25,7 +25,22 @@ public class Player {
     this.allPlays = allPlays;
     interpretPlays();
     calculateComplexity();
+    calculateTypeScores();
+    calculateMechanismScores();
+    calculateCategoryScores();
   }
+
+  private void calculateTypeScores() {
+
+  }
+
+  private void calculateMechanismScores() {
+  }
+
+  private void calculateCategoryScores() {
+  }
+
+
 
   private Play[] reverseArray(Play[] allPlays) {
     for (int i = 0; i < allPlays.length / 2; i++) {
