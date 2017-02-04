@@ -25,6 +25,7 @@ public class ConnectionHandler implements IConnectionHandler {
     String url = buildCollectionURL(username);
     Document xmlResponseInDocument = sendRequest(url);
 
+    // TODO: 03/02/2017 will return null if bad connection
     if (xmlResponseInDocument.getElementsByTagName("error").getLength() > 0) {
       // Invalid user id, remember to check for null on receiving end
       return null;

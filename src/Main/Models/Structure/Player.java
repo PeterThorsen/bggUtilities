@@ -17,6 +17,7 @@ public class Player {
   private double averageComplexity;
   private double maxComplexity;
   private double minComplexity;
+  private double magicComplexity;
 
   public Player(String name, Play[] allPlays) {
     allPlays = reverseArray(allPlays);
@@ -25,6 +26,7 @@ public class Player {
     interpretPlays();
     calculateComplexity();
   }
+
   private Play[] reverseArray(Play[] allPlays) {
     for (int i = 0; i < allPlays.length / 2; i++) {
       Play temp = allPlays[i];
@@ -40,6 +42,8 @@ public class Player {
   }
 
   private void calculateComplexity() {
+    calculateMagicComplexity();
+
     double counter = 0;
     double totalComplexity = 0;
     double max = 1;
@@ -62,8 +66,30 @@ public class Player {
       averageComplexity = totalComplexity / counter;
       maxComplexity = max;
       minComplexity = min;
-      return;
     }
+  }
+
+  private void calculateMagicComplexity() {
+    double totalScore = 0;
+    double accumulator = 0;
+
+    for (BoardGame key : gameToPlaysMap.keySet()) {
+      double keyComplexity = key.complexity;
+      double rating = getPersonalRating(key);
+      if(rating < 5) continue;
+
+      double power = 1.1;
+      power += 1.2 * (rating - 5);
+
+      double poweredComplexity = Math.pow(keyComplexity, power);
+      double changedComplexity = keyComplexity * poweredComplexity;
+
+      totalScore += changedComplexity;
+      accumulator += poweredComplexity;
+
+    }
+    magicComplexity = totalScore / accumulator;
+
   }
 
   private void interpretPlays() {
@@ -218,5 +244,12 @@ public class Player {
     }
 
     return totalRating / counter;
+  }
+
+  /**
+   * @return a double between 1 and 5 inclusive indicating the users actual complexity level.
+   */
+  public double getMagicComplexity() {
+    return magicComplexity;
   }
 }

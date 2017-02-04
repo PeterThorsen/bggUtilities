@@ -10,22 +10,17 @@ import java.util.ArrayList;
  */
 public class GameNightUtil {
 
-  public double[] calculateAverageComplexity(Player[] players) {
-    double minComplexity = 6.0;
-    double maxComplexity = 0.0;
+  public double calculateAverageComplexity(Player[] players) {
     double averageComplexityGivingAllPlayersEqualWeight = 0;
 
     for (Player player : players) {
       double currentAverage = player.getAverageComplexity();
-      if (player.getMaxComplexity() > maxComplexity) maxComplexity = player.getMaxComplexity();
-      if (player.getMinComplexity() < minComplexity) minComplexity = player.getMinComplexity();
-
       averageComplexityGivingAllPlayersEqualWeight += currentAverage;
     }
 
     // To direct algorithm towards better recommendations
     averageComplexityGivingAllPlayersEqualWeight = averageComplexityGivingAllPlayersEqualWeight / Double.valueOf(players.length);
-    return new double[] {minComplexity, maxComplexity, averageComplexityGivingAllPlayersEqualWeight};
+    return averageComplexityGivingAllPlayersEqualWeight;
   }
 
   public BoardGame[] getAllValidBoardgames(Player[] players, int maxTime, BoardGame[] allGames, double minComplexity, double maxComplexity) {
@@ -76,4 +71,36 @@ public class GameNightUtil {
     return allValid;
   }
 
+  public double calculatePersonalComplexity(Player[] players) {
+    double magicComplexityGivingAllPlayersEqualWeight = 0;
+
+    for (Player player : players) {
+      double currentComplexity = player.getMagicComplexity();
+      magicComplexityGivingAllPlayersEqualWeight += currentComplexity;
+    }
+    // To direct algorithm towards better recommendations
+    magicComplexityGivingAllPlayersEqualWeight = magicComplexityGivingAllPlayersEqualWeight / (double) players.length;
+    return magicComplexityGivingAllPlayersEqualWeight;
+
+  }
+  private double[] getMinMaxComplexities(Player[] players) {
+    double minComplexity = 6.0;
+    double maxComplexity = 0.0;
+
+    for (Player player : players) {
+      if (player.getMaxComplexity() > maxComplexity) maxComplexity = player.getMaxComplexity();
+      if (player.getMinComplexity() < minComplexity) minComplexity = player.getMinComplexity();
+    }
+
+    return new double[] {minComplexity, maxComplexity, 0, 0};
+  }
+
+  public double[] calculateComplexities(Player[] players) {
+    double[] complexities = getMinMaxComplexities(players);
+    double personalComplexity = calculatePersonalComplexity(players);
+    double averageComplexity =  calculateAverageComplexity(players);
+    complexities[2] = personalComplexity;
+    complexities[3] = averageComplexity;
+    return complexities;
+  }
 }

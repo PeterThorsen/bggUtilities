@@ -14,6 +14,6 @@ public class Reason {
 
   @Override
   public String toString() {
-    return reason;
+    return reason + " (" + value + ")";
   }
 }

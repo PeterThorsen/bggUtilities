@@ -1,11 +1,12 @@
 package Main.Controllers;
 
+import Main.Models.Logic.ChosenGameNightValues;
 import Main.Models.Logic.GameNightRecommender;
+import Main.Models.Storage.ICollectionBuilder;
 import Main.Models.Structure.BoardGame;
 import Main.Models.Structure.BoardGameSuggestion;
 import Main.Models.Structure.Play;
 import Main.Models.Structure.Player;
-import Main.Models.Storage.ICollectionBuilder;
 
 /**
  * Created by Peter on 05/10/2016.
@@ -18,7 +19,7 @@ public class FacadeController {
   public FacadeController(ICollectionBuilder collectionBuilder, String username) {
     this.username = username;
     dataController = new DataDisplayController(collectionBuilder, username);
-    logicController = new LogicController(this, new GameNightRecommender());
+    logicController = new LogicController(this, new GameNightRecommender(new ChosenGameNightValues()));
   }
 
   public BoardGame[] getAllGames() {

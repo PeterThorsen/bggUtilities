@@ -291,17 +291,15 @@ public class TestGameNightRecommender {
 
   @Test
   public void recommendedGamesForGroupWithExperienceOfLongerGamesShouldContainHigherComplexityGamesGiven120Minutes() {
-    Player[] players = new Player[5];
-    players[0] = allPlayers[0];
-    players[1] = allPlayers[3];
-    players[2] = allPlayers[6];
-    players[3] = allPlayers[15];
-    players[4] = allPlayers[22];
+    Player[] players = new Player[2];
+    players[0] = allPlayers[6];
+    players[1] = allPlayers[18];
     BoardGameSuggestion suggestions = facadeController.suggestGames(players, 120);
     BoardGameCounter[] suggestedCombination = suggestions.suggestedCombination;
 
     boolean found = false;
     for (BoardGameCounter gameCounter : suggestedCombination) {
+      System.out.println(gameCounter.game);
       if(gameCounter.game.complexity > 1.85) {
         found = true;
       }

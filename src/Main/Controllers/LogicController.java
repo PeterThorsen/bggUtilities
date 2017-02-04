@@ -33,14 +33,17 @@ public class LogicController implements ILogicController {
 
     // Calculate or retrieve data
     BoardGame[] allGames = facadeController.getAllGames();
-    double[] complexities = gameNightUtil.calculateAverageComplexity(players);
+    //double[] complexities = gameNightUtil.calculateAverageComplexity(players);
+    //double[] complexities = gameNightUtil.calculatePersonalComplexity(players);
+    double[] complexities = gameNightUtil.calculateComplexities(players);
     double minComplexity = complexities[0];
     double maxComplexity = complexities[1];
-    double averageComplexityGivingAllPlayersEqualWeight = complexities[2];
+    double magicComplexity = complexities[2];
+    double averageComplexityGivingAllPlayersEqualWeight = complexities[3];
 
     // Calculate valid games and best combination for given time and players
     BoardGame[] allValid = gameNightUtil.getAllValidBoardgames(players, maxTime, allGames, minComplexity, maxComplexity);
-    BoardGameCounter[] bestCombination = gameNightRecommender.buildBestGameNight(allValid, players, maxTime, averageComplexityGivingAllPlayersEqualWeight);
+    BoardGameCounter[] bestCombination = gameNightRecommender.buildBestGameNight(allValid, players, maxTime, magicComplexity, averageComplexityGivingAllPlayersEqualWeight);
 
     // Return calculated data
     BoardGameSuggestion suggestedGames = new BoardGameSuggestion(bestCombination, allValid);
