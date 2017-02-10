@@ -24,7 +24,7 @@ public class ChosenGameNightValues implements IGameNightValues {
 
   @Override
   public int allPlayersHaveNotPlayedGameSinceTimeLimit() {
-    return 12;
+    return 20;
   }
 
   @Override
@@ -34,17 +34,17 @@ public class ChosenGameNightValues implements IGameNightValues {
 
   @Override
   public double allPlayersHaveOnlyPlayedGamesOfCurrentType() {
-    return 6.0;
+    return 50.0;
   }
 
   @Override
   public double allPlayersHaveOnlyPlayedGamesOfCurrentMechanism() {
-    return 7.0;
+    return 1000;
   }
 
   @Override
   public double allPlayersHaveOnlyPlayedGamesOfCurrentCategory() {
-    return 7.0;
+    return 200.0;
   }
 
   @Override
@@ -58,13 +58,13 @@ public class ChosenGameNightValues implements IGameNightValues {
   }
 
   @Override
-  public double averageRatingIsHigherThanOwnersPersonalRating(double personalRating, double averageComplexityGivingAllPlayersEqualWeight) {
-    return 2;
+  public double averageRatingIsHigherThanOwnersPersonalRating(double personalRating, double averageRating) {
+    return 2 + (averageRating - personalRating) * 2;
   }
 
   @Override
   public double canEasilyPlayGameWithinTimeLimit() {
-    return 20;
+    return 5;
   }
 
   @Override
@@ -134,6 +134,6 @@ public class ChosenGameNightValues implements IGameNightValues {
 
   @Override
   public double gameBestWithCurrentNumberOfPlayers() {
-    return 20;
+    return 25;
   }
 }

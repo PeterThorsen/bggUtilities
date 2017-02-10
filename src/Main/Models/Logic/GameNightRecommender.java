@@ -92,7 +92,6 @@ public class GameNightRecommender implements IGameNightRecommender {
     if (rating == 0) {
       rating = 5; // default to a rating of 5/10
     }
-    // If 10/10 rating for all players, score a massive 50 points.
     double value = gameNightValues.playerRating(rating) / lengthAllPlayers;
     gameCounter.reasons.add(new Reason("Player rating is " + rating + ".", value));
     gameCounter.value += value;
@@ -165,14 +164,14 @@ public class GameNightRecommender implements IGameNightRecommender {
 
       if (player.getPersonalRating(otherGame) < 6) continue;
 
-      // Up to 6 points based on type match
+      // points based on type match
       if (currentGame.type.equals(otherGame.type)) {
         double value = gameNightValues.allPlayersHaveOnlyPlayedGamesOfCurrentType() / numberOfPlayers / allGames.length;
         current.value += value;
-        current.reasons.add(new Reason("Type matches other game " + otherGame + " for " + player.name + ".", value));
+        current.reasons.add(new Reason("Type " + currentGame.type + " matches other game " + otherGame + " for " + player.name + ".", value));
       }
 
-      // Up to 7 points based on mechanisms match
+      // points based on mechanisms match
       for (int j = 0; j < currentMechanisms.length; j++) {
         GameMechanism cMech = currentMechanisms[j];
         for (int k = 0; k < otherMechanisms.length; k++) {
@@ -180,7 +179,7 @@ public class GameNightRecommender implements IGameNightRecommender {
           if (cMech.equals(oMech)) {
             double value = gameNightValues.allPlayersHaveOnlyPlayedGamesOfCurrentMechanism() / numberOfPlayers / allGames.length / otherMechanisms.length / currentMechanisms.length;
             current.value += value;
-            current.reasons.add(new Reason("Mechanisms " + cMech + " matches other game " + otherGame + " for " + player.name + ".", value));
+            current.reasons.add(new Reason("Mechanism " + cMech + " matches other game " + otherGame + " for " + player.name + ".", value));
 
           }
         }
