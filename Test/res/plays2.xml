@@ -1,456 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><plays username="cwaq" userid="1019300" total="114" page="1" termsofuse="http://boardgamegeek.com/xmlapi/termsofuse">
-<play id="20954085" date="2016-11-27" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Crokinole" objecttype="thing" objectid="521">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Mikkel" startposition="" color="" score="" new="0" rating="6" win="0" />
-						</players>
-					</play>
-	<play id="20954087" date="2016-11-27" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Dixit Odyssey" objecttype="thing" objectid="92828">
-				<subtypes>
-										<subtype value="boardgame" />
-										<subtype value="boardgameintegration" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="10" win="0" />
-						<player username="" userid="0" name="Mikkel" startposition="" color="" score="" new="0" rating="8" win="0" />
-						<player username="" userid="0" name="Bolette" startposition="" color="" score="" new="0" rating="7" win="0" />
-						<player username="" userid="0" name="Alf" startposition="" color="" score="" new="0" rating="8" win="0" />
-						<player username="" userid="0" name="Lisbeth" startposition="" color="" score="" new="0" rating="9" win="0" />
-						</players>
-					</play>
-	<play id="20908359" date="2016-11-26" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Carcassonne" objecttype="thing" objectid="822">
-				<subtypes>
-										<subtype value="boardgame" />
-										<subtype value="boardgameintegration" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="9" win="0" />
-						</players>
-					</play>
-	<play id="20908329" date="2016-11-25" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Crokinole" objecttype="thing" objectid="521">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="8" win="0" />
-						<player username="" userid="0" name="Martin" startposition="" color="" score="" new="0" rating="8" win="0" />
-						<player username="" userid="0" name="Michelle" startposition="" color="" score="" new="0" rating="7" win="0" />
-						<player username="" userid="0" name="Sanne" startposition="" color="" score="" new="0" rating="6" win="0" />
-						<player username="" userid="0" name="Melissa" startposition="" color="" score="" new="0" rating="8" win="0" />
-						<player username="" userid="0" name="Lotte" startposition="" color="" score="" new="0" rating="6" win="0" />
-						</players>
-					</play>
-	<play id="20908295" date="2016-11-25" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Jaipur" objecttype="thing" objectid="54043">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Martin" startposition="" color="" score="" new="0" rating="9" win="0" />
-						</players>
-					</play>
-	<play id="20844055" date="2016-11-22" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Hey, That&#039;s My Fish!" objecttype="thing" objectid="8203">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="7" win="0" />
-						</players>
-					</play>
-	<play id="20829529" date="2016-11-20" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Suburbia" objecttype="thing" objectid="123260">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="9" win="0" />
-						</players>
-					</play>
-	<play id="20816663" date="2016-11-19" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Crokinole" objecttype="thing" objectid="521">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Michelle" startposition="" color="" score="" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Martin" startposition="" color="" score="" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="20793634" date="2016-11-19" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Dixit Odyssey" objecttype="thing" objectid="92828">
-				<subtypes>
-										<subtype value="boardgame" />
-										<subtype value="boardgameintegration" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Marian" startposition="" color="" score="" new="0" rating="8" win="0" />
-						<player username="" userid="0" name="Liss" startposition="" color="" score="" new="0" rating="7" win="0" />
-						<player username="" userid="0" name="Jesper" startposition="" color="" score="" new="0" rating="8" win="0" />
-						<player username="" userid="0" name="Poul" startposition="" color="" score="" new="0" rating="8" win="0" />
-						</players>
-					</play>
-	<play id="20780514" date="2016-11-18" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Crokinole" objecttype="thing" objectid="521">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="20793619" date="2016-11-18" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Dixit Odyssey" objecttype="thing" objectid="92828">
-				<subtypes>
-										<subtype value="boardgame" />
-										<subtype value="boardgameintegration" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Marian" startposition="" color="" score="" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Poul" startposition="" color="" score="" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Jesper" startposition="" color="" score="" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="20762014" date="2016-11-16" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Crokinole" objecttype="thing" objectid="521">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="20723205" date="2016-11-12" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Sushi Go!" objecttype="thing" objectid="133473">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="8" win="0" />
-						</players>
-					</play>
-	<play id="20723201" date="2016-11-11" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Betrayal at House on the Hill" objecttype="thing" objectid="10547">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Martin" startposition="" color="" score="" new="0" rating="7" win="0" />
-						<player username="" userid="0" name="Josefine" startposition="" color="" score="" new="0" rating="4" win="0" />
-						<player username="" userid="0" name="Daniella" startposition="" color="" score="" new="0" rating="4" win="0" />
-						</players>
-					</play>
-	<play id="20723196" date="2016-11-11" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Colt Express" objecttype="thing" objectid="158899">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Martin" startposition="" color="" score="" new="0" rating="10" win="0" />
-						<player username="" userid="0" name="Josefine" startposition="" color="" score="" new="0" rating="7" win="0" />
-						<player username="" userid="0" name="Daniella" startposition="" color="" score="" new="0" rating="7" win="0" />
-						</players>
-					</play>
-	<play id="20562798" date="2016-10-30" quantity="3" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="The Resistance" objecttype="thing" objectid="41114">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="9" win="0" />
-						<player username="" userid="0" name="Mikkel" startposition="" color="" score="" new="0" rating="10" win="0" />
-						<player username="" userid="0" name="Lisbeth" startposition="" color="" score="" new="0" rating="10" win="0" />
-						<player username="" userid="0" name="Alf" startposition="" color="" score="" new="0" rating="9" win="0" />
-						<player username="" userid="0" name="Famse" startposition="" color="" score="" new="0" rating="3" win="0" />
-						</players>
-					</play>
-	<play id="20450779" date="2016-10-22" quantity="2" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Hanabi" objecttype="thing" objectid="98778">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="8" win="0" />
-						<player username="" userid="0" name="Alf" startposition="" color="" score="" new="0" rating="9" win="0" />
-						<player username="" userid="0" name="Lisbeth" startposition="" color="" score="" new="0" rating="7" win="0" />
-						<player username="" userid="0" name="Mikkel" startposition="" color="" score="" new="0" rating="8" win="0" />
-						</players>
-					</play>
-	<play id="20408481" date="2016-10-16" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Dixit Odyssey" objecttype="thing" objectid="92828">
-				<subtypes>
-										<subtype value="boardgame" />
-										<subtype value="boardgameintegration" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Marian" startposition="" color="" score="" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Poul" startposition="" color="" score="" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="20408478" date="2016-10-16" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="For Sale" objecttype="thing" objectid="172">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="7" win="0" />
-						<player username="" userid="0" name="Marian" startposition="" color="" score="" new="0" rating="6" win="0" />
-						<player username="" userid="0" name="Poul" startposition="" color="" score="" new="0" rating="7" win="0" />
-						</players>
-					</play>
-	<play id="20227772" date="2016-10-01" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Dixit Odyssey" objecttype="thing" objectid="92828">
-				<subtypes>
-										<subtype value="boardgame" />
-										<subtype value="boardgameintegration" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="20161873" date="2016-09-25" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Dixit Odyssey" objecttype="thing" objectid="92828">
-				<subtypes>
-										<subtype value="boardgame" />
-										<subtype value="boardgameintegration" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Alf" startposition="" color="" score="" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Lisbeth" startposition="" color="" score="" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="20161882" date="2016-09-25" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Love Letter" objecttype="thing" objectid="129622">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="7" win="0" />
-						<player username="" userid="0" name="Alf" startposition="" color="" score="" new="0" rating="7" win="0" />
-						<player username="" userid="0" name="Lisbeth" startposition="" color="" score="" new="0" rating="7" win="0" />
-						</players>
-					</play>
-	<play id="20097309" date="2016-09-18" quantity="3" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Dixit Odyssey" objecttype="thing" objectid="92828">
-				<subtypes>
-										<subtype value="boardgame" />
-										<subtype value="boardgameintegration" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Jesper" startposition="" color="" score="" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Marian" startposition="" color="" score="" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Poul" startposition="" color="" score="" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="20078486" date="2016-09-17" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Jaipur" objecttype="thing" objectid="54043">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="8" win="0" />
-						</players>
-					</play>
-	<play id="20078484" date="2016-09-17" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Takenoko" objecttype="thing" objectid="70919">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="8" win="0" />
-						</players>
-					</play>
-	<play id="20078481" date="2016-09-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Hive" objecttype="thing" objectid="2655">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Martin" startposition="" color="" score="" new="0" rating="10" win="0" />
-						</players>
-					</play>
-	<play id="20005456" date="2016-09-10" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="The Resistance" objecttype="thing" objectid="41114">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Jesper" startposition="" color="" score="" new="0" rating="8" win="0" />
-						<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Morten" startposition="" color="" score="" new="0" rating="5" win="0" />
-						<player username="" userid="0" name="Ulrik" startposition="" color="" score="" new="0" rating="5" win="0" />
-						</players>
-					</play>
-	<play id="20005423" date="2016-09-09" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Camel Up" objecttype="thing" objectid="153938">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Josefine" startposition="" color="" score="" new="0" rating="10" win="0" />
-						<player username="" userid="0" name="Martin" startposition="" color="" score="" new="0" rating="8" win="0" />
-						<player username="" userid="0" name="Daniella" startposition="" color="" score="" new="0" rating="10" win="0" />
-						</players>
-					</play>
-	<play id="20005442" date="2016-09-09" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Catan" objecttype="thing" objectid="13">
-				<subtypes>
-										<subtype value="boardgame" />
-										<subtype value="boardgameintegration" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Josefine" startposition="" color="" score="" new="0" rating="6" win="0" />
-						<player username="" userid="0" name="Martin" startposition="" color="" score="" new="0" rating="7" win="0" />
-						<player username="" userid="0" name="Daniella" startposition="" color="" score="" new="0" rating="6" win="0" />
-						</players>
-					</play>
-	<play id="20005433" date="2016-09-09" quantity="2" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Dixit Odyssey" objecttype="thing" objectid="92828">
-				<subtypes>
-										<subtype value="boardgame" />
-										<subtype value="boardgameintegration" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Daniella" startposition="" color="" score="" new="0" rating="8" win="0" />
-						<player username="" userid="0" name="Martin" startposition="" color="" score="" new="0" rating="8" win="0" />
-						<player username="" userid="0" name="Josefine" startposition="" color="" score="" new="0" rating="8" win="0" />
-						</players>
-					</play>
-	<play id="20005448" date="2016-09-09" quantity="2" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="For Sale" objecttype="thing" objectid="172">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Josefine" startposition="" color="" score="" new="0" rating="7" win="0" />
-						<player username="" userid="0" name="Daniella" startposition="" color="" score="" new="0" rating="7" win="0" />
-						<player username="" userid="0" name="Martin" startposition="" color="" score="" new="0" rating="7" win="0" />
-						</players>
-					</play>
-	<play id="20005427" date="2016-09-07" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Dixit Odyssey" objecttype="thing" objectid="92828">
-				<subtypes>
-										<subtype value="boardgame" />
-										<subtype value="boardgameintegration" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Poul" startposition="" color="" score="" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Marian" startposition="" color="" score="" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="19957182" date="2016-09-06" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Dixit Odyssey" objecttype="thing" objectid="92828">
-				<subtypes>
-										<subtype value="boardgame" />
-										<subtype value="boardgameintegration" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="19957190" date="2016-09-06" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Hey, That&#039;s My Fish!" objecttype="thing" objectid="8203">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="19957191" date="2016-09-06" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Hey, That&#039;s My Fish!" objecttype="thing" objectid="8203">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="20450844" date="2016-08-16" quantity="4" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="No Thanks!" objecttype="thing" objectid="12942">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="8" win="0" />
-						<player username="" userid="0" name="Liss" startposition="" color="" score="" new="0" rating="8" win="0" />
-						<player username="" userid="0" name="Marian" startposition="" color="" score="" new="0" rating="7" win="0" />
-						</players>
-					</play>
-	<play id="20450581" date="2016-07-31" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Bohnanza" objecttype="thing" objectid="11">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Michelle" startposition="" color="" score="" new="0" rating="10" win="0" />
-						<player username="" userid="0" name="Signe" startposition="" color="" score="" new="0" rating="8" win="0" />
-						<player username="" userid="0" name="Martin" startposition="" color="" score="" new="0" rating="8" win="0" />
-						<player username="" userid="0" name="Emil" startposition="" color="" score="" new="0" rating="7" win="0" />
-						</players>
-					</play>
-	<play id="20450588" date="2016-07-31" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Bohnanza" objecttype="thing" objectid="11">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="7" win="0" />
-						<player username="" userid="0" name="Michelle" startposition="" color="" score="" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Martin" startposition="" color="" score="" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="20450575" date="2016-07-26" quantity="3" length="0" incomplete="0" nowinstats="0" location="">
+<?xml version="1.0" encoding="utf-8"?><plays username="cwaq" userid="1019300" total="177" page="2" termsofuse="http://boardgamegeek.com/xmlapi/termsofuse">
+<play id="20450575" date="2016-07-26" quantity="3" length="0" incomplete="0" nowinstats="0" location="">
 			<item name="Bohnanza" objecttype="thing" objectid="11">
 				<subtypes>
 										<subtype value="boardgame" />
@@ -672,6 +221,16 @@
 						<player username="" userid="0" name="Joachim" startposition="" color="" score="" new="0" rating="7" win="0" />
 						</players>
 					</play>
+	<play id="21773415" date="2016-01-01" quantity="2" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="Agricola" objecttype="thing" objectid="31260">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Martin" startposition="" color="" score="" new="0" rating="7" win="0" />
+						</players>
+					</play>
 	<play id="20450553" date="2016-01-01" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
 			<item name="Betrayal at House on the Hill" objecttype="thing" objectid="10547">
 				<subtypes>
@@ -690,7 +249,7 @@
 									</subtypes>
 			</item>
 									<players>
-									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="8" win="0" />
+									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="7" win="0" />
 						<player username="" userid="0" name="Mikkel" startposition="" color="" score="" new="0" rating="9" win="0" />
 						<player username="" userid="0" name="Alf" startposition="" color="" score="" new="0" rating="6" win="0" />
 						<player username="" userid="0" name="Lisbeth" startposition="" color="" score="" new="0" rating="6" win="0" />
@@ -911,7 +470,7 @@
 									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
 						</players>
 					</play>
-	<play id="20450738" date="2016-01-01" quantity="3" length="0" incomplete="0" nowinstats="0" location="">
+	<play id="20450738" date="2016-01-01" quantity="5" length="0" incomplete="0" nowinstats="0" location="">
 			<item name="Fluxx" objecttype="thing" objectid="258">
 				<subtypes>
 										<subtype value="boardgame" />
@@ -1177,6 +736,7 @@
 						<player username="" userid="0" name="Steffen" startposition="" color="" score="" new="0" rating="6" win="0" />
 						<player username="" userid="0" name="Joachim" startposition="" color="" score="" new="0" rating="8" win="0" />
 						<player username="" userid="0" name="Arnar" startposition="" color="" score="" new="0" rating="7" win="0" />
+						<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="2" win="0" />
 						</players>
 					</play>
 	<play id="20673878" date="2016-01-01" quantity="2" length="0" incomplete="0" nowinstats="0" location="">
@@ -1189,6 +749,172 @@
 									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="5" win="0" />
 						<player username="" userid="0" name="Famse" startposition="" color="" score="" new="0" rating="10" win="0" />
 						<player username="" userid="0" name="Lisbeth" startposition="" color="" score="" new="0" rating="4" win="0" />
+						</players>
+					</play>
+	<play id="20673880" date="2016-01-01" quantity="2" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="Sequence" objecttype="thing" objectid="2375">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Marian" startposition="" color="" score="" new="0" rating="7" win="0" />
+						<player username="" userid="0" name="Jesper" startposition="" color="" score="" new="0" rating="6" win="0" />
+						<player username="" userid="0" name="Liss" startposition="" color="" score="" new="0" rating="9" win="0" />
+						</players>
+					</play>
+	<play id="20673882" date="2016-01-01" quantity="3" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="Sequence" objecttype="thing" objectid="2375">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Martin" startposition="" color="" score="" new="0" rating="6" win="0" />
+						<player username="" userid="0" name="Josefine" startposition="" color="" score="" new="0" rating="6" win="0" />
+						<player username="" userid="0" name="Daniella" startposition="" color="" score="" new="0" rating="6" win="0" />
+						</players>
+					</play>
+	<play id="20450924" date="2016-01-01" quantity="6" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="Suburbia" objecttype="thing" objectid="123260">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="20450927" date="2016-01-01" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="Suburbia" objecttype="thing" objectid="123260">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Marian" startposition="" color="" score="" new="0" rating="7" win="0" />
+						<player username="" userid="0" name="Jesper" startposition="" color="" score="" new="0" rating="8" win="0" />
+						</players>
+					</play>
+	<play id="20450928" date="2016-01-01" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="Suburbia" objecttype="thing" objectid="123260">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Martin" startposition="" color="" score="" new="0" rating="7" win="0" />
+						<player username="" userid="0" name="Michael" startposition="" color="" score="" new="0" rating="6" win="0" />
+						<player username="" userid="0" name="Emil" startposition="" color="" score="" new="0" rating="6" win="0" />
+						</players>
+					</play>
+	<play id="20450931" date="2016-01-01" quantity="8" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="Sushi Go!" objecttype="thing" objectid="133473">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="20450939" date="2016-01-01" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="Sushi Go!" objecttype="thing" objectid="133473">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Mikkel" startposition="" color="" score="" new="0" rating="5" win="0" />
+						<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Camilla" startposition="" color="" score="" new="0" rating="5" win="0" />
+						<player username="" userid="0" name="Thomas" startposition="" color="" score="" new="0" rating="5" win="0" />
+						</players>
+					</play>
+	<play id="20450945" date="2016-01-01" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="Sushi Go!" objecttype="thing" objectid="133473">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Martin" startposition="" color="" score="" new="0" rating="5" win="0" />
+						<player username="" userid="0" name="Michael" startposition="" color="" score="" new="0" rating="3" win="0" />
+						<player username="" userid="0" name="Emil" startposition="" color="" score="" new="0" rating="5" win="0" />
+						</players>
+					</play>
+	<play id="20450954" date="2016-01-01" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="Takenoko" objecttype="thing" objectid="70919">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Lisbeth" startposition="" color="" score="" new="0" rating="9" win="0" />
+						<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="20450961" date="2016-01-01" quantity="2" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="Takenoko" objecttype="thing" objectid="70919">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="20450968" date="2016-01-01" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="Takenoko" objecttype="thing" objectid="70919">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Michelle" startposition="" color="" score="" new="0" rating="7" win="0" />
+						<player username="" userid="0" name="Martin" startposition="" color="" score="" new="0" rating="7" win="0" />
+						</players>
+					</play>
+	<play id="20450975" date="2016-01-01" quantity="6" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="Ticket to Ride" objecttype="thing" objectid="9209">
+				<subtypes>
+										<subtype value="boardgame" />
+										<subtype value="boardgameintegration" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="9" win="0" />
+						</players>
+					</play>
+	<play id="20450981" date="2016-01-01" quantity="3" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="Ticket to Ride" objecttype="thing" objectid="9209">
+				<subtypes>
+										<subtype value="boardgame" />
+										<subtype value="boardgameintegration" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Palle" startposition="" color="" score="" new="0" rating="8" win="0" />
+						<player username="" userid="0" name="Jesper" startposition="" color="" score="" new="0" rating="10" win="0" />
+						<player username="" userid="0" name="Marian" startposition="" color="" score="" new="0" rating="6" win="0" />
+						<player username="" userid="0" name="Inna" startposition="" color="" score="" new="0" rating="7" win="0" />
+						<player username="" userid="0" name="Andreas" startposition="" color="" score="" new="0" rating="7" win="0" />
+						</players>
+					</play>
+	<play id="20450986" date="2016-01-01" quantity="3" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="Ticket to Ride" objecttype="thing" objectid="9209">
+				<subtypes>
+										<subtype value="boardgame" />
+										<subtype value="boardgameintegration" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Charlotte" startposition="" color="" score="" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Alf" startposition="" color="" score="" new="0" rating="9" win="0" />
+						<player username="" userid="0" name="Lisbeth" startposition="" color="" score="" new="0" rating="9" win="0" />
+						<player username="" userid="0" name="Mikkel" startposition="" color="" score="" new="0" rating="7" win="0" />
 						</players>
 					</play>
 	</plays>

@@ -10,6 +10,7 @@ import Main.Models.Structure.BoardGameSuggestion;
 import Main.Models.Structure.Player;
 import Models.StubsAndMocks.ConnectionHandlerStub;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -50,6 +51,7 @@ import static org.junit.Assert.assertTrue;
  28 : Thomas
  29 : Ulrik
  */
+@Ignore
 public class TestGameNightRecommender {
   private FacadeController facadeController;
   private Player[] allPlayers;

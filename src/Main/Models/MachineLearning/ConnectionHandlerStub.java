@@ -1,4 +1,4 @@
-package Models.StubsAndMocks;
+package Main.Models.MachineLearning;
 
 import org.w3c.dom.Document;
 
@@ -7,10 +7,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.ArrayList;
 
-/**
- * Created by Peter on 28/09/16.
- */
-public class ConnectionHandlerStub implements Main.Models.Network.IConnectionHandler {
+class ConnectionHandlerStub implements Main.Models.Network.IConnectionHandler {
 
   @Override
   public Document getCollection(String username) {
