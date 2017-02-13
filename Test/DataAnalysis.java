@@ -94,7 +94,7 @@ public class DataAnalysis {
 
   @Test
   public void generateFavoriteAndNegativesForMachineLearning() {
-    String[] users = new String[]{"Martin", "Niklas", "Mikkel Kaysen"};
+    String[] users = new String[]{"Charlotte", "Martin"};
     Player[] players = new Player[users.length];
     int counter = 0;
 
@@ -262,6 +262,18 @@ public class DataAnalysis {
     for (Player currentPlayer : players) {
       if (currentPlayer.getMagicComplexity() + 0.8 < c.game.complexity) {
         return false;
+      }
+      if(players.length+1 == 2) {
+        String personalRatingString = c.game.personalRating;
+        double personalRating;
+        if (personalRatingString.equals("N/A")) {
+          personalRating = 10;
+        } else {
+          personalRating = Double.valueOf(personalRatingString);
+        }
+        if(personalRating < 6) return false;
+
+        if(currentPlayer.getPersonalRating(c.game) < 7) return false;
       }
       if (currentPlayer.getPersonalRating(c.game) < 6 && currentPlayer.getPersonalRating(c.game) != 0) {
         return false;
