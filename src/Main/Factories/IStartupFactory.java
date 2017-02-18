@@ -1,5 +1,6 @@
 package Main.Factories;
 
+import Main.Models.Logic.IGameNightValues;
 import Main.Models.Storage.ICollectionBuilder;
 
 /**
@@ -9,4 +10,5 @@ public interface IStartupFactory {
 
   ICollectionBuilder getCollectionBuilder();
 
+  IGameNightValues getGameNightValues();
 }

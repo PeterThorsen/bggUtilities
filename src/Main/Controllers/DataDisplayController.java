@@ -46,6 +46,14 @@ public class DataDisplayController implements IDataController {
     return players;
   }
 
+  @Override
+  public BoardGame getGame(String name) {
+    for (BoardGame game : getAllGames()) {
+      if(game.name.equals(name)) return game;
+    }
+    return null;
+  }
+
   public int getNumberOfGames() {
     return collection.getGames().length;
   }

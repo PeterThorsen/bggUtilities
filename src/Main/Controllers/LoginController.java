@@ -1,6 +1,7 @@
 package Main.Controllers;
 
 import Main.Factories.IStartupFactory;
+import Main.Models.Logic.ChosenGameNightValues;
 import Main.Models.Storage.ICollectionBuilder;
 
 import javax.swing.*;
@@ -24,7 +25,7 @@ public class LoginController implements ILoginController {
       if(loadingInfoTextArea != null) {
         loadingInfoTextArea.setText("User verified, retrieving user data!");
       }
-      return new FacadeController(collectionBuilder, username);
+      return new FacadeController(collectionBuilder, username, factory.getGameNightValues());
     }
     return null;
   }

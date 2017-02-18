@@ -1,6 +1,7 @@
 package Controllers;
 
 import Main.Controllers.FacadeController;
+import Main.Models.Logic.ChosenGameNightValues;
 import Main.Models.Network.IConnectionHandler;
 import Main.Models.Storage.CollectionBuilder;
 import Main.Models.Storage.ICollectionBuilder;
@@ -60,7 +61,7 @@ public class TestGameNightRecommender {
   public void setup() {
     IConnectionHandler stub = new ConnectionHandlerStub();
     ICollectionBuilder collectionBuilder = new CollectionBuilder(stub);
-    facadeController = new FacadeController(collectionBuilder, "cwaq");
+    facadeController = new FacadeController(collectionBuilder, "cwaq", new ChosenGameNightValues());
     allPlayers = facadeController.getAllPlayers();
   }
 

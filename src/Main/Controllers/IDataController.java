@@ -18,4 +18,6 @@ interface IDataController {
   Play[] getAllPlays();
 
   Player[] getAllPlayers();
+
+  BoardGame getGame(String name);
 }

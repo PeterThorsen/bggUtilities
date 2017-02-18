@@ -60,16 +60,6 @@ public class CollectionBuilder implements ICollectionBuilder {
       }
     }
     BoardGame[] games = buildCollection(collectionDocument);
-    /**try {
-     expandedSem.acquire();
-     expandedSem.release();
-     playsSem.acquire();
-     playsSem.release();
-     }
-     catch (InterruptedException e) {
-     e.printStackTrace();
-     System.out.println("!!!");
-     } */
     return new BoardGameCollection(games);
   }
 

@@ -1,5 +1,6 @@
 package Controllers;
 
+import Main.Models.Logic.ChosenGameNightValues;
 import Main.Models.Structure.BoardGame;
 import Main.Models.Structure.Play;
 import Main.Models.Structure.Player;
@@ -24,7 +25,7 @@ public class TestFacadeController {
   public void setUp() {
     ICollectionBuilder collectionBuilder = new CollectionBuilderStub();
     String username = "cwaq";
-    facadeController = new FacadeController(collectionBuilder, username);
+    facadeController = new FacadeController(collectionBuilder, username, new ChosenGameNightValues());
   }
 
   @Test

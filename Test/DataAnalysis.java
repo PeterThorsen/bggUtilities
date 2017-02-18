@@ -1,4 +1,5 @@
 import Main.Controllers.FacadeController;
+import Main.Models.Logic.ChosenGameNightValues;
 import Main.Models.Network.ConnectionHandler;
 import Main.Models.Storage.CollectionBuilder;
 import Main.Models.Storage.ICollectionBuilder;
@@ -26,7 +27,7 @@ public class DataAnalysis {
 
     ICollectionBuilder collectionBuilder = new CollectionBuilder(new ConnectionHandler());
     String username = "cwaq";
-    facadeController = new FacadeController(collectionBuilder, username);
+    facadeController = new FacadeController(collectionBuilder, username, new ChosenGameNightValues());
     allGames = facadeController.getAllGames();
     allPlays = facadeController.getAllPlaysSorted();
     allPlayers = facadeController.getAllPlayers();
@@ -65,9 +66,9 @@ public class DataAnalysis {
   public void makeRecommendation() {
     //String[] users = new String[]{"Charlotte", "Alf", "Mikkel", "Lisbeth"};
     //String[] users = new String[]{"Charlotte", "Martin", "Michelle", "Emil", "Signe", "Michael"};
-    String[] users = new String[]{"Charlotte", "Martin"};
+    String[] users = new String[]{"Martin", "Josefine", "Daniella"};
 
-    int timeToPlay = 60;
+    int timeToPlay = 30;
     Player[] players = new Player[users.length];
     int counter = 0;
     for (Player player : allPlayers) {
@@ -94,7 +95,7 @@ public class DataAnalysis {
 
   @Test
   public void generateFavoriteAndNegativesForMachineLearning() {
-    String[] users = new String[]{"Charlotte", "Martin"};
+    String[] users = new String[]{"Martin"};
     Player[] players = new Player[users.length];
     int counter = 0;
 
