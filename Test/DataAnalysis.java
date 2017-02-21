@@ -35,6 +35,15 @@ public class DataAnalysis {
   }
 
   @Test
+  public void forGeneralUse() {
+
+    // Split string to get minute count as int
+    String toSplit = "Playtime: 15 minutes.";
+    int minuteCount = Integer.parseInt(toSplit.split("Playtime: ")[1].split(" minutes")[0]);
+    System.out.println(minuteCount);
+  }
+
+  @Test
   public void listAllGamesWithLastPlayedDate() {
     HashMap<BoardGame, String> firstDatesOfGames = new HashMap<>();
     for (Play play : allPlays) {
@@ -95,108 +104,124 @@ public class DataAnalysis {
 
   @Test
   public void generateFavoriteAndNegativesForMachineLearning() {
-    String[] users = new String[]{"Martin"};
-    Player[] players = new Player[users.length];
-    int counter = 0;
+    String[][] allNames = new String[][]{{"Martin"}, {"Charlotte"}, {"Jesper"},
+            {"Martin", "Charlotte"},
+            {"Martin", "Charlotte", "Michelle"},
+            {"Martin", "Michael", "Emil"},
+            {"Martin", "Michael", "Emil", "Signe"},
+            {"Charlotte", "Mikkel", "Bolette"},
+            {"Charlotte", "Alf", "Lisbeth"},
+            {"Charlotte", "Alf", "Lisbeth", "Mikkel"},
+            {"Charlotte", "Alf", "Lisbeth", "Mikkel", "Bolette"},
+            {"Charlotte", "Alf", "Lisbeth", "Mikkel", "Bolette", "Camilla"},
+            {"Martin", "Josefine", "Daniella"},
+            {"Marian", "Charlotte", "Poul"},
+            {"Marian", "Charlotte", "Poul", "Jesper"},
+            {"Marian", "Charlotte", "Jesper"},
+            {"Marian", "Charlotte"},
+            {"Marian", "Charlotte", "Palle", "Liss", "Jesper", "Poul", "Lillibeth"}
+    };
+    for (int a = 0; a < allNames.length; a++) {
+      String[] users = allNames[a];
+      Player[] players = new Player[users.length];
+      int counter = 0;
 
-    for (Player player : allPlayers) {
-      for (String user : users) {
-        if (player.name.equals(user)) {
-          players[counter] = player;
-          counter++;
+      for (Player player : allPlayers) {
+        for (String user : users) {
+          if (player.name.equals(user)) {
+            players[counter] = player;
+            counter++;
+          }
         }
       }
-    }
 
-    BufferedWriter writer = null;
-    String fileName = "PN";
-    for (String user : users) {
-      fileName = fileName.concat("_".concat(user));
-    }
-    fileName = fileName.concat(".txt");
-    try {
+      BufferedWriter writer = null;
+      String fileName = "PN";
+      for (String user : users) {
+        fileName = fileName.concat("_".concat(user));
+      }
+      fileName = fileName.concat(".txt");
+      try {
 
-      FileWriter fstream = new FileWriter(fileName, true); //true tells to append data.
-      writer = new BufferedWriter(fstream);
+        FileWriter fstream = new FileWriter(fileName, true); //true tells to append data.
+        writer = new BufferedWriter(fstream);
 
 
-      BoardGame[] allGamesTemp = facadeController.getAllGames();
-      allGamesTemp = removeExpansions(allGamesTemp);
-      BoardGameCounter[] allGames = CalculateApproxTimes(allGamesTemp, players);
-      int i = 10; //int i = 10;
-      while (i <= 120) {
-        writer.write("\nPlaytime: " + i + " minutes.\n");
-        System.out.println("Current time: " + i);
-        ArrayList<String[]> posList = new ArrayList<>();
-        ArrayList<String[]> negList = new ArrayList<>();
-        for (BoardGameCounter c1 : allGames) {
-          double c1Total = 0;
-          if (!isPositive(c1Total, c1, i, players)) {
-            negList.add(new String[]{c1.toString()});
-            continue;
-          }
-          c1Total += c1.approximateTime;
-          if (c1Total + 10 >= i) {
-            posList.add(new String[]{c1.toString()});
-            continue;
-          }
-
-          c1Total += 5; // Time between games.. No rush
-          for (BoardGameCounter c2 : allGames) {
-            if (!isPositive(c1Total, c2, i, players)) {
-              negList.add(new String[]{c1.toString(), c2.toString()});
+        BoardGame[] allGamesTemp = facadeController.getAllGames();
+        allGamesTemp = removeExpansions(allGamesTemp);
+        BoardGameCounter[] allGames = CalculateApproxTimes(allGamesTemp, players);
+        int i = 10; //int i = 10;
+        while (i <= 180) {
+          writer.write("\nPlaytime: " + i + " minutes.\n");
+          System.out.println("Current time: " + i);
+          ArrayList<String[]> posList = new ArrayList<>();
+          //ArrayList<String[]> negList = new ArrayList<>();
+          for (BoardGameCounter c1 : allGames) {
+            double c1Total = 0;
+            if (!isPositive(c1Total, c1, i, players)) {
+              //negList.add(new String[]{c1.toString()});
+              continue;
+            }
+            c1Total += c1.approximateTime;
+            if (c1Total + 10 >= i) {
+              posList.add(new String[]{c1.toString()});
               continue;
             }
 
-            double c2Total = c1Total + c2.approximateTime;
-            if (c2Total + 10 >= i) {
-              posList.add(new String[]{c1.toString(), c2.toString()});
-              continue;
-            }
-            c2Total += 5;
-
-
-            for (BoardGameCounter c3 : allGames) {
-              if (!isPositive(c2Total, c3, i, players)) {
-                negList.add(new String[]{c1.toString(), c2.toString(), c3.toString()});
-
+            c1Total += 5; // Time between games.. No rush
+            for (BoardGameCounter c2 : allGames) {
+              if (!isPositive(c1Total, c2, i, players)) {
+                //negList.add(new String[]{c1.toString(), c2.toString()});
                 continue;
               }
 
-              double c3Total = c2Total + c3.approximateTime;
-              if (c3Total + 10 >= i) {
-                posList.add(new String[]{c1.toString(), c2.toString(), c3.toString()});
+              double c2Total = c1Total + c2.approximateTime;
+              if (c2Total + 10 >= i) {
+                posList.add(new String[]{c1.toString(), c2.toString()});
                 continue;
               }
-              c3Total += 5;
-              for (BoardGameCounter c4 : allGames) {
-                if (!isPositive(c3Total, c4, i, players)) {
-                  negList.add(new String[]{c1.toString(), c2.toString(), c3.toString(), c4.toString()});
+              c2Total += 5;
+
+
+              for (BoardGameCounter c3 : allGames) {
+                if (!isPositive(c2Total, c3, i, players)) {
+                  //negList.add(new String[]{c1.toString(), c2.toString(), c3.toString()});
+
                   continue;
                 }
-                double c4Total = c3Total + c4.approximateTime;
-                if (c4Total + 10 >= i) {
-                  posList.add(new String[]{c1.toString(), c2.toString(), c3.toString(), c4.toString()});
-                }
 
+                double c3Total = c2Total + c3.approximateTime;
+                if (c3Total + 10 >= i) {
+                  posList.add(new String[]{c1.toString(), c2.toString(), c3.toString()});
+                  continue;
+                }
+                c3Total += 5;
+                for (BoardGameCounter c4 : allGames) {
+                  if (!isPositive(c3Total, c4, i, players)) {
+                    //negList.add(new String[]{c1.toString(), c2.toString(), c3.toString(), c4.toString()});
+                    continue;
+                  }
+                  double c4Total = c3Total + c4.approximateTime;
+                  if (c4Total + 10 >= i) {
+                    posList.add(new String[]{c1.toString(), c2.toString(), c3.toString(), c4.toString()});
+                  }
+
+                }
               }
             }
           }
-        }
 
-        writer.write("\n");
-        writer.write("Positives:\n");
-        posList = removeDuplicates(posList);
+          posList = removeDuplicates(posList);
 
-        for (String[] arr : posList) {
-          String total = arr[0];
-          for (int j = 1; j < arr.length; j++) {
-            total = total.concat(" + ".concat(arr[j]));
+          for (String[] arr : posList) {
+            String total = arr[0];
+            for (int j = 1; j < arr.length; j++) {
+              total = total.concat(" + ".concat(arr[j]));
+            }
+            writer.write(total + "\n");
           }
-          writer.write(total + "\n");
-        }
-        writer.write("\n");
-        writer.write("Negatives:\n");
+          writer.write("\n");
+        /*writer.write("Negatives:\n");
         negList = removeDuplicates(negList);
         for (String[] arr : negList) {
           String total = arr[0];
@@ -205,22 +230,25 @@ public class DataAnalysis {
           }
           writer.write(total + "\n");
         }
-        writer.write("\n");
-        i += 5;
-      }
+        writer.write("\n");*/
+          i += 5;
+        }
 
 
-    } catch (IOException e) {
-      System.err.println("Error: " + e.getMessage());
-    } finally {
-      if (writer != null) {
-        try {
-          writer.close();
-        } catch (IOException e) {
-          e.printStackTrace();
+      } catch (IOException e) {
+        System.err.println("Error: " + e.getMessage());
+      } finally {
+        if (writer != null) {
+          try {
+            writer.close();
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
         }
       }
     }
+
+
   }
 
   private BoardGame[] removeExpansions(BoardGame[] allGamesTemp) {
@@ -264,7 +292,7 @@ public class DataAnalysis {
       if (currentPlayer.getMagicComplexity() + 0.8 < c.game.complexity) {
         return false;
       }
-      if(players.length+1 == 2) {
+      if (players.length + 1 == 2) {
         String personalRatingString = c.game.personalRating;
         double personalRating;
         if (personalRatingString.equals("N/A")) {
@@ -272,9 +300,9 @@ public class DataAnalysis {
         } else {
           personalRating = Double.valueOf(personalRatingString);
         }
-        if(personalRating < 6) return false;
+        if (personalRating < 6) return false;
 
-        if(currentPlayer.getPersonalRating(c.game) < 7) return false;
+        if (currentPlayer.getPersonalRating(c.game) < 7) return false;
       }
       if (currentPlayer.getPersonalRating(c.game) < 6 && currentPlayer.getPersonalRating(c.game) != 0) {
         return false;
