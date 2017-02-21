@@ -70,13 +70,7 @@ public class TrainGameNightRecommendationEngine {
       int playTime = playTimes[random.nextInt(playTimes.length)];
 
       ArrayList<BoardGame[]> combinations = fillRecommendedForMinuteCountAndPlayers(playTime, players);
-      for (BoardGame[] combination : combinations) {
-        String output = combination[0].name;
-        for (int i = 1; i < combination.length; i++) {
-          output = output.concat(" + ").concat(combination[i].name);
-        }
-        System.out.println(output);
-      }
+
       /*for (int i = 0; i < 5; i++) {
         BoardGameCounter[] result = controller.suggestGames(players, playTime).suggestedCombination;
 
