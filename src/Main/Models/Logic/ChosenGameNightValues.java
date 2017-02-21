@@ -10,7 +10,7 @@ public class ChosenGameNightValues implements IGameNightValues {
   }
 
   @Override
-  public int allPlayersHaveTriedGame() {
+  public double allPlayersHaveTriedGame() {
     return 12;
   }
 
@@ -19,11 +19,11 @@ public class ChosenGameNightValues implements IGameNightValues {
     if(rating < 5) {
       return -100 + (rating * 20);
     }
-    return -50 * 10 * rating;
+    return -50 + 10 * rating;
   }
 
   @Override
-  public int allPlayersHaveNotPlayedGameSinceTimeLimit() {
+  public double allPlayersHaveNotPlayedGameSinceTimeLimit() {
     return 20;
   }
 
@@ -68,10 +68,10 @@ public class ChosenGameNightValues implements IGameNightValues {
   }
 
   @Override
-  public double complexityDifference(double currentComplexity, double averageComplexityGivingAllPlayersEqualWeight, double magicComplexity) {
+  public double complexityDifference(double currentGameComplexity, double averageComplexityGivingAllPlayersEqualWeight, double magicComplexity) {
 
-    double differenceMagic = Math.abs(currentComplexity - magicComplexity);
-    double differenceAverage = Math.abs(currentComplexity - averageComplexityGivingAllPlayersEqualWeight);
+    double differenceMagic = Math.abs(currentGameComplexity - magicComplexity);
+    double differenceAverage = Math.abs(currentGameComplexity - averageComplexityGivingAllPlayersEqualWeight);
 
     double value = 0;
     value += calculateDifference(differenceAverage);

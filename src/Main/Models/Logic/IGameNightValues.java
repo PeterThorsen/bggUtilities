@@ -6,11 +6,11 @@ package Main.Models.Logic;
 public interface IGameNightValues {
   double ownerHasPlayedGameLessThanFiveTimes();
 
-  int allPlayersHaveTriedGame();
+  double allPlayersHaveTriedGame();
 
   double playerRating(double rating);
 
-  int allPlayersHaveNotPlayedGameSinceTimeLimit();
+  double allPlayersHaveNotPlayedGameSinceTimeLimit();
 
   /**
    *
