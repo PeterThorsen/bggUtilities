@@ -21,4 +21,9 @@ public class BoardGameCounter {
     return game.toString();
   }
 
+  @Override
+  public boolean equals(Object other) {
+    BoardGameCounter counter = (BoardGameCounter) other;
+    return counter.toString().equals(toString());
+  }
 }

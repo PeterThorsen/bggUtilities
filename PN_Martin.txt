@@ -149,7 +149,6 @@ Jaipur + Tsuro
 Onitama + Santorini
 Pandemic
 Takenoko
-Tsuro + Tsuro + Tsuro
 
 
 Playtime: 60 minutes.
@@ -229,7 +228,6 @@ Takenoko + Tsuro
 
 Playtime: 70 minutes.
 Agricola
-Camel Up + Camel Up + Camel Up
 Camel Up + Camel Up + Hey, That's My Fish!
 Camel Up + Camel Up + Hive
 Camel Up + Camel Up + Onitama
@@ -291,7 +289,6 @@ Takenoko + Tsuro
 
 
 Playtime: 75 minutes.
-Camel Up + Camel Up + Camel Up
 Camel Up + Camel Up + Hanabi
 Camel Up + Camel Up + Hey, That's My Fish!
 Camel Up + Camel Up + Hive
@@ -373,12 +370,10 @@ Pandemic + Santorini
 Pandemic + Tsuro
 Santorini + Takenoko
 Takenoko + Tsuro
-Tsuro + Tsuro + Tsuro + Tsuro
 
 
 Playtime: 80 minutes.
 Agricola + Tsuro
-Camel Up + Camel Up + Camel Up
 Camel Up + Camel Up + Carcassonne
 Camel Up + Camel Up + Crokinole
 Camel Up + Camel Up + Hanabi
@@ -416,7 +411,6 @@ Camel Up + Jaipur + Tsuro
 Camel Up + Onitama + Santorini
 Camel Up + Pandemic
 Camel Up + Takenoko
-Camel Up + Tsuro + Tsuro + Tsuro
 Carcassonne + Flash Point: Fire Rescue
 Carcassonne + Hanabi + Tsuro
 Carcassonne + Hey, That's My Fish! + Hive
@@ -473,14 +467,12 @@ Hey, That's My Fish! + Jaipur + Tsuro
 Hey, That's My Fish! + Onitama + Santorini
 Hey, That's My Fish! + Pandemic
 Hey, That's My Fish! + Takenoko
-Hey, That's My Fish! + Tsuro + Tsuro + Tsuro
 Hive + Jaipur + Onitama
 Hive + Jaipur + Santorini
 Hive + Jaipur + Tsuro
 Hive + Onitama + Santorini
 Hive + Pandemic
 Hive + Takenoko
-Hive + Tsuro + Tsuro + Tsuro
 Jaipur + Onitama + Santorini
 Jaipur + Onitama + Tsuro
 Jaipur + Pandemic
@@ -488,10 +480,8 @@ Jaipur + Santorini + Tsuro
 Jaipur + Takenoko
 Onitama + Pandemic
 Onitama + Takenoko
-Onitama + Tsuro + Tsuro + Tsuro
 Pandemic + Santorini
 Santorini + Takenoko
-Santorini + Tsuro + Tsuro + Tsuro
 
 
 Playtime: 85 minutes.
@@ -587,7 +577,6 @@ Hanabi + Jaipur + Tsuro
 Hanabi + Onitama + Santorini
 Hanabi + Pandemic
 Hanabi + Takenoko
-Hanabi + Tsuro + Tsuro + Tsuro
 Hey, That's My Fish! + Hive + Jaipur
 Hey, That's My Fish! + Hive + Tsuro + Tsuro
 Hey, That's My Fish! + Jaipur + Onitama
@@ -618,7 +607,6 @@ Agricola + Hive
 Agricola + Onitama
 Agricola + Santorini
 Agricola + Tsuro
-Camel Up + Camel Up + Camel Up + Tsuro
 Camel Up + Camel Up + Carcassonne
 Camel Up + Camel Up + Crokinole
 Camel Up + Camel Up + Hey, That's My Fish! + Tsuro
@@ -679,7 +667,6 @@ Carcassonne + Jaipur + Tsuro
 Carcassonne + Onitama + Santorini
 Carcassonne + Pandemic
 Carcassonne + Takenoko
-Carcassonne + Tsuro + Tsuro + Tsuro
 Crokinole + Flash Point: Fire Rescue
 Crokinole + Hanabi + Hey, That's My Fish!
 Crokinole + Hanabi + Hive
@@ -699,7 +686,6 @@ Crokinole + Jaipur + Tsuro
 Crokinole + Onitama + Santorini
 Crokinole + Pandemic
 Crokinole + Takenoko
-Crokinole + Tsuro + Tsuro + Tsuro
 Flash Point: Fire Rescue + Hey, That's My Fish! + Tsuro
 Flash Point: Fire Rescue + Hive + Tsuro
 Flash Point: Fire Rescue + Jaipur
@@ -730,7 +716,6 @@ Hive + Takenoko + Tsuro
 Jaipur + Onitama + Santorini
 Jaipur + Pandemic
 Jaipur + Takenoko
-Jaipur + Tsuro + Tsuro + Tsuro
 Onitama + Pandemic + Tsuro
 Onitama + Takenoko + Tsuro
 Pandemic + Santorini + Tsuro
@@ -748,14 +733,9 @@ Agricola + Hive
 Agricola + Jaipur
 Agricola + Onitama
 Agricola + Santorini
-Camel Up + Camel Up + Camel Up + Camel Up
-Camel Up + Camel Up + Camel Up + Hey, That's My Fish!
-Camel Up + Camel Up + Camel Up + Hive
-Camel Up + Camel Up + Camel Up + Onitama
-Camel Up + Camel Up + Camel Up + Santorini
-Camel Up + Camel Up + Camel Up + Tsuro
 Camel Up + Camel Up + Flash Point: Fire Rescue
 Camel Up + Camel Up + Hanabi + Tsuro
+Camel Up + Camel Up + Hey, That's My Fish! + Hey, That's My Fish!
 Camel Up + Camel Up + Hey, That's My Fish! + Hive
 Camel Up + Camel Up + Hey, That's My Fish! + Onitama
 Camel Up + Camel Up + Hey, That's My Fish! + Santorini
@@ -911,13 +891,6 @@ Agricola + Crokinole
 Agricola + Hanabi
 Agricola + Jaipur
 Agricola + Tsuro + Tsuro
-Camel Up + Camel Up + Camel Up + Camel Up
-Camel Up + Camel Up + Camel Up + Hanabi
-Camel Up + Camel Up + Camel Up + Hey, That's My Fish!
-Camel Up + Camel Up + Camel Up + Hive
-Camel Up + Camel Up + Camel Up + Onitama
-Camel Up + Camel Up + Camel Up + Santorini
-Camel Up + Camel Up + Camel Up + Tsuro
 Camel Up + Camel Up + Carcassonne + Tsuro
 Camel Up + Camel Up + Crokinole + Tsuro
 Camel Up + Camel Up + Flash Point: Fire Rescue
@@ -1120,15 +1093,6 @@ Agricola + Hive + Tsuro
 Agricola + Jaipur
 Agricola + Onitama + Tsuro
 Agricola + Santorini + Tsuro
-Camel Up + Camel Up + Camel Up + Camel Up
-Camel Up + Camel Up + Camel Up + Carcassonne
-Camel Up + Camel Up + Camel Up + Crokinole
-Camel Up + Camel Up + Camel Up + Hanabi
-Camel Up + Camel Up + Camel Up + Hey, That's My Fish!
-Camel Up + Camel Up + Camel Up + Hive
-Camel Up + Camel Up + Camel Up + Jaipur
-Camel Up + Camel Up + Camel Up + Onitama
-Camel Up + Camel Up + Camel Up + Santorini
 Camel Up + Camel Up + Carcassonne + Hey, That's My Fish!
 Camel Up + Camel Up + Carcassonne + Hive
 Camel Up + Camel Up + Carcassonne + Onitama
@@ -1140,6 +1104,7 @@ Camel Up + Camel Up + Crokinole + Onitama
 Camel Up + Camel Up + Crokinole + Santorini
 Camel Up + Camel Up + Crokinole + Tsuro
 Camel Up + Camel Up + Flash Point: Fire Rescue
+Camel Up + Camel Up + Hanabi + Hanabi
 Camel Up + Camel Up + Hanabi + Hey, That's My Fish!
 Camel Up + Camel Up + Hanabi + Hive
 Camel Up + Camel Up + Hanabi + Onitama
@@ -1316,7 +1281,6 @@ Flash Point: Fire Rescue + Jaipur + Tsuro
 Flash Point: Fire Rescue + Onitama + Santorini
 Flash Point: Fire Rescue + Pandemic
 Flash Point: Fire Rescue + Takenoko
-Flash Point: Fire Rescue + Tsuro + Tsuro + Tsuro
 Hanabi + Hey, That's My Fish! + Hive + Onitama
 Hanabi + Hey, That's My Fish! + Hive + Santorini
 Hanabi + Hey, That's My Fish! + Hive + Tsuro
@@ -1375,8 +1339,6 @@ Jaipur + Takenoko + Tsuro
 Onitama + Pandemic + Santorini
 Onitama + Santorini + Takenoko
 Pandemic + Takenoko
-Pandemic + Tsuro + Tsuro + Tsuro
-Takenoko + Tsuro + Tsuro + Tsuro
 
 
 Playtime: 110 minutes.
@@ -1400,10 +1362,6 @@ Agricola + Onitama + Tsuro
 Agricola + Pandemic
 Agricola + Santorini + Tsuro
 Agricola + Takenoko
-Camel Up + Camel Up + Camel Up + Carcassonne
-Camel Up + Camel Up + Camel Up + Crokinole
-Camel Up + Camel Up + Camel Up + Hanabi
-Camel Up + Camel Up + Camel Up + Jaipur
 Camel Up + Camel Up + Carcassonne + Hanabi
 Camel Up + Camel Up + Carcassonne + Hey, That's My Fish!
 Camel Up + Camel Up + Carcassonne + Hive
@@ -1684,9 +1642,7 @@ Agricola + Onitama + Tsuro
 Agricola + Pandemic
 Agricola + Santorini + Tsuro
 Agricola + Takenoko
-Camel Up + Camel Up + Camel Up + Carcassonne
-Camel Up + Camel Up + Camel Up + Crokinole
-Camel Up + Camel Up + Camel Up + Jaipur
+Camel Up + Camel Up + Carcassonne + Carcassonne
 Camel Up + Camel Up + Carcassonne + Crokinole
 Camel Up + Camel Up + Carcassonne + Hanabi
 Camel Up + Camel Up + Carcassonne + Hey, That's My Fish!
@@ -1983,10 +1939,6 @@ Agricola + Jaipur + Tsuro
 Agricola + Onitama + Santorini
 Agricola + Pandemic
 Agricola + Takenoko
-Agricola + Tsuro + Tsuro + Tsuro
-Camel Up + Camel Up + Camel Up + Flash Point: Fire Rescue
-Camel Up + Camel Up + Camel Up + Pandemic
-Camel Up + Camel Up + Camel Up + Takenoko
 Camel Up + Camel Up + Carcassonne + Carcassonne
 Camel Up + Camel Up + Carcassonne + Crokinole
 Camel Up + Camel Up + Carcassonne + Hanabi
@@ -2290,9 +2242,6 @@ Agricola + Jaipur + Santorini
 Agricola + Jaipur + Tsuro
 Agricola + Onitama + Tsuro + Tsuro
 Agricola + Santorini + Tsuro + Tsuro
-Camel Up + Camel Up + Camel Up + Flash Point: Fire Rescue
-Camel Up + Camel Up + Camel Up + Pandemic
-Camel Up + Camel Up + Camel Up + Takenoko
 Camel Up + Camel Up + Carcassonne + Carcassonne
 Camel Up + Camel Up + Carcassonne + Crokinole
 Camel Up + Camel Up + Carcassonne + Jaipur
@@ -2626,9 +2575,6 @@ Agricola + Jaipur + Santorini
 Agricola + Onitama + Santorini + Tsuro
 Agricola + Pandemic + Tsuro
 Agricola + Takenoko + Tsuro
-Camel Up + Camel Up + Camel Up + Flash Point: Fire Rescue
-Camel Up + Camel Up + Camel Up + Pandemic
-Camel Up + Camel Up + Camel Up + Takenoko
 Camel Up + Camel Up + Carcassonne + Flash Point: Fire Rescue
 Camel Up + Camel Up + Carcassonne + Pandemic
 Camel Up + Camel Up + Carcassonne + Takenoko
@@ -2956,7 +2902,6 @@ Suburbia + Tsuro + Tsuro
 
 Playtime: 135 minutes.
 Agricola + Agricola
-Agricola + Camel Up + Camel Up + Camel Up
 Agricola + Camel Up + Camel Up + Hey, That's My Fish!
 Agricola + Camel Up + Camel Up + Hive
 Agricola + Camel Up + Camel Up + Onitama
@@ -3303,7 +3248,6 @@ Santorini + Suburbia + Tsuro
 
 
 Playtime: 140 minutes.
-Agricola + Camel Up + Camel Up + Camel Up
 Agricola + Camel Up + Camel Up + Hanabi
 Agricola + Camel Up + Camel Up + Hey, That's My Fish!
 Agricola + Camel Up + Camel Up + Hive
@@ -3655,7 +3599,6 @@ Suburbia + Takenoko
 
 Playtime: 145 minutes.
 Agricola + Agricola + Tsuro
-Agricola + Camel Up + Camel Up + Camel Up
 Agricola + Camel Up + Camel Up + Carcassonne
 Agricola + Camel Up + Camel Up + Crokinole
 Agricola + Camel Up + Camel Up + Hanabi
@@ -4310,7 +4253,6 @@ Onitama + Santorini + Suburbia
 Pandemic + Santorini + Takenoko + Tsuro
 Pandemic + Suburbia
 Suburbia + Takenoko
-Suburbia + Tsuro + Tsuro + Tsuro
 
 
 Playtime: 155 minutes.
@@ -4982,7 +4924,6 @@ Agricola + Pandemic + Santorini + Tsuro
 Agricola + Pandemic + Takenoko
 Agricola + Santorini + Takenoko + Tsuro
 Agricola + Suburbia
-Camel Up + Camel Up + Camel Up + Suburbia
 Camel Up + Camel Up + Hey, That's My Fish! + Suburbia
 Camel Up + Camel Up + Hive + Suburbia
 Camel Up + Camel Up + Onitama + Suburbia
@@ -5255,7 +5196,6 @@ Agricola + Jaipur + Takenoko + Tsuro
 Agricola + Onitama + Pandemic + Santorini
 Agricola + Onitama + Santorini + Takenoko
 Agricola + Pandemic + Takenoko
-Camel Up + Camel Up + Camel Up + Suburbia
 Camel Up + Camel Up + Hanabi + Suburbia
 Camel Up + Camel Up + Hey, That's My Fish! + Suburbia
 Camel Up + Camel Up + Hive + Suburbia
@@ -5487,7 +5427,6 @@ Agricola + Jaipur + Pandemic + Tsuro
 Agricola + Jaipur + Santorini + Takenoko
 Agricola + Jaipur + Takenoko + Tsuro
 Agricola + Suburbia + Tsuro
-Camel Up + Camel Up + Camel Up + Suburbia
 Camel Up + Camel Up + Carcassonne + Suburbia
 Camel Up + Camel Up + Crokinole + Suburbia
 Camel Up + Camel Up + Hanabi + Suburbia

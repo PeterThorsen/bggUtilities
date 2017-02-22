@@ -90,7 +90,6 @@ The Resistance + Tsuro
 
 
 Playtime: 85 minutes.
-Codenames + Codenames + Codenames
 Codenames + Codenames + Spyfall
 Codenames + Codenames + Tsuro
 Codenames + Spyfall + Tsuro
@@ -99,7 +98,6 @@ Dixit Odyssey + The Resistance
 
 
 Playtime: 90 minutes.
-Codenames + Codenames + Codenames
 Codenames + Codenames + Spyfall
 Codenames + Codenames + Tsuro
 Codenames + Spyfall + Tsuro
@@ -108,7 +106,6 @@ Dixit Odyssey + The Resistance
 
 
 Playtime: 95 minutes.
-Codenames + Codenames + Codenames
 Codenames + Codenames + Spyfall
 Codenames + Codenames + Tsuro
 Codenames + Spyfall + Tsuro
@@ -150,9 +147,7 @@ The Resistance + Spyfall + Tsuro
 
 
 Playtime: 115 minutes.
-Codenames + Codenames + Codenames + Codenames
-Codenames + Codenames + Codenames + Spyfall
-Codenames + Codenames + Codenames + Tsuro
+Codenames + Codenames + Spyfall + Spyfall
 Codenames + Codenames + Spyfall + Tsuro
 Codenames + Dixit Odyssey + Dixit Odyssey
 Codenames + Dixit Odyssey + The Resistance
@@ -163,9 +158,7 @@ Dixit Odyssey + The Resistance + Tsuro
 
 
 Playtime: 120 minutes.
-Codenames + Codenames + Codenames + Codenames
-Codenames + Codenames + Codenames + Spyfall
-Codenames + Codenames + Codenames + Tsuro
+Codenames + Codenames + Spyfall + Spyfall
 Codenames + Codenames + Spyfall + Tsuro
 Codenames + Dixit Odyssey + Dixit Odyssey
 Codenames + Dixit Odyssey + The Resistance
@@ -176,9 +169,7 @@ Dixit Odyssey + The Resistance + Tsuro
 
 
 Playtime: 125 minutes.
-Codenames + Codenames + Codenames + Codenames
-Codenames + Codenames + Codenames + Spyfall
-Codenames + Codenames + Codenames + Tsuro
+Codenames + Codenames + Spyfall + Spyfall
 Codenames + Codenames + Spyfall + Tsuro
 Codenames + Dixit Odyssey + Dixit Odyssey
 Codenames + Dixit Odyssey + The Resistance
@@ -189,41 +180,32 @@ Dixit Odyssey + The Resistance + Tsuro
 
 
 Playtime: 130 minutes.
-Codenames + Codenames + Codenames + Dixit Odyssey
-Codenames + Codenames + Codenames + The Resistance
 Codenames + Codenames + Dixit Odyssey + Spyfall
 Codenames + Codenames + Dixit Odyssey + Tsuro
 Codenames + Codenames + The Resistance + Spyfall
 Codenames + Codenames + The Resistance + Tsuro
 Codenames + Dixit Odyssey + Spyfall + Tsuro
 Codenames + The Resistance + Spyfall + Tsuro
-Dixit Odyssey + Dixit Odyssey + Dixit Odyssey
 Dixit Odyssey + Dixit Odyssey + The Resistance
 
 
 Playtime: 135 minutes.
-Codenames + Codenames + Codenames + Dixit Odyssey
-Codenames + Codenames + Codenames + The Resistance
 Codenames + Codenames + Dixit Odyssey + Spyfall
 Codenames + Codenames + Dixit Odyssey + Tsuro
 Codenames + Codenames + The Resistance + Spyfall
 Codenames + Codenames + The Resistance + Tsuro
 Codenames + Dixit Odyssey + Spyfall + Tsuro
 Codenames + The Resistance + Spyfall + Tsuro
-Dixit Odyssey + Dixit Odyssey + Dixit Odyssey
 Dixit Odyssey + Dixit Odyssey + The Resistance
 
 
 Playtime: 140 minutes.
-Codenames + Codenames + Codenames + Dixit Odyssey
-Codenames + Codenames + Codenames + The Resistance
 Codenames + Codenames + Dixit Odyssey + Spyfall
 Codenames + Codenames + Dixit Odyssey + Tsuro
 Codenames + Codenames + The Resistance + Spyfall
 Codenames + Codenames + The Resistance + Tsuro
 Codenames + Dixit Odyssey + Spyfall + Tsuro
 Codenames + The Resistance + Spyfall + Tsuro
-Dixit Odyssey + Dixit Odyssey + Dixit Odyssey
 Dixit Odyssey + Dixit Odyssey + The Resistance
 
 
@@ -261,38 +243,27 @@ Dixit Odyssey + The Resistance + Spyfall + Tsuro
 
 
 Playtime: 160 minutes.
-Codenames + Dixit Odyssey + Dixit Odyssey + Dixit Odyssey
 Codenames + Dixit Odyssey + Dixit Odyssey + The Resistance
-Dixit Odyssey + Dixit Odyssey + Dixit Odyssey + Spyfall
-Dixit Odyssey + Dixit Odyssey + Dixit Odyssey + Tsuro
 Dixit Odyssey + Dixit Odyssey + The Resistance + Spyfall
 Dixit Odyssey + Dixit Odyssey + The Resistance + Tsuro
 
 
 Playtime: 165 minutes.
-Codenames + Dixit Odyssey + Dixit Odyssey + Dixit Odyssey
 Codenames + Dixit Odyssey + Dixit Odyssey + The Resistance
-Dixit Odyssey + Dixit Odyssey + Dixit Odyssey + Spyfall
-Dixit Odyssey + Dixit Odyssey + Dixit Odyssey + Tsuro
 Dixit Odyssey + Dixit Odyssey + The Resistance + Spyfall
 Dixit Odyssey + Dixit Odyssey + The Resistance + Tsuro
 
 
 Playtime: 170 minutes.
-Codenames + Dixit Odyssey + Dixit Odyssey + Dixit Odyssey
 Codenames + Dixit Odyssey + Dixit Odyssey + The Resistance
-Dixit Odyssey + Dixit Odyssey + Dixit Odyssey + Spyfall
-Dixit Odyssey + Dixit Odyssey + Dixit Odyssey + Tsuro
 Dixit Odyssey + Dixit Odyssey + The Resistance + Spyfall
 Dixit Odyssey + Dixit Odyssey + The Resistance + Tsuro
 
 
 Playtime: 175 minutes.
-Dixit Odyssey + Dixit Odyssey + Dixit Odyssey + Dixit Odyssey
-Dixit Odyssey + Dixit Odyssey + Dixit Odyssey + The Resistance
+Dixit Odyssey + Dixit Odyssey + The Resistance + The Resistance
 
 
 Playtime: 180 minutes.
-Dixit Odyssey + Dixit Odyssey + Dixit Odyssey + Dixit Odyssey
-Dixit Odyssey + Dixit Odyssey + Dixit Odyssey + The Resistance
+Dixit Odyssey + Dixit Odyssey + The Resistance + The Resistance
 

@@ -302,24 +302,34 @@ public class GameNightRecommender implements IGameNightRecommender {
     double currentTimeSpent = 0;
 
     for (int i = 0; i < gamesWithCounter.length; i++) {
+
+      // Find first element
       if (maxTime >= gamesWithCounter[i].approximateTime) {
         suggestedCombinationList.add(gamesWithCounter[i]);
         posOfFirstElement = i;
-        currentTimeSpent += gamesWithCounter[i].approximateTime;
         break;
       }
     }
-    for (int i = posOfFirstElement + 1; i < gamesWithCounter.length; i++) {
+    for (int i = posOfFirstElement; i < gamesWithCounter.length; i++) {
       double withinTime = currentTimeSpent + gamesWithCounter[i].approximateTime;
       if (maxTime >= withinTime) {
         suggestedCombinationList.add(gamesWithCounter[i]);
+        try {
+          if (maxTime >= withinTime + gamesWithCounter[i].approximateTime &&
+                  (gamesWithCounter[i].value * gameNightValues.multiplierForValueDecreaseWhenChoosingTheSameGameTwice()) > gamesWithCounter[i + 1].value) {
+            withinTime += gamesWithCounter[i].approximateTime;
+            suggestedCombinationList.add(gamesWithCounter[i]);
+          }
+        }
+        catch (Exception e) {
+          // If last element, rarely happens...
+        }
         currentTimeSpent = withinTime;
       }
     }
     BoardGameCounter[] suggestedCombination = new BoardGameCounter[suggestedCombinationList.size()];
     for (int i = 0; i < suggestedCombination.length; i++) {
       suggestedCombination[i] = suggestedCombinationList.get(i);
-      //System.out.println("Choose game: " + suggestedCombination[i].game + " : " + suggestedCombination[i].value); // TODO: 07/12/2016
     }
     return suggestedCombination;
   }

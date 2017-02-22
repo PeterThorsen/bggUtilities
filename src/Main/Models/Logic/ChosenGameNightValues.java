@@ -136,4 +136,9 @@ public class ChosenGameNightValues implements IGameNightValues {
   public double gameBestWithCurrentNumberOfPlayers() {
     return 25;
   }
+
+  @Override
+  public double multiplierForValueDecreaseWhenChoosingTheSameGameTwice() {
+    return 0.7;
+  }
 }

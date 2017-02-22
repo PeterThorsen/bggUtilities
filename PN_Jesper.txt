@@ -67,7 +67,6 @@ Crokinole + Crokinole
 Crokinole + Jaipur
 Crokinole + Ticket to Ride
 Jaipur + Ticket to Ride
-Onitama + Onitama + Onitama
 
 
 Playtime: 75 minutes.
@@ -75,7 +74,6 @@ Crokinole + Crokinole
 Crokinole + Jaipur
 Crokinole + Ticket to Ride
 Jaipur + Ticket to Ride
-Onitama + Onitama + Onitama
 
 
 Playtime: 80 minutes.
@@ -103,12 +101,10 @@ Crokinole + Crokinole + Onitama
 Crokinole + Jaipur + Onitama
 Crokinole + Onitama + Ticket to Ride
 Jaipur + Onitama + Ticket to Ride
-Onitama + Onitama + Onitama + Onitama
 Suburbia
 
 
 Playtime: 100 minutes.
-Crokinole + Crokinole + Crokinole
 Crokinole + Crokinole + Jaipur
 Crokinole + Crokinole + Onitama
 Crokinole + Crokinole + Ticket to Ride
@@ -116,28 +112,19 @@ Crokinole + Jaipur + Onitama
 Crokinole + Jaipur + Ticket to Ride
 Crokinole + Onitama + Ticket to Ride
 Jaipur + Onitama + Ticket to Ride
-Onitama + Onitama + Onitama + Onitama
 Suburbia
 
 
 Playtime: 105 minutes.
-Crokinole + Crokinole + Crokinole
 Crokinole + Crokinole + Jaipur
 Crokinole + Crokinole + Ticket to Ride
 Crokinole + Jaipur + Ticket to Ride
-Crokinole + Onitama + Onitama + Onitama
-Jaipur + Onitama + Onitama + Onitama
-Onitama + Onitama + Onitama + Ticket to Ride
 
 
 Playtime: 110 minutes.
-Crokinole + Crokinole + Crokinole
 Crokinole + Crokinole + Jaipur
 Crokinole + Crokinole + Ticket to Ride
 Crokinole + Jaipur + Ticket to Ride
-Crokinole + Onitama + Onitama + Onitama
-Jaipur + Onitama + Onitama + Onitama
-Onitama + Onitama + Onitama + Ticket to Ride
 
 
 Playtime: 115 minutes.
@@ -157,7 +144,6 @@ Onitama + Suburbia
 
 
 Playtime: 125 minutes.
-Crokinole + Crokinole + Crokinole + Onitama
 Crokinole + Crokinole + Jaipur + Onitama
 Crokinole + Crokinole + Onitama + Ticket to Ride
 Crokinole + Jaipur + Onitama + Ticket to Ride
@@ -168,7 +154,6 @@ Suburbia + Ticket to Ride
 
 
 Playtime: 130 minutes.
-Crokinole + Crokinole + Crokinole + Onitama
 Crokinole + Crokinole + Jaipur + Onitama
 Crokinole + Crokinole + Onitama + Ticket to Ride
 Crokinole + Jaipur + Onitama + Ticket to Ride
@@ -178,10 +163,7 @@ Suburbia + Ticket to Ride
 
 
 Playtime: 135 minutes.
-Crokinole + Crokinole + Crokinole + Crokinole
-Crokinole + Crokinole + Crokinole + Jaipur
-Crokinole + Crokinole + Crokinole + Onitama
-Crokinole + Crokinole + Crokinole + Ticket to Ride
+Crokinole + Crokinole + Jaipur + Jaipur
 Crokinole + Crokinole + Jaipur + Onitama
 Crokinole + Crokinole + Jaipur + Ticket to Ride
 Crokinole + Crokinole + Onitama + Ticket to Ride
@@ -192,17 +174,13 @@ Suburbia + Ticket to Ride
 
 
 Playtime: 140 minutes.
-Crokinole + Crokinole + Crokinole + Crokinole
-Crokinole + Crokinole + Crokinole + Jaipur
-Crokinole + Crokinole + Crokinole + Ticket to Ride
+Crokinole + Crokinole + Jaipur + Jaipur
 Crokinole + Crokinole + Jaipur + Ticket to Ride
 Onitama + Onitama + Suburbia
 
 
 Playtime: 145 minutes.
-Crokinole + Crokinole + Crokinole + Crokinole
-Crokinole + Crokinole + Crokinole + Jaipur
-Crokinole + Crokinole + Crokinole + Ticket to Ride
+Crokinole + Crokinole + Jaipur + Jaipur
 Crokinole + Crokinole + Jaipur + Ticket to Ride
 Onitama + Onitama + Suburbia
 
@@ -234,7 +212,6 @@ Crokinole + Crokinole + Suburbia
 Crokinole + Jaipur + Suburbia
 Crokinole + Suburbia + Ticket to Ride
 Jaipur + Suburbia + Ticket to Ride
-Onitama + Onitama + Onitama + Suburbia
 
 
 Playtime: 170 minutes.
@@ -242,7 +219,6 @@ Crokinole + Crokinole + Suburbia
 Crokinole + Jaipur + Suburbia
 Crokinole + Suburbia + Ticket to Ride
 Jaipur + Suburbia + Ticket to Ride
-Onitama + Onitama + Onitama + Suburbia
 
 
 Playtime: 175 minutes.

@@ -73,7 +73,6 @@ Skull
 Playtime: 55 minutes.
 Bohnanza
 Carcassonne
-Codenames + Codenames + Codenames
 Codenames + Dixit Odyssey
 Codenames + For Sale
 Codenames + Hanabi
@@ -92,7 +91,6 @@ Sushi Go! + Tsuro
 Playtime: 60 minutes.
 Bohnanza
 Carcassonne
-Codenames + Codenames + Codenames
 Codenames + Dixit Odyssey
 Codenames + Flick 'em Up!
 Codenames + For Sale
@@ -115,7 +113,6 @@ Ticket to Ride
 Playtime: 65 minutes.
 Bohnanza
 Carcassonne
-Codenames + Codenames + Codenames
 Codenames + Codenames + Spyfall
 Codenames + Codenames + Sushi Go!
 Codenames + Codenames + Tsuro
@@ -187,7 +184,6 @@ Playtime: 75 minutes.
 Betrayal at House on the Hill
 Bohnanza + Codenames
 Carcassonne + Codenames
-Codenames + Codenames + Codenames + Codenames
 Codenames + Codenames + Dixit Odyssey
 Codenames + Codenames + For Sale
 Codenames + Codenames + Hanabi
@@ -233,7 +229,6 @@ Playtime: 80 minutes.
 Betrayal at House on the Hill
 Bohnanza + Codenames
 Carcassonne + Codenames
-Codenames + Codenames + Codenames + Codenames
 Codenames + Codenames + Dixit Odyssey
 Codenames + Codenames + Flick 'em Up!
 Codenames + Codenames + For Sale
@@ -289,10 +284,6 @@ Carcassonne + Codenames
 Carcassonne + Spyfall
 Carcassonne + Sushi Go!
 Carcassonne + Tsuro
-Codenames + Codenames + Codenames + Codenames
-Codenames + Codenames + Codenames + Spyfall
-Codenames + Codenames + Codenames + Sushi Go!
-Codenames + Codenames + Codenames + Tsuro
 Codenames + Codenames + Flick 'em Up!
 Codenames + Codenames + Hanabi
 Codenames + Codenames + No Thanks!
@@ -357,11 +348,6 @@ Carcassonne + For Sale
 Carcassonne + Spyfall
 Carcassonne + Sushi Go!
 Carcassonne + Tsuro
-Codenames + Codenames + Codenames + Dixit Odyssey
-Codenames + Codenames + Codenames + For Sale
-Codenames + Codenames + Codenames + Spyfall
-Codenames + Codenames + Codenames + Sushi Go!
-Codenames + Codenames + Codenames + Tsuro
 Codenames + Codenames + Colt Express
 Codenames + Codenames + Flick 'em Up!
 Codenames + Codenames + The Resistance
@@ -442,16 +428,10 @@ Carcassonne + No Thanks!
 Carcassonne + Spyfall
 Carcassonne + Sushi Go!
 Carcassonne + Tsuro
-Codenames + Codenames + Codenames + Dixit Odyssey
-Codenames + Codenames + Codenames + For Sale
-Codenames + Codenames + Codenames + Hanabi
-Codenames + Codenames + Codenames + No Thanks!
-Codenames + Codenames + Codenames + Spyfall
-Codenames + Codenames + Codenames + Sushi Go!
-Codenames + Codenames + Codenames + Tsuro
 Codenames + Codenames + Colt Express
 Codenames + Codenames + Flash Point: Fire Rescue
 Codenames + Codenames + Skull
+Codenames + Codenames + Spyfall + Spyfall
 Codenames + Codenames + Spyfall + Sushi Go!
 Codenames + Codenames + Spyfall + Tsuro
 Codenames + Codenames + Sushi Go! + Tsuro
@@ -542,12 +522,6 @@ Carcassonne + For Sale
 Carcassonne + Hanabi
 Carcassonne + No Thanks!
 Carcassonne + The Resistance
-Codenames + Codenames + Codenames + Dixit Odyssey
-Codenames + Codenames + Codenames + Flick 'em Up!
-Codenames + Codenames + Codenames + For Sale
-Codenames + Codenames + Codenames + Hanabi
-Codenames + Codenames + Codenames + No Thanks!
-Codenames + Codenames + Codenames + The Resistance
 Codenames + Codenames + Dixit Odyssey + Spyfall
 Codenames + Codenames + Dixit Odyssey + Sushi Go!
 Codenames + Codenames + Dixit Odyssey + Tsuro
@@ -668,11 +642,6 @@ Carcassonne + Hanabi
 Carcassonne + No Thanks!
 Carcassonne + The Resistance
 Carcassonne + Skull
-Codenames + Codenames + Codenames + Flick 'em Up!
-Codenames + Codenames + Codenames + Hanabi
-Codenames + Codenames + Codenames + No Thanks!
-Codenames + Codenames + Codenames + The Resistance
-Codenames + Codenames + Codenames + Skull
 Codenames + Codenames + Dixit Odyssey + Dixit Odyssey
 Codenames + Codenames + Dixit Odyssey + For Sale
 Codenames + Codenames + Dixit Odyssey + Spyfall
@@ -813,10 +782,6 @@ Carcassonne + Colt Express
 Carcassonne + Flick 'em Up!
 Carcassonne + The Resistance
 Carcassonne + Skull
-Codenames + Codenames + Codenames + Colt Express
-Codenames + Codenames + Codenames + Flick 'em Up!
-Codenames + Codenames + Codenames + The Resistance
-Codenames + Codenames + Codenames + Skull
 Codenames + Codenames + Dixit Odyssey + Dixit Odyssey
 Codenames + Codenames + Dixit Odyssey + For Sale
 Codenames + Codenames + Dixit Odyssey + Hanabi
@@ -963,7 +928,6 @@ Betrayal at House on the Hill + No Thanks!
 Betrayal at House on the Hill + The Resistance
 Bohnanza + Bohnanza
 Bohnanza + Carcassonne
-Bohnanza + Codenames + Codenames + Codenames
 Bohnanza + Codenames + Dixit Odyssey
 Bohnanza + Codenames + For Sale
 Bohnanza + Codenames + Hanabi
@@ -977,7 +941,6 @@ Bohnanza + Skull
 Bohnanza + Spyfall + Sushi Go!
 Bohnanza + Spyfall + Tsuro
 Bohnanza + Sushi Go! + Tsuro
-Carcassonne + Codenames + Codenames + Codenames
 Carcassonne + Codenames + Dixit Odyssey
 Carcassonne + Codenames + For Sale
 Carcassonne + Codenames + Hanabi
@@ -991,9 +954,6 @@ Carcassonne + Skull
 Carcassonne + Spyfall + Sushi Go!
 Carcassonne + Spyfall + Tsuro
 Carcassonne + Sushi Go! + Tsuro
-Codenames + Codenames + Codenames + Colt Express
-Codenames + Codenames + Codenames + Flash Point: Fire Rescue
-Codenames + Codenames + Codenames + Skull
 Codenames + Codenames + Dixit Odyssey + Dixit Odyssey
 Codenames + Codenames + Dixit Odyssey + Flick 'em Up!
 Codenames + Codenames + Dixit Odyssey + For Sale
@@ -1157,7 +1117,6 @@ Betrayal at House on the Hill + The Resistance
 Betrayal at House on the Hill + Skull
 Bohnanza + Bohnanza
 Bohnanza + Carcassonne
-Bohnanza + Codenames + Codenames + Codenames
 Bohnanza + Codenames + Dixit Odyssey
 Bohnanza + Codenames + Flick 'em Up!
 Bohnanza + Codenames + For Sale
@@ -1175,7 +1134,6 @@ Bohnanza + Spyfall + Sushi Go!
 Bohnanza + Spyfall + Tsuro
 Bohnanza + Sushi Go! + Tsuro
 Bohnanza + Ticket to Ride
-Carcassonne + Codenames + Codenames + Codenames
 Carcassonne + Codenames + Dixit Odyssey
 Carcassonne + Codenames + Flick 'em Up!
 Carcassonne + Codenames + For Sale
@@ -1193,8 +1151,6 @@ Carcassonne + Spyfall + Sushi Go!
 Carcassonne + Spyfall + Tsuro
 Carcassonne + Sushi Go! + Tsuro
 Carcassonne + Ticket to Ride
-Codenames + Codenames + Codenames + Flash Point: Fire Rescue
-Codenames + Codenames + Codenames + Ticket to Ride
 Codenames + Codenames + Colt Express + Spyfall
 Codenames + Codenames + Colt Express + Sushi Go!
 Codenames + Codenames + Colt Express + Tsuro
@@ -1383,7 +1339,6 @@ Betrayal at House on the Hill + The Resistance
 Betrayal at House on the Hill + Skull
 Bohnanza + Bohnanza
 Bohnanza + Carcassonne
-Bohnanza + Codenames + Codenames + Codenames
 Bohnanza + Codenames + Codenames + Spyfall
 Bohnanza + Codenames + Codenames + Sushi Go!
 Bohnanza + Codenames + Codenames + Tsuro
@@ -1411,7 +1366,6 @@ Bohnanza + Spyfall + Sushi Go!
 Bohnanza + Spyfall + Tsuro
 Bohnanza + Sushi Go! + Tsuro
 Bohnanza + Ticket to Ride
-Carcassonne + Codenames + Codenames + Codenames
 Carcassonne + Codenames + Codenames + Spyfall
 Carcassonne + Codenames + Codenames + Sushi Go!
 Carcassonne + Codenames + Codenames + Tsuro
@@ -1439,8 +1393,6 @@ Carcassonne + Spyfall + Sushi Go!
 Carcassonne + Spyfall + Tsuro
 Carcassonne + Sushi Go! + Tsuro
 Carcassonne + Ticket to Ride
-Codenames + Codenames + Codenames + Flash Point: Fire Rescue
-Codenames + Codenames + Codenames + Ticket to Ride
 Codenames + Codenames + Colt Express + Dixit Odyssey
 Codenames + Codenames + Colt Express + For Sale
 Codenames + Codenames + Colt Express + Spyfall
@@ -1634,7 +1586,6 @@ Sushi Go! + Ticket to Ride + Tsuro
 Playtime: 130 minutes.
 Betrayal at House on the Hill + Bohnanza
 Betrayal at House on the Hill + Carcassonne
-Betrayal at House on the Hill + Codenames + Codenames + Codenames
 Betrayal at House on the Hill + Codenames + Dixit Odyssey
 Betrayal at House on the Hill + Codenames + For Sale
 Betrayal at House on the Hill + Codenames + Hanabi
@@ -1716,7 +1667,6 @@ Carcassonne + The Resistance + Spyfall
 Carcassonne + The Resistance + Sushi Go!
 Carcassonne + The Resistance + Tsuro
 Carcassonne + Ticket to Ride
-Codenames + Codenames + Codenames + Ticket to Ride
 Codenames + Codenames + Colt Express + Dixit Odyssey
 Codenames + Codenames + Colt Express + For Sale
 Codenames + Codenames + Colt Express + Hanabi
@@ -1941,7 +1891,6 @@ Sushi Go! + Ticket to Ride + Tsuro
 Playtime: 135 minutes.
 Betrayal at House on the Hill + Bohnanza
 Betrayal at House on the Hill + Carcassonne
-Betrayal at House on the Hill + Codenames + Codenames + Codenames
 Betrayal at House on the Hill + Codenames + Dixit Odyssey
 Betrayal at House on the Hill + Codenames + Flick 'em Up!
 Betrayal at House on the Hill + Codenames + For Sale
@@ -2283,7 +2232,6 @@ Skull + Spyfall + Sushi Go! + Tsuro
 Playtime: 140 minutes.
 Betrayal at House on the Hill + Bohnanza
 Betrayal at House on the Hill + Carcassonne
-Betrayal at House on the Hill + Codenames + Codenames + Codenames
 Betrayal at House on the Hill + Codenames + Codenames + Spyfall
 Betrayal at House on the Hill + Codenames + Codenames + Sushi Go!
 Betrayal at House on the Hill + Codenames + Codenames + Tsuro

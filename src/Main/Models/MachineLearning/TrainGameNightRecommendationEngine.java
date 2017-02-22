@@ -69,21 +69,43 @@ public class TrainGameNightRecommendationEngine {
       }
       int playTime = playTimes[random.nextInt(playTimes.length)];
 
-      ArrayList<BoardGame[]> combinations = fillRecommendedForMinuteCountAndPlayers(playTime, players);
+      ArrayList<BoardGame[]> goodSuggestions = fillRecommendedForMinuteCountAndPlayers(playTime, players);
 
-      /*for (int i = 0; i < 5; i++) {
-        BoardGameCounter[] result = controller.suggestGames(players, playTime).suggestedCombination;
+      for (int i = 0; i < 1000; i++) {
+        BoardGameCounter[] actualSuggestion = controller.suggestGames(players, playTime).suggestedCombination;
+        BoardGame[] actualSuggestionAsGames = new BoardGame[actualSuggestion.length];
+        for (int k = 0; k < actualSuggestion.length; k++) {
+          actualSuggestionAsGames[k] = actualSuggestion[k].game;
+        }
 
-        for (int y = 0; y < 3; y++) {
-          for (BoardGame[] combination : combinations) {
-            for (BoardGame game : combination) {
-              evaluateGame(game, combination.length, result);
-            }
-            evaluateCombination(combination, result);
+        for (BoardGame[] goodSuggestion : goodSuggestions) {
+          if(arraysAreEqual(goodSuggestion, actualSuggestionAsGames)) {
+            // Increase
+          }
+          else {
+            // Decrease
           }
         }
-      }*/
+
+      }
     }
+  }
+
+  private boolean arraysAreEqual(BoardGame[] goodSuggestion, BoardGame[] actualSuggestionAsGames) {
+    if(goodSuggestion.length != actualSuggestionAsGames.length) return false;
+    boolean[] filled = new boolean[actualSuggestionAsGames.length];
+
+    outer:
+    for (int i = 0; i < goodSuggestion.length; i++) {
+      for (int j = 0; j < actualSuggestionAsGames.length; j++) {
+        if(goodSuggestion[i].equals(actualSuggestionAsGames[j])) {
+          filled[j] = true;
+          continue outer;
+        }
+      }
+      return false;
+    }
+    return true;
   }
 
   private void evaluateCombination(BoardGame[] combination, BoardGameCounter[] result) {
@@ -106,20 +128,20 @@ public class TrainGameNightRecommendationEngine {
       sb.append("PN");
       boolean[] filledPlayers = new boolean[players.length];
       int filledCounter = 0;
-      while(true) {
+      while (true) {
         int position = random.nextInt(players.length);
-        if(filledPlayers[position]) continue;
+        if (filledPlayers[position]) continue;
         sb.append("_").append(players[position].name);
         filledPlayers[position] = true;
         filledCounter++;
 
-        if(filledCounter == players.length) break;
+        if (filledCounter == players.length) break;
 
       }
 
       sb.append(".txt");
       File file = new File("PN_Charlotte_Alf_Lisbeth_Mikkel_Bolette.txt");
-      if(file.exists() && !file.isDirectory()) {
+      if (file.exists() && !file.isDirectory()) {
         foundFile = file;
         break;
       }
@@ -131,9 +153,8 @@ public class TrainGameNightRecommendationEngine {
     try {
       reader = new BufferedReader(new FileReader(foundFile));
       String line;
-      while ((line = reader.readLine()) != null)
-      {
-        if(!registerGames) {
+      while ((line = reader.readLine()) != null) {
+        if (!registerGames) {
           try {
             int minuteCount = Integer.parseInt(line.split("Playtime: ")[1].split(" minutes")[0]);
             if (minuteCount != playTime) continue;
@@ -144,14 +165,12 @@ public class TrainGameNightRecommendationEngine {
           }
         }
 
-        if(line.equals("")) break;
+        if (line.equals("")) break;
         String[] currentGamesSplitted;
         try {
           currentGamesSplitted = line.split(" \\+ ");
-          System.out.println(currentGamesSplitted[1]);
-        }
-        catch (Exception e) {
-          currentGamesSplitted = new String[] {line};
+        } catch (Exception e) {
+          currentGamesSplitted = new String[]{line};
         }
 
 
@@ -165,51 +184,6 @@ public class TrainGameNightRecommendationEngine {
       e.printStackTrace();
     }
     return combinations;
-/*
-
-
-    // Split string to get minute count as int
-    try {
-      String toSplit = "Playtime: 15 minutes.";
-      int minuteCount = Integer.parseInt(toSplit.split("Playtime: ")[1].split(" minutes")[0]);
-      System.out.println(minuteCount);
-    } catch (Exception e) {
-
-    }
-    System.out.println("done");
-*/
-
-
-
-
-    /*combinations.add(new BoardGame[]{controller.getGame("Agricola")});
-    combinations.add(new BoardGame[]{controller.getGame("Camel Up"), controller.getGame("Carcassonne")});
-    combinations.add(new BoardGame[]{controller.getGame("Camel Up"), controller.getGame("Crokinole")});
-    combinations.add(new BoardGame[]{controller.getGame("Camel Up"), controller.getGame("Hanabi")});
-    combinations.add(new BoardGame[]{controller.getGame("Camel Up"), controller.getGame("Jaipur")});
-    combinations.add(new BoardGame[]{controller.getGame("Camel Up"), controller.getGame("Tsuro"), controller.getGame("Tsuro")});
-    combinations.add(new BoardGame[]{controller.getGame("Carcassonne"), controller.getGame("Hanabi")});
-    combinations.add(new BoardGame[]{controller.getGame("Carcassonne"), controller.getGame("Hey, That's My Fish!")});
-    combinations.add(new BoardGame[]{controller.getGame("Carcassonne"), controller.getGame("Hive")});
-    combinations.add(new BoardGame[]{controller.getGame("Carcassonne"), controller.getGame("Onitama")});
-    combinations.add(new BoardGame[]{controller.getGame("Carcassonne"), controller.getGame("Tsuro")});
-    combinations.add(new BoardGame[]{controller.getGame("Crokinole"), controller.getGame("Hanabi")});
-    combinations.add(new BoardGame[]{controller.getGame("Crokinole"), controller.getGame("Hey, That's My Fish!")});
-    combinations.add(new BoardGame[]{controller.getGame("Crokinole"), controller.getGame("Hive")});
-    combinations.add(new BoardGame[]{controller.getGame("Crokinole"), controller.getGame("Onitama")});
-    combinations.add(new BoardGame[]{controller.getGame("Crokinole"), controller.getGame("Tsuro")});
-    combinations.add(new BoardGame[]{controller.getGame("Hanabi"), controller.getGame("Hey, That's My Fish!")});
-    combinations.add(new BoardGame[]{controller.getGame("Hanabi"), controller.getGame("Hive")});
-    combinations.add(new BoardGame[]{controller.getGame("Hanabi"), controller.getGame("Jaipur")});
-    combinations.add(new BoardGame[]{controller.getGame("Hanabi"), controller.getGame("Onitama")});
-    combinations.add(new BoardGame[]{controller.getGame("Hey, That's My Fish!"), controller.getGame("Jaipur")});
-    combinations.add(new BoardGame[]{controller.getGame("Hey, That's My Fish!"), controller.getGame("Tsuro"), controller.getGame("Tsuro")});
-    combinations.add(new BoardGame[]{controller.getGame("Hive"), controller.getGame("Tsuro"), controller.getGame("Tsuro")});
-    combinations.add(new BoardGame[]{controller.getGame("Hive"), controller.getGame("Jaipur")});
-    combinations.add(new BoardGame[]{controller.getGame("Jaipur"), controller.getGame("Onitama")});
-    combinations.add(new BoardGame[]{controller.getGame("Jaipur"), controller.getGame("Tsuro")});
-    combinations.add(new BoardGame[]{controller.getGame("Onitama"), controller.getGame("Tsuro"), controller.getGame("Tsuro")});*/
-    //return combinations;
   }
 
 

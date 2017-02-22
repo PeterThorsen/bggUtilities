@@ -147,7 +147,6 @@ Jaipur + Sushi Go!
 Jaipur + Tsuro
 Pandemic
 Santorini + Ticket to Ride
-Sushi Go! + Sushi Go! + Sushi Go!
 Sushi Go! + Sushi Go! + Tsuro
 Sushi Go! + Ticket to Ride
 Takenoko
@@ -249,7 +248,6 @@ Takenoko + Tsuro
 
 
 Playtime: 70 minutes.
-Camel Up + Camel Up + Camel Up
 Camel Up + Camel Up + Hey, That's My Fish!
 Camel Up + Camel Up + Santorini
 Camel Up + Camel Up + Sushi Go!
@@ -315,7 +313,6 @@ Takenoko + Tsuro
 
 
 Playtime: 75 minutes.
-Camel Up + Camel Up + Camel Up
 Camel Up + Camel Up + Hanabi
 Camel Up + Camel Up + Hey, That's My Fish!
 Camel Up + Camel Up + Santorini
@@ -399,15 +396,13 @@ Pandemic + Tsuro
 Santorini + Sushi Go! + Ticket to Ride
 Santorini + Takenoko
 Santorini + Ticket to Ride + Tsuro
-Sushi Go! + Sushi Go! + Sushi Go! + Sushi Go!
-Sushi Go! + Sushi Go! + Sushi Go! + Tsuro
+Sushi Go! + Sushi Go! + Tsuro + Tsuro
 Sushi Go! + Takenoko
 Sushi Go! + Ticket to Ride + Tsuro
 Takenoko + Tsuro
 
 
 Playtime: 80 minutes.
-Camel Up + Camel Up + Camel Up
 Camel Up + Camel Up + Carcassonne
 Camel Up + Camel Up + The Castles of Burgundy
 Camel Up + Camel Up + Flick 'em Up!
@@ -441,7 +436,6 @@ Camel Up + Jaipur + Sushi Go!
 Camel Up + Jaipur + Tsuro
 Camel Up + Pandemic
 Camel Up + Santorini + Ticket to Ride
-Camel Up + Sushi Go! + Sushi Go! + Sushi Go!
 Camel Up + Sushi Go! + Sushi Go! + Tsuro
 Camel Up + Sushi Go! + Ticket to Ride
 Camel Up + Takenoko
@@ -500,7 +494,6 @@ Hey, That's My Fish! + Jaipur + Sushi Go!
 Hey, That's My Fish! + Jaipur + Tsuro
 Hey, That's My Fish! + Pandemic
 Hey, That's My Fish! + Santorini + Ticket to Ride
-Hey, That's My Fish! + Sushi Go! + Sushi Go! + Sushi Go!
 Hey, That's My Fish! + Sushi Go! + Sushi Go! + Tsuro
 Hey, That's My Fish! + Sushi Go! + Ticket to Ride
 Hey, That's My Fish! + Takenoko
@@ -512,7 +505,6 @@ Jaipur + Sushi Go! + Tsuro
 Jaipur + Takenoko
 Pandemic + Santorini
 Pandemic + Ticket to Ride
-Santorini + Sushi Go! + Sushi Go! + Sushi Go!
 Santorini + Sushi Go! + Sushi Go! + Tsuro
 Santorini + Sushi Go! + Ticket to Ride
 Santorini + Takenoko
@@ -628,7 +620,6 @@ Hanabi + Jaipur + Sushi Go!
 Hanabi + Jaipur + Tsuro
 Hanabi + Pandemic
 Hanabi + Santorini + Ticket to Ride
-Hanabi + Sushi Go! + Sushi Go! + Sushi Go!
 Hanabi + Sushi Go! + Sushi Go! + Tsuro
 Hanabi + Sushi Go! + Ticket to Ride
 Hanabi + Takenoko
@@ -658,8 +649,6 @@ Takenoko + Ticket to Ride
 
 
 Playtime: 90 minutes.
-Camel Up + Camel Up + Camel Up + Sushi Go!
-Camel Up + Camel Up + Camel Up + Tsuro
 Camel Up + Camel Up + Carcassonne
 Camel Up + Camel Up + The Castles of Burgundy
 Camel Up + Camel Up + Flick 'em Up!
@@ -730,7 +719,6 @@ Carcassonne + Jaipur + Sushi Go!
 Carcassonne + Jaipur + Tsuro
 Carcassonne + Pandemic
 Carcassonne + Santorini + Ticket to Ride
-Carcassonne + Sushi Go! + Sushi Go! + Sushi Go!
 Carcassonne + Sushi Go! + Sushi Go! + Tsuro
 Carcassonne + Sushi Go! + Ticket to Ride
 Carcassonne + Takenoko
@@ -752,7 +740,6 @@ The Castles of Burgundy + Jaipur + Sushi Go!
 The Castles of Burgundy + Jaipur + Tsuro
 The Castles of Burgundy + Pandemic
 The Castles of Burgundy + Santorini + Ticket to Ride
-The Castles of Burgundy + Sushi Go! + Sushi Go! + Sushi Go!
 The Castles of Burgundy + Sushi Go! + Sushi Go! + Tsuro
 The Castles of Burgundy + Sushi Go! + Ticket to Ride
 The Castles of Burgundy + Takenoko
@@ -777,7 +764,6 @@ Flick 'em Up! + Jaipur + Sushi Go!
 Flick 'em Up! + Jaipur + Tsuro
 Flick 'em Up! + Pandemic
 Flick 'em Up! + Santorini + Ticket to Ride
-Flick 'em Up! + Sushi Go! + Sushi Go! + Sushi Go!
 Flick 'em Up! + Sushi Go! + Sushi Go! + Tsuro
 Flick 'em Up! + Sushi Go! + Ticket to Ride
 Flick 'em Up! + Takenoko
@@ -804,7 +790,6 @@ Hey, That's My Fish! + Sushi Go! + Takenoko
 Hey, That's My Fish! + Takenoko + Tsuro
 Jaipur + Pandemic
 Jaipur + Santorini + Ticket to Ride
-Jaipur + Sushi Go! + Sushi Go! + Sushi Go!
 Jaipur + Sushi Go! + Sushi Go! + Tsuro
 Jaipur + Sushi Go! + Ticket to Ride
 Jaipur + Takenoko
@@ -816,21 +801,16 @@ Pandemic + Ticket to Ride
 Santorini + Sushi Go! + Takenoko
 Santorini + Takenoko + Tsuro
 Suburbia
-Sushi Go! + Sushi Go! + Sushi Go! + Ticket to Ride
 Sushi Go! + Sushi Go! + Ticket to Ride + Tsuro
 Sushi Go! + Takenoko + Tsuro
 Takenoko + Ticket to Ride
 
 
 Playtime: 95 minutes.
-Camel Up + Camel Up + Camel Up + Camel Up
-Camel Up + Camel Up + Camel Up + Hey, That's My Fish!
-Camel Up + Camel Up + Camel Up + Santorini
-Camel Up + Camel Up + Camel Up + Sushi Go!
-Camel Up + Camel Up + Camel Up + Tsuro
 Camel Up + Camel Up + Flash Point: Fire Rescue
 Camel Up + Camel Up + Hanabi + Sushi Go!
 Camel Up + Camel Up + Hanabi + Tsuro
+Camel Up + Camel Up + Hey, That's My Fish! + Hey, That's My Fish!
 Camel Up + Camel Up + Hey, That's My Fish! + Santorini
 Camel Up + Camel Up + Hey, That's My Fish! + Sushi Go!
 Camel Up + Camel Up + Hey, That's My Fish! + Tsuro
@@ -1007,12 +987,6 @@ Sushi Go! + Takenoko + Tsuro
 
 
 Playtime: 100 minutes.
-Camel Up + Camel Up + Camel Up + Camel Up
-Camel Up + Camel Up + Camel Up + Hanabi
-Camel Up + Camel Up + Camel Up + Hey, That's My Fish!
-Camel Up + Camel Up + Camel Up + Santorini
-Camel Up + Camel Up + Camel Up + Sushi Go!
-Camel Up + Camel Up + Camel Up + Tsuro
 Camel Up + Camel Up + Carcassonne + Sushi Go!
 Camel Up + Camel Up + Carcassonne + Tsuro
 Camel Up + Camel Up + The Castles of Burgundy + Sushi Go!
@@ -1236,15 +1210,6 @@ Takenoko + Ticket to Ride + Tsuro
 
 
 Playtime: 105 minutes.
-Camel Up + Camel Up + Camel Up + Camel Up
-Camel Up + Camel Up + Camel Up + Carcassonne
-Camel Up + Camel Up + Camel Up + The Castles of Burgundy
-Camel Up + Camel Up + Camel Up + Flick 'em Up!
-Camel Up + Camel Up + Camel Up + Hanabi
-Camel Up + Camel Up + Camel Up + Hey, That's My Fish!
-Camel Up + Camel Up + Camel Up + Jaipur
-Camel Up + Camel Up + Camel Up + Santorini
-Camel Up + Camel Up + Camel Up + Ticket to Ride
 Camel Up + Camel Up + Carcassonne + Hey, That's My Fish!
 Camel Up + Camel Up + Carcassonne + Santorini
 Camel Up + Camel Up + Carcassonne + Sushi Go!
@@ -1258,6 +1223,7 @@ Camel Up + Camel Up + Flick 'em Up! + Hey, That's My Fish!
 Camel Up + Camel Up + Flick 'em Up! + Santorini
 Camel Up + Camel Up + Flick 'em Up! + Sushi Go!
 Camel Up + Camel Up + Flick 'em Up! + Tsuro
+Camel Up + Camel Up + Hanabi + Hanabi
 Camel Up + Camel Up + Hanabi + Hey, That's My Fish!
 Camel Up + Camel Up + Hanabi + Santorini
 Camel Up + Camel Up + Hanabi + Sushi Go!
@@ -1436,7 +1402,6 @@ Flash Point: Fire Rescue + Jaipur + Sushi Go!
 Flash Point: Fire Rescue + Jaipur + Tsuro
 Flash Point: Fire Rescue + Pandemic
 Flash Point: Fire Rescue + Santorini + Ticket to Ride
-Flash Point: Fire Rescue + Sushi Go! + Sushi Go! + Sushi Go!
 Flash Point: Fire Rescue + Sushi Go! + Sushi Go! + Tsuro
 Flash Point: Fire Rescue + Sushi Go! + Ticket to Ride
 Flash Point: Fire Rescue + Takenoko
@@ -1508,26 +1473,18 @@ Jaipur + Sushi Go! + Takenoko
 Jaipur + Sushi Go! + Ticket to Ride + Tsuro
 Jaipur + Takenoko + Tsuro
 Pandemic + Santorini + Ticket to Ride
-Pandemic + Sushi Go! + Sushi Go! + Sushi Go!
 Pandemic + Sushi Go! + Sushi Go! + Tsuro
 Pandemic + Sushi Go! + Ticket to Ride
 Pandemic + Takenoko
 Pandemic + Ticket to Ride + Tsuro
 Santorini + Sushi Go! + Ticket to Ride + Tsuro
 Santorini + Takenoko + Ticket to Ride
-Sushi Go! + Sushi Go! + Sushi Go! + Takenoko
 Sushi Go! + Sushi Go! + Takenoko + Tsuro
 Sushi Go! + Takenoko + Ticket to Ride
 Takenoko + Ticket to Ride + Tsuro
 
 
 Playtime: 110 minutes.
-Camel Up + Camel Up + Camel Up + Carcassonne
-Camel Up + Camel Up + Camel Up + The Castles of Burgundy
-Camel Up + Camel Up + Camel Up + Flick 'em Up!
-Camel Up + Camel Up + Camel Up + Hanabi
-Camel Up + Camel Up + Camel Up + Jaipur
-Camel Up + Camel Up + Camel Up + Ticket to Ride
 Camel Up + Camel Up + Carcassonne + Hanabi
 Camel Up + Camel Up + Carcassonne + Hey, That's My Fish!
 Camel Up + Camel Up + Carcassonne + Santorini
@@ -1848,11 +1805,7 @@ Takenoko + Ticket to Ride + Tsuro
 
 
 Playtime: 115 minutes.
-Camel Up + Camel Up + Camel Up + Carcassonne
-Camel Up + Camel Up + Camel Up + The Castles of Burgundy
-Camel Up + Camel Up + Camel Up + Flick 'em Up!
-Camel Up + Camel Up + Camel Up + Jaipur
-Camel Up + Camel Up + Camel Up + Ticket to Ride
+Camel Up + Camel Up + Carcassonne + Carcassonne
 Camel Up + Camel Up + Carcassonne + The Castles of Burgundy
 Camel Up + Camel Up + Carcassonne + Flick 'em Up!
 Camel Up + Camel Up + Carcassonne + Hanabi
@@ -2200,9 +2153,6 @@ Suburbia + Tsuro
 
 
 Playtime: 120 minutes.
-Camel Up + Camel Up + Camel Up + Flash Point: Fire Rescue
-Camel Up + Camel Up + Camel Up + Pandemic
-Camel Up + Camel Up + Camel Up + Takenoko
 Camel Up + Camel Up + Carcassonne + Carcassonne
 Camel Up + Camel Up + Carcassonne + The Castles of Burgundy
 Camel Up + Camel Up + Carcassonne + Flick 'em Up!
@@ -2575,9 +2525,6 @@ Sushi Go! + Takenoko + Ticket to Ride + Tsuro
 
 
 Playtime: 125 minutes.
-Camel Up + Camel Up + Camel Up + Flash Point: Fire Rescue
-Camel Up + Camel Up + Camel Up + Pandemic
-Camel Up + Camel Up + Camel Up + Takenoko
 Camel Up + Camel Up + Carcassonne + Carcassonne
 Camel Up + Camel Up + Carcassonne + The Castles of Burgundy
 Camel Up + Camel Up + Carcassonne + Flick 'em Up!
@@ -2975,9 +2922,6 @@ Sushi Go! + Takenoko + Ticket to Ride + Tsuro
 
 
 Playtime: 130 minutes.
-Camel Up + Camel Up + Camel Up + Flash Point: Fire Rescue
-Camel Up + Camel Up + Camel Up + Pandemic
-Camel Up + Camel Up + Camel Up + Takenoko
 Camel Up + Camel Up + Carcassonne + Flash Point: Fire Rescue
 Camel Up + Camel Up + Carcassonne + Pandemic
 Camel Up + Camel Up + Carcassonne + Takenoko
@@ -4377,7 +4321,6 @@ The Castles of Burgundy + Suburbia + Sushi Go!
 The Castles of Burgundy + Suburbia + Tsuro
 The Castles of Burgundy + Sushi Go! + Takenoko + Ticket to Ride
 The Castles of Burgundy + Takenoko + Ticket to Ride + Tsuro
-Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue
 Flash Point: Fire Rescue + Flash Point: Fire Rescue + Hanabi + Sushi Go!
 Flash Point: Fire Rescue + Flash Point: Fire Rescue + Hanabi + Tsuro
 Flash Point: Fire Rescue + Flash Point: Fire Rescue + Hey, That's My Fish! + Santorini
@@ -4686,7 +4629,6 @@ The Castles of Burgundy + Santorini + Suburbia
 The Castles of Burgundy + Santorini + Takenoko + Ticket to Ride
 The Castles of Burgundy + Suburbia + Sushi Go!
 The Castles of Burgundy + Suburbia + Tsuro
-Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue
 Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flick 'em Up! + Sushi Go!
 Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flick 'em Up! + Tsuro
 Flash Point: Fire Rescue + Flash Point: Fire Rescue + Hanabi + Hey, That's My Fish!
@@ -4797,7 +4739,6 @@ Pandemic + Suburbia
 Pandemic + Sushi Go! + Takenoko + Ticket to Ride
 Pandemic + Takenoko + Ticket to Ride + Tsuro
 Santorini + Suburbia + Ticket to Ride
-Suburbia + Sushi Go! + Sushi Go! + Sushi Go!
 Suburbia + Sushi Go! + Sushi Go! + Tsuro
 Suburbia + Sushi Go! + Ticket to Ride
 Suburbia + Takenoko
@@ -4954,7 +4895,6 @@ The Castles of Burgundy + Pandemic + Takenoko + Tsuro
 The Castles of Burgundy + Santorini + Suburbia
 The Castles of Burgundy + Suburbia + Sushi Go!
 The Castles of Burgundy + Suburbia + Tsuro
-Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue
 Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flick 'em Up! + Hey, That's My Fish!
 Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flick 'em Up! + Santorini
 Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flick 'em Up! + Sushi Go!
@@ -5288,7 +5228,6 @@ Suburbia + Takenoko + Tsuro
 
 
 Playtime: 165 minutes.
-Camel Up + Camel Up + Camel Up + Suburbia
 Camel Up + Camel Up + Hey, That's My Fish! + Suburbia
 Camel Up + Camel Up + Santorini + Suburbia
 Camel Up + Camel Up + Suburbia + Sushi Go!
@@ -5390,8 +5329,6 @@ The Castles of Burgundy + Pandemic + Takenoko + Ticket to Ride
 The Castles of Burgundy + Suburbia + Sushi Go! + Sushi Go!
 The Castles of Burgundy + Suburbia + Sushi Go! + Tsuro
 The Castles of Burgundy + Suburbia + Ticket to Ride
-Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Sushi Go!
-Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Tsuro
 Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flick 'em Up! + Hanabi
 Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flick 'em Up! + Hey, That's My Fish!
 Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flick 'em Up! + Jaipur
@@ -5482,7 +5419,6 @@ Suburbia + Takenoko + Tsuro
 
 
 Playtime: 170 minutes.
-Camel Up + Camel Up + Camel Up + Suburbia
 Camel Up + Camel Up + Hanabi + Suburbia
 Camel Up + Camel Up + Hey, That's My Fish! + Suburbia
 Camel Up + Camel Up + Santorini + Suburbia
@@ -5492,7 +5428,6 @@ Camel Up + Carcassonne + Suburbia + Sushi Go!
 Camel Up + Carcassonne + Suburbia + Tsuro
 Camel Up + The Castles of Burgundy + Suburbia + Sushi Go!
 Camel Up + The Castles of Burgundy + Suburbia + Tsuro
-Camel Up + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue
 Camel Up + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Pandemic
 Camel Up + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Takenoko
 Camel Up + Flash Point: Fire Rescue + Pandemic + Takenoko
@@ -5572,10 +5507,6 @@ The Castles of Burgundy + Santorini + Suburbia + Sushi Go!
 The Castles of Burgundy + Santorini + Suburbia + Tsuro
 The Castles of Burgundy + Suburbia + Sushi Go! + Tsuro
 The Castles of Burgundy + Suburbia + Ticket to Ride
-Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Hey, That's My Fish!
-Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Santorini
-Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Sushi Go!
-Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Tsuro
 Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flick 'em Up! + Hanabi
 Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flick 'em Up! + Jaipur
 Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flick 'em Up! + Ticket to Ride
@@ -5656,7 +5587,6 @@ Suburbia + Takenoko + Tsuro
 
 
 Playtime: 175 minutes.
-Camel Up + Camel Up + Camel Up + Suburbia
 Camel Up + Camel Up + Carcassonne + Suburbia
 Camel Up + Camel Up + The Castles of Burgundy + Suburbia
 Camel Up + Camel Up + Flick 'em Up! + Suburbia
@@ -5673,7 +5603,6 @@ Camel Up + The Castles of Burgundy + Hey, That's My Fish! + Suburbia
 Camel Up + The Castles of Burgundy + Santorini + Suburbia
 Camel Up + The Castles of Burgundy + Suburbia + Sushi Go!
 Camel Up + The Castles of Burgundy + Suburbia + Tsuro
-Camel Up + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue
 Camel Up + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Pandemic
 Camel Up + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Takenoko
 Camel Up + Flash Point: Fire Rescue + Pandemic + Takenoko
@@ -5751,11 +5680,6 @@ The Castles of Burgundy + Santorini + Suburbia + Sushi Go!
 The Castles of Burgundy + Santorini + Suburbia + Tsuro
 The Castles of Burgundy + Suburbia + Sushi Go! + Tsuro
 The Castles of Burgundy + Suburbia + Takenoko
-Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Hanabi
-Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Hey, That's My Fish!
-Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Santorini
-Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Sushi Go!
-Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Tsuro
 Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flick 'em Up! + Jaipur
 Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flick 'em Up! + Ticket to Ride
 Flash Point: Fire Rescue + Flash Point: Fire Rescue + Hanabi + Pandemic
@@ -5849,7 +5773,6 @@ Camel Up + The Castles of Burgundy + Hey, That's My Fish! + Suburbia
 Camel Up + The Castles of Burgundy + Santorini + Suburbia
 Camel Up + The Castles of Burgundy + Suburbia + Sushi Go!
 Camel Up + The Castles of Burgundy + Suburbia + Tsuro
-Camel Up + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue
 Camel Up + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Pandemic
 Camel Up + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Takenoko
 Camel Up + Flash Point: Fire Rescue + Pandemic + Takenoko
@@ -5872,7 +5795,6 @@ Camel Up + Suburbia + Sushi Go! + Ticket to Ride
 Camel Up + Suburbia + Ticket to Ride + Tsuro
 Carcassonne + The Castles of Burgundy + Suburbia + Sushi Go!
 Carcassonne + The Castles of Burgundy + Suburbia + Tsuro
-Carcassonne + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue
 Carcassonne + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Pandemic
 Carcassonne + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Takenoko
 Carcassonne + Flash Point: Fire Rescue + Pandemic + Takenoko
@@ -5894,7 +5816,6 @@ Carcassonne + Santorini + Suburbia + Tsuro
 Carcassonne + Suburbia + Sushi Go! + Ticket to Ride
 Carcassonne + Suburbia + Takenoko
 Carcassonne + Suburbia + Ticket to Ride + Tsuro
-The Castles of Burgundy + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue
 The Castles of Burgundy + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Pandemic
 The Castles of Burgundy + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Takenoko
 The Castles of Burgundy + Flash Point: Fire Rescue + Pandemic + Takenoko
@@ -5916,12 +5837,6 @@ The Castles of Burgundy + Santorini + Suburbia + Tsuro
 The Castles of Burgundy + Suburbia + Sushi Go! + Ticket to Ride
 The Castles of Burgundy + Suburbia + Takenoko
 The Castles of Burgundy + Suburbia + Ticket to Ride + Tsuro
-Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flick 'em Up!
-Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Hanabi
-Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Hey, That's My Fish!
-Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Jaipur
-Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Santorini
-Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flash Point: Fire Rescue + Ticket to Ride
 Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flick 'em Up! + Pandemic
 Flash Point: Fire Rescue + Flash Point: Fire Rescue + Flick 'em Up! + Takenoko
 Flash Point: Fire Rescue + Flash Point: Fire Rescue + Hanabi + Pandemic

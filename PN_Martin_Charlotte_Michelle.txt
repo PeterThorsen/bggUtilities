@@ -113,7 +113,6 @@ Santorini + Tsuro
 Skull
 Spyfall + Tsuro
 Takenoko
-Tsuro + Tsuro + Tsuro
 
 
 Playtime: 60 minutes.
@@ -344,7 +343,6 @@ Skull + Spyfall
 Skull + Tsuro
 Spyfall + Takenoko
 Takenoko + Tsuro
-Tsuro + Tsuro + Tsuro + Tsuro
 
 
 Playtime: 80 minutes.
@@ -438,7 +436,6 @@ Love Letter + Santorini + Tsuro
 Love Letter + Skull
 Love Letter + Spyfall + Tsuro
 Love Letter + Takenoko
-Love Letter + Tsuro + Tsuro + Tsuro
 Pandemic + Tsuro
 Santorini + Skull
 Santorini + Spyfall + Tsuro
@@ -498,7 +495,6 @@ Codenames + Santorini + Tsuro
 Codenames + Skull
 Codenames + Spyfall + Tsuro
 Codenames + Takenoko
-Codenames + Tsuro + Tsuro + Tsuro
 Colt Express + Crokinole
 Colt Express + For Sale
 Colt Express + Hanabi
@@ -569,7 +565,6 @@ Santorini + Takenoko
 Skull + Spyfall
 Skull + Tsuro + Tsuro
 Spyfall + Takenoko
-Spyfall + Tsuro + Tsuro + Tsuro
 Takenoko + Tsuro + Tsuro
 Ticket to Ride + Tsuro
 
@@ -659,7 +654,6 @@ Crokinole + Santorini + Tsuro
 Crokinole + Skull
 Crokinole + Spyfall + Tsuro
 Crokinole + Takenoko
-Crokinole + Tsuro + Tsuro + Tsuro
 Dixit Odyssey + Flick 'em Up!
 Dixit Odyssey + Hanabi
 Dixit Odyssey + Love Letter + Love Letter
@@ -689,7 +683,6 @@ For Sale + Santorini + Tsuro
 For Sale + Skull
 For Sale + Spyfall + Tsuro
 For Sale + Takenoko
-For Sale + Tsuro + Tsuro + Tsuro
 Hanabi + Hey, That's My Fish! + Tsuro
 Hanabi + Love Letter + Spyfall
 Hanabi + Love Letter + Tsuro
@@ -705,7 +698,6 @@ Hey, That's My Fish! + Santorini + Tsuro
 Hey, That's My Fish! + Skull
 Hey, That's My Fish! + Spyfall + Tsuro
 Hey, That's My Fish! + Takenoko
-Hey, That's My Fish! + Tsuro + Tsuro + Tsuro
 Love Letter + No Thanks! + Spyfall
 Love Letter + Pandemic
 Love Letter + Santorini + Spyfall
@@ -722,7 +714,6 @@ Pandemic + Spyfall
 Santorini + Skull
 Santorini + Spyfall + Tsuro
 Santorini + Takenoko
-Santorini + Tsuro + Tsuro + Tsuro
 Sheriff of Nottingham + Tsuro
 Spyfall + Ticket to Ride
 Ticket to Ride + Tsuro
@@ -760,7 +751,6 @@ Camel Up + Love Letter + Spyfall
 Camel Up + No Thanks! + Tsuro
 Camel Up + Pandemic
 Camel Up + Santorini + Tsuro
-Camel Up + Tsuro + Tsuro + Tsuro
 Carcassonne + Codenames + Love Letter
 Carcassonne + Codenames + Tsuro
 Carcassonne + Colt Express
@@ -889,7 +879,6 @@ Hanabi + Santorini + Tsuro
 Hanabi + Skull
 Hanabi + Spyfall + Tsuro
 Hanabi + Takenoko
-Hanabi + Tsuro + Tsuro + Tsuro
 Hey, That's My Fish! + Love Letter + No Thanks!
 Hey, That's My Fish! + Love Letter + Santorini
 Hey, That's My Fish! + Love Letter + Spyfall
@@ -912,7 +901,6 @@ Love Letter + Takenoko + Tsuro
 Love Letter + Ticket to Ride
 No Thanks! + Pandemic
 No Thanks! + Santorini + Tsuro
-No Thanks! + Tsuro + Tsuro + Tsuro
 Pandemic + Santorini
 Pandemic + Spyfall
 Pandemic + Tsuro + Tsuro
@@ -993,7 +981,6 @@ Carcassonne + Santorini + Tsuro
 Carcassonne + Skull
 Carcassonne + Spyfall + Tsuro
 Carcassonne + Takenoko
-Carcassonne + Tsuro + Tsuro + Tsuro
 Codenames + Codenames + Dixit Odyssey
 Codenames + Codenames + Flick 'em Up!
 Codenames + Codenames + Hanabi
@@ -1089,7 +1076,6 @@ Dixit Odyssey + Santorini + Tsuro
 Dixit Odyssey + Skull
 Dixit Odyssey + Spyfall + Tsuro
 Dixit Odyssey + Takenoko
-Dixit Odyssey + Tsuro + Tsuro + Tsuro
 Flash Point: Fire Rescue + Flick 'em Up!
 Flash Point: Fire Rescue + For Sale
 Flash Point: Fire Rescue + Hanabi
@@ -1110,7 +1096,6 @@ Flick 'em Up! + Santorini + Tsuro
 Flick 'em Up! + Skull
 Flick 'em Up! + Spyfall + Tsuro
 Flick 'em Up! + Takenoko
-Flick 'em Up! + Tsuro + Tsuro + Tsuro
 For Sale + Hanabi + Love Letter
 For Sale + Hanabi + Spyfall
 For Sale + Hanabi + Tsuro
@@ -1206,7 +1191,6 @@ Bohnanza + Santorini + Tsuro
 Bohnanza + Skull
 Bohnanza + Spyfall + Tsuro
 Bohnanza + Takenoko
-Bohnanza + Tsuro + Tsuro + Tsuro
 Camel Up + Camel Up + Codenames
 Camel Up + Camel Up + Love Letter
 Camel Up + Camel Up + Spyfall
@@ -1345,7 +1329,6 @@ Colt Express + Santorini + Tsuro
 Colt Express + Skull
 Colt Express + Spyfall + Tsuro
 Colt Express + Takenoko
-Colt Express + Tsuro + Tsuro + Tsuro
 Crokinole + Dixit Odyssey + Love Letter
 Crokinole + Dixit Odyssey + Spyfall
 Crokinole + Dixit Odyssey + Tsuro
@@ -1488,9 +1471,7 @@ Santorini + Ticket to Ride
 Sheriff of Nottingham + Spyfall
 Skull + Spyfall + Tsuro
 Skull + Takenoko
-Skull + Tsuro + Tsuro + Tsuro
 Spyfall + Takenoko + Tsuro
-Takenoko + Tsuro + Tsuro + Tsuro
 
 
 Playtime: 110 minutes.
@@ -2253,7 +2234,6 @@ Flash Point: Fire Rescue + Santorini + Tsuro
 Flash Point: Fire Rescue + Skull
 Flash Point: Fire Rescue + Spyfall + Tsuro
 Flash Point: Fire Rescue + Takenoko
-Flash Point: Fire Rescue + Tsuro + Tsuro + Tsuro
 Flick 'em Up! + For Sale + Hanabi
 Flick 'em Up! + For Sale + Hey, That's My Fish!
 Flick 'em Up! + For Sale + No Thanks!
@@ -2357,7 +2337,6 @@ Pandemic + Santorini + Tsuro
 Pandemic + Skull
 Pandemic + Spyfall + Tsuro
 Pandemic + Takenoko
-Pandemic + Tsuro + Tsuro + Tsuro
 Santorini + Sheriff of Nottingham
 Santorini + Skull + Spyfall
 Santorini + Spyfall + Takenoko
@@ -2948,7 +2927,6 @@ Skull + Takenoko + Tsuro
 Skull + Ticket to Ride
 Spyfall + Ticket to Ride + Tsuro
 Takenoko + Ticket to Ride
-Ticket to Ride + Tsuro + Tsuro + Tsuro
 
 
 Playtime: 125 minutes.
@@ -3665,7 +3643,6 @@ Betrayal at House on the Hill + Santorini + Tsuro
 Betrayal at House on the Hill + Skull
 Betrayal at House on the Hill + Spyfall + Tsuro
 Betrayal at House on the Hill + Takenoko
-Betrayal at House on the Hill + Tsuro + Tsuro + Tsuro
 Bohnanza + Bohnanza + Codenames
 Bohnanza + Bohnanza + Crokinole
 Bohnanza + Bohnanza + For Sale
@@ -4469,7 +4446,6 @@ Santorini + Spyfall + Ticket to Ride
 Sheriff of Nottingham + Skull
 Sheriff of Nottingham + Spyfall + Tsuro
 Sheriff of Nottingham + Takenoko
-Sheriff of Nottingham + Tsuro + Tsuro + Tsuro
 Skull + Spyfall + Takenoko
 Skull + Ticket to Ride + Tsuro
 Spyfall + Ticket to Ride + Tsuro + Tsuro

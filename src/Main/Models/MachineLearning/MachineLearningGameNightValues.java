@@ -5,7 +5,7 @@ import Main.Models.Logic.IGameNightValues;
 
 class MachineLearningGameNightValues implements IGameNightValues {
 
-  double[] values = new double[24];
+  double[] values = new double[25];
 
   public MachineLearningGameNightValues() {
     values[0] = 25;
@@ -32,6 +32,7 @@ class MachineLearningGameNightValues implements IGameNightValues {
     values[18] = 16;
     values[19] = 0.33;
     values[20] = 25;
+    values[24] = 0.7;
   }
 
 
@@ -137,5 +138,10 @@ class MachineLearningGameNightValues implements IGameNightValues {
   @Override
   public double gameBestWithCurrentNumberOfPlayers() {
     return values[20];
+  }
+
+  @Override
+  public double multiplierForValueDecreaseWhenChoosingTheSameGameTwice() {
+    return values[24];
   }
 }

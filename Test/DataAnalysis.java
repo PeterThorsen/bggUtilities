@@ -184,9 +184,8 @@ public class DataAnalysis {
 
 
               for (BoardGameCounter c3 : allGames) {
-                if (!isPositive(c2Total, c3, i, players)) {
+                if ((c1.equals(c2) && c1.equals(c3)) || !isPositive(c2Total, c3, i, players)) {
                   //negList.add(new String[]{c1.toString(), c2.toString(), c3.toString()});
-
                   continue;
                 }
 
@@ -197,7 +196,9 @@ public class DataAnalysis {
                 }
                 c3Total += 5;
                 for (BoardGameCounter c4 : allGames) {
-                  if (!isPositive(c3Total, c4, i, players)) {
+                  if ((c1.equals(c2) && c1.equals(c3)) || (c1.equals(c3) && c1.equals(c4))
+                          || (c1.equals(c2) && c1.equals(c4)) || (c2.equals(c3) && c2.equals(c4))
+                          || !isPositive(c3Total, c4, i, players)) {
                     //negList.add(new String[]{c1.toString(), c2.toString(), c3.toString(), c4.toString()});
                     continue;
                   }
