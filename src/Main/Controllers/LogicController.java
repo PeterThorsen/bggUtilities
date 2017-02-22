@@ -50,5 +50,15 @@ public class LogicController implements ILogicController {
     return suggestedGames;
   }
 
+  @Override
+  public BoardGameCounter[] getRecommendationCounterForSingleGame(BoardGame[] actualSuggestionAsGames, Player[] players, int maxTime) {
+    double[] complexities = gameNightUtil.calculateComplexities(players);
+    double minComplexity = complexities[0];
+    double maxComplexity = complexities[1];
+    double magicComplexity = complexities[2];
+    double averageComplexityGivingAllPlayersEqualWeight = complexities[3];
+    return gameNightRecommender.getRecommendationCounterForSingleGame(actualSuggestionAsGames, players, maxTime, magicComplexity, averageComplexityGivingAllPlayersEqualWeight);
+  }
+
 
 }

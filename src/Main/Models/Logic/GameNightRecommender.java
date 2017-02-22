@@ -35,6 +35,11 @@ public class GameNightRecommender implements IGameNightRecommender {
     return calculateSuggestedGames(gamesWithCounter, maxTime);
   }
 
+  @Override
+  public BoardGameCounter[] getRecommendationCounterForSingleGame(BoardGame[] actualSuggestionAsGames, Player[] players, int maxTime, double magicComplexity, double averageComplexityGivingAllPlayersEqualWeight) {
+    return buildBestGameNight(actualSuggestionAsGames, players, maxTime, magicComplexity, averageComplexityGivingAllPlayersEqualWeight);
+  }
+
 
   private BoardGameCounter[] convertToCounter(BoardGame[] allGames) {
     BoardGameCounter[] gamesWithCounter = new BoardGameCounter[allGames.length];

@@ -3,10 +3,7 @@ package Main.Controllers;
 import Main.Models.Logic.GameNightRecommender;
 import Main.Models.Logic.IGameNightValues;
 import Main.Models.Storage.ICollectionBuilder;
-import Main.Models.Structure.BoardGame;
-import Main.Models.Structure.BoardGameSuggestion;
-import Main.Models.Structure.Play;
-import Main.Models.Structure.Player;
+import Main.Models.Structure.*;
 
 /**
  * Created by Peter on 05/10/2016.
@@ -38,5 +35,9 @@ public class FacadeController {
 
   public BoardGameSuggestion suggestGames(Player[] array, int maxTime) {
     return logicController.suggestGamesForGameNight(array, maxTime);
+  }
+
+  public BoardGameCounter[] getRecommendationCounterForSingleGame(BoardGame[] actualSuggestionAsGames, Player[] players, int maxTime) {
+    return logicController.getRecommendationCounterForSingleGame(actualSuggestionAsGames, players, maxTime);
   }
 }

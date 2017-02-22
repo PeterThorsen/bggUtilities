@@ -71,6 +71,7 @@ public class TrainGameNightRecommendationEngine {
 
       ArrayList<BoardGame[]> goodSuggestions = fillRecommendedForMinuteCountAndPlayers(playTime, players);
 
+      outer:
       for (int i = 0; i < 1000; i++) {
         BoardGameCounter[] actualSuggestion = controller.suggestGames(players, playTime).suggestedCombination;
         BoardGame[] actualSuggestionAsGames = new BoardGame[actualSuggestion.length];
@@ -79,26 +80,36 @@ public class TrainGameNightRecommendationEngine {
         }
 
         for (BoardGame[] goodSuggestion : goodSuggestions) {
-          if(arraysAreEqual(goodSuggestion, actualSuggestionAsGames)) {
+          if (arraysAreEqual(goodSuggestion, actualSuggestionAsGames)) {
             // Increase
-          }
-          else {
-            // Decrease
+            modifyValues(actualSuggestionAsGames, Constants.POSITIVE, players, playTime);
+            continue outer;
           }
         }
-
+        // Decrease
+        modifyValues(actualSuggestionAsGames, Constants.NEGATIVE, players, playTime);
       }
     }
   }
 
+  private void modifyValues(BoardGame[] actualSuggestionAsGames, Constants modifier, Player[] players, int playTime) {
+    // get current score for current games
+    BoardGameCounter[] old = controller.getRecommendationCounterForSingleGame(actualSuggestionAsGames, players, playTime);
+
+    // Modify all variables with either * 0.9 or *1.1 and get score then
+    // Always store max/min (depending on modifier) score and it's related values array
+    // Finally, replace values array in MachineLearningGameNightValues with the saved array.
+
+  }
+
   private boolean arraysAreEqual(BoardGame[] goodSuggestion, BoardGame[] actualSuggestionAsGames) {
-    if(goodSuggestion.length != actualSuggestionAsGames.length) return false;
+    if (goodSuggestion.length != actualSuggestionAsGames.length) return false;
     boolean[] filled = new boolean[actualSuggestionAsGames.length];
 
     outer:
     for (int i = 0; i < goodSuggestion.length; i++) {
       for (int j = 0; j < actualSuggestionAsGames.length; j++) {
-        if(goodSuggestion[i].equals(actualSuggestionAsGames[j])) {
+        if (!filled[j] && goodSuggestion[i].equals(actualSuggestionAsGames[j])) {
           filled[j] = true;
           continue outer;
         }

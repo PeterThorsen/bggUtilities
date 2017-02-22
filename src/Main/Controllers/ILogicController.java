@@ -1,5 +1,7 @@
 package Main.Controllers;
 
+import Main.Models.Structure.BoardGame;
+import Main.Models.Structure.BoardGameCounter;
 import Main.Models.Structure.BoardGameSuggestion;
 import Main.Models.Structure.Player;
 
@@ -8,4 +10,6 @@ import Main.Models.Structure.Player;
  */
 public interface ILogicController {
   BoardGameSuggestion suggestGamesForGameNight(Player[] array, int maxTime);
+
+  BoardGameCounter[] getRecommendationCounterForSingleGame(BoardGame[] actualSuggestionAsGames, Player[] players, int maxTime);
 }
