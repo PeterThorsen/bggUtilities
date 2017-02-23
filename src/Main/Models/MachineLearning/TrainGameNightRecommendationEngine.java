@@ -54,25 +54,22 @@ public class TrainGameNightRecommendationEngine {
     };
     int[] playTimes = new int[]{10, 15, 15, 15, 20, 30, 30, 30, 40, 45, 45, 45, 60, 60, 70, 80, 90, 90, 100, 120, 120, 140, 150, 180, 180};
 
-    for (int j = 0; j < 1; j++) {
-      String[] users = allNames[random.nextInt(allNames.length)];
+    String[] initialUsers = allNames[4];
+    Player[] initialPlayers = getPlayersFromNames(initialUsers);
+    BoardGameSuggestion initialRecommendation = controller.suggestGames(initialPlayers, playTimes[13]);
 
-      Player[] players = new Player[users.length];
-      int iteration = 0;
-      for (Player player : allPlayers) {
-        for (String user : users) {
-          if (player.name.equals(user)) {
-            players[iteration] = player;
-            iteration++;
-          }
-        }
-      }
+    for (int j = 0; j < 100; j++) {
+      System.out.println("Starting iteration: " + j);
+      String[] users = allNames[random.nextInt(allNames.length)];
+      Player[] players = getPlayersFromNames(users);
+
+
       int playTime = playTimes[random.nextInt(playTimes.length)];
 
       ArrayList<BoardGame[]> goodSuggestions = fillRecommendedForMinuteCountAndPlayers(playTime, players);
 
       outer:
-      for (int i = 0; i < 1000; i++) {
+      for (int i = 0; i < 100; i++) {
         BoardGameCounter[] actualSuggestion = controller.suggestGames(players, playTime).suggestedCombination;
         BoardGame[] actualSuggestionAsGames = new BoardGame[actualSuggestion.length];
         for (int k = 0; k < actualSuggestion.length; k++) {
@@ -90,17 +87,78 @@ public class TrainGameNightRecommendationEngine {
         modifyValues(actualSuggestionAsGames, Constants.NEGATIVE, players, playTime);
       }
     }
+
+    System.out.println("Initial recommendation: ");
+    for (int i = 0; i < initialRecommendation.suggestedCombination.length; i++) {
+      System.out.println(initialRecommendation.suggestedCombination[i].game);
+    }
+
+
+    String[] finalUsers = allNames[4];
+    Player[] finalPlayers = getPlayersFromNames(finalUsers);
+    BoardGameSuggestion finalRecommendation = controller.suggestGames(finalPlayers, playTimes[13]);
+    System.out.println("Final recommendation: ");
+    for (int i = 0; i < finalRecommendation.suggestedCombination.length; i++) {
+      System.out.println(finalRecommendation.suggestedCombination[i].game);
+    }
   }
 
-  private void modifyValues(BoardGame[] actualSuggestionAsGames, Constants modifier, Player[] players, int playTime) {
+  private Player[] getPlayersFromNames(String[] users) {
+    Player[] players = new Player[users.length];
+    int iteration = 0;
+    for (Player player : allPlayers) {
+      for (String user : users) {
+        if (player.name.equals(user)) {
+          players[iteration] = player;
+          iteration++;
+        }
+      }
+    }
+    return players;
+  }
+
+  private void modifyValues(BoardGame[] actualSuggestionAsGames, Constants constant, Player[] players, int playTime) {
     // get current score for current games
     BoardGameCounter[] old = controller.getRecommendationCounterForSingleGame(actualSuggestionAsGames, players, playTime);
+    double oldScore = 0;
+    for (int i = 0; i < old.length; i++) {
+      oldScore += old[i].value;
+    }
+
+    double modifier = 1.1;
+    if(constant.equals(Constants.NEGATIVE)) {
+      modifier = 0.9;
+    }
 
     // Modify all variables with either * 0.9 or *1.1 and get score then
-    // Always store max/min (depending on modifier) score and it's related values array
+    double bestScore = -1;
+    double[] bestValues = new double[values.values.length];
+    boolean bestValuesChanged = false;
+    double[] copyOfActualValues = new double[values.values.length];
+    System.arraycopy(values.values, 0, copyOfActualValues, 0, values.values.length);
+
+    for (int i = 0; i < values.values.length; i++) {
+
+      values.values[i] = values.values[i] * modifier;
+      BoardGameCounter[] tempCounter = controller.getRecommendationCounterForSingleGame(actualSuggestionAsGames, players, playTime);
+
+      double tempScore = 0;
+      for (int j = 0; j < tempCounter.length; j++) {
+        tempScore += tempCounter[j].value;
+      }
+
+      if(oldScore < tempScore && tempScore > bestScore) {
+        bestScore = tempScore;
+        System.arraycopy(values.values, 0, bestValues, 0, values.values.length);
+        bestValuesChanged = true;
+      }
+      System.arraycopy(copyOfActualValues, 0, values.values, 0, values.values.length);
+    }
     // Finally, replace values array in MachineLearningGameNightValues with the saved array.
+    if(bestValuesChanged) System.arraycopy(bestValues, 0, values.values, 0, values.values.length);
 
   }
+
 
   private boolean arraysAreEqual(BoardGame[] goodSuggestion, BoardGame[] actualSuggestionAsGames) {
     if (goodSuggestion.length != actualSuggestionAsGames.length) return false;
@@ -117,17 +175,6 @@ public class TrainGameNightRecommendationEngine {
       return false;
     }
     return true;
-  }
-
-  private void evaluateCombination(BoardGame[] combination, BoardGameCounter[] result) {
-
-  }
-
-  private void evaluateGame(BoardGame game, int gamesInCombination, BoardGameCounter[] result) {
-    // Find score in result and compare it
-    // Calculate the score again, but note all factors
-    // Set all values to 1 and iterate through each giving it a rating of 1000
-    // See which factor would
   }
 
   private ArrayList<BoardGame[]> fillRecommendedForMinuteCountAndPlayers(int playTime, Player[] players) {
