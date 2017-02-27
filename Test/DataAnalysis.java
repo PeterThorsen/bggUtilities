@@ -75,9 +75,9 @@ public class DataAnalysis {
   public void makeRecommendation() {
     //String[] users = new String[]{"Charlotte", "Alf", "Mikkel", "Lisbeth"};
     //String[] users = new String[]{"Charlotte", "Martin", "Michelle", "Emil", "Signe", "Michael"};
-    String[] users = new String[]{"Martin", "Josefine", "Daniella"};
+    String[] users = new String[]{"Jesper"};
 
-    int timeToPlay = 30;
+    int timeToPlay = 60;
     Player[] players = new Player[users.length];
     int counter = 0;
     for (Player player : allPlayers) {

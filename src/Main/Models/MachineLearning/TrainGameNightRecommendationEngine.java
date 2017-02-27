@@ -35,31 +35,42 @@ public class TrainGameNightRecommendationEngine {
   }
 
   private void train() {
-    String[][] allNames = new String[][]{{"Martin"}, {"Charlotte"}, {"Jesper"},
+    String[][] allNames = new String[][]{
+            {"Martin"},
+            {"Charlotte"},
+            {"Jesper"},
             {"Martin", "Charlotte"},
             {"Martin", "Charlotte", "Michelle"},
             {"Martin", "Michael", "Emil"},
+
             {"Martin", "Michael", "Emil", "Signe"},
             {"Charlotte", "Mikkel", "Bolette"},
             {"Charlotte", "Alf", "Lisbeth"},
             {"Charlotte", "Alf", "Lisbeth", "Mikkel"},
             {"Charlotte", "Alf", "Lisbeth", "Mikkel", "Bolette"},
+
             {"Charlotte", "Alf", "Lisbeth", "Mikkel", "Bolette", "Camilla"},
             {"Martin", "Josefine", "Daniella"},
             {"Marian", "Charlotte", "Poul"},
             {"Marian", "Charlotte", "Poul", "Jesper"},
             {"Marian", "Charlotte", "Jesper"},
+
             {"Marian", "Charlotte"},
             {"Marian", "Charlotte", "Palle", "Liss", "Jesper", "Poul", "Lillibeth"}
     };
-    int[] playTimes = new int[]{10, 15, 15, 15, 20, 30, 30, 30, 40, 45, 45, 45, 60, 60, 70, 80, 90, 90, 100, 120, 120, 140, 150, 180, 180};
+    int[] playTimes = new int[]{
+            10, 15, 15, 20, 20, 30, // 0 to 5
+            30, 30, 40, 45, 45, // 6 to 10
+            45, 60, 60, 70, 80, // 11 to 15
+            90, 90, 100, 120, 120, // 16 to 20
+            140, 150, 180, 180}; // 21 to 24
 
-    String[] initialUsers = allNames[4];
+    String[] initialUsers = allNames[12];
     Player[] initialPlayers = getPlayersFromNames(initialUsers);
-    BoardGameSuggestion initialRecommendation = controller.suggestGames(initialPlayers, playTimes[13]);
+    BoardGameSuggestion initialRecommendation = controller.suggestGames(initialPlayers, playTimes[23]);
 
-    for (int j = 0; j < 100; j++) {
-      System.out.println("Starting iteration: " + j);
+    for (int j = 0; j < 10000; j++) {
+      if(j % 100 == 0) System.out.println("Iteration j: " + j);
       String[] users = allNames[random.nextInt(allNames.length)];
       Player[] players = getPlayersFromNames(users);
 
@@ -69,7 +80,7 @@ public class TrainGameNightRecommendationEngine {
       ArrayList<BoardGame[]> goodSuggestions = fillRecommendedForMinuteCountAndPlayers(playTime, players);
 
       outer:
-      for (int i = 0; i < 100; i++) {
+      for (int i = 0; i < 200; i++) {
         BoardGameCounter[] actualSuggestion = controller.suggestGames(players, playTime).suggestedCombination;
         BoardGame[] actualSuggestionAsGames = new BoardGame[actualSuggestion.length];
         for (int k = 0; k < actualSuggestion.length; k++) {
@@ -94,9 +105,9 @@ public class TrainGameNightRecommendationEngine {
     }
 
 
-    String[] finalUsers = allNames[4];
+    String[] finalUsers = allNames[12];
     Player[] finalPlayers = getPlayersFromNames(finalUsers);
-    BoardGameSuggestion finalRecommendation = controller.suggestGames(finalPlayers, playTimes[13]);
+    BoardGameSuggestion finalRecommendation = controller.suggestGames(finalPlayers, playTimes[23]);
     System.out.println("Final recommendation: ");
     for (int i = 0; i < finalRecommendation.suggestedCombination.length; i++) {
       System.out.println(finalRecommendation.suggestedCombination[i].game);
@@ -130,8 +141,14 @@ public class TrainGameNightRecommendationEngine {
       modifier = 0.9;
     }
 
-    // Modify all variables with either * 0.9 or *1.1 and get score then
-    double bestScore = -1;
+    double bestScore;
+    if(constant.equals(Constants.POSITIVE)) {
+      bestScore = Double.NEGATIVE_INFINITY;
+    }
+    else {
+      bestScore = Double.POSITIVE_INFINITY;
+    }
+
     double[] bestValues = new double[values.values.length];
     boolean bestValuesChanged = false;
     double[] copyOfActualValues = new double[values.values.length];
@@ -147,7 +164,12 @@ public class TrainGameNightRecommendationEngine {
         tempScore += tempCounter[j].value;
       }
 
-      if(oldScore < tempScore && tempScore > bestScore) {
+      if(oldScore < tempScore && tempScore > bestScore && Constants.POSITIVE.equals(constant)) {
+        bestScore = tempScore;
+        System.arraycopy(values.values, 0, bestValues, 0, values.values.length);
+        bestValuesChanged = true;
+      }
+      else if (oldScore > tempScore && tempScore < bestScore && Constants.NEGATIVE.equals(constant)) {
         bestScore = tempScore;
         System.arraycopy(values.values, 0, bestValues, 0, values.values.length);
         bestValuesChanged = true;

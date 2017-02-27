@@ -41,6 +41,4 @@ public interface IGameNightValues {
   double timeSpentOnGame(double approximationTime);
 
   double gameBestWithCurrentNumberOfPlayers();
-
-  double multiplierForValueDecreaseWhenChoosingTheSameGameTwice();
 }

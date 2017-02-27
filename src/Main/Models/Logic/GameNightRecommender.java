@@ -229,8 +229,7 @@ public class GameNightRecommender implements IGameNightRecommender {
       if (averageRating < personalRating) {
         value = gameNightValues.ownersPersonalRatingIsHigherThanAverage(personalRating, averageRating);
 
-      }
-      else {
+      } else {
         value = gameNightValues.averageRatingIsHigherThanOwnersPersonalRating(personalRating, averageRating);
       }
       current.value += value;
@@ -246,9 +245,11 @@ public class GameNightRecommender implements IGameNightRecommender {
     if (currentMinTime == currentMaxTime) {
       approximationTime = currentMaxTime;
     } else if (currentGame.minPlayers == currentGame.maxPlayers) {
-      approximationTime = currentMinTime;
+      approximationTime = currentMaxTime;
 
     } else {
+      if (currentGame.name.equals("Sequence") || currentGame.name.equals("Fluxx")) currentMinTime += 15;
+
       double difference = currentMaxTime - currentMinTime;
       difference = difference / (currentGame.maxPlayers - currentGame.minPlayers);
       approximationTime = currentMinTime + (difference * (allPlayers.length + 1 - currentGame.minPlayers));
@@ -294,15 +295,8 @@ public class GameNightRecommender implements IGameNightRecommender {
   }
 
   private BoardGameCounter[] calculateSuggestedGames(BoardGameCounter[] gamesWithCounter, int maxTime) {
-    gamesWithCounter = InsertionSort.sortGamesWithCounter(gamesWithCounter);
-/**
- System.out.println("Ratings for each game");
- for (BoardGameCounter counter : gamesWithCounter) {
- System.out.println(counter.game + " : " + counter.value);
- }
- */
-
     ArrayList<BoardGameCounter> suggestedCombinationList = new ArrayList<>();
+    gamesWithCounter = InsertionSort.sortGamesWithCounter(gamesWithCounter);
     int posOfFirstElement = 0;
     double currentTimeSpent = 0;
 
@@ -312,23 +306,14 @@ public class GameNightRecommender implements IGameNightRecommender {
       if (maxTime >= gamesWithCounter[i].approximateTime) {
         suggestedCombinationList.add(gamesWithCounter[i]);
         posOfFirstElement = i;
+        currentTimeSpent += gamesWithCounter[i].approximateTime;
         break;
       }
     }
-    for (int i = posOfFirstElement; i < gamesWithCounter.length; i++) {
+    for (int i = posOfFirstElement + 1; i < gamesWithCounter.length; i++) {
       double withinTime = currentTimeSpent + gamesWithCounter[i].approximateTime;
       if (maxTime >= withinTime) {
         suggestedCombinationList.add(gamesWithCounter[i]);
-        try {
-          if (maxTime >= withinTime + gamesWithCounter[i].approximateTime &&
-                  (gamesWithCounter[i].value * gameNightValues.multiplierForValueDecreaseWhenChoosingTheSameGameTwice()) > gamesWithCounter[i + 1].value) {
-            withinTime += gamesWithCounter[i].approximateTime;
-            suggestedCombinationList.add(gamesWithCounter[i]);
-          }
-        }
-        catch (Exception e) {
-          // If last element, rarely happens...
-        }
         currentTimeSpent = withinTime;
       }
     }
