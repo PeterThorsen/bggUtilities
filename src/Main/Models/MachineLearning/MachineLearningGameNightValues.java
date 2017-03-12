@@ -5,7 +5,7 @@ import Main.Models.Logic.IGameNightValues;
 
 class MachineLearningGameNightValues implements IGameNightValues {
 
-  double[] values = new double[24];
+  double[] values = new double[23];
 
   public MachineLearningGameNightValues() {
     values[0] = 25;
@@ -13,7 +13,7 @@ class MachineLearningGameNightValues implements IGameNightValues {
     values[2] = 1;
     values[21] = 1;
     values[3] = 20;
-    values[4] = 600;
+    //values[4] = 600; days, set as standard
     values[5] = 50;
     values[6] = 1000;
     values[7] = 200;
@@ -21,11 +21,11 @@ class MachineLearningGameNightValues implements IGameNightValues {
     values[9] = 3;
     values[22] = 3;
     values[10] = 2;
-    values[23] = 2;
+    values[4] = 2;
     values[11] = 5;
     values[12] = 20;
     values[13] = -50;
-    values[14] = 0;
+    values[14] = 0.01;
     values[15] = 4;
     values[16] = 8;
     values[17] = 12;
@@ -60,7 +60,7 @@ class MachineLearningGameNightValues implements IGameNightValues {
 
   @Override
   public double getLimitOnDaysPassed() {
-    return values[4];
+    return 600;
   }
 
   @Override
@@ -90,7 +90,7 @@ class MachineLearningGameNightValues implements IGameNightValues {
 
   @Override
   public double averageRatingIsHigherThanOwnersPersonalRating(double personalRating, double averageRating) {
-    return values[23] + (averageRating - personalRating) * values[10];
+    return values[4] + (averageRating - personalRating) * values[10];
   }
 
   @Override

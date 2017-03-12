@@ -18,6 +18,8 @@ public class TrainGameNightRecommendationEngine {
   private final Plays plays;
   private final MachineLearningGameNightValues values;
   Random random = new Random();
+  private int positiveCounter = 0;
+  private int negativeCounter = 0;
 
   public static void main(String[] args) {
     new TrainGameNightRecommendationEngine();
@@ -69,7 +71,7 @@ public class TrainGameNightRecommendationEngine {
     Player[] initialPlayers = getPlayersFromNames(initialUsers);
     BoardGameSuggestion initialRecommendation = controller.suggestGames(initialPlayers, playTimes[23]);
 
-    for (int j = 0; j < 10000; j++) {
+    for (int j = 0; j < 600; j++) {
       if(j % 100 == 0) System.out.println("Iteration j: " + j);
       String[] users = allNames[random.nextInt(allNames.length)];
       Player[] players = getPlayersFromNames(users);
@@ -80,7 +82,7 @@ public class TrainGameNightRecommendationEngine {
       ArrayList<BoardGame[]> goodSuggestions = fillRecommendedForMinuteCountAndPlayers(playTime, players);
 
       outer:
-      for (int i = 0; i < 200; i++) {
+      for (int i = 0; i < 8; i++) {
         BoardGameCounter[] actualSuggestion = controller.suggestGames(players, playTime).suggestedCombination;
         BoardGame[] actualSuggestionAsGames = new BoardGame[actualSuggestion.length];
         for (int k = 0; k < actualSuggestion.length; k++) {
@@ -99,19 +101,7 @@ public class TrainGameNightRecommendationEngine {
       }
     }
 
-    System.out.println("Initial recommendation: ");
-    for (int i = 0; i < initialRecommendation.suggestedCombination.length; i++) {
-      System.out.println(initialRecommendation.suggestedCombination[i].game);
-    }
-
-
-    String[] finalUsers = allNames[12];
-    Player[] finalPlayers = getPlayersFromNames(finalUsers);
-    BoardGameSuggestion finalRecommendation = controller.suggestGames(finalPlayers, playTimes[23]);
-    System.out.println("Final recommendation: ");
-    for (int i = 0; i < finalRecommendation.suggestedCombination.length; i++) {
-      System.out.println(finalRecommendation.suggestedCombination[i].game);
-    }
+    printResult(initialRecommendation, allNames[12], playTimes[23]);
   }
 
   private Player[] getPlayersFromNames(String[] users) {
@@ -136,9 +126,11 @@ public class TrainGameNightRecommendationEngine {
       oldScore += old[i].value;
     }
 
-    double modifier = 1.1;
+    double modifier = 1.01;
+    double oppositeModifier = 0.99;
     if(constant.equals(Constants.NEGATIVE)) {
-      modifier = 0.9;
+      modifier = 0.99;
+      oppositeModifier = 1.01;
     }
 
     double bestScore;
@@ -156,7 +148,12 @@ public class TrainGameNightRecommendationEngine {
 
     for (int i = 0; i < values.values.length; i++) {
 
-      values.values[i] = values.values[i] * modifier;
+      if(values.values[i] > 0) {
+        values.values[i] = values.values[i] * modifier;
+      }
+      else {
+        values.values[i] = values.values[i] * oppositeModifier;
+      }
       BoardGameCounter[] tempCounter = controller.getRecommendationCounterForSingleGame(actualSuggestionAsGames, players, playTime);
 
       double tempScore = 0;
@@ -168,17 +165,33 @@ public class TrainGameNightRecommendationEngine {
         bestScore = tempScore;
         System.arraycopy(values.values, 0, bestValues, 0, values.values.length);
         bestValuesChanged = true;
+        positiveCounter++;
       }
       else if (oldScore > tempScore && tempScore < bestScore && Constants.NEGATIVE.equals(constant)) {
         bestScore = tempScore;
         System.arraycopy(values.values, 0, bestValues, 0, values.values.length);
         bestValuesChanged = true;
+        negativeCounter++;
       }
       System.arraycopy(copyOfActualValues, 0, values.values, 0, values.values.length);
     }
     // Finally, replace values array in MachineLearningGameNightValues with the saved array.
-    if(bestValuesChanged) System.arraycopy(bestValues, 0, values.values, 0, values.values.length);
+    if(bestValuesChanged) {
+      bestValues = normalizeValues(bestValues);
+      System.arraycopy(bestValues, 0, values.values, 0, values.values.length);
+    }
 
+  }
+
+  private double[] normalizeValues(double[] bestValues) {
+    double total = 0;
+    for (int i = 0; i < bestValues.length; i++) {
+      total += bestValues[i];
+    }
+    for (int i = 0; i < bestValues.length; i++) {
+      bestValues[i] = bestValues[i]/total*1000;
+    }
+    return bestValues;
   }
 
 
@@ -266,5 +279,26 @@ public class TrainGameNightRecommendationEngine {
     return combinations;
   }
 
+  private void printResult(BoardGameSuggestion initialRecommendation, String[] finalUsers, int playTime) {
+
+    for (int i = 0; i < values.values.length; i++) {
+      System.out.println(i + " : " + values.values[i]);
+    }
+    System.out.println("Pos: " + positiveCounter);
+    System.out.println("Neg: " + negativeCounter);
+    System.out.println();
+
+    System.out.println("Initial recommendation: ");
+    for (int i = 0; i < initialRecommendation.suggestedCombination.length; i++) {
+      System.out.println(initialRecommendation.suggestedCombination[i].game);
+    }
+
+    Player[] finalPlayers = getPlayersFromNames(finalUsers);
+    BoardGameSuggestion finalRecommendation = controller.suggestGames(finalPlayers, playTime);
+    System.out.println("Final recommendation: ");
+    for (int i = 0; i < finalRecommendation.suggestedCombination.length; i++) {
+      System.out.println(finalRecommendation.suggestedCombination[i].game);
+    }
+  }
 
 }
