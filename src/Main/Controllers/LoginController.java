@@ -1,7 +1,6 @@
 package Main.Controllers;
 
 import Main.Factories.IStartupFactory;
-import Main.Models.Logic.ChosenGameNightValues;
 import Main.Models.Storage.ICollectionBuilder;
 
 import javax.swing.*;
@@ -9,7 +8,7 @@ import javax.swing.*;
 /**
  * Created by Peter on 05/10/2016.
  */
-public class LoginController implements ILoginController {
+public class LoginController {
 
   private final IStartupFactory factory;
 
@@ -17,7 +16,6 @@ public class LoginController implements ILoginController {
     this.factory = factory;
   }
 
-  @Override
   public FacadeController verifyUser(String username, JTextArea loadingInfoTextArea) {
     ICollectionBuilder collectionBuilder = factory.getCollectionBuilder();
     if (collectionBuilder.verifyUser(username)) {

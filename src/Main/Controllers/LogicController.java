@@ -10,7 +10,7 @@ import Main.Models.Structure.Player;
 /**
  * Created by Peter on 14/11/2016.
  */
-public class LogicController implements ILogicController {
+public class LogicController {
   private final IGameNightRecommender gameNightRecommender;
   private final GameNightUtil gameNightUtil;
   private FacadeController facadeController;
@@ -28,7 +28,6 @@ public class LogicController implements ILogicController {
    * @param maxTime The time limit which the algorithm will select a number of games to fulfill.
    * @return All games possible given player count and an array of specific recommendations
    */
-  @Override
   public BoardGameSuggestion suggestGamesForGameNight(Player[] players, int maxTime) {
 
     // Calculate or retrieve data
@@ -50,7 +49,6 @@ public class LogicController implements ILogicController {
     return suggestedGames;
   }
 
-  @Override
   public BoardGameCounter[] getRecommendationCounterForSingleGame(BoardGame[] actualSuggestionAsGames, Player[] players, int maxTime) {
     double[] complexities = gameNightUtil.calculateComplexities(players);
     double minComplexity = complexities[0];

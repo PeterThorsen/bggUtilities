@@ -10,8 +10,8 @@ import Main.Models.Structure.*;
  */
 public class FacadeController {
   public final String username;
-  private final IDataController dataController;
-  private final ILogicController logicController;
+  private final DataDisplayController dataController;
+  private final LogicController logicController;
 
   public FacadeController(ICollectionBuilder collectionBuilder, String username, IGameNightValues gameNightValues) {
     this.username = username;

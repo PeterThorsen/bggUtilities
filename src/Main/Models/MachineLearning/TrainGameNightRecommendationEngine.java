@@ -67,11 +67,11 @@ public class TrainGameNightRecommendationEngine {
             90, 90, 100, 120, 120, // 16 to 20
             140, 150, 180, 180}; // 21 to 24
 
-    String[] initialUsers = allNames[12];
+    String[] initialUsers = allNames[9];
     Player[] initialPlayers = getPlayersFromNames(initialUsers);
-    BoardGameSuggestion initialRecommendation = controller.suggestGames(initialPlayers, playTimes[23]);
+    BoardGameSuggestion initialRecommendation = controller.suggestGames(initialPlayers, playTimes[20]);
 
-    for (int j = 0; j < 600; j++) {
+    for (int j = 0; j < 100; j++) {
       if(j % 100 == 0) System.out.println("Iteration j: " + j);
       String[] users = allNames[random.nextInt(allNames.length)];
       Player[] players = getPlayersFromNames(users);
@@ -82,7 +82,7 @@ public class TrainGameNightRecommendationEngine {
       ArrayList<BoardGame[]> goodSuggestions = fillRecommendedForMinuteCountAndPlayers(playTime, players);
 
       outer:
-      for (int i = 0; i < 8; i++) {
+      for (int i = 0; i < 15; i++) {
         BoardGameCounter[] actualSuggestion = controller.suggestGames(players, playTime).suggestedCombination;
         BoardGame[] actualSuggestionAsGames = new BoardGame[actualSuggestion.length];
         for (int k = 0; k < actualSuggestion.length; k++) {

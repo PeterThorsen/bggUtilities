@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Created by Peter on 03/10/16.
  * Will be used for connection to the model (ICollectionBuilder) and the view.
  */
-public class DataDisplayController implements IDataController {
+public class DataDisplayController {
   private final BoardGameCollection collection;
   private final Plays plays;
   private Player[] players;
@@ -21,7 +21,6 @@ public class DataDisplayController implements IDataController {
     players = collectionBuilder.getPlayers();
   }
 
-  @Override
   public BoardGame[] getAllGames() {
     return collection.getGames();
   }
@@ -35,18 +34,15 @@ public class DataDisplayController implements IDataController {
     return names;
   }
 
-  @Override
   public Play[] getAllPlays() {
     return plays.getAllPlays();
   }
 
-  @Override
   public Player[] getAllPlayers() {
     players = InsertionSort.sortPlayers(players);
     return players;
   }
 
-  @Override
   public BoardGame getGame(String name) {
     for (BoardGame game : getAllGames()) {
       if(game.name.equals(name)) return game;
