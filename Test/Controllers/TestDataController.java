@@ -3,7 +3,7 @@ package Controllers;
 import Main.Model.Structure.BoardGame;
 import Main.Model.Structure.BoardGameCollection;
 import Main.Model.Structure.Play;
-import Main.Controller.DataDisplayController;
+import Main.Controller.SubControllers.DataDisplayController;
 import Main.Model.Storage.ICollectionBuilder;
 import Models.StubsAndMocks.CollectionBuilderStub;
 import org.junit.Before;

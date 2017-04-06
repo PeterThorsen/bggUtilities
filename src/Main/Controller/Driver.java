@@ -1,15 +1,14 @@
-package Main;
+package Main.Controller;
 
-import Main.Controller.FacadeController;
-import Main.Controller.LoginController;
 import Main.Controller.Factories.ReleaseStartupFactory;
+import Main.Controller.SubControllers.LoginController;
 import Main.View.MainView;
 import Main.View.StartView;
 
 import javax.swing.*;
 
 /**
- * Created by Peter on 12/09/16.
+ * Entry point for the main application.
  */
 public class Driver {
 

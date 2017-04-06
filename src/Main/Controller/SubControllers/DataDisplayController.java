@@ -1,4 +1,4 @@
-package Main.Controller;
+package Main.Controller.SubControllers;
 
 import Main.Model.Storage.ICollectionBuilder;
 import Main.Model.Structure.*;

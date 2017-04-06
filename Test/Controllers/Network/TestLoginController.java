@@ -1,6 +1,6 @@
 package Controllers.Network;
 
-import Main.Controller.LoginController;
+import Main.Controller.SubControllers.LoginController;
 import Main.Controller.Factories.IStartupFactory;
 import Main.Controller.Factories.ReleaseStartupFactory;
 import Main.Model.Storage.ICollectionBuilder;

@@ -1,5 +1,7 @@
 package Main.Controller;
 
+import Main.Controller.SubControllers.DataDisplayController;
+import Main.Controller.SubControllers.LogicController;
 import Main.Model.Logic.GameNightRecommender;
 import Main.Model.Logic.IGameNightValues;
 import Main.Model.Storage.ICollectionBuilder;
