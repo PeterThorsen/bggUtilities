@@ -1,11 +1,11 @@
 package Controllers;
 
-import Main.Models.Logic.ChosenGameNightValues;
-import Main.Models.Structure.BoardGame;
-import Main.Models.Structure.Play;
-import Main.Models.Structure.Player;
-import Main.Controllers.FacadeController;
-import Main.Models.Storage.ICollectionBuilder;
+import Main.Model.Logic.ChosenGameNightValues;
+import Main.Model.Structure.BoardGame;
+import Main.Model.Structure.Play;
+import Main.Model.Structure.Player;
+import Main.Controller.FacadeController;
+import Main.Model.Storage.ICollectionBuilder;
 import Models.StubsAndMocks.CollectionBuilderStub;
 import org.junit.Before;
 import org.junit.Test;

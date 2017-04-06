@@ -1,10 +1,10 @@
-import Main.Controllers.FacadeController;
-import Main.Models.Logic.ChosenGameNightValues;
-import Main.Models.Network.ConnectionHandler;
-import Main.Models.Storage.CollectionBuilder;
-import Main.Models.Storage.ICollectionBuilder;
-import Main.Models.Structure.*;
-import Main.Sorting.InsertionSort;
+import Main.Controller.FacadeController;
+import Main.Model.Logic.ChosenGameNightValues;
+import Main.Model.Network.ConnectionHandler;
+import Main.Model.Storage.CollectionBuilder;
+import Main.Model.Storage.ICollectionBuilder;
+import Main.Model.Structure.*;
+import Main.Util.Sorting.InsertionSort;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

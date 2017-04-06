@@ -1,10 +1,10 @@
 package Main;
 
-import Main.Controllers.FacadeController;
-import Main.Controllers.LoginController;
-import Main.Factories.ReleaseStartupFactory;
-import Main.Views.MainView;
-import Main.Views.StartView;
+import Main.Controller.FacadeController;
+import Main.Controller.LoginController;
+import Main.Controller.Factories.ReleaseStartupFactory;
+import Main.View.MainView;
+import Main.View.StartView;
 
 import javax.swing.*;
 

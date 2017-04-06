@@ -1,9 +1,9 @@
 package Models.Storage;
 
-import Main.Models.Network.IConnectionHandler;
-import Main.Models.Storage.CollectionBuilder;
-import Main.Models.Storage.ICollectionBuilder;
-import Main.Models.Structure.*;
+import Main.Model.Network.IConnectionHandler;
+import Main.Model.Storage.CollectionBuilder;
+import Main.Model.Storage.ICollectionBuilder;
+import Main.Model.Structure.*;
 import Models.StubsAndMocks.ConnectionHandlerStub;
 import org.junit.Before;
 import org.junit.Test;
