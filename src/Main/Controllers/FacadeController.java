@@ -34,10 +34,10 @@ public class FacadeController {
   }
 
   public BoardGameSuggestion suggestGames(Player[] array, int maxTime) {
-    return logicController.suggestGamesForGameNight(array, maxTime);
+    return logicController.suggestGamesForGameNight(array, maxTime, getAllGames());
   }
 
-  public BoardGameCounter[] getRecommendationCounterForSingleGame(BoardGame[] actualSuggestionAsGames, Player[] players, int maxTime) {
-    return logicController.getRecommendationCounterForSingleGame(actualSuggestionAsGames, players, maxTime);
+  public BoardGameCounter[] getBestCombinationForGame(BoardGame[] actualSuggestionAsGames, Player[] players, int maxTime) {
+    return logicController.getBestCombinationForGame(actualSuggestionAsGames, players, maxTime);
   }
 }

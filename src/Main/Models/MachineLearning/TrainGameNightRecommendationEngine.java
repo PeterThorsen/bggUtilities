@@ -120,7 +120,7 @@ public class TrainGameNightRecommendationEngine {
 
   private void modifyValues(BoardGame[] actualSuggestionAsGames, Constants constant, Player[] players, int playTime) {
     // get current score for current games
-    BoardGameCounter[] old = controller.getRecommendationCounterForSingleGame(actualSuggestionAsGames, players, playTime);
+    BoardGameCounter[] old = controller.getBestCombinationForGame(actualSuggestionAsGames, players, playTime);
     double oldScore = 0;
     for (int i = 0; i < old.length; i++) {
       oldScore += old[i].value;
@@ -154,7 +154,7 @@ public class TrainGameNightRecommendationEngine {
       else {
         values.values[i] = values.values[i] * oppositeModifier;
       }
-      BoardGameCounter[] tempCounter = controller.getRecommendationCounterForSingleGame(actualSuggestionAsGames, players, playTime);
+      BoardGameCounter[] tempCounter = controller.getBestCombinationForGame(actualSuggestionAsGames, players, playTime);
 
       double tempScore = 0;
       for (int j = 0; j < tempCounter.length; j++) {
