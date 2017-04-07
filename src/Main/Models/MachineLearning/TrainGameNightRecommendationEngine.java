@@ -43,22 +43,23 @@ public class TrainGameNightRecommendationEngine {
             {"Jesper"},
             {"Martin", "Charlotte"},
             {"Martin", "Charlotte", "Michelle"},
-            {"Martin", "Michael", "Emil"},
+            {"Martin", "Michael", "Emil"}, // 5
 
             {"Martin", "Michael", "Emil", "Signe"},
             {"Charlotte", "Mikkel", "Bolette"},
             {"Charlotte", "Alf", "Lisbeth"},
             {"Charlotte", "Alf", "Lisbeth", "Mikkel"},
-            {"Charlotte", "Alf", "Lisbeth", "Mikkel", "Bolette"},
+            {"Charlotte", "Alf", "Lisbeth", "Mikkel", "Bolette"}, // 10
 
             {"Charlotte", "Alf", "Lisbeth", "Mikkel", "Bolette", "Camilla"},
             {"Martin", "Josefine", "Daniella"},
             {"Marian", "Charlotte", "Poul"},
             {"Marian", "Charlotte", "Poul", "Jesper"},
-            {"Marian", "Charlotte", "Jesper"},
+            {"Marian", "Charlotte", "Jesper"}, // 15
 
             {"Marian", "Charlotte"},
-            {"Marian", "Charlotte", "Palle", "Liss", "Jesper", "Poul", "Lillibeth"}
+            {"Marian", "Charlotte", "Palle", "Liss", "Jesper", "Poul", "Lillibeth"},
+            {"Marian", "Charlotte", "Liss", "Lillibeth"}
     };
     int[] playTimes = new int[]{
             10, 15, 15, 20, 20, 30, // 0 to 5
@@ -67,11 +68,12 @@ public class TrainGameNightRecommendationEngine {
             90, 90, 100, 120, 120, // 16 to 20
             140, 150, 180, 180}; // 21 to 24
 
-    String[] initialUsers = allNames[12];
+    String[] initialUsers = allNames[18];
     Player[] initialPlayers = getPlayersFromNames(initialUsers);
-    BoardGameSuggestion initialRecommendation = controller.suggestGames(initialPlayers, playTimes[23]);
+    int initialPlaytime = playTimes[20];
+    BoardGameSuggestion initialRecommendation = controller.suggestGames(initialPlayers, initialPlaytime);
 
-    for (int j = 0; j < 600; j++) {
+    for (int j = 0; j < 15000; j++) {
       if(j % 100 == 0) System.out.println("Iteration j: " + j);
       String[] users = allNames[random.nextInt(allNames.length)];
       Player[] players = getPlayersFromNames(users);
@@ -82,7 +84,7 @@ public class TrainGameNightRecommendationEngine {
       ArrayList<BoardGame[]> goodSuggestions = fillRecommendedForMinuteCountAndPlayers(playTime, players);
 
       outer:
-      for (int i = 0; i < 8; i++) {
+      for (int i = 0; i < 7; i++) {
         BoardGameCounter[] actualSuggestion = controller.suggestGames(players, playTime).suggestedCombination;
         BoardGame[] actualSuggestionAsGames = new BoardGame[actualSuggestion.length];
         for (int k = 0; k < actualSuggestion.length; k++) {
@@ -101,7 +103,7 @@ public class TrainGameNightRecommendationEngine {
       }
     }
 
-    printResult(initialRecommendation, allNames[12], playTimes[23]);
+    printResult(initialRecommendation, initialUsers, initialPlaytime);
   }
 
   private Player[] getPlayersFromNames(String[] users) {

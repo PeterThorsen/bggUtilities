@@ -2,6 +2,7 @@ package Main.Models.MachineLearning;
 
 import Main.Factories.IStartupFactory;
 import Main.Models.Logic.IGameNightValues;
+import Main.Models.Network.ConnectionHandler;
 import Main.Models.Storage.CollectionBuilder;
 import Main.Models.Storage.ICollectionBuilder;
 
