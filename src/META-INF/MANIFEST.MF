@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: Main.Driver
+Main-Class: Main.Controller.Driver
 
