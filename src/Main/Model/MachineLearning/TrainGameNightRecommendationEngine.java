@@ -68,20 +68,12 @@ public class TrainGameNightRecommendationEngine {
             90, 90, 100, 120, 120, // 16 to 20
             140, 150, 180, 180}; // 21 to 24
 
-<<<<<<< HEAD:src/Main/Models/MachineLearning/TrainGameNightRecommendationEngine.java
     String[] initialUsers = allNames[18];
     Player[] initialPlayers = getPlayersFromNames(initialUsers);
     int initialPlaytime = playTimes[20];
     BoardGameSuggestion initialRecommendation = controller.suggestGames(initialPlayers, initialPlaytime);
 
     for (int j = 0; j < 15000; j++) {
-=======
-    String[] initialUsers = allNames[9];
-    Player[] initialPlayers = getPlayersFromNames(initialUsers);
-    BoardGameSuggestion initialRecommendation = controller.suggestGames(initialPlayers, playTimes[20]);
-
-    for (int j = 0; j < 100; j++) {
->>>>>>> faa0666789e69a14b0bf9f59f11feeeb1952b12a:src/Main/Model/MachineLearning/TrainGameNightRecommendationEngine.java
       if(j % 100 == 0) System.out.println("Iteration j: " + j);
       String[] users = allNames[random.nextInt(allNames.length)];
       Player[] players = getPlayersFromNames(users);
@@ -92,11 +84,7 @@ public class TrainGameNightRecommendationEngine {
       ArrayList<BoardGame[]> goodSuggestions = fillRecommendedForMinuteCountAndPlayers(playTime, players);
 
       outer:
-<<<<<<< HEAD:src/Main/Models/MachineLearning/TrainGameNightRecommendationEngine.java
       for (int i = 0; i < 7; i++) {
-=======
-      for (int i = 0; i < 15; i++) {
->>>>>>> faa0666789e69a14b0bf9f59f11feeeb1952b12a:src/Main/Model/MachineLearning/TrainGameNightRecommendationEngine.java
         BoardGameCounter[] actualSuggestion = controller.suggestGames(players, playTime).suggestedCombination;
         BoardGame[] actualSuggestionAsGames = new BoardGame[actualSuggestion.length];
         for (int k = 0; k < actualSuggestion.length; k++) {
