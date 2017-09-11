@@ -1,9 +1,9 @@
 package Controllers.Network;
 
-import Main.Controller.SubControllers.LoginController;
-import Main.Controller.Factories.IStartupFactory;
-import Main.Controller.Factories.ReleaseStartupFactory;
-import Main.Model.Storage.ICollectionBuilder;
+import main.Controller.SubControllers.LoginController;
+import main.Controller.Factories.IStartupFactory;
+import main.Controller.Factories.ReleaseStartupFactory;
+import main.Model.Storage.ICollectionBuilder;
 import org.junit.Before;
 import org.junit.Test;
 

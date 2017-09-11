@@ -1,6 +1,6 @@
 package Models.Network;
 
-import Main.Model.Network.ConnectionHandler;
+import main.Model.Network.ConnectionHandler;
 import org.junit.Before;
 import org.junit.Test;
 import org.w3c.dom.Document;

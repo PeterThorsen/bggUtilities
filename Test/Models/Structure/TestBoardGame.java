@@ -1,6 +1,6 @@
 package Models.Structure;
 
-import Main.Model.Structure.BoardGame;
+import main.Model.Structure.BoardGame;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

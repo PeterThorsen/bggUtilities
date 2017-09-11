@@ -1,12 +1,12 @@
 package Models.Structure;
 
-import Main.Model.Structure.BoardGame;
-import Main.Model.Structure.BoardGameCollection;
-import Main.Model.Structure.Play;
-import Main.Model.Structure.Plays;
-import Main.Model.Network.IConnectionHandler;
-import Main.Model.Storage.CollectionBuilder;
-import Main.Model.Storage.ICollectionBuilder;
+import main.Model.Structure.BoardGame;
+import main.Model.Structure.BoardGameCollection;
+import main.Model.Structure.Play;
+import main.Model.Structure.Plays;
+import main.Model.Network.IConnectionHandler;
+import main.Model.Storage.CollectionBuilder;
+import main.Model.Storage.ICollectionBuilder;
 import Models.StubsAndMocks.ConnectionHandlerStub;
 import org.junit.Before;
 import org.junit.Test;
