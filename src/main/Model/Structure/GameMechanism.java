@@ -1,4 +1,4 @@
-package main.Model.Structure;
+package Model.Structure;
 
 /**
  * Created by Peter on 16/11/2016.

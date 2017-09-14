@@ -1,5 +1,6 @@
-package main.Model.MachineLearning;
+package Model.MachineLearning;
 
+import Model.Network.IConnectionHandler;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -7,7 +8,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.ArrayList;
 
-class ConnectionHandlerStub implements main.Model.Network.IConnectionHandler {
+class ConnectionHandlerStub implements IConnectionHandler {
 
   @Override
   public Document getCollection(String username) {

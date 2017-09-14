@@ -1,12 +1,12 @@
-package main.View.Player;
+package View.Player;
 
-import main.Controller.FacadeController;
-import main.Model.Structure.BoardGame;
-import main.Model.Structure.Holders.BoardGameIntHolder;
-import main.Model.Structure.Holders.StringIntHolder;
-import main.Model.Structure.Play;
-import main.Model.Structure.Player;
-import main.Util.Sorting.InsertionSort;
+import Controller.FacadeController;
+import Model.Structure.BoardGame;
+import Model.Structure.Holders.BoardGameIntHolder;
+import Model.Structure.Holders.StringIntHolder;
+import Model.Structure.Play;
+import Model.Structure.Player;
+import Util.Sorting.InsertionSort;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;

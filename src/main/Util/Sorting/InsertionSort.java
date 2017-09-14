@@ -1,11 +1,11 @@
-package main.Util.Sorting;
+package Util.Sorting;
 
-import main.Model.Structure.BoardGameCounter;
-import main.Model.Structure.Holders.BoardGameIntHolder;
-import main.Model.Structure.Holders.StringIntHolder;
-import main.Model.Structure.Play;
-import main.Model.Structure.Player;
-import main.Model.Structure.Reason;
+import Model.Structure.BoardGameCounter;
+import Model.Structure.Holders.BoardGameIntHolder;
+import Model.Structure.Holders.StringIntHolder;
+import Model.Structure.Play;
+import Model.Structure.Player;
+import Model.Structure.Reason;
 
 import java.util.ArrayList;
 

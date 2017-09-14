@@ -1,12 +1,12 @@
-package main.Controller.SubControllers;
+package Controller.SubControllers;
 
-import main.Controller.FacadeController;
-import main.Model.Logic.GameNightUtil;
-import main.Model.Logic.IGameNightRecommender;
-import main.Model.Structure.BoardGame;
-import main.Model.Structure.BoardGameCounter;
-import main.Model.Structure.BoardGameSuggestion;
-import main.Model.Structure.Player;
+import Controller.FacadeController;
+import Model.Logic.GameNightUtil;
+import Model.Logic.IGameNightRecommender;
+import Model.Structure.BoardGame;
+import Model.Structure.BoardGameCounter;
+import Model.Structure.BoardGameSuggestion;
+import Model.Structure.Player;
 
 public class LogicController {
   private final IGameNightRecommender gameNightRecommender;

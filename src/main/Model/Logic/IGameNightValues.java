@@ -1,4 +1,4 @@
-package main.Model.Logic;
+package Model.Logic;
 
 /**
  * Created by Peter on 31/01/2017.

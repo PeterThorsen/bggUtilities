@@ -1,11 +1,11 @@
-package main.View;
+package View;
 
-import main.Model.Structure.BoardGame;
-import main.Model.Structure.Holders.GamePlayHolder;
-import main.Model.Structure.Play;
-import main.Model.Structure.Player;
-import main.Controller.FacadeController;
-import main.View.Player.PlayerView;
+import Controller.FacadeController;
+import Model.Structure.BoardGame;
+import Model.Structure.Holders.GamePlayHolder;
+import Model.Structure.Play;
+import Model.Structure.Player;
+import View.Player.PlayerView;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;

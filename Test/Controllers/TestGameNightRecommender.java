@@ -1,14 +1,14 @@
 package Controllers;
 
-import main.Controller.FacadeController;
-import main.Model.Logic.ChosenGameNightValues;
-import main.Model.Network.IConnectionHandler;
-import main.Model.Storage.CollectionBuilder;
-import main.Model.Storage.ICollectionBuilder;
-import main.Model.Structure.BoardGame;
-import main.Model.Structure.BoardGameCounter;
-import main.Model.Structure.BoardGameSuggestion;
-import main.Model.Structure.Player;
+import Controller.FacadeController;
+import Model.Logic.ChosenGameNightValues;
+import Model.Network.IConnectionHandler;
+import Model.Storage.CollectionBuilder;
+import Model.Storage.ICollectionBuilder;
+import Model.Structure.BoardGame;
+import Model.Structure.BoardGameCounter;
+import Model.Structure.BoardGameSuggestion;
+import Model.Structure.Player;
 import Models.StubsAndMocks.ConnectionHandlerStub;
 import org.junit.Before;
 import org.junit.Ignore;

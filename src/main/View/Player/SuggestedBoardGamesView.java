@@ -1,9 +1,9 @@
-package main.View.Player;
+package View.Player;
 
-import main.Model.Structure.BoardGameCounter;
-import main.Model.Structure.BoardGameSuggestion;
-import main.Model.Structure.Reason;
-import main.Util.Sorting.InsertionSort;
+import Model.Structure.BoardGameCounter;
+import Model.Structure.BoardGameSuggestion;
+import Model.Structure.Reason;
+import Util.Sorting.InsertionSort;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;

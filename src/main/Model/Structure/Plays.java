@@ -1,6 +1,6 @@
-package main.Model.Structure;
+package Model.Structure;
 
-import main.Util.Sorting.InsertionSort;
+import Util.Sorting.InsertionSort;
 
 import java.util.ArrayList;
 import java.util.HashMap;

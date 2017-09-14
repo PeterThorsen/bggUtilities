@@ -1,17 +1,17 @@
 package Controllers;
 
-import main.Model.Logic.ChosenGameNightValues;
-import main.Model.Structure.BoardGame;
-import main.Model.Structure.Play;
-import main.Model.Structure.Player;
-import main.Controller.FacadeController;
-import main.Model.Storage.ICollectionBuilder;
+import Controller.FacadeController;
+import Model.Logic.ChosenGameNightValues;
+import Model.Storage.ICollectionBuilder;
+import Model.Structure.BoardGame;
+import Model.Structure.Play;
+import Model.Structure.Player;
 import Models.StubsAndMocks.CollectionBuilderStub;
 import org.junit.Before;
 import org.junit.Test;
 
-import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 
 /**

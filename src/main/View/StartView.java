@@ -1,6 +1,7 @@
-package main.View;
+package View;
 
-import main.Controller.Driver;
+
+import Controller.Driver;
 
 import javax.swing.*;
 

@@ -1,7 +1,8 @@
 package Models.StubsAndMocks;
 
-import main.Model.Storage.ICollectionBuilder;
-import main.Model.Structure.*;
+
+import Model.Storage.ICollectionBuilder;
+import Model.Structure.*;
 
 import java.util.ArrayList;
 

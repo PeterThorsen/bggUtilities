@@ -1,5 +1,6 @@
 package Models.StubsAndMocks;
 
+import Model.Network.IConnectionHandler;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Created by Peter on 28/09/16.
  */
-public class ConnectionHandlerStub implements main.Model.Network.IConnectionHandler {
+public class ConnectionHandlerStub implements IConnectionHandler {
 
   @Override
   public Document getCollection(String username) {

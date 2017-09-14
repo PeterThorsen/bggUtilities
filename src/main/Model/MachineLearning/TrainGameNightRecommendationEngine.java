@@ -1,9 +1,9 @@
-package main.Model.MachineLearning;
+package Model.MachineLearning;
 
-import main.Controller.FacadeController;
-import main.Controller.Factories.IStartupFactory;
-import main.Model.Storage.ICollectionBuilder;
-import main.Model.Structure.*;
+import Controller.FacadeController;
+import Controller.Factories.IStartupFactory;
+import Model.Storage.ICollectionBuilder;
+import Model.Structure.*;
 
 import java.io.BufferedReader;
 import java.io.File;

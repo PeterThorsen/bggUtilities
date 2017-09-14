@@ -1,8 +1,8 @@
-package main.Model.Storage;
+package Model.Storage;
 
-import main.Model.Structure.BoardGameCollection;
-import main.Model.Structure.Player;
-import main.Model.Structure.Plays;
+import Model.Structure.BoardGameCollection;
+import Model.Structure.Player;
+import Model.Structure.Plays;
 
 /**
  * Created by Peter on 28/09/16.

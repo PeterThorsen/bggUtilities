@@ -1,6 +1,7 @@
-package main.Model.Structure.Holders;
+package Model.Structure.Holders;
 
-import main.Model.Structure.BoardGame;
+
+import Model.Structure.BoardGame;
 
 /**
  * Created by Peter on 13-Nov-16.

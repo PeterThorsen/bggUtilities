@@ -1,11 +1,11 @@
-package main.Model.Storage;
+package Model.Storage;
 
-import main.Model.Network.IConnectionHandler;
-import main.Model.Structure.*;
-import main.Model.Structure.Holders.ItemPlayersNodesHolder;
-import main.Model.Structure.Holders.NodeHolder;
-import main.Model.Structure.Holders.PlayerNodeInformationHolder;
-import main.Model.Structure.Holders.otherValuesHolder;
+import Model.Network.IConnectionHandler;
+import Model.Structure.*;
+import Model.Structure.Holders.ItemPlayersNodesHolder;
+import Model.Structure.Holders.NodeHolder;
+import Model.Structure.Holders.PlayerNodeInformationHolder;
+import Model.Structure.Holders.otherValuesHolder;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;

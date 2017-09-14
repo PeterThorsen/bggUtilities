@@ -1,6 +1,6 @@
-package main.Model.Structure;
+package Model.Structure;
 
-import main.Model.Structure.Holders.GamePlayHolder;
+import Model.Structure.Holders.GamePlayHolder;
 
 import java.util.HashMap;
 

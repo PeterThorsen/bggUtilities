@@ -1,10 +1,10 @@
 package Controllers;
 
-import main.Model.Structure.BoardGame;
-import main.Model.Structure.BoardGameCollection;
-import main.Model.Structure.Play;
-import main.Controller.SubControllers.DataDisplayController;
-import main.Model.Storage.ICollectionBuilder;
+import Controller.SubControllers.DataDisplayController;
+import Model.Storage.ICollectionBuilder;
+import Model.Structure.BoardGame;
+import Model.Structure.BoardGameCollection;
+import Model.Structure.Play;
 import Models.StubsAndMocks.CollectionBuilderStub;
 import org.junit.Before;
 import org.junit.Test;

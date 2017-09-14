@@ -1,8 +1,8 @@
-package main.Controller.SubControllers;
+package Controller.SubControllers;
 
-import main.Controller.FacadeController;
-import main.Controller.Factories.IStartupFactory;
-import main.Model.Storage.ICollectionBuilder;
+import Controller.FacadeController;
+import Controller.Factories.IStartupFactory;
+import Model.Storage.ICollectionBuilder;
 
 import javax.swing.*;
 

@@ -1,8 +1,8 @@
 package Sorting;
 
-import main.Model.Structure.Holders.StringIntHolder;
-import main.Model.Structure.*;
-import main.Util.Sorting.*;
+import Model.Structure.*;
+import Model.Structure.Holders.StringIntHolder;
+import Util.Sorting.InsertionSort;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

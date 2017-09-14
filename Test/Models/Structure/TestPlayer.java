@@ -1,6 +1,6 @@
 package Models.Structure;
 
-import main.Model.Structure.*;
+import Model.Structure.*;
 import org.junit.Before;
 import org.junit.Test;
 

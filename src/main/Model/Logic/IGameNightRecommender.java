@@ -1,8 +1,8 @@
-package main.Model.Logic;
+package Model.Logic;
 
-import main.Model.Structure.BoardGame;
-import main.Model.Structure.BoardGameCounter;
-import main.Model.Structure.Player;
+import Model.Structure.BoardGame;
+import Model.Structure.BoardGameCounter;
+import Model.Structure.Player;
 
 /**
  * Created by Peter on 31/01/2017.

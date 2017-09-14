@@ -1,8 +1,7 @@
-package main.Model.Logic;
+package Model.Logic;
 
-import main.Model.Structure.Reason;
-import main.Model.Structure.*;
-import main.Util.Sorting.InsertionSort;
+import Model.Structure.*;
+import Util.Sorting.InsertionSort;
 
 import java.text.DateFormat;
 import java.text.ParseException;

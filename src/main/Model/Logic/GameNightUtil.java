@@ -1,7 +1,7 @@
-package main.Model.Logic;
+package Model.Logic;
 
-import main.Model.Structure.BoardGame;
-import main.Model.Structure.Player;
+import Model.Structure.BoardGame;
+import Model.Structure.Player;
 
 import java.util.ArrayList;
 

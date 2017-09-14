@@ -1,9 +1,9 @@
-package main.Model.MachineLearning;
+package Model.MachineLearning;
 
-import main.Controller.Factories.IStartupFactory;
-import main.Model.Logic.IGameNightValues;
-import main.Model.Storage.CollectionBuilder;
-import main.Model.Storage.ICollectionBuilder;
+import Controller.Factories.IStartupFactory;
+import Model.Logic.IGameNightValues;
+import Model.Storage.CollectionBuilder;
+import Model.Storage.ICollectionBuilder;
 
 public class MachineLearningFactory implements IStartupFactory {
   @Override

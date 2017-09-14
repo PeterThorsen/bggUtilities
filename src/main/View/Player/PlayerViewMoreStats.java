@@ -1,6 +1,7 @@
-package main.View.Player;
+package View.Player;
 
-import main.Model.Structure.Player;
+
+import Model.Structure.Player;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

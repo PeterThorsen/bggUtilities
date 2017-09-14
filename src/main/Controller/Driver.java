@@ -1,9 +1,9 @@
-package main.Controller;
+package Controller;
 
-import main.Controller.Factories.ReleaseStartupFactory;
-import main.Controller.SubControllers.LoginController;
-import main.View.MainView;
-import main.View.StartView;
+import Controller.Factories.ReleaseStartupFactory;
+import Controller.SubControllers.LoginController;
+import View.MainView;
+import View.StartView;
 
 import javax.swing.*;
 

@@ -1,7 +1,6 @@
-package main.Model.MachineLearning;
+package Model.MachineLearning;
 
-import main.Model.Logic.IGameNightValues;
-
+import Model.Logic.IGameNightValues;
 
 class MachineLearningGameNightValues implements IGameNightValues {
 

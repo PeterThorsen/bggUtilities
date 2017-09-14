@@ -1,11 +1,11 @@
-package main.Controller;
+package Controller;
 
-import main.Controller.SubControllers.DataDisplayController;
-import main.Controller.SubControllers.LogicController;
-import main.Model.Logic.GameNightRecommender;
-import main.Model.Logic.IGameNightValues;
-import main.Model.Storage.ICollectionBuilder;
-import main.Model.Structure.*;
+import Controller.SubControllers.DataDisplayController;
+import Controller.SubControllers.LogicController;
+import Model.Logic.GameNightRecommender;
+import Model.Logic.IGameNightValues;
+import Model.Storage.ICollectionBuilder;
+import Model.Structure.*;
 
 /**
  * Created by Peter on 05/10/2016.

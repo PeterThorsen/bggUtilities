@@ -1,8 +1,9 @@
-package main.Controller.SubControllers;
+package Controller.SubControllers;
 
-import main.Model.Storage.ICollectionBuilder;
-import main.Model.Structure.*;
-import main.Util.Sorting.InsertionSort;
+
+import Model.Storage.ICollectionBuilder;
+import Model.Structure.*;
+import Util.Sorting.InsertionSort;
 
 import java.util.ArrayList;
 

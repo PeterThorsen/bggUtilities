@@ -1,8 +1,8 @@
-package main.View.Player;
+package View.Player;
 
-import main.Model.Structure.BoardGameSuggestion;
-import main.Model.Structure.Player;
-import main.Controller.FacadeController;
+import Controller.FacadeController;
+import Model.Structure.BoardGameSuggestion;
+import Model.Structure.Player;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -28,7 +28,7 @@ public class SelectPlayersTimeAndComplexityView {
   public JPanel panelMain;
   private JFrame frame;
   private Player selectedPlayer;
-  private PlayerView playerView;
+  private View.Player.PlayerView playerView;
   private FacadeController facadeController;
 
   private ArrayList<Player> playersInTable2;

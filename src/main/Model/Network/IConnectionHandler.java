@@ -1,4 +1,4 @@
-package main.Model.Network;
+package Model.Network;
 
 import org.w3c.dom.Document;
 

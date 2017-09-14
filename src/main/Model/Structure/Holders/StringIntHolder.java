@@ -1,4 +1,4 @@
-package main.Model.Structure.Holders;
+package Model.Structure.Holders;
 
 /**
  * Created by Peter on 11-Dec-16.

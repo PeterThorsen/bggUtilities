@@ -1,10 +1,10 @@
 package Models.Network;
 
-import main.Model.Structure.BoardGameCollection;
-import main.Model.Network.ConnectionHandler;
-import main.Model.Network.IConnectionHandler;
-import main.Model.Storage.CollectionBuilder;
-import main.Model.Storage.ICollectionBuilder;
+import Model.Network.ConnectionHandler;
+import Model.Network.IConnectionHandler;
+import Model.Storage.CollectionBuilder;
+import Model.Storage.ICollectionBuilder;
+import Model.Structure.BoardGameCollection;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package main.Model.Structure.Holders;
+package Model.Structure.Holders;
 
 import org.w3c.dom.Node;
 

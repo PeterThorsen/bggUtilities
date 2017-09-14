@@ -1,4 +1,4 @@
-package main.Model.MachineLearning;
+package Model.MachineLearning;
 
 enum Constants {
   NEGATIVE,
