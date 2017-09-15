@@ -7,6 +7,7 @@
     "react-dom": "^15.5.4"
   },
   "devDependencies": {
+    "jquery": "^3.2.1",
     "react-scripts": "1.0.7"
   },
   "scripts": {
