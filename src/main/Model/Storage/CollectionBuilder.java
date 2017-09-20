@@ -111,13 +111,14 @@ public class CollectionBuilder implements ICollectionBuilder {
       int maxPlaytime = calculateMaxPlaytime(statsNode, minPlaytime);
       int numPlays = calculateNumberOfPlays(numPlaysNode);
       String type = calculateGameType(statsNode);
+      String image = nodeHolder.image;
 
       // Returning string, as value might be N/A
       String personalRatingString = statsNode.getChildNodes().item(1).getAttributes().getNamedItem("value").getTextContent();
       String averageRating = statsNode.getChildNodes().item(1).getChildNodes().item(3).getAttributes().getNamedItem("value").getTextContent();
 
       // Finally, building game
-      BoardGame game = new BoardGame(name, uniqueID, minPlayers, maxPlayers, minPlaytime, maxPlaytime, personalRatingString, numPlays, averageRating, type);
+      BoardGame game = new BoardGame(name, uniqueID, minPlayers, maxPlayers, minPlaytime, maxPlaytime, personalRatingString, numPlays, averageRating, type, image);
 
       // Adding to structure
       games.add(game);
@@ -463,6 +464,7 @@ public class CollectionBuilder implements ICollectionBuilder {
     int itemPos = 1;
     Node statsNode = null;
     Node numPlaysNode = null;
+    String image = null;
     while (true) {
       try {
         String temp = nodeList.item(i).getChildNodes().item(itemPos).getNodeName();
@@ -471,12 +473,15 @@ public class CollectionBuilder implements ICollectionBuilder {
         } else if (temp.equals("numplays")) {
           numPlaysNode = nodeList.item(i).getChildNodes().item(itemPos);
         }
+        else if(temp.equals("image")) {
+          image = nodeList.item(i).getChildNodes().item(itemPos).getTextContent();
+        }
         itemPos += 2;
       } catch (Exception e) {
         break;
       }
     }
-    return new NodeHolder(statsNode, numPlaysNode);
+    return new NodeHolder(statsNode, numPlaysNode, image);
   }
 
   private int calculateUniqueID(NodeList nodeList, int i) {

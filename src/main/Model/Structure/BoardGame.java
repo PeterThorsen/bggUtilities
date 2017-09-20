@@ -20,9 +20,10 @@ public class BoardGame {
   public int[] bestWith;
   public int[] recommendedWith;
   public final String type; // Type might be null, always check for null
+  public final String image;
 
   public BoardGame(String name, int uniqueID, int minPlayers, int maxPlayers, int minPlaytime,
-                   int maxPlaytime, String personalRating, int numberOfPlays, String averageRating, String type) {
+                   int maxPlaytime, String personalRating, int numberOfPlays, String averageRating, String type, String image) {
     this.name = name;
     id = uniqueID;
     this.minPlayers = minPlayers;
@@ -33,6 +34,7 @@ public class BoardGame {
     numPlays = numberOfPlays;
     this.averageRating = averageRating;
     this.type = type;
+    this.image = image;
   }
 
   public void addExpandedGameInfo(double complexity, boolean isExpansion, GameCategory[] categories,

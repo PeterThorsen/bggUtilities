@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import App from './App';
 import './LoginView.css';
 import TextField from 'material-ui/TextField';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 import RaisedButton from 'material-ui/RaisedButton';
 
 class Question extends Component {
@@ -12,17 +10,21 @@ class Question extends Component {
         super(props);
         this.state = {
             showApp: false,
+            userName: "",
+            loginFailed: false
         };
     }
 
     render() {
-        if (this.state.showApp) return <App teams={this.state.teams}/>;
+        if (this.state.showApp) return <App loginFailed={this.loginFailed.bind(this)} userName={this.state.userName}/>;
         return <div className="login-view">
             <div className="login-view-main-content">
+                <TextField onChange={(event, text) => this.saveText(text)}/>
                 <RaisedButton label="Start the app"
                               primary={true}
                               style={{marginTop: '40px'}}
                               onTouchTap={this.showApp.bind(this)}/>
+                {this.state.loginFailed ? <div>Login failed! </div> : undefined}
 
             </div>
         </div>
@@ -31,6 +33,20 @@ class Question extends Component {
     showApp() {
         this.setState({
             showApp: true
+        })
+    }
+
+    saveText(text) {
+        this.setState({
+            userName: text
+        })
+    }
+
+    loginFailed() {
+        this.setState({
+            showApp: false,
+            loginFailed: true,
+            userName: ""
         })
     }
 }
