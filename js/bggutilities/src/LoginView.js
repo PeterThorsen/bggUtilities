@@ -10,7 +10,7 @@ class Question extends Component {
         super(props);
         this.state = {
             showApp: false,
-            userName: "",
+            userName: "cwaq",
             loginFailed: false
         };
     }
@@ -19,7 +19,7 @@ class Question extends Component {
         if (this.state.showApp) return <App loginFailed={this.loginFailed.bind(this)} userName={this.state.userName}/>;
         return <div className="login-view">
             <div className="login-view-main-content">
-                <TextField onChange={(event, text) => this.saveText(text)}/>
+                <TextField id={"login-text-field"} onChange={(event, text) => this.saveText(text)} defaultValue={"cwaq"}/>
                 <RaisedButton label="Start the app"
                               primary={true}
                               style={{marginTop: '40px'}}

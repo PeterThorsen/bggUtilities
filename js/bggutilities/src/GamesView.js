@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import LoadingScreen from './LoadingScreen';
 import {GridList, GridTile} from 'material-ui/GridList';
-
-
+import Game from './Game';
+import RaisedButton from 'material-ui/RaisedButton';
 class GamesView extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {found: false, result: ""}
+        this.state = {found: false, result: "", game: undefined}
     }
 
     render() {
@@ -35,6 +35,7 @@ class GamesView extends Component {
                 (game) => {
                     result.push(
                         <GridTile key={game.id}
+                                  onTouchTap={() => this.goToGame(game)}
                                   cols={1}
                                   rows={1}>
                             <img src={game.image} alt={""} width={146} height={180}/> </GridTile>)
@@ -42,8 +43,12 @@ class GamesView extends Component {
         }
 
         if (!this.state.found) return <LoadingScreen/>;
+        if(this.state.game) {
+            return <Game goBack={() => this.goToGame(undefined)} game={this.state.game} />
+        }
 
         return <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+            <RaisedButton label="Go back" onTouchTap={this.props.goBack}/>
             <GridList cols={4}
                       style={{
                           width: 600,
@@ -55,6 +60,13 @@ class GamesView extends Component {
                 {result}
             </GridList>
         </div>
+    }
+
+    goToGame(game) {
+        this.setState({
+            game: game
+        })
+
     }
 }
 
