@@ -4,6 +4,7 @@ import Controller.FacadeController;
 import Controller.Factories.ReleaseStartupFactory;
 import Controller.SubControllers.LoginController;
 import Model.Structure.BoardGame;
+import Model.Structure.Play;
 import com.google.gson.Gson;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,12 +29,22 @@ public class Server {
 
   @CrossOrigin
   @RequestMapping("/getGames")
-  public String getGames() {
-
+  public String getGames(@RequestParam(value = "expansions", defaultValue = "") boolean expansions) {
     Gson gson = new Gson();
-    BoardGame[] games = controller.getAllGames();
-
+    BoardGame[] games = controller.getAllGames(expansions);
     return gson.toJson(games);
+  }
+
+  @CrossOrigin
+  @RequestMapping("/getPlays")
+  public String getPlays(@RequestParam(value = "id", defaultValue = "") int id) {
+    Gson gson = new Gson();
+    Play[] plays = controller.getSortedPlays(id).clone();
+    for (Play play : plays) {
+      play.game = null;
+    }
+
+    return gson.toJson(plays);
   }
 
 

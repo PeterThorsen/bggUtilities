@@ -7,7 +7,7 @@ import java.util.HashMap;
  */
 public class Play {
   public String[] playerNames;
-  public final BoardGame game;
+  public BoardGame game;
   public final String date;
   public final int noOfPlays;
   private final HashMap<String, Double> playerRatings;

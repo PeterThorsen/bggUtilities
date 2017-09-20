@@ -21,8 +21,8 @@ public class FacadeController {
     logicController = new LogicController(this, new GameNightRecommender(gameNightValues));
   }
 
-  public BoardGame[] getAllGames() {
-    return dataController.getAllGames();
+  public BoardGame[] getAllGames(boolean useExpansion) {
+    return dataController.getAllGames(useExpansion);
   }
 
   public BoardGame getGame(String name) { return dataController.getGame(name);}
@@ -36,10 +36,14 @@ public class FacadeController {
   }
 
   public BoardGameSuggestion suggestGames(Player[] array, int maxTime) {
-    return logicController.suggestGamesForGameNight(array, maxTime, getAllGames());
+    return logicController.suggestGamesForGameNight(array, maxTime, getAllGames(false));
   }
 
   public BoardGameCounter[] getBestCombinationForGame(BoardGame[] actualSuggestionAsGames, Player[] players, int maxTime) {
     return logicController.getBestCombinationForGame(actualSuggestionAsGames, players, maxTime);
+  }
+
+  public Play[] getSortedPlays(int id) {
+    return dataController.getPlays(id);
   }
 }

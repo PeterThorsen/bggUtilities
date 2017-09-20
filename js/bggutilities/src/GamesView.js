@@ -7,7 +7,7 @@ class GamesView extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {found: false, result: "", game: undefined}
+        this.state = {found: false, result: "", game: undefined, useExpansion: false}
     }
 
     render() {
@@ -15,7 +15,7 @@ class GamesView extends Component {
         if (!this.state.found) {
             var request = new XMLHttpRequest();
             request.timeout = 60000;
-            request.open('GET', 'http://localhost:8080/getGames', true);
+            request.open('GET', 'http://localhost:8080/getGames?expansions=' + this.state.useExpansion, true);
             request.send(null);
             request.onreadystatechange = function () {
                 if (request.readyState === 4 && request.status === 200) {

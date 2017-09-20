@@ -1,5 +1,7 @@
 package Model.Structure;
 
+import java.util.ArrayList;
+
 /**
  * Created by Peter on 28/09/16.
  */
@@ -21,6 +23,7 @@ public class BoardGame {
   public int[] recommendedWith;
   public final String type; // Type might be null, always check for null
   public final String image;
+  public ArrayList<BoardGame> expansions = new ArrayList<>();
 
   public BoardGame(String name, int uniqueID, int minPlayers, int maxPlayers, int minPlaytime,
                    int maxPlaytime, String personalRating, int numberOfPlays, String averageRating, String type, String image) {
@@ -61,5 +64,9 @@ public class BoardGame {
   @Override
   public int hashCode() {
     return name.hashCode();
+  }
+
+  public void addExpansion(BoardGame game) {
+    expansions.add(game);
   }
 }

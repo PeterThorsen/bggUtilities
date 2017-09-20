@@ -29,10 +29,6 @@ public class GameNightUtil {
 
 
     for (BoardGame game : allGames) {
-
-      // Don't include expansions
-      if (game.isExpansion) continue;
-
       if (numberOfPlayers > game.maxPlayers || numberOfPlayers < game.minPlayers) {
         continue;
       }

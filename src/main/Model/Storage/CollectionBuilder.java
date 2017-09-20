@@ -171,6 +171,14 @@ public class CollectionBuilder implements ICollectionBuilder {
           BoardGame game = idToGameMap.get(uniqueID);
           game.addExpandedGameInfo(otherValues.complexity, isExpansion, otherValues.categories, otherValues.mechanisms,
                   otherValues.bestPlayerCount, otherValues.recommendedPlayerCount);
+
+          // Add expansion to parent game if current game is expansion
+          if (otherValues.expansionFor != -1) {
+            BoardGame otherGame = idToGameMap.get(otherValues.expansionFor);
+            if (otherGame != null) {
+              otherGame.addExpansion(game);
+            }
+          }
         }
         expandedSem.release();
       }
@@ -334,6 +342,7 @@ public class CollectionBuilder implements ICollectionBuilder {
     NodeList subNodes = item.getChildNodes();
 
     double complexity = 0;
+    int expansionFor = -1;
     ArrayList<GameCategory> categoriesList = new ArrayList<>();
     ArrayList<GameMechanism> mechanismsList = new ArrayList<>();
     ArrayList<Integer> bestList = new ArrayList<>();
@@ -411,6 +420,14 @@ public class CollectionBuilder implements ICollectionBuilder {
 
           mechanismsList.add(new GameMechanism(currentMechanism));
         }
+        if (type.equals("boardgameexpansion")) {
+          if (currentNode.getAttributes().getNamedItem("inbound") != null) {
+            String expansionForTemp = currentNode.getAttributes().getNamedItem("id").getNodeValue();
+            if (expansionForTemp != null) {
+              expansionFor = Integer.parseInt(expansionForTemp);
+            }
+          }
+        }
       }
 
       // Complexity
@@ -443,7 +460,7 @@ public class CollectionBuilder implements ICollectionBuilder {
       recommendedPlayerCount[j] = recommendedList.get(j);
     }
 
-    return new otherValuesHolder(complexity, cats, mechs, bestPlayerCount, recommendedPlayerCount);
+    return new otherValuesHolder(complexity, cats, mechs, bestPlayerCount, recommendedPlayerCount, expansionFor);
   }
 
   private boolean calculateIfExpansion(Node item) {
@@ -472,8 +489,7 @@ public class CollectionBuilder implements ICollectionBuilder {
           statsNode = nodeList.item(i).getChildNodes().item(itemPos);
         } else if (temp.equals("numplays")) {
           numPlaysNode = nodeList.item(i).getChildNodes().item(itemPos);
-        }
-        else if(temp.equals("image")) {
+        } else if (temp.equals("image")) {
           image = nodeList.item(i).getChildNodes().item(itemPos).getTextContent();
         }
         itemPos += 2;

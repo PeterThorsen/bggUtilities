@@ -83,19 +83,22 @@ public class Plays {
 
   }
 
-  public ArrayList<Play> getPlays(int uniqueID) {
+  public Play[] getPlays(int uniqueID) {
     if (allPlays.containsKey(uniqueID)) {
-      return allPlays.get(uniqueID);
+      ArrayList<Play> unsortedPlays =  allPlays.get(uniqueID);
+      return sortPlays(unsortedPlays);
+
     }
-    return new ArrayList<>();
+    return new Play[0];
   }
 
-  public ArrayList<Play> getPlays(String name) {
+  public Play[] getPlays(String name) {
     if (nameToIDMap.containsKey(name)) {
       int id = nameToIDMap.get(name);
-      return allPlays.get(id);
+      ArrayList<Play> unsortedPlays = allPlays.get(id);
+      return sortPlays(unsortedPlays);
     }
-    return new ArrayList<>();
+    return new Play[0];
   }
 
   public Play[] getAllPlays() {
@@ -103,13 +106,16 @@ public class Plays {
     for (int key : allPlays.keySet()) {
       unsortedPlays.addAll(allPlays.get(key));
     }
+    return sortPlays(unsortedPlays);
+  }
+
+  private Play[] sortPlays(ArrayList<Play> unsortedPlays) {
     Play[] sortedPlays = new Play[unsortedPlays.size()];
     for (int i = 0; i < sortedPlays.length; i++) {
       sortedPlays[i] = unsortedPlays.get(i);
     }
 
     sortedPlays = InsertionSort.sortPlays(sortedPlays);
-
     return sortedPlays;
   }
 

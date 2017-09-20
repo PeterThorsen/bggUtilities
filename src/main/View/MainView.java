@@ -49,7 +49,7 @@ public class MainView {
     DecimalFormat df = new DecimalFormat("####0.00");
     TableModel dataModel = new
             AbstractTableModel() {
-              final BoardGame[] allGames = facadeController.getAllGames();
+              final BoardGame[] allGames = facadeController.getAllGames(true);
 
               public int getColumnCount() {
                 return 7;

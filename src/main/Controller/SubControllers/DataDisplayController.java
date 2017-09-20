@@ -24,8 +24,22 @@ public class DataDisplayController {
   /**
    * @return an array of all games in the users collection.
    */
-  public BoardGame[] getAllGames() {
-    return collection.getGames();
+  public BoardGame[] getAllGames(boolean useExpansions) {
+    BoardGame[] games = collection.getGames();
+    if(!useExpansions) {
+      ArrayList<BoardGame> gamesWithoutExpansionsArrayList = new ArrayList<>();
+      for (BoardGame game : games) {
+        if(!game.isExpansion) {
+          gamesWithoutExpansionsArrayList.add(game);
+        }
+      }
+
+      games = new BoardGame[gamesWithoutExpansionsArrayList.size()];
+      for (int i = 0; i < games.length; i++) {
+        games[i] = gamesWithoutExpansionsArrayList.get(i);
+      }
+    }
+    return games;
   }
 
   /**
@@ -59,7 +73,7 @@ public class DataDisplayController {
    * @return a BoardGame representation of the game described by the input parameter, or null if not in collection.
    */
   public BoardGame getGame(String name) {
-    for (BoardGame game : getAllGames()) {
+    for (BoardGame game : getAllGames(true)) {
       if(game.name.equals(name)) return game;
     }
     return null;
@@ -76,7 +90,7 @@ public class DataDisplayController {
    * @param uniqueID is the unique id that the game has.
    * @return an ArrayList of all plays of the chosen game.
    */
-  public ArrayList<Play> getPlays(int uniqueID) {
+  public Play[] getPlays(int uniqueID) {
     return plays.getPlays(uniqueID);
   }
 
@@ -84,7 +98,7 @@ public class DataDisplayController {
    * @param name is the name of the game.
    * @return an ArrayList of all plays of the chosen game.
    */
-  public ArrayList<Play> getPlays(String name) {
+  public Play[] getPlays(String name) {
     return plays.getPlays(name);
   }
 
