@@ -3,7 +3,7 @@ import Divider from 'material-ui/Divider';
 import RaisedButton from 'material-ui/RaisedButton';
 import CircularProgress from 'material-ui/CircularProgress';
 import {List, ListItem} from 'material-ui/List';
-
+import PlayersBlock from './PlayersBlock';
 class Game extends Component {
 
     constructor(props) {
@@ -14,27 +14,6 @@ class Game extends Component {
     }
 
     render() {
-        /*
-  public final int maxPlaytime;
-  public final int minPlaytime;
-  public final int maxPlayers;
-  public final int minPlayers;
-  public final int id;
-  public final String name;
-  public final String personalRating;
-  public final int numPlays;
-  public final String averageRating;
-  public double complexity = 0.0;
-  public boolean isExpansion;
-  public GameCategory[] categories;
-  public GameMechanism[] mechanisms;
-  public int[] bestWith;
-  public int[] recommendedWith;
-  public final String type; // Type might be null, always check for null
-  public final String image;
-        */
-
-        console.log(this.props.game);
         let game = this.props.game;
         let expansions = game.expansions;
         let minPlayers = game.minPlayers;
@@ -72,9 +51,15 @@ class Game extends Component {
             let jsonObj = null;
             jsonObj = JSON.parse(this.state.plays);
             let iteration = 0;
+
             jsonObj.forEach(
                 (play) => {
-                    for (let playerName in play.playerRatings) {
+                    let playerNamesOutput = "";
+                    let lastPlayerName = "";
+                    for (let inx in play.playerNames) {
+                        let playerName = play.playerNames[inx];
+                        playerNamesOutput += playerName + ", ";
+                        lastPlayerName = playerName;
                         if (play.playerRatings.hasOwnProperty(playerName)) {
                             let rating = play.playerRatings[playerName];
                             if (!playerRatings.hasOwnProperty(playerName)) {
@@ -85,24 +70,40 @@ class Game extends Component {
                                 playerRatings[playerName].numberOfPlays = 1;
                             }
                             else {
-                                if(rating > 0 && !playerRatings[playerName].hasOwnProperty("rating")) {
+                                if (rating > 0 && !playerRatings[playerName].hasOwnProperty("rating")) {
                                     playerRatings[playerName].rating = rating;
                                 }
                                 playerRatings[playerName].numberOfPlays = playerRatings[playerName].numberOfPlays + 1;
                             }
                         }
                     }
-                    plays.push(<ListItem key={"play-" + iteration} primaryText={play.date + " : " + play.noOfPlays}/>)
+                    if (play.playerNames.length > 1) {
+                        playerNamesOutput = playerNamesOutput.substring(0, playerNamesOutput.indexOf(lastPlayerName) - 2) + " and " +
+                            playerNamesOutput.substring(playerNamesOutput.indexOf(lastPlayerName), playerNamesOutput.length - 2);
+                    }
+                    else if (play.playerNames.length === 1) {
+                        playerNamesOutput = playerNamesOutput.substring(0, playerNamesOutput.length - 2);
+                    }
+
+                    plays.push(<ListItem key={"play-" + iteration}
+                                         primaryText={play.date + "  (" + playerNamesOutput + "): " + play.noOfPlays}/>)
                     iteration++;
                 }
             )
-            iteration = 0;
+            let playerRatingsNamesToSort = [];
             for (let playerName in playerRatings) {
                 if (playerRatings.hasOwnProperty(playerName)) {
-                    playerRatingsArr.push(<ListItem key={"player-rating-" + iteration}
-                                                    primaryText={playerName + "(" + playerRatings[playerName].numberOfPlays + " plays): " + playerRatings[playerName].rating}/>)
-                    iteration++;
+                    playerRatingsNamesToSort.push(playerName);
                 }
+            }
+            playerRatingsNamesToSort.sort();
+            iteration = 0;
+            for (let inx in playerRatingsNamesToSort) {
+                let playerName = playerRatingsNamesToSort[inx];
+                let playText = playerRatings[playerName].numberOfPlays === 1 ? " play" : " plays";
+                playerRatingsArr.push(<ListItem key={"player-rating-" + iteration}
+                                                primaryText={playerName + " (" + playerRatings[playerName].numberOfPlays + playText + "): " + playerRatings[playerName].rating}/>)
+                iteration++;
             }
         }
 
@@ -140,10 +141,26 @@ class Game extends Component {
                     <div>{minPlaytime + (minPlaytime !== maxPlaytime ?
                         " - " + maxPlaytime : "") + " minutes"}</div>
                 </div>
-                <div style={{display: 'flex', flexDirection: 'row'}}>
+                <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                     <div style={{marginRight: 5, color: 'grey'}}>Players</div>
-                    <div>{minPlayers + (minPlayers !== maxPlayers ?
-                        " - " + maxPlayers : "")}</div>
+                    <PlayersBlock minPlayers={minPlayers} maxPlayers={maxPlayers}
+                                  bestWith={game.bestWith} recommendedWith={game.recommendedWith} />
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row'}}>
+                    <div style={{marginRight: 5, color: 'grey'}}>Your rating</div>
+                    <div>{parseFloat(game.personalRating).toFixed(2) + "/10"}</div>
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row'}}>
+                    <div style={{marginRight: 5, color: 'grey'}}>Public rating</div>
+                    <div>{parseFloat(game.averageRating).toFixed(2) + "/10"}</div>
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row'}}>
+                    <div style={{marginRight: 5, color: 'grey'}}># Plays</div>
+                    <div>{game.numPlays}</div>
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row'}}>
+                    <div style={{marginRight: 5, color: 'grey'}}>Complexity</div>
+                    <div>{parseFloat(game.complexity).toFixed(2) + "/5"}</div>
                 </div>
                 <RaisedButton label="Go back" onTouchTap={this.props.goBack}/>
                 <Divider style={{marginTop: 10, marginBottom: 10}}/>
