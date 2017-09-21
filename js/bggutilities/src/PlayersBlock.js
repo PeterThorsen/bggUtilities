@@ -13,15 +13,15 @@ class PlayersBlock extends Component {
             currentStyle.padding = 5;
             currentStyle.fontSize = 16;
             if(bestWith.includes(i)) {
-                currentStyle.backgroundColor = '#32CD32';
+                currentStyle.backgroundColor = '#7FFF00';
             }
             else if(recommendedWith.includes(i)) {
-                currentStyle.backgroundColor = '#00FF00';
+                currentStyle.backgroundColor = '#32CD32';
             }
             else {
-                currentStyle.backgroundColor = '#8B0000';
+                currentStyle.backgroundColor = '#DC143C';
             }
-            tempList.push(<div style={currentStyle}>{i}</div>)
+            tempList.push(<div key={"players-block-" + i} style={currentStyle}>{i}</div>)
 
         }
 

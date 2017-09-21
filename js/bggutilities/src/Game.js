@@ -132,37 +132,37 @@ class Game extends Component {
             }}>
             <div style={{width: 600}}>
                 <img src={game.image} alt={""} width={300}/>
-                <div style={{display: 'flex', flexDirection: 'row'}}>
-                    <div style={{marginRight: 5, color: 'grey'}}>Name</div>
+                <div style={{display: 'flex', flexDirection: 'row', marginTop: 2}}>
+                    <div style={{marginRight: 65, color: 'grey'}}>Name</div>
                     <div>{game.name}</div>
                 </div>
-                <div style={{display: 'flex', flexDirection: 'row'}}>
-                    <div style={{marginRight: 5, color: 'grey'}}>Playtime</div>
+                <div style={{display: 'flex', flexDirection: 'row', marginTop: 2}}>
+                    <div style={{marginRight: 46, color: 'grey'}}>Playtime</div>
                     <div>{minPlaytime + (minPlaytime !== maxPlaytime ?
                         " - " + maxPlaytime : "") + " minutes"}</div>
                 </div>
-                <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                    <div style={{marginRight: 5, color: 'grey'}}>Players</div>
+                <div style={{display: 'flex', flexDirection: 'row', marginTop: 2}}>
+                    <div style={{marginRight: 32, color: 'grey'}}>Your rating</div>
+                    <div>{parseFloat(game.personalRating).toFixed(2) + "/10"}</div>
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', marginTop: 2}}>
+                    <div style={{marginRight: 21, color: 'grey'}}>Public rating</div>
+                    <div>{parseFloat(game.averageRating).toFixed(2) + "/10"}</div>
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', marginTop: 2}}>
+                    <div style={{marginRight: 30, color: 'grey'}}>Complexity</div>
+                    <div>{parseFloat(game.complexity).toFixed(2) + "/5"}</div>
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', marginTop: 2}}>
+                    <div style={{marginRight: 57, color: 'grey'}}># Plays</div>
+                    <div>{game.numPlays}</div>
+                </div>
+                <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: 2}}>
+                    <div style={{marginRight: 55, color: 'grey'}}>Players</div>
                     <PlayersBlock minPlayers={minPlayers} maxPlayers={maxPlayers}
                                   bestWith={game.bestWith} recommendedWith={game.recommendedWith} />
                 </div>
-                <div style={{display: 'flex', flexDirection: 'row'}}>
-                    <div style={{marginRight: 5, color: 'grey'}}>Your rating</div>
-                    <div>{parseFloat(game.personalRating).toFixed(2) + "/10"}</div>
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row'}}>
-                    <div style={{marginRight: 5, color: 'grey'}}>Public rating</div>
-                    <div>{parseFloat(game.averageRating).toFixed(2) + "/10"}</div>
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row'}}>
-                    <div style={{marginRight: 5, color: 'grey'}}># Plays</div>
-                    <div>{game.numPlays}</div>
-                </div>
-                <div style={{display: 'flex', flexDirection: 'row'}}>
-                    <div style={{marginRight: 5, color: 'grey'}}>Complexity</div>
-                    <div>{parseFloat(game.complexity).toFixed(2) + "/5"}</div>
-                </div>
-                <RaisedButton label="Go back" onTouchTap={this.props.goBack}/>
+                <RaisedButton style={{marginTop: 10}} label="Go back" onTouchTap={this.props.goBack}/>
                 <Divider style={{marginTop: 10, marginBottom: 10}}/>
             </div>
             <div style={{display: 'flex', flexDirection: 'row'}}>
