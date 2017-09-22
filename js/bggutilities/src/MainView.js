@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {GridList, GridTile} from 'material-ui/GridList';
 import GamesView from './GamesView';
+import PlaysView from './PlaysView';
 
 class MainView extends Component {
 
@@ -18,7 +19,9 @@ class MainView extends Component {
 
             if (menu === "games") {
                 return <GamesView userName={this.props.userName} goBack={() => this.goTo(null)}/>
-
+            }
+            if (menu === "plays") {
+                return <PlaysView userName={this.props.userName} goBack={() => this.goTo(null)} />
             }
         }
 
@@ -41,6 +44,7 @@ class MainView extends Component {
                 </GridTile>
                 <GridTile key={"plays-tile"}
                           title={"Plays"}
+                          onTouchTap={() => this.goTo("plays")}
                           titlePosition="top"
                           titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
                           cols={1}

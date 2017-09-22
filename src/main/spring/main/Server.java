@@ -46,6 +46,17 @@ public class Server {
 
     return gson.toJson(plays);
   }
+  @CrossOrigin
+  @RequestMapping("/getAllPlays")
+  public String getAllPlays() {
+    Gson gson = new Gson();
+    Play[] plays = controller.getAllPlaysSorted();
+    for (int i = 0; i < plays.length; i++) {
+        plays[i].game = new BoardGame(plays[i].game.name, plays[i].game.id, 0, 0, 0,
+                0, null, 0, null, null, null);
+    }
+    return gson.toJson(plays);
+  }
 
 
   private FacadeController tryLogin(String givenUsername) {

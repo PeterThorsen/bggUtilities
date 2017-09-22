@@ -73,7 +73,7 @@ class Game extends Component {
                                 if (rating > 0 && !playerRatings[playerName].hasOwnProperty("rating")) {
                                     playerRatings[playerName].rating = rating;
                                 }
-                                playerRatings[playerName].numberOfPlays = playerRatings[playerName].numberOfPlays + 1;
+                                playerRatings[playerName].numberOfPlays = playerRatings[playerName].numberOfPlays + play.noOfPlays;
                             }
                         }
                     }
@@ -102,7 +102,8 @@ class Game extends Component {
                 let playerName = playerRatingsNamesToSort[inx];
                 let playText = playerRatings[playerName].numberOfPlays === 1 ? " play" : " plays";
                 playerRatingsArr.push(<ListItem key={"player-rating-" + iteration}
-                                                primaryText={playerName + " (" + playerRatings[playerName].numberOfPlays + playText + "): " + playerRatings[playerName].rating}/>)
+                                                primaryText={playerName + " (" + playerRatings[playerName].numberOfPlays + playText + "): "
+                                                + (playerRatings[playerName].rating === undefined ? "N/A" : playerRatings[playerName].rating)}/>)
                 iteration++;
             }
         }
