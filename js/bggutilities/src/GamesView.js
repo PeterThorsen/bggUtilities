@@ -120,6 +120,16 @@ class GamesView extends Component {
             <div style={{marginBottom: 10, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <RaisedButton label="Go back" onTouchTap={this.props.goBack}/>
                 <Toggle style={{width: 200, marginTop: 10}}
+                        defaultToggled={this.state.useExpansion}
+                        label="Show expansions"
+                        onToggle={(event, isInputChecked) => {
+                            this.setState({
+                                useExpansion: isInputChecked,
+                                found: false
+                            })
+                        }}
+                />
+                <Toggle style={{width: 200, marginTop: 10}}
                         defaultToggled={this.state.useDataView}
                         label="Use data view"
                         onToggle={(event, isInputChecked) => {
