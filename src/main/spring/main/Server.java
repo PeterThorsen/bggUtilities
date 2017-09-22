@@ -21,6 +21,8 @@ public class Server {
   @CrossOrigin
   @RequestMapping("/login")
   public boolean login(@RequestParam(value = "userName", defaultValue = "") String userName) {
+    if(controller != null) return true;
+
     if(!isUsernameValid(userName)) return false;
     controller = tryLogin(userName);
     return controller != null;

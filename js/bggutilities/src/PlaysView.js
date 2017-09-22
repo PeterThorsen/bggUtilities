@@ -1,4 +1,13 @@
 import React, {Component} from 'react';
+import {
+    Table,
+    TableBody,
+    TableHeader,
+    TableHeaderColumn,
+    TableRow,
+    TableRowColumn,
+} from 'material-ui/Table';
+import LoadingScreen from './LoadingScreen';
 
 class PlaysView extends Component {
 
@@ -16,14 +25,43 @@ class PlaysView extends Component {
 
         }
         else {
+            let result = [];
             let jsonObj = JSON.parse(this.state.result);
+            let rowNumber = 0;
             jsonObj.forEach(
                 (play) => {
-                    console.log("a")
+                    let playerNames = play.playerNames[0];
+                    for(let i = 1; i<play.playerNames.length; i++) {
+                        playerNames += ", " + play.playerNames[i];
+                    }
+                    result.push(
+                        <TableRow key={"row-" + rowNumber} selectable={false}>
+                            <TableRowColumn style={{width: 60}}>{play.date}</TableRowColumn>
+                            <TableRowColumn style={{width: 120, wordWrap: 'break-word', whiteSpace: 'normal'}}>{play.game.name}</TableRowColumn>
+                            <TableRowColumn style={{width: 150, wordWrap: 'break-word', whiteSpace: 'normal'}}>{playerNames}</TableRowColumn>
+                            <TableRowColumn style={{width: 30}}>{play.noOfPlays}</TableRowColumn>
+                        </TableRow>);
+                    rowNumber++;
                 }
             )
+
+            return <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+            <Table style={{width: 600}}>
+                    <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+                        <TableRow>
+                            <TableHeaderColumn style={{width: 60}}>Date</TableHeaderColumn>
+                            <TableHeaderColumn style={{width: 120}}>Name</TableHeaderColumn>
+                            <TableHeaderColumn style={{width: 150}}>Players</TableHeaderColumn>
+                            <TableHeaderColumn style={{width: 30}}># Plays</TableHeaderColumn>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody displayRowCheckbox={false}>
+                        {result}
+                    </TableBody>
+                </Table>
+            </div>
         }
-        return <div>PlaysView</div>
+        return <LoadingScreen/>
     }
 
     getPlays() {
