@@ -12,6 +12,8 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 import Toggle from 'material-ui/Toggle';
+import "./Main.css";
+import "./GamesView.css";
 
 class GamesView extends Component {
 
@@ -115,7 +117,7 @@ class GamesView extends Component {
         }
 
         return <div>
-            <div style={{marginBottom: 10, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <div className="options-block">
                 <RaisedButton label="Go back" onTouchTap={this.props.goBack}/>
                 <Toggle style={{width: 200, marginTop: 10}}
                         defaultToggled={this.state.useExpansion}
@@ -139,7 +141,7 @@ class GamesView extends Component {
                         }}
                 />
             </div>
-            <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+            <div className="main-block">
                 {mainBlock}
             </div>
         </div>

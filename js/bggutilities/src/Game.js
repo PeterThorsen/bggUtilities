@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import Divider from 'material-ui/Divider';
 import RaisedButton from 'material-ui/RaisedButton';
-import CircularProgress from 'material-ui/CircularProgress';
 import {List, ListItem} from 'material-ui/List';
-import PlayersBlock from './PlayersBlock';
+import PlayersBlock from './util/PlayersBlock';
 import LoadingScreen from "./util/LoadingScreen";
+import "./Game.css";
+import "./Main.css";
+
 class Game extends Component {
 
     constructor(props) {
@@ -108,16 +110,16 @@ class Game extends Component {
             }
         }
 
-        let playsBlock = <div style={{width: 295, borderRight: '1px solid grey', paddingRight: 5}}>
-            <div style={{fontSize: 30}}>Plays</div>
+        let playsBlock = <div className="plays-block">
+            <div className="title">Plays</div>
             {this.state.plays !== undefined ?
                 <List>
                     {plays}
                 </List>
                 : <LoadingScreen/>} </div>;
 
-        let playerRatingsBlock = <div style={{width: 295, paddingLeft: 5}}>
-            <div style={{fontSize: 30}}>Player ratings</div>
+        let playerRatingsBlock = <div className="player-ratings-block">
+            <div className="title">Player ratings</div>
             {
                 this.state.plays !== undefined ?
                     <List>
@@ -126,47 +128,43 @@ class Game extends Component {
         </div>
 
 
-        return <div
-            style={{
-                display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', flexDirection: 'column',
-                alignItems: 'center', alignContent: 'center', marginTop: 10
-            }}>
-            <div style={{width: 600}}>
+        return <div className="outer-block">
+            <div className="main-width">
                 <img src={game.image} alt={""} width={300}/>
-                <div style={{display: 'flex', flexDirection: 'row', marginTop: 2}}>
-                    <div style={{marginRight: 65, color: 'grey'}}>Name</div>
+                <div className="main-standard-description">
+                    <div className="main-description-color" style={{marginRight: 65}}>Name</div>
                     <div>{game.name}</div>
                 </div>
-                <div style={{display: 'flex', flexDirection: 'row', marginTop: 2}}>
-                    <div style={{marginRight: 46, color: 'grey'}}>Playtime</div>
+                <div className="main-standard-description">
+                    <div className="main-description-color" style={{marginRight: 46}}>Playtime</div>
                     <div>{minPlaytime + (minPlaytime !== maxPlaytime ?
                         " - " + maxPlaytime : "") + " minutes"}</div>
                 </div>
-                <div style={{display: 'flex', flexDirection: 'row', marginTop: 2}}>
-                    <div style={{marginRight: 32, color: 'grey'}}>Your rating</div>
+                <div className="main-standard-description">
+                    <div className="main-description-color" style={{marginRight: 32}}>Your rating</div>
                     <div>{parseFloat(game.personalRating).toFixed(2) + "/10"}</div>
                 </div>
-                <div style={{display: 'flex', flexDirection: 'row', marginTop: 2}}>
-                    <div style={{marginRight: 21, color: 'grey'}}>Public rating</div>
+                <div className="main-standard-description">
+                    <div className="main-description-color" style={{marginRight: 21}}>Public rating</div>
                     <div>{parseFloat(game.averageRating).toFixed(2) + "/10"}</div>
                 </div>
-                <div style={{display: 'flex', flexDirection: 'row', marginTop: 2}}>
-                    <div style={{marginRight: 30, color: 'grey'}}>Complexity</div>
+                <div className="main-standard-description">
+                    <div className="main-description-color" style={{marginRight: 30}}>Complexity</div>
                     <div>{parseFloat(game.complexity).toFixed(2) + "/5"}</div>
                 </div>
-                <div style={{display: 'flex', flexDirection: 'row', marginTop: 2}}>
-                    <div style={{marginRight: 57, color: 'grey'}}># Plays</div>
+                <div className="main-standard-description">
+                    <div className="main-description-color" style={{marginRight: 57}}># Plays</div>
                     <div>{game.numPlays}</div>
                 </div>
-                <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: 2}}>
-                    <div style={{marginRight: 55, color: 'grey'}}>Players</div>
+                <div className="main-standard-description">
+                    <div className="main-description-color" style={{marginRight: 55}}>Players</div>
                     <PlayersBlock minPlayers={minPlayers} maxPlayers={maxPlayers}
                                   bestWith={game.bestWith} recommendedWith={game.recommendedWith} />
                 </div>
                 <RaisedButton style={{marginTop: 10}} label="Go back" onTouchTap={this.props.goBack}/>
                 <Divider style={{marginTop: 10, marginBottom: 10}}/>
             </div>
-            <div style={{display: 'flex', flexDirection: 'row'}}>
+            <div className="flex-row">
                 {playsBlock}
                 {playerRatingsBlock}
             </div>

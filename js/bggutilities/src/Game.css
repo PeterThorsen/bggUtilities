@@ -1,0 +1,23 @@
+.outer-block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction:column;
+    align-items: center;
+    align-content: center;
+    margin-top: 10px;
+}
+
+.title {
+    font-size: 30px;
+}
+.plays-block {
+    width: 295px;
+    border-right: 1px solid grey;
+    padding-right: 5px;
+}
+
+.player-ratings-block {
+    width: 295px;
+    padding-left: 5px;
+}

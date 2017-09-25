@@ -1,0 +1,25 @@
+.main-block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.main-width {
+    width: 600px;
+}
+
+.main-standard-description {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2px;
+    align-items: center;
+}
+
+.main-description-color {
+    color: grey;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction:row;
+}

@@ -10,6 +10,7 @@ import {
 import LoadingScreen from './util/LoadingScreen';
 import Play from './Play';
 import RaisedButton from 'material-ui/RaisedButton';
+import './Main.css';
 
 class PlaysView extends Component {
 
@@ -60,7 +61,7 @@ class PlaysView extends Component {
                 }
             );
 
-            mainBlock = <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+            mainBlock = <div className="main-block">
                 <Table style={{width: 600}}>
                     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                         <TableRow>

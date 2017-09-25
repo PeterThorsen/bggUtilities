@@ -5,6 +5,7 @@ import PlaysView from './PlaysView';
 import PlayersView from './PlayersView';
 import Snackbar from 'material-ui/Snackbar';
 import RaisedButton from 'material-ui/RaisedButton';
+import './Main.css';
 
 class MainView extends Component {
 
@@ -31,7 +32,7 @@ class MainView extends Component {
             }
         }
 
-        return <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+        return <div className="main-block">
             <GridList cols={2}
                       style={{
                           width: 600,

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import "../Main.css";
 class PlayersBlock extends Component {
     render() {
         let minPlayers = this.props.minPlayers;
@@ -10,7 +10,7 @@ class PlayersBlock extends Component {
         let tempList = [];
         for (let i = minPlayers; i <= maxPlayers; i++) {
             let currentStyle = {};
-            currentStyle.padding = 5;
+            currentStyle.padding = 3;
             currentStyle.fontSize = 16;
             if(bestWith.includes(i)) {
                 currentStyle.backgroundColor = '#7FFF00';
@@ -25,7 +25,7 @@ class PlayersBlock extends Component {
 
         }
 
-        return <div style={{display: 'flex', flexDirection: 'row'}}>{tempList}</div>;
+        return <div className="flex-row">{tempList}</div>;
     }
 }
 
