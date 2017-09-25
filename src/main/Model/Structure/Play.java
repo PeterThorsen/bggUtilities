@@ -11,14 +11,16 @@ public class Play {
   public final String date;
   public final int noOfPlays;
   private final HashMap<String, Double> playerRatings;
+  private String[] winners;
 
   public Play(BoardGame game, String date, String[] playerNames, int noOfPlays,
-              HashMap<String, Double> playerRatings) {
+              HashMap<String, Double> playerRatings, String[] winners) {
     this.game = game;
     this.date = date;
     this.playerNames = playerNames;
     this.noOfPlays = noOfPlays;
     this.playerRatings = playerRatings;
+    this.winners = winners;
   }
 
   public double getRating(String name) {

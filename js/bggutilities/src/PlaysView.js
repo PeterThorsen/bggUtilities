@@ -8,6 +8,8 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 import LoadingScreen from './LoadingScreen';
+import Play from './Play';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class PlaysView extends Component {
 
@@ -15,14 +17,20 @@ class PlaysView extends Component {
         super(props);
         this.state = {
             found: false,
-            result: undefined
+            result: undefined,
+            play: undefined,
         }
     }
 
     render() {
+        if (this.state.play) {
+            return <Play goBack={() => this.goToPlay(undefined)} play={this.state.play}/>
+        }
+        let mainBlock = <div/>;
+
         if (!this.state.found) {
             this.getPlays();
-
+            mainBlock = <LoadingScreen/>
         }
         else {
             let result = [];
@@ -31,22 +39,30 @@ class PlaysView extends Component {
             jsonObj.forEach(
                 (play) => {
                     let playerNames = play.playerNames[0];
-                    for(let i = 1; i<play.playerNames.length; i++) {
+                    for (let i = 1; i < play.playerNames.length; i++) {
                         playerNames += ", " + play.playerNames[i];
                     }
                     result.push(
-                        <TableRow key={"row-" + rowNumber} selectable={false}>
+                        <TableRow key={"row-" + rowNumber} selectable={false} onTouchTap={() => this.goToPlay(play)}>
                             <TableRowColumn style={{width: 60}}>{play.date}</TableRowColumn>
-                            <TableRowColumn style={{width: 120, wordWrap: 'break-word', whiteSpace: 'normal'}}>{play.game.name}</TableRowColumn>
-                            <TableRowColumn style={{width: 150, wordWrap: 'break-word', whiteSpace: 'normal'}}>{playerNames}</TableRowColumn>
+                            <TableRowColumn style={{
+                                width: 120,
+                                wordWrap: 'break-word',
+                                whiteSpace: 'normal'
+                            }}>{play.game.name}</TableRowColumn>
+                            <TableRowColumn style={{
+                                width: 150,
+                                wordWrap: 'break-word',
+                                whiteSpace: 'normal'
+                            }}>{playerNames}</TableRowColumn>
                             <TableRowColumn style={{width: 30}}>{play.noOfPlays}</TableRowColumn>
                         </TableRow>);
                     rowNumber++;
                 }
-            )
+            );
 
-            return <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
-            <Table style={{width: 600}}>
+            mainBlock = <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+                <Table style={{width: 600}}>
                     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                         <TableRow>
                             <TableHeaderColumn style={{width: 60}}>Date</TableHeaderColumn>
@@ -61,7 +77,12 @@ class PlaysView extends Component {
                 </Table>
             </div>
         }
-        return <LoadingScreen/>
+
+        return <div>
+            <RaisedButton label="Go back" onTouchTap={this.props.goBack}/>
+            {mainBlock}
+        </div>
+
     }
 
     getPlays() {
@@ -78,6 +99,12 @@ class PlaysView extends Component {
                 }
             }
         }.bind(this);
+    }
+
+    goToPlay(play) {
+        this.setState({
+            play: play
+        })
     }
 }
 

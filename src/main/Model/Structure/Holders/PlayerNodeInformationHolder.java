@@ -6,10 +6,12 @@ package Model.Structure.Holders;
 public class PlayerNodeInformationHolder {
   public final String playerName;
   public final double rating;
+  public final boolean winner;
 
-  public PlayerNodeInformationHolder(String playerName, double rating) {
+  public PlayerNodeInformationHolder(String playerName, double rating, boolean winner) {
     this.playerName = playerName;
     this.rating = rating;
+    this.winner = winner;
   }
 
   public int compareTo(PlayerNodeInformationHolder key) {

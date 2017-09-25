@@ -25,22 +25,7 @@ public class Player {
     this.allPlays = allPlays;
     interpretPlays();
     calculateComplexity();
-    calculateTypeScores();
-    calculateMechanismScores();
-    calculateCategoryScores();
   }
-
-  private void calculateTypeScores() {
-
-  }
-
-  private void calculateMechanismScores() {
-  }
-
-  private void calculateCategoryScores() {
-  }
-
-
 
   private Play[] reverseArray(Play[] allPlays) {
     for (int i = 0; i < allPlays.length / 2; i++) {
@@ -103,8 +88,12 @@ public class Player {
       accumulator += poweredComplexity;
 
     }
-    magicComplexity = totalScore / accumulator;
-
+    if(totalScore != 0 && accumulator != 0) {
+      magicComplexity = totalScore / accumulator;
+    }
+    else {
+      magicComplexity = 0;
+    }
   }
 
   private void interpretPlays() {

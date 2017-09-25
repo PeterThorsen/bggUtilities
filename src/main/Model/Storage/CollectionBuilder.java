@@ -227,16 +227,25 @@ public class CollectionBuilder implements ICollectionBuilder {
             PlayerNodeInformationHolder[] playerInformationArray = calculatePlayerInformation(playersNode);
             HashMap<String, Double> playerRatings = new HashMap<>();
             String[] names = new String[playerInformationArray.length];
+            ArrayList<String> winnersList = new ArrayList<>();
             for (int j = 0; j < playerInformationArray.length; j++) {
               String name = playerInformationArray[j].playerName;
               double rating = playerInformationArray[j].rating;
-
+              if(playerInformationArray[j].winner) {
+                winnersList.add(name);
+              }
               playerRatings.put(name, rating);
               names[j] = name;
             }
 
+            // converting to array
+            String[] winners = new String[winnersList.size()];
+            for (int j = 0; j < winners.length; j++) {
+              winners[j] = winnersList.get(j);
+            }
+
             // Adding the plays
-            Play play = new Play(game, date, names, quantity, playerRatings);
+            Play play = new Play(game, date, names, quantity, playerRatings, winners);
             plays.addPlay(play);
           }
         }
@@ -298,6 +307,7 @@ public class CollectionBuilder implements ICollectionBuilder {
         Node playerJ = playersNodeList.item(j);
         String playerJName = playerJ.getAttributes().getNamedItem("name").getNodeValue();
         String ratingString = playerJ.getAttributes().getNamedItem("rating").getNodeValue();
+        int win = Integer.parseInt(playerJ.getAttributes().getNamedItem("win").getNodeValue());
         double rating;
         try {
           rating = Double.valueOf(ratingString);
@@ -307,7 +317,10 @@ public class CollectionBuilder implements ICollectionBuilder {
         } catch (NumberFormatException e) {
           rating = 0;
         }
-        players[arrayPos] = new PlayerNodeInformationHolder(playerJName, rating);
+
+
+
+        players[arrayPos] = new PlayerNodeInformationHolder(playerJName, rating,win == 1);
         arrayPos++;
         j += 2;
       }

@@ -27,7 +27,11 @@ class GamesView extends Component {
     }
 
     render() {
+        if (this.state.game) {
+            return <Game goBack={() => this.goToGame(undefined)} game={this.state.game}/>
+        }
 
+        let mainBlock = <div/>;
         if (!this.state.found) {
             var request = new XMLHttpRequest();
             request.timeout = 60000;
@@ -42,9 +46,9 @@ class GamesView extends Component {
                     }
                 }
             }.bind(this);
+            mainBlock = <LoadingScreen/>;
         }
 
-        let gamesView = <div/>;
         if (this.state.found) {
             let result = [];
             let jsonObj = null;
@@ -69,7 +73,7 @@ class GamesView extends Component {
                                 <TableRowColumn style={{width: 60}}>{parseFloat(game.personalRating).toFixed(2)}</TableRowColumn>
                             </TableRow>)
                     });
-                gamesView = <Table style={{width: 600}}>
+                mainBlock = <Table style={{width: 600}}>
                     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                         <TableRow>
                             <TableHeaderColumn style={{width: 120}}>Name</TableHeaderColumn>
@@ -97,7 +101,7 @@ class GamesView extends Component {
                                 <img src={game.image} alt={""} width={146} height={180}/> </GridTile>)
                     });
 
-                gamesView = <GridList cols={4}
+                mainBlock = <GridList cols={4}
                                       style={{
                                           width: 600,
                                           overflow: 'hidden',
@@ -111,16 +115,12 @@ class GamesView extends Component {
             }
         }
 
-        if (!this.state.found) return <LoadingScreen/>;
-        if (this.state.game) {
-            return <Game goBack={() => this.goToGame(undefined)} game={this.state.game}/>
-        }
-
         return <div>
             <div style={{marginBottom: 10, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <RaisedButton label="Go back" onTouchTap={this.props.goBack}/>
                 <Toggle style={{width: 200, marginTop: 10}}
                         defaultToggled={this.state.useExpansion}
+                        disabled={!this.state.found}
                         label="Show expansions"
                         onToggle={(event, isInputChecked) => {
                             this.setState({
@@ -131,6 +131,7 @@ class GamesView extends Component {
                 />
                 <Toggle style={{width: 200, marginTop: 10}}
                         defaultToggled={this.state.useDataView}
+                        disabled={!this.state.found}
                         label="Use data view"
                         onToggle={(event, isInputChecked) => {
                             this.setState({
@@ -140,7 +141,7 @@ class GamesView extends Component {
                 />
             </div>
             <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
-                {gamesView}
+                {mainBlock}
             </div>
         </div>
     }

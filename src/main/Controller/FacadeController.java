@@ -46,4 +46,9 @@ public class FacadeController {
   public Play[] getSortedPlays(int id) {
     return dataController.getPlays(id);
   }
+
+  public boolean testConnection() {
+    BoardGame[] games = getAllGames(false);
+    return true;
+  }
 }
