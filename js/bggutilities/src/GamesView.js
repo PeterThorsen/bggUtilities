@@ -42,7 +42,7 @@ class GamesView extends Component {
                     var type = request.getResponseHeader('Content-Type');
                     if (type.indexOf("text") !== 1) {
                         let result = request.responseText;
-                        jsonObj = JSON.parse(result);
+                        let jsonObj = JSON.parse(result);
                         this.setState({found: true, result: jsonObj});
                     }
                 }

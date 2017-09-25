@@ -23,7 +23,7 @@ public class Server {
   @RequestMapping("/login")
   public boolean login(@RequestParam(value = "userName", defaultValue = "") String userName) {
     if (controller != null) {
-      return controller.testConnection();
+      return true;
     }
 
     if (!isUsernameValid(userName)) return false;
