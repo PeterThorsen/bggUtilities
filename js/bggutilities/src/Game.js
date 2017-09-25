@@ -42,17 +42,16 @@ class Game extends Component {
                     var type = request.getResponseHeader('Content-Type');
                     if (type.indexOf("text") !== 1) {
                         let result = request.responseText;
-                        this.setState({plays: result});
+                        let jsonObj = JSON.parse(result);
+                        this.setState({plays: jsonObj});
                     }
                 }
             }.bind(this);
         }
         else {
-            let jsonObj = null;
-            jsonObj = JSON.parse(this.state.plays);
             let iteration = 0;
 
-            jsonObj.forEach(
+            this.state.plays.forEach(
                 (play) => {
                     let playerNamesOutput = "";
                     let lastPlayerName = "";

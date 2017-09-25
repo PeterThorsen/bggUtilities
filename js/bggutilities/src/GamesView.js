@@ -19,7 +19,7 @@ class GamesView extends Component {
         super(props);
         this.state = {
             found: false,
-            result: "",
+            result: undefined,
             game: undefined,
             useExpansion: false,
             useDataView: false
@@ -42,7 +42,8 @@ class GamesView extends Component {
                     var type = request.getResponseHeader('Content-Type');
                     if (type.indexOf("text") !== 1) {
                         let result = request.responseText;
-                        this.setState({found: true, result: result});
+                        jsonObj = JSON.parse(result);
+                        this.setState({found: true, result: jsonObj});
                     }
                 }
             }.bind(this);
@@ -51,11 +52,9 @@ class GamesView extends Component {
 
         if (this.state.found) {
             let result = [];
-            let jsonObj = null;
-            jsonObj = JSON.parse(this.state.result);
 
             if (this.state.useDataView) {
-                jsonObj.forEach(
+                this.state.result.forEach(
                     (game) => {
 
                         let players = game.minPlayers;
@@ -91,7 +90,7 @@ class GamesView extends Component {
             }
 
             else {
-                jsonObj.forEach(
+                this.state.result.forEach(
                     (game) => {
                         result.push(
                             <GridTile key={game.id}

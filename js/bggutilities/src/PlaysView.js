@@ -34,9 +34,8 @@ class PlaysView extends Component {
         }
         else {
             let result = [];
-            let jsonObj = JSON.parse(this.state.result);
             let rowNumber = 0;
-            jsonObj.forEach(
+            this.state.result.forEach(
                 (play) => {
                     let playerNames = play.playerNames[0];
                     for (let i = 1; i < play.playerNames.length; i++) {
@@ -95,7 +94,8 @@ class PlaysView extends Component {
                 var type = request.getResponseHeader('Content-Type');
                 if (type.indexOf("text") !== 1) {
                     let result = request.responseText;
-                    this.setState({found: true, result: result});
+                    let jsonObj = JSON.parse(result);
+                    this.setState({found: true, result: jsonObj});
                 }
             }
         }.bind(this);

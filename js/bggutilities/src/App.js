@@ -7,7 +7,7 @@ class App extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {found: false, result: ""}
+        this.state = {found: false, result: undefined}
     }
 
 

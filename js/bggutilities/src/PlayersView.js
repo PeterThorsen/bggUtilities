@@ -36,8 +36,7 @@ class PlayersView extends Component {
                 if (type.indexOf("text") !== 1) {
                     let result = request.responseText;
                     let jsonObj = JSON.parse(result);
-                    console.log(jsonObj);
-                    this.setState({found: true, result: result});
+                    this.setState({found: true, result: jsonObj});
                 }
             }
         }.bind(this);
