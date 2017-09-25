@@ -10,7 +10,7 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
-
+import Player from './Player.js';
 class PlayersView extends Component {
 
     constructor(props) {
@@ -24,6 +24,10 @@ class PlayersView extends Component {
 
     render() {
         let mainBlock = <div/>;
+
+        if(this.state.player) {
+            return <Player goBack={() => this.goToPlayer(undefined)} player={this.state.player} />
+        }
 
         if (!this.state.found) {
             this.getPlayers();
@@ -76,7 +80,7 @@ class PlayersView extends Component {
             </div>
         }
         return <div>
-            <RaisedButton label="Go back" onTouchTap={this.props.goBack}/>
+            <RaisedButton style={{marginTop: 10}} label="Go back" onTouchTap={this.props.goBack}/>
             {mainBlock}
         </div>
     }

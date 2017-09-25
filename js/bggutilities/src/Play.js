@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {List, ListItem} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import RaisedButton from 'material-ui/RaisedButton';
-import "./Play.css";
 import "./Main.css";
 
 class Play extends Component {
@@ -19,7 +18,7 @@ class Play extends Component {
             }
         )
 
-        return <div className="play-main-block">
+        return <div className="main-block-play-players">
             <div className="main-width">
                 <img src={game.image} alt={""} width={300}/>
                 <div className="main-standard-description">

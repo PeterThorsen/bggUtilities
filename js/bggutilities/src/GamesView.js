@@ -67,7 +67,11 @@ class GamesView extends Component {
 
                         result.push(
                             <TableRow key={"row-" + game.id} selectable={false} onTouchTap={() => this.goToGame(game)}>
-                                <TableRowColumn style={{width: 120}}>{game.name}</TableRowColumn>
+                                <TableRowColumn style={{
+                                    width: 120,
+                                    wordWrap: 'break-word',
+                                    whiteSpace: 'normal'
+                                }}>{game.name}</TableRowColumn>
                                 <TableRowColumn style={{width: 60}}>{players}</TableRowColumn>
                                 <TableRowColumn style={{width: 60}}>{playTime}</TableRowColumn>
                                 <TableRowColumn style={{width: 60}}>{game.numPlays}</TableRowColumn>

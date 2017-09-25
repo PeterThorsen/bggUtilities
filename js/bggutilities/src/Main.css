@@ -23,3 +23,13 @@
     display: flex;
     flex-direction:row;
 }
+
+.main-block-play-players {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    flex-direction:column;
+    align-items: center;
+    align-content: center;
+    margin-top: 10px;
+}
