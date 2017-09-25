@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import "../Main.css";
-class PlayersBlock extends Component {
+class BestWithBlock extends Component {
     render() {
         let minPlayers = this.props.minPlayers;
         let maxPlayers = this.props.maxPlayers;
@@ -29,4 +29,4 @@ class PlayersBlock extends Component {
     }
 }
 
-export default PlayersBlock;
+export default BestWithBlock;

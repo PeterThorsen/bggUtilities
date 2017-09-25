@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Divider from 'material-ui/Divider';
 import RaisedButton from 'material-ui/RaisedButton';
 import {List, ListItem} from 'material-ui/List';
-import PlayersBlock from './util/PlayersBlock';
+import BestWithBlock from './util/BestWithBlock';
 import LoadingScreen from "./util/LoadingScreen";
 import "./Game.css";
 import "./Main.css";
@@ -158,7 +158,7 @@ class Game extends Component {
                 </div>
                 <div className="main-standard-description">
                     <div className="main-description-color" style={{marginRight: 55}}>Players</div>
-                    <PlayersBlock minPlayers={minPlayers} maxPlayers={maxPlayers}
+                    <BestWithBlock minPlayers={minPlayers} maxPlayers={maxPlayers}
                                   bestWith={game.bestWith} recommendedWith={game.recommendedWith} />
                 </div>
                 <RaisedButton style={{marginTop: 10}} label="Go back" onTouchTap={this.props.goBack}/>
