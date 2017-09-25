@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import LoadingScreen from './LoadingScreen';
+import LoadingScreen from './util/LoadingScreen';
 import MainView from './MainView';
 
 class App extends Component {

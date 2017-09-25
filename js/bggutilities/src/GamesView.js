@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import LoadingScreen from './LoadingScreen';
+import LoadingScreen from './util/LoadingScreen';
 import {GridList, GridTile} from 'material-ui/GridList';
 import Game from './Game';
 import RaisedButton from 'material-ui/RaisedButton';

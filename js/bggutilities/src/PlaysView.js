@@ -7,7 +7,7 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
-import LoadingScreen from './LoadingScreen';
+import LoadingScreen from './util/LoadingScreen';
 import Play from './Play';
 import RaisedButton from 'material-ui/RaisedButton';
 

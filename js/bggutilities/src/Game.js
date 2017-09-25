@@ -4,6 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import CircularProgress from 'material-ui/CircularProgress';
 import {List, ListItem} from 'material-ui/List';
 import PlayersBlock from './PlayersBlock';
+import LoadingScreen from "./util/LoadingScreen";
 class Game extends Component {
 
     constructor(props) {
@@ -113,7 +114,7 @@ class Game extends Component {
                 <List>
                     {plays}
                 </List>
-                : <CircularProgress/>} </div>;
+                : <LoadingScreen/>} </div>;
 
         let playerRatingsBlock = <div style={{width: 295, paddingLeft: 5}}>
             <div style={{fontSize: 30}}>Player ratings</div>
@@ -121,7 +122,7 @@ class Game extends Component {
                 this.state.plays !== undefined ?
                     <List>
                         {playerRatingsArr}
-                    </List> : <CircularProgress/>}
+                    </List> : <LoadingScreen/>}
         </div>
 
 

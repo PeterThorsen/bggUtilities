@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import LoadingScreen from './LoadingScreen';
+import LoadingScreen from './util/LoadingScreen';
 import RaisedButton from 'material-ui/RaisedButton';
 
 class PlayersView extends Component {
