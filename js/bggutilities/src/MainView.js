@@ -6,6 +6,7 @@ import PlayersView from './PlayersView';
 import Snackbar from 'material-ui/Snackbar';
 import RaisedButton from 'material-ui/RaisedButton';
 import './Main.css';
+import {Link, Route} from "react-router-dom";
 
 class MainView extends Component {
 
@@ -25,10 +26,10 @@ class MainView extends Component {
                 return <GamesView userName={this.props.userName} goBack={() => this.goTo(null)}/>
             }
             if (menu === "plays") {
-                return <PlaysView userName={this.props.userName} goBack={() => this.goTo(null)} />
+                return <PlaysView userName={this.props.userName} goBack={() => this.goTo(null)}/>
             }
             if (menu === "players") {
-                return <PlayersView userName={this.props.userName} goBack={() => this.goTo(null)} />
+                return <PlayersView userName={this.props.userName} goBack={() => this.goTo(null)}/>
             }
         }
 
@@ -84,6 +85,10 @@ class MainView extends Component {
                     <img src={"https://i.imgur.com/95KOXM7.jpg"} alt={""}/>
                 </GridTile>
             </GridList>
+            <div>
+                <Link to="/about">About</Link>
+                <Route path="/about" component={GamesView}/>
+            </div>
             {/*<RaisedButton label="Reload data" onTouchTap={this.forceReload}/>*/}
         </div>
     }
@@ -103,7 +108,7 @@ class MainView extends Component {
                 if (type.indexOf("text") !== 1) {
                     let result = request.responseText;
                     console.log("result", result)
-                    if(result) {
+                    if (result) {
                         <Snackbar
                             open={true}
                             message="Data reloaded"
@@ -121,6 +126,10 @@ class MainView extends Component {
         }.bind(this);
     }
 }
+
+/*
+<GamesView userName={this.props.userName} goBack={() => this.goTo(null)}/>
+* */
 
 
 export default MainView;
