@@ -185,13 +185,15 @@ class Player extends Component {
             (element) => {
                 let index = element.indexOf(": ");
                 let name = element.substring(index + 2, element.length);
-                let rating = element.substring(0, index);
+                if(name !== player.name) {
+                    let rating = element.substring(0, index);
 
-                result.push(<TableRow key={"players-" + rowNumber} selectable={false}>
-                    <TableRowColumn>{name}</TableRowColumn>
-                    <TableRowColumn>{rating}</TableRowColumn>
-                </TableRow>);
-                rowNumber++;
+                    result.push(<TableRow key={"players-" + rowNumber} selectable={false}>
+                        <TableRowColumn>{name}</TableRowColumn>
+                        <TableRowColumn>{rating}</TableRowColumn>
+                    </TableRow>);
+                    rowNumber++;
+                }
             }
         );
         return <div className="main-block">
