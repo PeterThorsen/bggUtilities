@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import LoadingScreen from './util/LoadingScreen';
 import {GridList, GridTile} from 'material-ui/GridList';
-import Game from './Game';
-import RaisedButton from 'material-ui/RaisedButton';
 import {
     Table,
     TableBody,
@@ -14,6 +12,7 @@ import {
 import Toggle from 'material-ui/Toggle';
 import "./Main.css";
 import "./GamesView.css";
+import {withRouter} from "react-router-dom";
 
 class GamesView extends Component {
 
@@ -22,17 +21,12 @@ class GamesView extends Component {
         this.state = {
             found: false,
             result: undefined,
-            game: undefined,
             useExpansion: false,
             useDataView: false
         }
     }
 
     render() {
-        if (this.state.game) {
-            return <Game goBack={() => this.goToGame(undefined)} game={this.state.game}/>
-        }
-
         let mainBlock = <div/>;
         if (!this.state.found) {
             var request = new XMLHttpRequest();
@@ -122,7 +116,6 @@ class GamesView extends Component {
 
         return <div>
             <div className="options-block">
-                <RaisedButton label="Go back" onTouchTap={this.props.goBack}/>
                 <Toggle style={{width: 200, marginTop: 10}}
                         defaultToggled={this.state.useExpansion}
                         disabled={!this.state.found}
@@ -152,12 +145,9 @@ class GamesView extends Component {
     }
 
     goToGame(game) {
-        this.setState({
-            game: game
-        })
+        this.props.history.push("/games/" + game.id);
 
     }
 }
 
-
-export default GamesView;
+export default withRouter(GamesView);

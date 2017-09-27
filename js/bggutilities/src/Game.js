@@ -1,23 +1,47 @@
 import React, {Component} from 'react';
 import Divider from 'material-ui/Divider';
-import RaisedButton from 'material-ui/RaisedButton';
 import {List, ListItem} from 'material-ui/List';
 import BestWithBlock from './util/BestWithBlock';
 import LoadingScreen from "./util/LoadingScreen";
 import "./Game.css";
 import "./Main.css";
+import {Redirect, withRouter} from "react-router-dom";
 
 class Game extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            plays: undefined
+            plays: undefined,
+            loading: true,
+            game: undefined
         }
+
+        var request = new XMLHttpRequest();
+        request.timeout = 60000;
+        request.open('GET', 'http://localhost:8080/getGame?id=' + props.match.params.gameId, true);
+        request.send(null);
+        request.onreadystatechange = function () {
+            if (request.readyState === 4 && request.status === 200) {
+                var type = request.getResponseHeader('Content-Type');
+                if (type.indexOf("text") !== 1) {
+                    let result = request.responseText;
+                    if(result === "") {
+                        this.setState({loading: false});
+                    }
+                    else {
+                        let jsonObj = JSON.parse(result);
+                        this.setState({game: jsonObj, loading: false});
+                    }
+                }
+            }
+        }.bind(this);
     }
 
     render() {
-        let game = this.props.game;
+        if(this.state.loading) return <LoadingScreen/>;
+        if(!this.state.loading && !this.state.game) return <Redirect to={"/games"}/>;
+        let game = this.state.game;
         let expansions = game.expansions;
         let minPlayers = game.minPlayers;
         let maxPlayers = game.maxPlayers;
@@ -161,7 +185,6 @@ class Game extends Component {
                     <BestWithBlock minPlayers={minPlayers} maxPlayers={maxPlayers}
                                   bestWith={game.bestWith} recommendedWith={game.recommendedWith} />
                 </div>
-                <RaisedButton style={{marginTop: 10}} label="Go back" onTouchTap={this.props.goBack}/>
                 <Divider style={{marginTop: 10, marginBottom: 10}}/>
             </div>
             <div className="flex-row">
@@ -173,4 +196,4 @@ class Game extends Component {
 }
 
 
-export default Game;
+export default withRouter(Game);

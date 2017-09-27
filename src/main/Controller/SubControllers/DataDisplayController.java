@@ -78,6 +78,15 @@ public class DataDisplayController {
     }
     return null;
   }
+  /**
+   * @return a BoardGame representation of the game described by the input parameter, or null if not in collection.
+   */
+  public BoardGame getGame(int id) {
+    for (BoardGame game : getAllGames(true)) {
+      if(game.id == id) return game;
+    }
+    return null;
+  }
 
   /**
    * @return an integer describing the amount of games in the users collection.
@@ -102,4 +111,16 @@ public class DataDisplayController {
     return plays.getPlays(name);
   }
 
+  public Play getPlay(int playId) {
+    for (Play play : getAllPlays()) {
+      if(play.id == playId) return play;
+    }
+    return null;  }
+
+  public Player getPlayer(String name) {
+    for (Player player : getAllPlayers()) {
+      if(player.name == name) return player;
+    }
+    return null;
+  }
 }

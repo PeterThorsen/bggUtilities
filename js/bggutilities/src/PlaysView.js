@@ -8,9 +8,8 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 import LoadingScreen from './util/LoadingScreen';
-import Play from './Play';
-import RaisedButton from 'material-ui/RaisedButton';
 import './Main.css';
+import {withRouter} from "react-router-dom";
 
 class PlaysView extends Component {
 
@@ -19,14 +18,10 @@ class PlaysView extends Component {
         this.state = {
             found: false,
             result: undefined,
-            play: undefined,
         }
     }
 
     render() {
-        if (this.state.play) {
-            return <Play goBack={() => this.goToPlay(undefined)} play={this.state.play}/>
-        }
         let mainBlock = <div/>;
 
         if (!this.state.found) {
@@ -79,7 +74,6 @@ class PlaysView extends Component {
         }
 
         return <div>
-            <RaisedButton label="Go back" onTouchTap={this.props.goBack}/>
             {mainBlock}
         </div>
 
@@ -103,11 +97,9 @@ class PlaysView extends Component {
     }
 
     goToPlay(play) {
-        this.setState({
-            play: play
-        })
+        this.props.history.push("/plays/" + play.id);
     }
 }
 
 
-export default PlaysView;
+export default withRouter(PlaysView);

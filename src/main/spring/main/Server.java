@@ -47,12 +47,20 @@ public class Server {
     BoardGame[] games = controller.getAllGames(expansions);
     return gson.toJson(games);
   }
+  @CrossOrigin
+  @RequestMapping("/getGame")
+  public String getGame(@RequestParam(value = "id", defaultValue = "") int id) {
+    Gson gson = new Gson();
+    BoardGame game = controller.getGame(id);
+    if(game == null) return "";
+    return gson.toJson(game);
+  }
 
   @CrossOrigin
   @RequestMapping("/getPlays")
-  public String getPlays(@RequestParam(value = "id", defaultValue = "") int id) {
+  public String getPlays(@RequestParam(value = "id", defaultValue = "") int gameId) {
     Gson gson = new Gson();
-    Play[] plays = controller.getSortedPlays(id).clone();
+    Play[] plays = controller.getSortedPlays(gameId).clone();
     BoardGame[] tempGames = new BoardGame[plays.length];
     for (int i = 0; i < plays.length; i++) {
 
@@ -65,6 +73,16 @@ public class Server {
     }
 
     return returnValue;
+  }
+  @CrossOrigin
+  @RequestMapping("/getPlay")
+  public String getPlay(@RequestParam(value = "id", defaultValue = "") int playId) {
+    Gson gson = new Gson();
+    Play play = controller.getPlay(playId);
+
+    if(play == null) return "";
+
+    return gson.toJson(play);
   }
 
   @CrossOrigin
@@ -91,6 +109,16 @@ public class Server {
     Gson gson = new Gson();
     Player[] players = controller.getAllPlayers();
     return gson.toJson(players);
+  }
+
+  @CrossOrigin
+  @RequestMapping("/getPlayer")
+  public String getPlayer(@RequestParam(value = "name", defaultValue = "") String name) {
+    Gson gson = new Gson();
+    Player player = controller.getPlayer(name);
+    if(player == null) return "";
+
+    return gson.toJson(player);
   }
 
 

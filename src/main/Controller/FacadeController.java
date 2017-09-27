@@ -27,6 +27,8 @@ public class FacadeController {
 
   public BoardGame getGame(String name) { return dataController.getGame(name);}
 
+  public BoardGame getGame(int id) { return dataController.getGame(id);}
+
   public Play[] getAllPlaysSorted() {
     return dataController.getAllPlays();
   }
@@ -45,5 +47,13 @@ public class FacadeController {
 
   public Play[] getSortedPlays(int id) {
     return dataController.getPlays(id);
+  }
+
+  public Play getPlay(int playId) {
+    return dataController.getPlay(playId);
+  }
+
+  public Player getPlayer(String name) {
+    return dataController.getPlayer(name);
   }
 }

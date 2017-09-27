@@ -10,7 +10,8 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
-import Player from './Player.js';
+import {withRouter} from "react-router-dom";
+
 class PlayersView extends Component {
 
     constructor(props) {
@@ -18,17 +19,11 @@ class PlayersView extends Component {
         this.state = {
             found: false,
             result: undefined,
-            player: undefined,
         }
     }
 
     render() {
         let mainBlock = <div/>;
-
-        if(this.state.player) {
-            return <Player goBack={() => this.goToPlayer(undefined)} player={this.state.player} />
-        }
-
         if (!this.state.found) {
             this.getPlayers();
             mainBlock = <LoadingScreen/>
@@ -103,11 +98,9 @@ class PlayersView extends Component {
     }
 
     goToPlayer(player) {
-        this.setState({
-            player: player
-        })
+        this.props.history.push("players/" + player.name);
     }
 }
 
 
-export default PlayersView;
+export default withRouter(PlayersView);

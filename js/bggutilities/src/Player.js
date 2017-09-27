@@ -4,7 +4,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import "./Main.css";
 import Divider from 'material-ui/Divider';
 import {Tabs, Tab} from 'material-ui/Tabs';
-import {List, ListItem} from 'material-ui/List';
 import {
     Table,
     TableBody,
@@ -13,11 +12,47 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
+import {Redirect} from "react-router-dom";
 
 class Player extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true,
+            player: undefined
+        };
+
+        console.log(props.match.params.name);
+        var request = new XMLHttpRequest();
+        request.timeout = 60000;
+        request.open('GET', 'http://localhost:8080/getPlayer?name=' + props.match.params.name, true);
+        request.send(null);
+        request.onreadystatechange = function () {
+            if (request.readyState === 4 && request.status === 200) {
+                var type = request.getResponseHeader('Content-Type');
+                if (type.indexOf("text") !== 1) {
+                    let result = request.responseText;
+                    if(result === "") {
+                        console.log("no")
+                        this.setState({loading: false});
+                    }
+                    else {
+                        console.log("yes")
+                        let jsonObj = JSON.parse(result);
+                        this.setState({player: jsonObj, loading: false});
+                    }
+                }
+            }
+        }.bind(this);
+    }
+
     render() {
-        let player = this.props.player;
+        console.log("player?")
+        if(this.state.loading) return <LoadingScreen/>;
+        if(!this.state.loading && !this.state.player) return <Redirect to={"/players"}/>;
+
+        let player = this.state.player;
 
         let gameRatings = this.getGameRatings(player);
         let plays = this.getPlays(player);

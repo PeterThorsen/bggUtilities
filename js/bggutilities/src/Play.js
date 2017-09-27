@@ -1,12 +1,42 @@
 import React, {Component} from 'react';
 import {List, ListItem} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
-import RaisedButton from 'material-ui/RaisedButton';
 import "./Main.css";
+import LoadingScreen from "./util/LoadingScreen";
+import {Redirect, withRouter} from "react-router-dom";
 
 class Play extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true,
+            play: undefined
+        };
+        var request = new XMLHttpRequest();
+        request.timeout = 60000;
+        request.open('GET', 'http://localhost:8080/getPlay?id=' + props.match.params.playId, true);
+        request.send(null);
+        request.onreadystatechange = function () {
+            if (request.readyState === 4 && request.status === 200) {
+                var type = request.getResponseHeader('Content-Type');
+                if (type.indexOf("text") !== 1) {
+                    let result = request.responseText;
+                    if(result === "") {
+                        this.setState({loading: false});
+                    }
+                    else {
+                        let jsonObj = JSON.parse(result);
+                        this.setState({play: jsonObj, loading: false});
+                    }
+                }
+            }
+        }.bind(this);
+    }
     render() {
-        let play = this.props.play;
+        if(this.state.loading) return <LoadingScreen/>;
+        if(!this.state.loading && !this.state.play) return <Redirect to={"/plays"}/>;
+        let play = this.state.play;
         let game = play.game;
         let players = [];
         play.playerNames.forEach(
@@ -16,7 +46,7 @@ class Play extends Component {
                 }
                 players.push(<ListItem key={name} primaryText={name} />)
             }
-        )
+        );
 
         return <div className="main-block-play-players">
             <div className="main-width">
@@ -33,7 +63,6 @@ class Play extends Component {
                     <div className="main-description-color" style={{marginRight: 54}}># Plays</div>
                     <div>{play.noOfPlays}</div>
                 </div>
-                <RaisedButton style={{marginTop: 10}} label="Go back" onTouchTap={this.props.goBack}/>
                 <Divider style={{marginTop: 10, marginBottom: 10}}/>
                 <List>
                     {players}
@@ -44,4 +73,4 @@ class Play extends Component {
 }
 
 
-export default Play;
+export default withRouter(Play);

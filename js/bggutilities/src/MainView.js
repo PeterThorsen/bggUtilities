@@ -1,38 +1,13 @@
 import React, {Component} from 'react';
 import {GridList, GridTile} from 'material-ui/GridList';
-import GamesView from './GamesView';
-import PlaysView from './PlaysView';
-import PlayersView from './PlayersView';
 import Snackbar from 'material-ui/Snackbar';
-import RaisedButton from 'material-ui/RaisedButton';
 import './Main.css';
-import {Link, Route} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 
 class MainView extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            menu: null
-        }
-    }
-
     render() {
-
-        if (this.state.menu) {
-            let menu = this.state.menu;
-
-            if (menu === "games") {
-                return <GamesView userName={this.props.userName} goBack={() => this.goTo(null)}/>
-            }
-            if (menu === "plays") {
-                return <PlaysView userName={this.props.userName} goBack={() => this.goTo(null)}/>
-            }
-            if (menu === "players") {
-                return <PlayersView userName={this.props.userName} goBack={() => this.goTo(null)}/>
-            }
-        }
-
+        let titlePosition = "top";
+        let titleBackground = "linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)";
         return <div className="main-block">
             <GridList cols={2}
                       style={{
@@ -43,58 +18,51 @@ class MainView extends Component {
                       }}>
                 <GridTile key={"games-tile"}
                           title={"Games"}
-                          onTouchTap={() => this.goTo("games")}
-                          titlePosition="top"
-                          titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
+                          onTouchTap={() => this.props.history.push("/games")}
+                          titlePosition={titlePosition}
+                          titleBackground={titleBackground}
                           cols={1}
                           rows={2}>
                     <img src={"https://i.imgur.com/Hhb7rsk.jpg"} alt={""}/>
                 </GridTile>
                 <GridTile key={"plays-tile"}
                           title={"Plays"}
-                          onTouchTap={() => this.goTo("plays")}
-                          titlePosition="top"
-                          titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
+                          onTouchTap={() => this.props.history.push("/plays")}
+                          titlePosition={titlePosition}
+                          titleBackground={titleBackground}
                           cols={1}
                           rows={2}>
                     <img src={"https://i.imgur.com/Laqqk9p.png"} alt={""}/>
                 </GridTile>
                 <GridTile key={"players-tile"}
                           title={"Players"}
-                          onTouchTap={() => this.goTo("players")}
-                          titlePosition="top"
-                          titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
+                          onTouchTap={() => this.props.history.push("/players")}
+                          titlePosition={titlePosition}
+                          titleBackground={titleBackground}
                           cols={1}
                           rows={1}>
                     <img src={"https://i.imgur.com/B1QglHa.jpg"} alt={""}/>
                 </GridTile>
                 <GridTile key={"stats-tile"}
                           title={"Game statistics"}
-                          titlePosition="top"
-                          titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
+                          onTouchTap={() => this.props.history.push("/statistics")}
+                          titlePosition={titlePosition}
+                          titleBackground={titleBackground}
                           cols={1}
                           rows={1}>
                     <img src={"https://i.imgur.com/jHlqEq1.png"} alt={""}/>
                 </GridTile>
                 <GridTile key={"suggest-game-night-tile"}
                           title={"Suggest a game night"}
-                          titlePosition="top"
-                          titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
+                          onTouchTap={() => this.props.history.push("/suggest")}
+                          titlePosition={titlePosition}
+                          titleBackground={titleBackground}
                           cols={2}
                           rows={2}>
                     <img src={"https://i.imgur.com/95KOXM7.jpg"} alt={""}/>
                 </GridTile>
             </GridList>
-            <div>
-                <Link to="/about">About</Link>
-                <Route path="/about" component={GamesView}/>
-            </div>
-            {/*<RaisedButton label="Reload data" onTouchTap={this.forceReload}/>*/}
         </div>
-    }
-
-    goTo(menu) {
-        this.setState({menu: menu})
     }
 
     forceReload() {
@@ -127,9 +95,4 @@ class MainView extends Component {
     }
 }
 
-/*
-<GamesView userName={this.props.userName} goBack={() => this.goTo(null)}/>
-* */
-
-
-export default MainView;
+export default withRouter(MainView);

@@ -220,7 +220,8 @@ public class CollectionBuilder implements ICollectionBuilder {
 
             NamedNodeMap playAttributes = currentItem.getAttributes();
 
-            // Get date and quantity
+            // Get id, date and quantity
+            int id = Integer.parseInt(playAttributes.getNamedItem("id").getNodeValue());
             String date = playAttributes.getNamedItem("date").getNodeValue();
             int quantity = Integer.valueOf(playAttributes.getNamedItem("quantity").getNodeValue());
 
@@ -245,7 +246,7 @@ public class CollectionBuilder implements ICollectionBuilder {
             }
 
             // Adding the plays
-            Play play = new Play(game, date, names, quantity, playerRatings, winners);
+            Play play = new Play(id, game, date, names, quantity, playerRatings, winners); // todo
             plays.addPlay(play);
           }
         }
