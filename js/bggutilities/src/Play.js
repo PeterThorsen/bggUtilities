@@ -22,7 +22,7 @@ class Play extends Component {
                 var type = request.getResponseHeader('Content-Type');
                 if (type.indexOf("text") !== 1) {
                     let result = request.responseText;
-                    if(result === "") {
+                    if (result === "") {
                         this.setState({loading: false});
                     }
                     else {
@@ -33,20 +33,14 @@ class Play extends Component {
             }
         }.bind(this);
     }
+
     render() {
-        if(this.state.loading) return <LoadingScreen/>;
-        if(!this.state.loading && !this.state.play) return <Redirect to={"/plays"}/>;
+        if (this.state.loading) return <LoadingScreen/>;
+        if (!this.state.loading && !this.state.play) return <Redirect to={"/plays"}/>;
         let play = this.state.play;
         let game = play.game;
-        let players = [];
-        play.playerNames.forEach(
-            (name) => {
-                if(play.winners.includes(name)) {
-                    name += " 👑"
-                }
-                players.push(<ListItem key={name} primaryText={name} onTouchTap={() => this.goToPlayer(name.split(" 👑")[0])} />)
-            }
-        );
+
+        let players = this.buildPlayers(play);
 
         return <div className="main-block-play-players">
             <div className="main-width">
@@ -64,15 +58,29 @@ class Play extends Component {
                     <div>{play.noOfPlays}</div>
                 </div>
                 <Divider style={{marginTop: 10, marginBottom: 10}}/>
-                <List>
-                    {players}
-                </List>
+                {players}
             </div>
         </div>
     }
 
     goToPlayer(name) {
         this.props.history.push("/players/" + name);
+    }
+
+    buildPlayers(play) {
+        let players = [];
+        play.playerNames.forEach(
+            (name) => {
+                if (play.winners.includes(name)) {
+                    name += " 👑"
+                }
+                players.push(<ListItem key={name} primaryText={name}
+                                       onTouchTap={() => this.goToPlayer(name.split(" 👑")[0])}/>)
+            }
+        );
+        return <List>
+            {players}
+        </List>
     }
 }
 

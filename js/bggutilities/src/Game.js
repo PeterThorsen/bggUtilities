@@ -26,7 +26,7 @@ class Game extends Component {
                 var type = request.getResponseHeader('Content-Type');
                 if (type.indexOf("text") !== 1) {
                     let result = request.responseText;
-                    if(result === "") {
+                    if (result === "") {
                         this.setState({loading: false});
                     }
                     else {
@@ -39,26 +39,15 @@ class Game extends Component {
     }
 
     render() {
-        if(this.state.loading) return <LoadingScreen/>;
-        if(!this.state.loading && !this.state.game) return <Redirect to={"/games"}/>;
+        if (this.state.loading) return <LoadingScreen/>;
+        if (!this.state.loading && !this.state.game) return <Redirect to={"/games"}/>;
         let game = this.state.game;
         let expansions = game.expansions;
         let minPlayers = game.minPlayers;
         let maxPlayers = game.maxPlayers;
         let minPlaytime = game.minPlaytime;
         let maxPlaytime = game.maxPlaytime;
-        expansions.forEach(
-            (expansion) => {
-                if (expansion.minPlayers < minPlayers) minPlayers = expansion.minPlayers;
-                if (expansion.maxPlayers > maxPlayers) maxPlayers = expansion.maxPlayers;
-                if (expansion.minPlaytime < minPlaytime) minPlaytime = expansion.minPlaytime;
-                if (expansion.maxPlaytime > maxPlaytime) maxPlaytime = expansion.maxPlaytime;
-            }
-        );
 
-        let plays = [];
-        let playerRatings = {};
-        let playerRatingsArr = [];
         if (this.state.plays === undefined) {
             var request = new XMLHttpRequest();
             request.timeout = 60000;
@@ -75,83 +64,8 @@ class Game extends Component {
                 }
             }.bind(this);
         }
-        else {
-            let iteration = 0;
-
-            this.state.plays.forEach(
-                (play) => {
-                    let playerNamesOutput = "";
-                    let lastPlayerName = "";
-                    for (let inx in play.playerNames) {
-                        let playerName = play.playerNames[inx];
-                        playerNamesOutput += playerName + ", ";
-                        lastPlayerName = playerName;
-                        if (play.playerRatings.hasOwnProperty(playerName)) {
-                            let rating = play.playerRatings[playerName];
-                            if (!playerRatings.hasOwnProperty(playerName)) {
-                                playerRatings[playerName] = {};
-                                if (rating > 0) {
-                                    playerRatings[playerName].rating = rating;
-                                }
-                                playerRatings[playerName].numberOfPlays = 1;
-                            }
-                            else {
-                                if (rating > 0 && !playerRatings[playerName].hasOwnProperty("rating")) {
-                                    playerRatings[playerName].rating = rating;
-                                }
-                                playerRatings[playerName].numberOfPlays = playerRatings[playerName].numberOfPlays + play.noOfPlays;
-                            }
-                        }
-                    }
-                    if (play.playerNames.length > 1) {
-                        playerNamesOutput = playerNamesOutput.substring(0, playerNamesOutput.indexOf(lastPlayerName) - 2) + " and " +
-                            playerNamesOutput.substring(playerNamesOutput.indexOf(lastPlayerName), playerNamesOutput.length - 2);
-                    }
-                    else if (play.playerNames.length === 1) {
-                        playerNamesOutput = playerNamesOutput.substring(0, playerNamesOutput.length - 2);
-                    }
-
-                    plays.push(<ListItem key={"play-" + iteration}
-                                         primaryText={play.date + "  (" + playerNamesOutput + "): " + play.noOfPlays}/>)
-                    iteration++;
-                }
-            )
-            let playerRatingsNamesToSort = [];
-            for (let playerName in playerRatings) {
-                if (playerRatings.hasOwnProperty(playerName)) {
-                    playerRatingsNamesToSort.push(playerName);
-                }
-            }
-            playerRatingsNamesToSort.sort();
-            iteration = 0;
-            for (let inx in playerRatingsNamesToSort) {
-                let playerName = playerRatingsNamesToSort[inx];
-                let playText = playerRatings[playerName].numberOfPlays === 1 ? " play" : " plays";
-                playerRatingsArr.push(<ListItem key={"player-rating-" + iteration}
-                                                onTouchTap={() => this.goToPlayer(playerName)}
-                                                primaryText={playerName + " (" + playerRatings[playerName].numberOfPlays + playText + "): "
-                                                + (playerRatings[playerName].rating === undefined ? "N/A" : playerRatings[playerName].rating)}/>)
-                iteration++;
-            }
-        }
-
-        let playsBlock = <div className="plays-block">
-            <div className="title">Plays</div>
-            {this.state.plays !== undefined ?
-                <List>
-                    {plays}
-                </List>
-                : <LoadingScreen/>} </div>;
-
-        let playerRatingsBlock = <div className="player-ratings-block">
-            <div className="title">Player ratings</div>
-            {
-                this.state.plays !== undefined ?
-                    <List>
-                        {playerRatingsArr}
-                    </List> : <LoadingScreen/>}
-        </div>
-
+        let plays = this.buildPlays();
+        let playerRatings = this.buildPlayerRatings();
 
         return <div className="outer-block">
             <div className="main-width">
@@ -184,19 +98,120 @@ class Game extends Component {
                 <div className="main-standard-description">
                     <div className="main-description-color" style={{marginRight: 55}}>Players</div>
                     <BestWithBlock minPlayers={minPlayers} maxPlayers={maxPlayers}
-                                  bestWith={game.bestWith} recommendedWith={game.recommendedWith} />
+                                   bestWith={game.bestWith} recommendedWith={game.recommendedWith}/>
                 </div>
                 <Divider style={{marginTop: 10, marginBottom: 10}}/>
             </div>
             <div className="flex-row">
-                {playsBlock}
-                {playerRatingsBlock}
+                {plays}
+                {playerRatings}
             </div>
         </div>
     }
 
     goToPlayer(name) {
         this.props.history.push("/players/" + name);
+    }
+
+    buildPlays() {
+        if (!this.state.plays) {
+            return <LoadingScreen/>;
+        }
+
+        let iteration = 0;
+        let plays = [];
+
+        this.state.plays.forEach(
+            (play) => {
+                let playerNamesOutput = "";
+                let lastPlayerName = "";
+                for (let inx in play.playerNames) {
+                    let playerName = play.playerNames[inx];
+                    playerNamesOutput += playerName + ", ";
+                    lastPlayerName = playerName;
+                }
+                if (play.playerNames.length > 1) {
+                    playerNamesOutput = playerNamesOutput.substring(0, playerNamesOutput.indexOf(lastPlayerName) - 2) + " and " +
+                        playerNamesOutput.substring(playerNamesOutput.indexOf(lastPlayerName), playerNamesOutput.length - 2);
+                }
+                else if (play.playerNames.length === 1) {
+                    playerNamesOutput = playerNamesOutput.substring(0, playerNamesOutput.length - 2);
+                }
+
+                plays.push(<ListItem key={"play-" + iteration}
+                                     primaryText={play.date + "  (" + playerNamesOutput + "): " + play.noOfPlays}/>)
+                iteration++;
+            }
+        );
+        return <div className="plays-block">
+            <div className="title">Plays</div>
+            <List>
+                {plays}
+            </List>
+        </div>;
+    }
+
+    buildPlayerRatings() {
+        if (!this.state.plays) {
+            return <LoadingScreen/>;
+        }
+
+        let iteration = 0;
+        let plays = [];
+        let playerRatings = {};
+        let playerRatingsArr = [];
+
+        this.state.plays.forEach(
+            (play) => {
+                for (let inx in play.playerNames) {
+                    let playerName = play.playerNames[inx];
+                    if (play.playerRatings.hasOwnProperty(playerName)) {
+                        let rating = play.playerRatings[playerName];
+                        if (!playerRatings.hasOwnProperty(playerName)) {
+                            playerRatings[playerName] = {};
+                            if (rating > 0) {
+                                playerRatings[playerName].rating = rating;
+                            }
+                            playerRatings[playerName].numberOfPlays = 1;
+                        }
+                        else {
+                            if (rating > 0 && !playerRatings[playerName].hasOwnProperty("rating")) {
+                                playerRatings[playerName].rating = rating;
+                            }
+                            playerRatings[playerName].numberOfPlays = playerRatings[playerName].numberOfPlays + play.noOfPlays;
+                        }
+                    }
+                }
+                iteration++;
+            }
+        );
+
+        let playerRatingsNamesToSort = [];
+        for (let playerName in playerRatings) {
+            if (playerRatings.hasOwnProperty(playerName)) {
+                playerRatingsNamesToSort.push(playerName);
+            }
+        }
+        playerRatingsNamesToSort.sort();
+        iteration = 0;
+        for (let inx in playerRatingsNamesToSort) {
+            let playerName = playerRatingsNamesToSort[inx];
+            let playText = playerRatings[playerName].numberOfPlays === 1 ? " play" : " plays";
+            playerRatingsArr.push(<ListItem key={"player-rating-" + iteration}
+                                            onTouchTap={() => this.goToPlayer(playerName)}
+                                            primaryText={playerName + " (" + playerRatings[playerName].numberOfPlays + playText + "): "
+                                            + (playerRatings[playerName].rating === undefined ? "N/A" : playerRatings[playerName].rating)}/>)
+            iteration++;
+        }
+
+        return <div className="player-ratings-block">
+            <div className="title">Player ratings</div>
+            {
+                this.state.plays !== undefined ?
+                    <List>
+                        {playerRatingsArr}
+                    </List> : <LoadingScreen/>}
+        </div>;
     }
 }
 
