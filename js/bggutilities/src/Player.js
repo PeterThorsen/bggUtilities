@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import LoadingScreen from './util/LoadingScreen';
-import RaisedButton from 'material-ui/RaisedButton';
 import "./Main.css";
 import Divider from 'material-ui/Divider';
 import {Tabs, Tab} from 'material-ui/Tabs';
@@ -23,7 +22,6 @@ class Player extends Component {
             player: undefined
         };
 
-        console.log(props.match.params.name);
         var request = new XMLHttpRequest();
         request.timeout = 60000;
         request.open('GET', 'http://localhost:8080/getPlayer?name=' + props.match.params.name, true);
@@ -34,11 +32,9 @@ class Player extends Component {
                 if (type.indexOf("text") !== 1) {
                     let result = request.responseText;
                     if(result === "") {
-                        console.log("no")
                         this.setState({loading: false});
                     }
                     else {
-                        console.log("yes")
                         let jsonObj = JSON.parse(result);
                         this.setState({player: jsonObj, loading: false});
                     }
@@ -48,7 +44,6 @@ class Player extends Component {
     }
 
     render() {
-        console.log("player?")
         if(this.state.loading) return <LoadingScreen/>;
         if(!this.state.loading && !this.state.player) return <Redirect to={"/players"}/>;
 
@@ -81,7 +76,6 @@ class Player extends Component {
                     <div className="main-description-color" style={{marginRight: 46}}>Magic complexity</div>
                     <div>{parseFloat(player.magicComplexity).toFixed(2)}</div>
                 </div>
-                <RaisedButton style={{marginTop: 10}} label="Go back" onTouchTap={this.props.goBack}/>
                 <Divider style={{marginTop: 10, marginBottom: 10}}/>
                 <Tabs>
                     <Tab label="Games & ratings">

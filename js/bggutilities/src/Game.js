@@ -128,6 +128,7 @@ class Game extends Component {
                 let playerName = playerRatingsNamesToSort[inx];
                 let playText = playerRatings[playerName].numberOfPlays === 1 ? " play" : " plays";
                 playerRatingsArr.push(<ListItem key={"player-rating-" + iteration}
+                                                onTouchTap={() => this.goToPlayer(playerName)}
                                                 primaryText={playerName + " (" + playerRatings[playerName].numberOfPlays + playText + "): "
                                                 + (playerRatings[playerName].rating === undefined ? "N/A" : playerRatings[playerName].rating)}/>)
                 iteration++;
@@ -192,6 +193,10 @@ class Game extends Component {
                 {playerRatingsBlock}
             </div>
         </div>
+    }
+
+    goToPlayer(name) {
+        this.props.history.push("/players/" + name);
     }
 }
 

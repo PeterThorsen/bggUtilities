@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import LoadingScreen from './util/LoadingScreen';
-import RaisedButton from 'material-ui/RaisedButton';
 
 import {
     Table,
@@ -75,7 +74,6 @@ class PlayersView extends Component {
             </div>
         }
         return <div>
-            <RaisedButton style={{marginTop: 10}} label="Go back" onTouchTap={this.props.goBack}/>
             {mainBlock}
         </div>
     }

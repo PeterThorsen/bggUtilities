@@ -44,7 +44,7 @@ class Play extends Component {
                 if(play.winners.includes(name)) {
                     name += " 👑"
                 }
-                players.push(<ListItem key={name} primaryText={name} />)
+                players.push(<ListItem key={name} primaryText={name} onTouchTap={() => this.goToPlayer(name.split(" 👑")[0])} />)
             }
         );
 
@@ -69,6 +69,10 @@ class Play extends Component {
                 </List>
             </div>
         </div>
+    }
+
+    goToPlayer(name) {
+        this.props.history.push("/players/" + name);
     }
 }
 

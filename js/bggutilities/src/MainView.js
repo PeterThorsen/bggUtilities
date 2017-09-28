@@ -75,15 +75,14 @@ class MainView extends Component {
                 var type = request.getResponseHeader('Content-Type');
                 if (type.indexOf("text") !== 1) {
                     let result = request.responseText;
-                    console.log("result", result)
                     if (result) {
-                        <Snackbar
+                        return <Snackbar
                             open={true}
                             message="Data reloaded"
                             autoHideDuration={3000}/>
                     }
                     else {
-                        <Snackbar
+                        return <Snackbar
                             open={true}
                             message="An error occurred. Please try again"
                             autoHideDuration={3000}
@@ -91,7 +90,7 @@ class MainView extends Component {
                     }
                 }
             }
-        }.bind(this);
+        }
     }
 }
 

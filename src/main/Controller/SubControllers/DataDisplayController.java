@@ -119,7 +119,7 @@ public class DataDisplayController {
 
   public Player getPlayer(String name) {
     for (Player player : getAllPlayers()) {
-      if(player.name == name) return player;
+      if(player.name.equals(name)) return player;
     }
     return null;
   }
