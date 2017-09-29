@@ -124,6 +124,10 @@ class Game extends Component {
         this.props.history.push("/players/" + name);
     }
 
+    goToPlay(id) {
+        this.props.history.push("/plays/" + id);
+    }
+
     buildPlays() {
         if (!this.state.plays) {
             return <LoadingScreen/>;
@@ -149,7 +153,7 @@ class Game extends Component {
                     playerNamesOutput = playerNamesOutput.substring(0, playerNamesOutput.length - 2);
                 }
 
-                plays.push(<TableRow key={"play-" + iteration} selectable={false}>
+                plays.push(<TableRow onTouchTap={() => this.goToPlay(play.id)} key={"play-" + iteration} selectable={false}>
                     <TableRowColumn>{play.date}</TableRowColumn>
                     <TableRowColumn style={{
                         wordWrap: 'break-word',
@@ -220,7 +224,7 @@ class Game extends Component {
         iteration = 0;
         for (let inx in playerRatingsNamesToSort) {
             let playerName = playerRatingsNamesToSort[inx];
-            playerRatingsArr.push(<TableRow key={"player-ratings-" + iteration} selectable={false}>
+            playerRatingsArr.push(<TableRow onTouchTap={() => this.goToPlayer(playerName)} key={"player-ratings-" + iteration} selectable={false}>
                 <TableRowColumn style={{
                     wordWrap: 'break-word',
                     whiteSpace: 'normal'

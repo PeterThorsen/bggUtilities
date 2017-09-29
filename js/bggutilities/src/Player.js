@@ -147,7 +147,7 @@ class Player extends Component {
                     playerNames += ", " + play.playerNames[i];
                 }
                 result.push(
-                    <TableRow key={"plays-" + rowNumber} selectable={false}>
+                    <TableRow onTouchTap={() => this.goToPlay(play.id)} key={"plays-" + rowNumber} selectable={false}>
                         <TableRowColumn style={{width: 60}}>{play.date}</TableRowColumn>
                         <TableRowColumn style={{
                             width: 120,
@@ -268,6 +268,10 @@ class Player extends Component {
                 }
             }
         }.bind(this);
+    }
+
+    goToPlay(id) {
+        this.props.history.push("/plays/"+id);
     }
 }
 
