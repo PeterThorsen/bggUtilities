@@ -30,6 +30,11 @@ public class Server {
     controller = tryLogin(userName);
     return controller != null;
   }
+  @CrossOrigin
+  @RequestMapping("/verifyLoggedIn")
+  public boolean verifyLoggedIn() {
+    return controller != null;
+  }
 
   @CrossOrigin
   @RequestMapping("/forceLogin")
