@@ -15,32 +15,22 @@ import {Redirect} from "react-router-dom";
 
 class Player extends Component {
 
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.match.params.name !== this.state.player.name) {
+            this.setState({
+                loading: true,
+            });
+            this.downloadPlayer(nextProps.match.params.name);
+        }
+    }
+
     constructor(props) {
         super(props);
         this.state = {
             loading: true,
             player: undefined
         };
-
-        var request = new XMLHttpRequest();
-        request.timeout = 60000;
-        request.open('GET', 'http://localhost:8080/getPlayer?name=' + props.match.params.name, true);
-        request.send(null);
-        request.onreadystatechange = function () {
-            if (request.readyState === 4 && request.status === 200) {
-                var type = request.getResponseHeader('Content-Type');
-                if (type.indexOf("text") !== 1) {
-                    let result = request.responseText;
-                    if(result === "") {
-                        this.setState({loading: false});
-                    }
-                    else {
-                        let jsonObj = JSON.parse(result);
-                        this.setState({player: jsonObj, loading: false});
-                    }
-                }
-            }
-        }.bind(this);
+        this.downloadPlayer(props.match.params.name);
     }
 
     render() {
@@ -116,7 +106,7 @@ class Player extends Component {
             let gameName = resultStrings[i].substring(index + 2, resultStrings[i].length);
             let rating = resultStrings[i].substring(0, index);
 
-            let row = <TableRow key={"ratings-" + rowNumber} selectable={false}>
+            let row = <TableRow onTouchTap={() => this.goToGameByName(gameName)} key={"ratings-" + rowNumber} selectable={false}>
                 <TableRowColumn>{gameName}</TableRowColumn>
                 <TableRowColumn>{rating}</TableRowColumn>
             </TableRow>;
@@ -217,7 +207,7 @@ class Player extends Component {
                 if(name !== player.name) {
                     let rating = element.substring(0, index);
 
-                    result.push(<TableRow key={"players-" + rowNumber} selectable={false}>
+                    result.push(<TableRow onTouchTap={() => this.goToPlayer(name)} key={"players-" + rowNumber} selectable={false}>
                         <TableRowColumn>{name}</TableRowColumn>
                         <TableRowColumn>{rating}</TableRowColumn>
                     </TableRow>);
@@ -237,7 +227,48 @@ class Player extends Component {
                     {result}
                 </TableBody>
             </Table>
-        </div>    }
+        </div>
+    }
+
+    goToPlayer(name) {
+        this.props.history.push("/players/" + name);
+    }
+
+
+    goToGameByName(name) {
+        let found = false;
+        this.state.player.allPlays.forEach(
+            (play) => {
+                if(!found && play.game.name === name) {
+                    found = true;
+                    this.props.history.push("/games/" + play.game.id);
+                    return;
+                }
+            }
+        )
+    }
+
+    downloadPlayer(name) {
+        var request = new XMLHttpRequest();
+        request.timeout = 60000;
+        request.open('GET', 'http://localhost:8080/getPlayer?name=' + name, true);
+        request.send(null);
+        request.onreadystatechange = function () {
+            if (request.readyState === 4 && request.status === 200) {
+                var type = request.getResponseHeader('Content-Type');
+                if (type.indexOf("text") !== 1) {
+                    let result = request.responseText;
+                    if(result === "") {
+                        this.setState({loading: false});
+                    }
+                    else {
+                        let jsonObj = JSON.parse(result);
+                        this.setState({player: jsonObj, loading: false});
+                    }
+                }
+            }
+        }.bind(this);
+    }
 }
 
 
