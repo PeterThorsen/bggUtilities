@@ -121,7 +121,7 @@ class Player extends Component {
                 <TableRowColumn>{rating}</TableRowColumn>
             </TableRow>;
             rowNumber++;
-            if (rating == "10") {
+            if (rating === "10") {
                 result.unshift(row); // adds to start, needed because of string sorting
             }
             else {

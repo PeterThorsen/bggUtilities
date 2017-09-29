@@ -41,11 +41,11 @@ class PlayersView extends Component {
                             <TableRowColumn style={{width: 50}}>{parseFloat(player.minComplexity).toFixed(2)}</TableRowColumn>
                             <TableRowColumn style={{width: 50}}>{parseFloat(player.maxComplexity).toFixed(2)}</TableRowColumn>
                             <TableRowColumn style={{width: 60}}>{parseFloat(player.averageComplexity).toFixed(2)}</TableRowColumn>
-                            <TableRowColumn style={{width: 60}}>{magicComplexity != 0 ? magicComplexity : "N/A"}</TableRowColumn>
+                            <TableRowColumn style={{width: 60}}>{magicComplexity !== '0.00' ? magicComplexity : "N/A"}</TableRowColumn>
                         </TableRow>);
                     rowNumber++;
                 }
-            )
+            );
 
             mainBlock = <div className="main-block">
                 <Table style={{width: 600}}>

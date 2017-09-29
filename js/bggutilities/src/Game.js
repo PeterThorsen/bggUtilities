@@ -1,11 +1,19 @@
 import React, {Component} from 'react';
 import Divider from 'material-ui/Divider';
-import {List, ListItem} from 'material-ui/List';
 import BestWithBlock from './util/BestWithBlock';
 import LoadingScreen from "./util/LoadingScreen";
 import "./Game.css";
 import "./Main.css";
 import {Redirect, withRouter} from "react-router-dom";
+import {
+    Table,
+    TableBody,
+    TableHeader,
+    TableHeaderColumn,
+    TableRow,
+    TableRowColumn,
+} from 'material-ui/Table';
+import {Tabs, Tab} from 'material-ui/Tabs';
 
 class Game extends Component {
 
@@ -42,7 +50,6 @@ class Game extends Component {
         if (this.state.loading) return <LoadingScreen/>;
         if (!this.state.loading && !this.state.game) return <Redirect to={"/games"}/>;
         let game = this.state.game;
-        let expansions = game.expansions;
         let minPlayers = game.minPlayers;
         let maxPlayers = game.maxPlayers;
         let minPlaytime = game.minPlaytime;
@@ -102,10 +109,14 @@ class Game extends Component {
                 </div>
                 <Divider style={{marginTop: 10, marginBottom: 10}}/>
             </div>
-            <div className="flex-row">
-                {plays}
-                {playerRatings}
-            </div>
+            <Tabs>
+                <Tab label="Plays">
+                    {plays}
+                </Tab>
+                <Tab label="Player ratings">
+                    {playerRatings}
+                </Tab>
+            </Tabs>
         </div>
     }
 
@@ -138,16 +149,30 @@ class Game extends Component {
                     playerNamesOutput = playerNamesOutput.substring(0, playerNamesOutput.length - 2);
                 }
 
-                plays.push(<ListItem key={"play-" + iteration}
-                                     primaryText={play.date + "  (" + playerNamesOutput + "): " + play.noOfPlays}/>)
+                plays.push(<TableRow key={"play-" + iteration} selectable={false}>
+                    <TableRowColumn>{play.date}</TableRowColumn>
+                    <TableRowColumn style={{
+                        wordWrap: 'break-word',
+                        whiteSpace: 'normal'
+                    }}>{playerNamesOutput}</TableRowColumn>
+                    <TableRowColumn>{play.noOfPlays}</TableRowColumn>
+                </TableRow>);
                 iteration++;
             }
         );
-        return <div className="plays-block">
-            <div className="title">Plays</div>
-            <List>
-                {plays}
-            </List>
+        return <div className="main-block">
+            <Table style={{width: 600}}>
+                <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+                    <TableRow>
+                        <TableHeaderColumn>Date</TableHeaderColumn>
+                        <TableHeaderColumn>Players</TableHeaderColumn>
+                        <TableHeaderColumn># Plays</TableHeaderColumn>
+                    </TableRow>
+                </TableHeader>
+                <TableBody displayRowCheckbox={false}>
+                    {plays}
+                </TableBody>
+            </Table>
         </div>;
     }
 
@@ -157,7 +182,6 @@ class Game extends Component {
         }
 
         let iteration = 0;
-        let plays = [];
         let playerRatings = {};
         let playerRatingsArr = [];
 
@@ -196,21 +220,30 @@ class Game extends Component {
         iteration = 0;
         for (let inx in playerRatingsNamesToSort) {
             let playerName = playerRatingsNamesToSort[inx];
-            let playText = playerRatings[playerName].numberOfPlays === 1 ? " play" : " plays";
-            playerRatingsArr.push(<ListItem key={"player-rating-" + iteration}
-                                            onTouchTap={() => this.goToPlayer(playerName)}
-                                            primaryText={playerName + " (" + playerRatings[playerName].numberOfPlays + playText + "): "
-                                            + (playerRatings[playerName].rating === undefined ? "N/A" : playerRatings[playerName].rating)}/>)
+            playerRatingsArr.push(<TableRow key={"player-ratings-" + iteration} selectable={false}>
+                <TableRowColumn style={{
+                    wordWrap: 'break-word',
+                    whiteSpace: 'normal'
+                }}>{playerName}</TableRowColumn>
+                <TableRowColumn>{playerRatings[playerName].numberOfPlays}</TableRowColumn>
+                <TableRowColumn>{playerRatings[playerName].rating === undefined ? "N/A" : playerRatings[playerName].rating}</TableRowColumn>
+            </TableRow>);
             iteration++;
         }
 
-        return <div className="player-ratings-block">
-            <div className="title">Player ratings</div>
-            {
-                this.state.plays !== undefined ?
-                    <List>
-                        {playerRatingsArr}
-                    </List> : <LoadingScreen/>}
+        return <div className="main-block">
+            <Table style={{width: 600}}>
+                <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+                    <TableRow>
+                        <TableHeaderColumn>Name</TableHeaderColumn>
+                        <TableHeaderColumn># Plays</TableHeaderColumn>
+                        <TableHeaderColumn>Rating</TableHeaderColumn>
+                    </TableRow>
+                </TableHeader>
+                <TableBody displayRowCheckbox={false}>
+                    {playerRatingsArr}
+                </TableBody>
+            </Table>
         </div>;
     }
 }
