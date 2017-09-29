@@ -13,10 +13,10 @@ class BestWithBlock extends Component {
             currentStyle.padding = 3;
             currentStyle.fontSize = 16;
             if(bestWith.includes(i)) {
-                currentStyle.backgroundColor = '#7FFF00';
+                currentStyle.backgroundColor = '#32CD32';
             }
             else if(recommendedWith.includes(i)) {
-                currentStyle.backgroundColor = '#32CD32';
+                currentStyle.backgroundColor = '#7FFF00';
             }
             else {
                 currentStyle.backgroundColor = '#DC143C';
