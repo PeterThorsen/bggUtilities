@@ -3,7 +3,6 @@ import {GridList, GridTile} from 'material-ui/GridList';
 import Snackbar from 'material-ui/Snackbar';
 import './Main.css';
 import {withRouter} from "react-router-dom";
-
 class MainView extends Component {
     render() {
         let titlePosition = "top";

@@ -9,6 +9,7 @@ import Game from "../Game";
 import Play from "../Play";
 import Player from "../Player";
 import AuthorizedRoute from "./AuthorizedRoute";
+import StatisticsView from "../StatisticsView";
 class MainRoutingComponent extends Component {
 
     render() {
@@ -21,6 +22,7 @@ class MainRoutingComponent extends Component {
             <AuthorizedRoute path={"/plays/:playId"} exact component={Play}/>
             <AuthorizedRoute path={"/players"} exact component={PlayersView}/>
             <AuthorizedRoute path={"/players/:name"} exact component={Player}/>
+            <AuthorizedRoute path={"/statistics"} exact component={StatisticsView}/>
             <Redirect to={"/login"}/>
         </Switch>
     }
