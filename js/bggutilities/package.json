@@ -8,7 +8,6 @@
   },
   "devDependencies": {
     "history": "^4.7.2",
-    "react-d3-basic": "^1.6.11",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.7",
     "react-tap-event-plugin": "^2.0.1"

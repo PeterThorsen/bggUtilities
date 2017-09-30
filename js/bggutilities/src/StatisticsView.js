@@ -1,8 +1,32 @@
 import React, {Component} from 'react';
 import {BarChart, PieChart} from "react-d3-basic";
+import {Hint, RadialChart} from 'react-vis';
+import '../node_modules/react-vis/dist/style.css';
+import {VictoryBar, VictoryChart, VictoryAxis, VictoryTheme} from 'victory';
 
 class StatisticsView extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            radialMouseOver: false
+        }
+    }
+
     render() {
+
+        //let d3Charts = this.getOldCharts();
+
+        //let visCharts = this.getVisCharts();
+
+        //let victoryCharts = this.getVictoryCharts();
+
+        let recharts = this.getRecharts();
+
+        return recharts;
+    }
+
+    getOldCharts() {
 
         let generalChartData = [
             {
@@ -74,6 +98,72 @@ class StatisticsView extends Component {
                 name={x}
             />
         </div>
+    }
+
+    getVisCharts() {
+
+        let myData = [
+            {
+                label: "Charlotte",
+                angle: 339,
+            },
+            {
+                label: "Martin",
+                angle: 172
+            },
+            {
+                label: "Marian",
+                angle: 63
+            },
+        ];
+        return <RadialChart
+            data={myData}
+            innerRadius={100}
+            radius={140}
+            onValueMouseOver={v => this.setState({radialMouseOver: v})}
+            onSeriesMouseOut={v => this.setState({radialMouseOver: false})}
+            width={300}
+            height={300}>
+            {this.state.radialMouseOver && <Hint value={this.state.radialMouseOver}/>}
+        </RadialChart>
+    }
+
+    getVictoryCharts() {
+        let data = [
+            {
+                name: "Charlotte",
+                plays: 339
+            },
+            {
+                name: "Martin",
+                plays: 172
+            },
+            {
+                name: "Marian",
+                plays: 63
+            },
+        ];
+
+        return <VictoryChart
+            domainPadding={40}
+        >
+            <VictoryAxis
+                tickValues={[1, 2, 3]}
+                tickFormat={["Charlotte", "Martin", "Marian"]}
+            />
+            <VictoryAxis
+                dependentAxis
+            />
+            <VictoryBar
+                data={data}
+                x="name"
+                y="plays"
+            />
+        </VictoryChart>
+    }
+
+    getRecharts() {
+        return <div>temp</div>
     }
 }
 
