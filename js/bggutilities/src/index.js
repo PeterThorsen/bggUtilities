@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker from './util/registerServiceWorker';
 import {BrowserRouter as Router} from "react-router-dom";
 import MainRoutingComponent from "./routing/MainRoutingComponent";
 

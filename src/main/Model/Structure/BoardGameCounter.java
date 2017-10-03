@@ -16,6 +16,13 @@ public class BoardGameCounter {
     this.game = game;
   }
 
+  public BoardGameCounter(BoardGame boardGame, int value, ArrayList<Reason> reasons) {
+
+    game = boardGame;
+    this.value = value;
+    this.reasons = reasons;
+  }
+
   @Override
   public String toString() {
     return game.toString();

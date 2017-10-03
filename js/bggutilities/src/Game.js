@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Divider from 'material-ui/Divider';
 import BestWithBlock from './util/BestWithBlock';
 import LoadingScreen from "./util/LoadingScreen";
-import "./Game.css";
 import "./Main.css";
 import {Redirect, withRouter} from "react-router-dom";
 import {

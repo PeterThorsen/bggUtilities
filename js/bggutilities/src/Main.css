@@ -23,6 +23,18 @@
     display: flex;
     flex-direction:row;
 }
+.flex-column {
+    display: flex;
+    flex-direction:column;
+}
+
+.flex-column-center {
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    align-content: center;
+}
 
 .main-block-play-players {
     display: flex;
@@ -32,4 +44,18 @@
     align-items: center;
     align-content: center;
     margin-top: 10px;
+}
+
+.outer-block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction:column;
+    align-items: center;
+    align-content: center;
+    margin-top: 10px;
+}
+
+.title {
+    font-size: 30px;
 }

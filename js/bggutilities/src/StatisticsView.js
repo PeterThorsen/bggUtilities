@@ -24,7 +24,9 @@ class StatisticsView extends Component {
         if (this.state.loadingGames || this.state.loadingPlayers) return <LoadingScreen/>;
         let complexityChart = this.getComplexityBarChart();
         let ratingsDifferenceChart = this.getRatingsDifferenceChart();
-        return ratingsDifferenceChart;
+        return <div>{ratingsDifferenceChart}
+
+            {complexityChart}</div>;
     }
 
     getPieChart() {

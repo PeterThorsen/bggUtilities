@@ -56,4 +56,12 @@ public class FacadeController {
   public Player getPlayer(String name) {
     return dataController.getPlayer(name);
   }
+
+  public Player[] getCorrespondingPlayers(String[] names) {
+    return dataController.getCorrespondingPlayers(names);
+  }
+
+  public BoardGameCounter[] helpPickGameNight(Player[] players, int playTime, int[] gamesToExclude) {
+    return logicController.helpPickGameNight(players, playTime, dataController.getAllGames(true), gamesToExclude);
+  }
 }

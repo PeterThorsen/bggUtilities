@@ -10,6 +10,9 @@ import Play from "../Play";
 import Player from "../Player";
 import AuthorizedRoute from "./AuthorizedRoute";
 import StatisticsView from "../StatisticsView";
+import SuggestionsView from "../suggestionView/SuggestionsView";
+import PickHelper from "../suggestionView/PickHelper";
+import SuggestByMagic from "../suggestionView/SuggestByMagic";
 class MainRoutingComponent extends Component {
 
     render() {
@@ -23,6 +26,9 @@ class MainRoutingComponent extends Component {
             <AuthorizedRoute path={"/players"} exact component={PlayersView}/>
             <AuthorizedRoute path={"/players/:name"} exact component={Player}/>
             <AuthorizedRoute path={"/statistics"} exact component={StatisticsView}/>
+            <AuthorizedRoute path={"/suggest"} exact component={SuggestionsView}/>
+            <AuthorizedRoute path={"/suggest/help"} exact component={PickHelper}/>
+            <AuthorizedRoute path={"/suggest/magic"} exact component={SuggestByMagic}/>
             <Redirect to={"/login"}/>
         </Switch>
     }

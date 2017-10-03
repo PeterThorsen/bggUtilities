@@ -3,9 +3,7 @@ package spring.main;
 import Controller.FacadeController;
 import Controller.Factories.ReleaseStartupFactory;
 import Controller.SubControllers.LoginController;
-import Model.Structure.BoardGame;
-import Model.Structure.Play;
-import Model.Structure.Player;
+import Model.Structure.*;
 import com.google.gson.Gson;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -110,9 +108,18 @@ public class Server {
 
   @CrossOrigin
   @RequestMapping("/getAllPlayers")
-  public String getAllPlayers() {
+  public String getAllPlayers(@RequestParam(value = "nameOnly", defaultValue = "false") boolean nameOnly) {
     Gson gson = new Gson();
     Player[] players = controller.getAllPlayers();
+
+    if(nameOnly) {
+      String[] names = new String[players.length];
+      for (int i = 0; i < names.length; i++) {
+        names[i] = players[i].name;
+      }
+      return gson.toJson(names);
+
+    }
     return gson.toJson(players);
   }
 
@@ -124,6 +131,31 @@ public class Server {
     if(player == null) return "";
 
     return gson.toJson(player);
+  }
+  @CrossOrigin
+  @RequestMapping("/getSuggestion")
+  public String getPlayer(@RequestParam(value = "playTime") int playTime, @RequestParam(value = "players") String[] players) {
+
+    Player[] asPlayers = controller.getCorrespondingPlayers(players);
+    if(asPlayers == null) return "";
+
+    BoardGameSuggestion suggestions = controller.suggestGames(asPlayers, playTime);
+    Gson gson = new Gson();
+    return gson.toJson(suggestions.suggestedCombination);
+  }
+  @CrossOrigin
+  @RequestMapping("/helpPickGameNight")
+  public String helpPickGameNight(@RequestParam(value = "playTime") int playTime, @RequestParam(value = "players") String[] players) {
+
+    Player[] asPlayers = controller.getCorrespondingPlayers(players);
+    if(asPlayers == null) return "";
+
+    int[] gamesToExcludeTemp = new int[0];
+
+    BoardGameCounter[] options = controller.helpPickGameNight(asPlayers, playTime, gamesToExcludeTemp);
+
+    Gson gson = new Gson();
+    return gson.toJson(options);
   }
 
 

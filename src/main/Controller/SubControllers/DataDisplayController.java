@@ -26,10 +26,10 @@ public class DataDisplayController {
    */
   public BoardGame[] getAllGames(boolean useExpansions) {
     BoardGame[] games = collection.getGames();
-    if(!useExpansions) {
+    if (!useExpansions) {
       ArrayList<BoardGame> gamesWithoutExpansionsArrayList = new ArrayList<>();
       for (BoardGame game : games) {
-        if(!game.isExpansion) {
+        if (!game.isExpansion) {
           gamesWithoutExpansionsArrayList.add(game);
         }
       }
@@ -48,7 +48,7 @@ public class DataDisplayController {
   public String[] getGameNames() {
     String[] names = new String[collection.getGames().length];
 
-    for(int i = 0; i<collection.getGames().length; i++) {
+    for (int i = 0; i < collection.getGames().length; i++) {
       names[i] = collection.getGames()[i].name;
     }
     return names;
@@ -74,16 +74,17 @@ public class DataDisplayController {
    */
   public BoardGame getGame(String name) {
     for (BoardGame game : getAllGames(true)) {
-      if(game.name.equals(name)) return game;
+      if (game.name.equals(name)) return game;
     }
     return null;
   }
+
   /**
    * @return a BoardGame representation of the game described by the input parameter, or null if not in collection.
    */
   public BoardGame getGame(int id) {
     for (BoardGame game : getAllGames(true)) {
-      if(game.id == id) return game;
+      if (game.id == id) return game;
     }
     return null;
   }
@@ -113,14 +114,33 @@ public class DataDisplayController {
 
   public Play getPlay(int playId) {
     for (Play play : getAllPlays()) {
-      if(play.id == playId) return play;
+      if (play.id == playId) return play;
     }
-    return null;  }
+    return null;
+  }
 
   public Player getPlayer(String name) {
     for (Player player : getAllPlayers()) {
-      if(player.name.equals(name)) return player;
+      if (player.name.equals(name)) return player;
     }
     return null;
+  }
+
+  public Player[] getCorrespondingPlayers(String[] names) {
+    Player[] returnPlayers = new Player[names.length];
+
+    outer:
+    for (int i = 0; i < names.length; i++) {
+      String name = names[i];
+      for (Player player : getAllPlayers()) {
+        if (player.name.equals(name)) {
+          returnPlayers[i] = player;
+          continue outer;
+        }
+      }
+      return null;
+    }
+
+    return returnPlayers;
   }
 }
