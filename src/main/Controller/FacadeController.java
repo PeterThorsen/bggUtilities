@@ -62,6 +62,6 @@ public class FacadeController {
   }
 
   public BoardGameCounter[] helpPickGameNight(Player[] players, int playTime, int[] gamesToExclude) {
-    return logicController.helpPickGameNight(players, playTime, dataController.getAllGames(true), gamesToExclude);
+    return logicController.helpPickGameNight(players, playTime, dataController.getAllGames(false), gamesToExclude);
   }
 }

@@ -13,7 +13,7 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 import {Tabs, Tab} from 'material-ui/Tabs';
-import {pieColors} from "./util/graphs/GraphUtil";
+import {pieColors} from "./util/Colors";
 import {PieChart, Pie, Cell, Tooltip, Label} from "recharts";
 
 class Game extends Component {

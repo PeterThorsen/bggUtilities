@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import '../Main.css';
 import SpecifyGameNight from "./SpecifyGameNight";
 import LoadingScreen from "../util/LoadingScreen";
+import {Card, CardHeader, CardText} from 'material-ui/Card';
+import {greenColors} from "../util/Colors";
 
 class PickHelper extends Component {
 
@@ -25,8 +27,31 @@ class PickHelper extends Component {
 
                         />
                     : this.state.nonPickedGames.map(
-                        (suggestion) => {
-                            return suggestion.game.name + "; "
+                        (suggestion, i) => {
+                            suggestion.reasons.sort(
+                                (reason, otherReason) =>
+                                {
+                                    return otherReason.value - reason.value;
+                                });
+                            return <Card style={{backgroundColor: greenColors(i)}} key={"card-" + i}>
+                                <CardHeader
+                                    title={suggestion.game.name}
+                                    actAsExpander={true}
+                                    showExpandableButton={true}
+                                />
+                                <CardText expandable={true}>
+                                    {suggestion.reasons.map(
+                                        (reason, j) => {
+                                            return <Card key={"card-" + i + "-" + j}>
+                                                <CardHeader
+                                                    title={reason.reason + " (" + reason.value + ")"}
+                                                />
+                                            </Card>
+                                        })
+                                    }
+
+                                </CardText>
+                            </Card>
                         }
                     )
                 }
@@ -56,7 +81,6 @@ class PickHelper extends Component {
                 if (type.indexOf("text") !== 1) {
                     let result = request.responseText;
                     let jsonObj = JSON.parse(result);
-                    console.log(jsonObj)
 
                     this.setState({
                         loadingSuggestion: false,

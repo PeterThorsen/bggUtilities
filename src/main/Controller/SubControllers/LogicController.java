@@ -33,7 +33,7 @@ public class LogicController {
 
     // Calculate valid games and best combination for given time and players
     BoardGame[] allValid = gameNightUtil.getAllValidBoardgames(players, maxTime, allGames);
-    BoardGameCounter[] bestCombination = gameNightRecommender.buildBestGameNight(allValid, players, maxTime, magicComplexity, averageComplexityGivingAllPlayersEqualWeight);
+    BoardGameCounter[] bestCombination = gameNightRecommender.buildBestGameNight(allValid, players, maxTime, magicComplexity, averageComplexityGivingAllPlayersEqualWeight, false);
 
     // Return calculated data
     return new BoardGameSuggestion(bestCombination, allValid);
@@ -55,6 +55,12 @@ public class LogicController {
     BoardGame[] withoutExcludedGames = new BoardGame[allGames.length - gamesToExclude.length];
     int iteration = 0;
 
+    double[] complexities = gameNightUtil.calculateComplexities(players);
+    double minComplexity = complexities[0];
+    double maxComplexity = complexities[1];
+    double magicComplexity = complexities[2];
+    double averageComplexityGivingAllPlayersEqualWeight = complexities[3];
+
     outer:
     for (int i = 0; i < allGames.length; i++) {
       for (int j = 0; j < gamesToExclude.length; j++) {
@@ -66,6 +72,9 @@ public class LogicController {
       iteration++;
     }
     BoardGame[] allValid = gameNightUtil.getAllValidBoardgames(players, playTime, withoutExcludedGames);
-    return gameNightUtil.suggestReasonsForAllGames(allValid, players, playTime);
+
+    return gameNightRecommender.buildBestGameNight(allValid, players, playTime, magicComplexity, averageComplexityGivingAllPlayersEqualWeight, true);
+
+    //return gameNightUtil.suggestReasonsForAllGames(allValid, players, playTime);
   }
 }

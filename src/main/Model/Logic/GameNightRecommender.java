@@ -22,7 +22,7 @@ public class GameNightRecommender implements IGameNightRecommender {
   }
 
   @Override
-  public BoardGameCounter[] buildBestGameNight(BoardGame[] allValid, Player[] players, int maxTime, double magicComplexity, double averageComplexityGivingAllPlayersEqualWeight) {
+  public BoardGameCounter[] buildBestGameNight(BoardGame[] allValid, Player[] players, int maxTime, double magicComplexity, double averageComplexityGivingAllPlayersEqualWeight, boolean suggestAllGames) {
     BoardGameCounter[] gamesWithCounter = convertToCounter(allValid);
 
     for (int i = 0; i < gamesWithCounter.length; i++) {
@@ -31,12 +31,12 @@ public class GameNightRecommender implements IGameNightRecommender {
       calculatePlayerScore(players, current);
       calculateAbsoluteFactorsScore(current, maxTime, players, magicComplexity, averageComplexityGivingAllPlayersEqualWeight);
     }
-    return calculateSuggestedGames(gamesWithCounter, maxTime);
+    return calculateSuggestedGames(gamesWithCounter, maxTime, suggestAllGames);
   }
 
   @Override
   public BoardGameCounter[] getRecommendationCounterForSingleGame(BoardGame[] actualSuggestionAsGames, Player[] players, int maxTime, double magicComplexity, double averageComplexityGivingAllPlayersEqualWeight) {
-    return buildBestGameNight(actualSuggestionAsGames, players, maxTime, magicComplexity, averageComplexityGivingAllPlayersEqualWeight);
+    return buildBestGameNight(actualSuggestionAsGames, players, maxTime, magicComplexity, averageComplexityGivingAllPlayersEqualWeight, false);
   }
 
 
@@ -293,7 +293,7 @@ public class GameNightRecommender implements IGameNightRecommender {
     }
   }
 
-  private BoardGameCounter[] calculateSuggestedGames(BoardGameCounter[] gamesWithCounter, int maxTime) {
+  private BoardGameCounter[] calculateSuggestedGames(BoardGameCounter[] gamesWithCounter, int maxTime, boolean suggestAllGames) {
     ArrayList<BoardGameCounter> suggestedCombinationList = new ArrayList<>();
     gamesWithCounter = InsertionSort.sortGamesWithCounter(gamesWithCounter);
     int posOfFirstElement = 0;
@@ -311,7 +311,7 @@ public class GameNightRecommender implements IGameNightRecommender {
     }
     for (int i = posOfFirstElement + 1; i < gamesWithCounter.length; i++) {
       double withinTime = currentTimeSpent + gamesWithCounter[i].approximateTime;
-      if (maxTime >= withinTime) {
+      if (suggestAllGames || maxTime >= withinTime) {
         suggestedCombinationList.add(gamesWithCounter[i]);
         currentTimeSpent = withinTime;
       }

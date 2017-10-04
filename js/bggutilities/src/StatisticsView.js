@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {pieColors} from "./util/graphs/GraphUtil";
+import {pieColors} from "./util/Colors";
 import LoadingScreen from "./util/LoadingScreen";
 import {
     Bar, BarChart, Cell, Legend, Line, LineChart, Pie, PieChart, Tooltip, XAxis,
