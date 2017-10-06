@@ -250,6 +250,38 @@ public class Player {
     return totalRating / counter;
   }
 
+  public double getAverageRatingOfGamesBelowComplexity(double givenComplexity) {
+
+    double counter = 0;
+    double totalRating = 0;
+    for (BoardGame game : gameRatingsMap.keySet()) {
+      if (game.complexity > givenComplexity) continue;
+
+      counter++;
+      double currentRating = gameRatingsMap.get(game);
+      totalRating += currentRating;
+    }
+
+    return totalRating / counter;
+  }
+
+  public double getAverageRatingOfGamesBetweenComplexities(double lower, double higher) {
+
+    double counter = 0;
+    double totalRating = 0;
+    for (BoardGame game : gameRatingsMap.keySet()) {
+      if (game.complexity > higher || game.complexity < lower) continue;
+
+      counter++;
+      double currentRating = gameRatingsMap.get(game);
+      totalRating += currentRating;
+    }
+
+    if(totalRating == 0 || counter == 0) return 0;
+
+    return totalRating / counter;
+  }
+
   /**
    * @return a double between 1 and 5 inclusive indicating the users actual complexity level.
    */

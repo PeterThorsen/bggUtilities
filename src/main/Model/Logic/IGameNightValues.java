@@ -28,7 +28,7 @@ public interface IGameNightValues {
 
   double allPlayersHaveOnlyPlayedGamesOfCurrentCategory();
 
-  double weightOfOwnersPersonalRating();
+  double ownersPersonalRating(double personalRating);
 
   double ownersPersonalRatingIsHigherThanAverage(double personalRating, double averageRating);
 
@@ -41,4 +41,13 @@ public interface IGameNightValues {
   double timeSpentOnGame(double approximationTime);
 
   double gameBestWithCurrentNumberOfPlayers();
+  double gameRecommendedWithCurrentNumberOfPlayers();
+
+  double gameBadWithCurrentNumberOfPlayers();
+
+  double ratingOfSimilarlyComplexGames(double ratingOfSimilarlyComplexGames);
+
+  double comparablePlayersLikesThisGame(double othersAverageRating);
+
+  double thisGameWouldWorkAsSoleGameForGameNight();
 }

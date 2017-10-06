@@ -38,11 +38,11 @@ public class FacadeController {
   }
 
   public BoardGameSuggestion suggestGames(Player[] array, int maxTime) {
-    return logicController.suggestGamesForGameNight(array, maxTime, getAllGames(false));
+    return logicController.suggestGamesForGameNight(array, maxTime, getAllGames(false), dataController.getAllPlayers());
   }
 
   public BoardGameCounter[] getBestCombinationForGame(BoardGame[] actualSuggestionAsGames, Player[] players, int maxTime) {
-    return logicController.getBestCombinationForGame(actualSuggestionAsGames, players, maxTime);
+    return logicController.getBestCombinationForGame(actualSuggestionAsGames, players, maxTime, dataController.getAllPlayers());
   }
 
   public Play[] getSortedPlays(int id) {
@@ -62,6 +62,6 @@ public class FacadeController {
   }
 
   public BoardGameCounter[] helpPickGameNight(Player[] players, int playTime, int[] gamesToExclude) {
-    return logicController.helpPickGameNight(players, playTime, dataController.getAllGames(false), gamesToExclude);
+    return logicController.helpPickGameNight(players, playTime, dataController.getAllGames(false), gamesToExclude, dataController.getAllPlayers());
   }
 }

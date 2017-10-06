@@ -4,7 +4,7 @@ import '../Main.css';
 import SpecifyGameNight from "./SpecifyGameNight";
 import LoadingScreen from "../util/LoadingScreen";
 import {Card, CardHeader, CardText} from 'material-ui/Card';
-import {greenColors} from "../util/Colors";
+import {greenColors, redColors} from "../util/Colors";
 
 class PickHelper extends Component {
 
@@ -18,6 +18,22 @@ class PickHelper extends Component {
     }
 
     render() {
+        let averagePositiveValue = 0;
+
+        if(this.state.nonPickedGames) {
+            let counter = 0;
+            this.state.nonPickedGames.forEach(
+                (suggestion) => {
+                    if (suggestion.value > 0) {
+                        averagePositiveValue += suggestion.value;
+                        counter++;
+                    }
+                }
+            );
+
+            averagePositiveValue = averagePositiveValue / counter;
+        }
+
         return <div className="outer-block">
             <div className="main-width">
                 {!this.state.nonPickedGames ?
@@ -33,16 +49,16 @@ class PickHelper extends Component {
                                 {
                                     return otherReason.value - reason.value;
                                 });
-                            return <Card style={{backgroundColor: greenColors(i)}} key={"card-" + i}>
+                            return <Card style={{backgroundColor: suggestion.value > 0 ? suggestion.value > averagePositiveValue ? greenColors(i) : 'yellow' : redColors(i)}} key={"card-" + i}>
                                 <CardHeader
-                                    title={suggestion.game.name}
+                                    title={suggestion.game.name + " (" + suggestion.value + ")"}
                                     actAsExpander={true}
                                     showExpandableButton={true}
                                 />
                                 <CardText expandable={true}>
                                     {suggestion.reasons.map(
                                         (reason, j) => {
-                                            return <Card key={"card-" + i + "-" + j}>
+                                            return <Card key={"card-" + i + "-" + j}  style={{backgroundColor: suggestion.value > 0 ?greenColors(9999) : redColors(9999)}} >
                                                 <CardHeader
                                                     title={reason.reason + " (" + reason.value + ")"}
                                                 />

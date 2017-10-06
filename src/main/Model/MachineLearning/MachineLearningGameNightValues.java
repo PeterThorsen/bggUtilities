@@ -31,6 +31,11 @@ class MachineLearningGameNightValues implements IGameNightValues {
     values[18] = 16;
     values[19] = 0.33;
     values[20] = 25;
+    values[21] = 15;
+    values[22] = -200;
+    values[23] = -350;
+    values[24] = 50;
+    values[25] = 5;
   }
 
 
@@ -46,7 +51,7 @@ class MachineLearningGameNightValues implements IGameNightValues {
 
   @Override
   public double playerRating(double rating) {
-    if(rating < 5) {
+    if (rating < 5) {
       return (-100 + rating * 20) * values[2];
     }
     return (-50 + 10 * rating) * values[21];
@@ -78,8 +83,8 @@ class MachineLearningGameNightValues implements IGameNightValues {
   }
 
   @Override
-  public double weightOfOwnersPersonalRating() {
-    return values[8];
+  public double ownersPersonalRating(double personalRating) {
+    return values[8] * personalRating;
   }
 
   @Override
@@ -136,5 +141,36 @@ class MachineLearningGameNightValues implements IGameNightValues {
   @Override
   public double gameBestWithCurrentNumberOfPlayers() {
     return values[20];
+  }
+
+  @Override
+  public double gameRecommendedWithCurrentNumberOfPlayers() {
+    return values[21];
+  }
+
+  @Override
+  public double gameBadWithCurrentNumberOfPlayers() {
+    return values[22];
+  }
+
+  @Override
+  public double ratingOfSimilarlyComplexGames(double ratingOfSimilarlyComplexGames) {
+    if (ratingOfSimilarlyComplexGames < 6) {
+      return values[23] + values[24] * ratingOfSimilarlyComplexGames;
+    }
+    return ratingOfSimilarlyComplexGames * values[25];
+  }
+
+  @Override
+  public double comparablePlayersLikesThisGame(double othersAverageRating) {
+    if (othersAverageRating < 6) {
+      return values[23] + values[24] * othersAverageRating;
+    }
+    return othersAverageRating * values[25];
+  }
+
+  @Override
+  public double thisGameWouldWorkAsSoleGameForGameNight() {
+    return values[1];
   }
 }

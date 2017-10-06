@@ -16,8 +16,8 @@ public class ChosenGameNightValues implements IGameNightValues {
 
   @Override
   public double playerRating(double rating) {
-    if(rating < 5) {
-      return -100 + (rating * 20);
+    if (rating < 6) {
+      return -500 + (rating * 50);
     }
     return -50 + 10 * rating;
   }
@@ -48,8 +48,15 @@ public class ChosenGameNightValues implements IGameNightValues {
   }
 
   @Override
-  public double weightOfOwnersPersonalRating() {
-    return 2.0;
+  public double ownersPersonalRating(double personalRating) {
+    if (personalRating < 6) {
+      return -100 + personalRating * 10;
+    }
+    if(personalRating < 6.5) {
+      return 0;
+    }
+    double tempValue = personalRating - 6;
+    return tempValue * 8;
   }
 
   @Override
@@ -74,8 +81,7 @@ public class ChosenGameNightValues implements IGameNightValues {
     double differenceAverage = Math.abs(currentGameComplexity - averageComplexityGivingAllPlayersEqualWeight);
 
     double value = 0;
-    value += calculateDifference(differenceAverage);
-    value += calculateDifference(differenceMagic) * 1.5;
+    value += calculateDifference(differenceMagic);
     value /= 2;
     return value;
   }
@@ -117,7 +123,7 @@ public class ChosenGameNightValues implements IGameNightValues {
         value += 4;
       }
     }
-    return value;
+    return value * 2;
   }
 
   @Override
@@ -135,5 +141,38 @@ public class ChosenGameNightValues implements IGameNightValues {
   @Override
   public double gameBestWithCurrentNumberOfPlayers() {
     return 25;
+  }
+
+  @Override
+  public double gameRecommendedWithCurrentNumberOfPlayers() {
+    return 15;
+  }
+
+  @Override
+  public double gameBadWithCurrentNumberOfPlayers() {
+    return -200;
+  }
+
+  @Override
+  public double ratingOfSimilarlyComplexGames(double rating) {
+    if (rating < 6) {
+      return -350 + 50 * rating;
+    }
+    double tempValue = rating - 6;
+    return tempValue * 8;
+  }
+
+  @Override
+  public double comparablePlayersLikesThisGame(double rating) {
+    if (rating < 6) {
+      return -350 + 50 * rating;
+    }
+    double tempValue = rating - 6;
+    return tempValue * 8;
+  }
+
+  @Override
+  public double thisGameWouldWorkAsSoleGameForGameNight() {
+    return 12;
   }
 }
