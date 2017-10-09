@@ -15,8 +15,8 @@ class RightSideBar extends Component {
         return <div className="right-side-bar">
             <h3>Did you know?</h3>
             {factSource.map(
-                (fact) => {
-                    return <div>- {fact}</div>
+                (fact, i) => {
+                    return <div key={"fact-" + i}>- {fact}</div>
                 }
             )}
         </div>

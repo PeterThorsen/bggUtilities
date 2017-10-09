@@ -37,8 +37,8 @@ class LeftSideBar extends Component {
 
         return <div className="left-side-bar">
             {urls.map(
-                (object) => {
-                    return <FlatButton label={object.text} onTouchTap={() => {this.props.history.push(object.url)}}/>
+                (object, i) => {
+                    return <FlatButton key={"link-" + i} label={object.text} onTouchTap={() => {this.props.history.push(object.url)}}/>
                 }
             )}
         </div>
