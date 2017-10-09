@@ -1,0 +1,10 @@
+.left-side-bar {
+    position: absolute;
+    left: 0;
+    top: 60px;
+    bottom: 0;
+    overflow: auto;
+    display: flex;
+    flex-direction:column;
+    width: 200px;
+}

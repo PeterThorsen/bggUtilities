@@ -20,7 +20,7 @@ class PickHelper extends Component {
     render() {
         let averagePositiveValue = 0;
 
-        if(this.state.nonPickedGames) {
+        if (this.state.nonPickedGames) {
             let counter = 0;
             this.state.nonPickedGames.forEach(
                 (suggestion) => {
@@ -45,11 +45,12 @@ class PickHelper extends Component {
                     : this.state.nonPickedGames.map(
                         (suggestion, i) => {
                             suggestion.reasons.sort(
-                                (reason, otherReason) =>
-                                {
+                                (reason, otherReason) => {
                                     return otherReason.value - reason.value;
                                 });
-                            return <Card style={{backgroundColor: suggestion.value > 0 ? suggestion.value > averagePositiveValue ? greenColors(i) : 'yellow' : redColors(i)}} key={"card-" + i}>
+                            return <Card
+                                style={{backgroundColor: suggestion.value > 0 ? suggestion.value > averagePositiveValue ? greenColors(i) : 'yellow' : redColors(i)}}
+                                key={"card-" + i}>
                                 <CardHeader
                                     title={suggestion.game.name + " (" + suggestion.value.toFixed(2) + ")"}
                                     actAsExpander={true}
@@ -58,7 +59,8 @@ class PickHelper extends Component {
                                 <CardText expandable={true}>
                                     {suggestion.reasons.map(
                                         (reason, j) => {
-                                            return <Card key={"card-" + i + "-" + j}  style={{backgroundColor: suggestion.value > 0 ?greenColors(9999) : redColors(9999)}} >
+                                            return <Card key={"card-" + i + "-" + j}
+                                                         style={{backgroundColor: suggestion.value > 0 ? greenColors(9999) : redColors(9999)}}>
                                                 <CardHeader
                                                     title={reason.reason + " (" + reason.value.toFixed(2) + ")"}
                                                 />
