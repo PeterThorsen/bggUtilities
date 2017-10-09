@@ -6,7 +6,7 @@ package Model.Logic;
 public class ChosenGameNightValues implements IGameNightValues {
   @Override
   public double ownerHasPlayedGameLessThanFiveTimes() {
-    return 25;
+    return 15;
   }
 
   @Override
@@ -17,9 +17,13 @@ public class ChosenGameNightValues implements IGameNightValues {
   @Override
   public double playerRating(double rating) {
     if (rating < 6) {
-      return -500 + (rating * 50);
+      return -350 + (rating * 50);
     }
-    return -50 + 10 * rating;
+    if(rating < 6.5) {
+      return 0;
+    }
+    double tempValue = rating - 6;
+    return tempValue * 8;
   }
 
   @Override
@@ -50,9 +54,9 @@ public class ChosenGameNightValues implements IGameNightValues {
   @Override
   public double ownersPersonalRating(double personalRating) {
     if (personalRating < 6) {
-      return -100 + personalRating * 10;
+      return -350 + (personalRating * 50);
     }
-    if(personalRating < 6.5) {
+    if (personalRating < 6.5) {
       return 0;
     }
     double tempValue = personalRating - 6;
@@ -66,7 +70,7 @@ public class ChosenGameNightValues implements IGameNightValues {
 
   @Override
   public double averageRatingIsHigherThanOwnersPersonalRating(double personalRating, double averageRating) {
-    return 2 + (averageRating - personalRating) * 2;
+    return 0;
   }
 
   @Override
@@ -81,33 +85,48 @@ public class ChosenGameNightValues implements IGameNightValues {
     double differenceAverage = Math.abs(currentGameComplexity - averageComplexityGivingAllPlayersEqualWeight);
 
     double value = 0;
-    value += calculateDifference(differenceMagic);
+    value += calculateDifference(differenceMagic, currentGameComplexity > magicComplexity);
     value /= 2;
     return value;
   }
 
-  private double calculateDifference(double difference) {
+  private double calculateDifference(double difference, boolean higherComplexity) {
     double value = 0;
 
     // First, lower rating if complexity is too different
-    if (difference >= 0.8) {
-      value += -5;
+    if (higherComplexity) {
+      if (difference >= 0.8) {
+        value += -5;
 
+        if (difference >= 1.0) {
+          value += -4;
+        }
+        if (difference >= 1.2) {
+          value += -4;
+        }
+        if (difference >= 1.4) {
+          value += -4;
+        }
+        if (difference >= 1.5) {
+          value += -8;
+        }
+      }
+    } else {
       if (difference >= 1.0) {
-        value += -2;
+        value += -3;
       }
       if (difference >= 1.2) {
-        value += -2;
+        value += -3;
       }
       if (difference >= 1.4) {
-        value += -2;
+        value += -3;
       }
       if (difference >= 1.5) {
-        value += -4;
+        value += -6;
       }
     }
     // If low difference, recommend more!
-    else if (difference <= 0.8) {
+    if (difference <= 0.8) {
       value += 5;
 
       if (difference <= 0.5) {
@@ -174,5 +193,10 @@ public class ChosenGameNightValues implements IGameNightValues {
   @Override
   public double thisGameWouldWorkAsSoleGameForGameNight() {
     return 12;
+  }
+
+  @Override
+  public double cantPlayGameWithinTimeLimit() {
+    return -100;
   }
 }

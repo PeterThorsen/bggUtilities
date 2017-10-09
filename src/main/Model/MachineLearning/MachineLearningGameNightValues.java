@@ -31,11 +31,12 @@ class MachineLearningGameNightValues implements IGameNightValues {
     values[18] = 16;
     values[19] = 0.33;
     values[20] = 25;
-    values[21] = 15;
-    values[22] = -200;
-    values[23] = -350;
-    values[24] = 50;
-    values[25] = 5;
+    values[23] = 15;
+    values[24] = -200;
+    values[25] = -350;
+    values[26] = 50;
+    values[27] = 5;
+    values[28] = -100;
   }
 
 
@@ -145,32 +146,37 @@ class MachineLearningGameNightValues implements IGameNightValues {
 
   @Override
   public double gameRecommendedWithCurrentNumberOfPlayers() {
-    return values[21];
+    return values[23];
   }
 
   @Override
   public double gameBadWithCurrentNumberOfPlayers() {
-    return values[22];
+    return values[24];
   }
 
   @Override
   public double ratingOfSimilarlyComplexGames(double ratingOfSimilarlyComplexGames) {
     if (ratingOfSimilarlyComplexGames < 6) {
-      return values[23] + values[24] * ratingOfSimilarlyComplexGames;
+      return values[25] + values[26] * ratingOfSimilarlyComplexGames;
     }
-    return ratingOfSimilarlyComplexGames * values[25];
+    return ratingOfSimilarlyComplexGames * values[27];
   }
 
   @Override
   public double comparablePlayersLikesThisGame(double othersAverageRating) {
     if (othersAverageRating < 6) {
-      return values[23] + values[24] * othersAverageRating;
+      return values[25] + values[26] * othersAverageRating;
     }
-    return othersAverageRating * values[25];
+    return othersAverageRating * values[27];
   }
 
   @Override
   public double thisGameWouldWorkAsSoleGameForGameNight() {
     return values[1];
+  }
+
+  @Override
+  public double cantPlayGameWithinTimeLimit() {
+    return values[28];
   }
 }

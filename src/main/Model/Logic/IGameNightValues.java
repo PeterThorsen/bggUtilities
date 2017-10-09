@@ -50,4 +50,6 @@ public interface IGameNightValues {
   double comparablePlayersLikesThisGame(double othersAverageRating);
 
   double thisGameWouldWorkAsSoleGameForGameNight();
+
+  double cantPlayGameWithinTimeLimit();
 }

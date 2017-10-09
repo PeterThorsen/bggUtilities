@@ -4,6 +4,7 @@ import Model.Structure.*;
 import Util.Sorting.InsertionSort;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.Date;
 public class GameNightRecommender implements IGameNightRecommender {
 
   private final IGameNightValues gameNightValues;
+  private DecimalFormat decimalFormatter = new DecimalFormat("#.##");
 
   public GameNightRecommender(IGameNightValues gameNightValues) {
     this.gameNightValues = gameNightValues;
@@ -137,7 +139,7 @@ public class GameNightRecommender implements IGameNightRecommender {
         value = value / currentPlayersLength;
         if (!comparablePlayersHavePlayedThisGame) value *= 2;
         gameCounter.value += value;
-        gameCounter.reasons.add(new Reason(player.name + " rates similarly complex games " + ratingOfSimilarlyComplexGames + "/10 on average.", value));
+        gameCounter.reasons.add(new Reason(player.name + " rates similarly complex games " + decimalFormatter.format(ratingOfSimilarlyComplexGames) + "/10 on average.", value));
       }
 
       if (comparablePlayersHavePlayedThisGame) {
@@ -145,7 +147,7 @@ public class GameNightRecommender implements IGameNightRecommender {
         if (!hasPlayedSimilarGames) value *= 2;
         value = value / currentPlayersLength;
         gameCounter.value += value;
-        gameCounter.reasons.add(new Reason("While " + player.name + " hasn't played this game, comparable players rated it " + (othersRatings / counter) + "/10 on average.", value));
+        gameCounter.reasons.add(new Reason("While " + player.name + " hasn't played this game, comparable players rated it " + decimalFormatter.format((othersRatings / counter))+ "/10 on average.", value));
       }
 
 
@@ -275,7 +277,7 @@ public class GameNightRecommender implements IGameNightRecommender {
       personalRating = Double.valueOf(personalRatingString);
       double ownersRatingScore = gameNightValues.ownersPersonalRating(personalRating);
       current.value += ownersRatingScore;
-      current.reasons.add(new Reason("You rated " + current.game.name + " " + personalRatingString + "/10.", ownersRatingScore));
+      current.reasons.add(new Reason("You rated " + current.game.name + " " + decimalFormatter.format(personalRating) + "/10.", ownersRatingScore));
 
       String averageRatingString = currentGame.averageRating;
       if (!averageRatingString.equals("N/A")) {
@@ -283,12 +285,14 @@ public class GameNightRecommender implements IGameNightRecommender {
         double value;
         if (averageRating < personalRating) {
           value = gameNightValues.ownersPersonalRatingIsHigherThanAverage(personalRating, averageRating);
-
+          current.value += value;
+          current.reasons.add(new Reason("Owners personal rating is higher than average rating.", value));
         } else {
           value = gameNightValues.averageRatingIsHigherThanOwnersPersonalRating(personalRating, averageRating);
+          current.value += value;
+          current.reasons.add(new Reason("The average rating for " + current.game.name + " is higher than your rating of " + decimalFormatter.format(personalRating) + ".", value));
         }
-        current.value += value;
-        current.reasons.add(new Reason("Owners personal rating is higher than average rating.", value));
+
 
       }
     }
@@ -330,12 +334,17 @@ public class GameNightRecommender implements IGameNightRecommender {
       current.value += value;
       current.reasons.add(new Reason("The game should take approximately " + approximationTime + " minutes.", value));
     }
+    else {
+      double value = gameNightValues.cantPlayGameWithinTimeLimit();
+      current.value += value;
+      current.reasons.add(new Reason("As " + current.game.name + " takes approximately " + approximationTime + " minutes to play, you shouldn't play this game today.", value));
+    }
 
     // How fitting is the complexity
     double currentComplexity = currentGame.complexity;
     double value = gameNightValues.complexityDifference(currentComplexity, averageComplexityGivingAllPlayersEqualWeight, magicComplexity);
     current.value += value;
-    current.reasons.add(new Reason("These players would prefer games around " + magicComplexity + "/5 in complexity. This game has a rating of " + currentComplexity + "/5.", value));
+    current.reasons.add(new Reason("These players would prefer games around " + decimalFormatter.format(magicComplexity) + "/5 in complexity. This game has a rating of " + decimalFormatter.format(currentComplexity) + "/5.", value));
 
     if (!suggestAllGames) {
       value = gameNightValues.timeSpentOnGame(approximationTime);

@@ -51,7 +51,7 @@ class PickHelper extends Component {
                                 });
                             return <Card style={{backgroundColor: suggestion.value > 0 ? suggestion.value > averagePositiveValue ? greenColors(i) : 'yellow' : redColors(i)}} key={"card-" + i}>
                                 <CardHeader
-                                    title={suggestion.game.name + " (" + suggestion.value + ")"}
+                                    title={suggestion.game.name + " (" + suggestion.value.toFixed(2) + ")"}
                                     actAsExpander={true}
                                     showExpandableButton={true}
                                 />
@@ -60,7 +60,7 @@ class PickHelper extends Component {
                                         (reason, j) => {
                                             return <Card key={"card-" + i + "-" + j}  style={{backgroundColor: suggestion.value > 0 ?greenColors(9999) : redColors(9999)}} >
                                                 <CardHeader
-                                                    title={reason.reason + " (" + reason.value + ")"}
+                                                    title={reason.reason + " (" + reason.value.toFixed(2) + ")"}
                                                 />
                                             </Card>
                                         })
