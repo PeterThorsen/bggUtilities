@@ -48,57 +48,7 @@ class PlayersView extends Component {
                         }
                     );
 
-                    let data = [];
-                    for(let i = 0; i< 6; i++) {
-                        data.push([]);
-                    }
-
-                    jsonObj.forEach(
-                        (player) => {
-                            data[0].push(player.name);
-                            data[1].push(player.totalPlays);
-                            data[2].push(parseFloat(player.minComplexity).toFixed(2));
-                            data[3].push(parseFloat(player.maxComplexity).toFixed(2));
-                            data[4].push(parseFloat(player.averageComplexity).toFixed(2));
-
-                            let magicComplexity = parseFloat(player.magicComplexity).toFixed(2);
-                            data[5].push(magicComplexity !== '0.00' ? magicComplexity : "N/A");
-                        }
-                    );
-
-                    let tableData = [
-                        {
-                            title: "Name",
-                            sortFunction: "string",
-                            data: data[0]
-                        },
-                        {
-                            title: "Plays",
-                            sortFunction: "number",
-                            data: data[1]
-                        },
-                        {
-                            title: "Min",
-                            sortFunction: "number",
-                            data: data[2]
-                        },
-                        {
-                            title: "Max",
-                            sortFunction: "number",
-                            data: data[3]
-                        },
-                        {
-                            title: "Average",
-                            sortFunction: "number",
-                            data: data[4]
-                        },
-                        {
-                            title: "Magic",
-                            sortFunction: "number",
-                            data: data[5]
-                        },
-
-                    ];
+                    let tableData = this.getTableData(jsonObj);
 
                     this.setState({
                         found: true,
@@ -108,6 +58,61 @@ class PlayersView extends Component {
                 }
             }
         }.bind(this);
+    }
+
+    getTableData(jsonObj) {
+
+        let data = [];
+        for(let i = 0; i< 6; i++) {
+            data.push([]);
+        }
+
+        jsonObj.forEach(
+            (player) => {
+                data[0].push(player.name);
+                data[1].push(player.totalPlays);
+                data[2].push(parseFloat(player.minComplexity).toFixed(2));
+                data[3].push(parseFloat(player.maxComplexity).toFixed(2));
+                data[4].push(parseFloat(player.averageComplexity).toFixed(2));
+
+                let magicComplexity = parseFloat(player.magicComplexity).toFixed(2);
+                data[5].push(magicComplexity !== '0.00' ? magicComplexity : "N/A");
+            }
+        );
+
+        return [
+            {
+                title: "Name",
+                sortFunction: "string",
+                data: data[0]
+            },
+            {
+                title: "Plays",
+                sortFunction: "number",
+                data: data[1]
+            },
+            {
+                title: "Min",
+                sortFunction: "number",
+                data: data[2]
+            },
+            {
+                title: "Max",
+                sortFunction: "number",
+                data: data[3]
+            },
+            {
+                title: "Average",
+                sortFunction: "number",
+                data: data[4]
+            },
+            {
+                title: "Magic",
+                sortFunction: "number",
+                data: data[5]
+            },
+
+        ];
     }
 }
 
