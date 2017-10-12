@@ -16,8 +16,9 @@ class Header extends Component {
                 }}>bggUtilities
                 </div>
             </div>
+            {/*
             <LeftSideBar />
-            <RightSideBar/>
+            <RightSideBar/>*/}
         </div>
     }
 }
