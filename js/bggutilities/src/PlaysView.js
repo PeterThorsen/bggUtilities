@@ -57,7 +57,7 @@ class PlaysView extends Component {
             );
 
             mainBlock = <div className="main-block">
-                <Table style={{width: 600}}>
+                <Table style={{width: 700}}>
                     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                         <TableRow>
                             <TableHeaderColumn style={{width: 60}}>Date</TableHeaderColumn>

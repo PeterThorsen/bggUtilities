@@ -10,7 +10,7 @@ class MainView extends Component {
         return <div className="main-block">
             <GridList cols={2}
                       style={{
-                          width: 600,
+                          width: 700,
                           overflow: 'hidden',
                           display: 'flex',
                           overflowY: 'auto'

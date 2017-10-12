@@ -27,15 +27,13 @@ class SortableTable extends Component {
         this.state = {
             isReversed: false,
             sortByColumn: 0,
-            currentTableData: deepSlice(this.props.tableData),
+            currentTableData: this.sort(0, deepSlice(this.props.tableData), sortArrays),
             sortArrays: sortArrays,
             originalData: deepSlice(this.props.tableData)
         };
     }
 
     render() {
-
-
         let buttonStyle = {
             textAlign: 'left',
             marginLeft: -15
@@ -51,12 +49,16 @@ class SortableTable extends Component {
                           onTouchTap={() => this.goToLink(tableData, i)}>
                     {tableData.map(
                         (dataPoint, j) => {
-                            return <TableRowColumn
-                                key={"table-data-point-" + i + "-" + j}
-                                style={{wordWrap: 'break-word', whiteSpace: 'normal'}}
-                            >
-                                {dataPoint.data[i]}
-                            </TableRowColumn>;
+                            if (dataPoint.title !== "id") {
+
+                                return <TableRowColumn
+                                    key={"table-data-point-" + i + "-" + j}
+                                    style={{wordWrap: 'break-word', whiteSpace: 'normal'}}
+                                >
+                                    {dataPoint.data[i]}
+                                </TableRowColumn>;
+                            }
+                            else return undefined;
                         }
                     )}
                 </TableRow>);
@@ -68,16 +70,19 @@ class SortableTable extends Component {
                     <TableRow>
                         {this.state.currentTableData.map(
                             (tableHeader, i) => {
-                                return <TableHeaderColumn key={"header-column-" + i} style={{
-                                    wordWrap: 'break-word',
-                                    whiteSpace: 'normal'
-                                }}>
-                                    <FlatButton label={tableHeader.title} fullWidth={true}
-                                                labelStyle={{textTransform: 'none'}}
-                                                style={buttonStyle}
-                                                hoverColor="none" disableTouchRipple={true}
-                                                onTouchTap={this.sort.bind(this, i)}/>
-                                </TableHeaderColumn>
+                                if (tableHeader.title !== "id") {
+                                    return <TableHeaderColumn key={"header-column-" + i} style={{
+                                        wordWrap: 'break-word',
+                                        whiteSpace: 'normal'
+                                    }}>
+                                        <FlatButton label={tableHeader.title} fullWidth={true}
+                                                    labelStyle={{textTransform: 'none'}}
+                                                    style={buttonStyle}
+                                                    hoverColor="none" disableTouchRipple={true}
+                                                    onTouchTap={this.sort.bind(this, i)}/>
+                                    </TableHeaderColumn>
+                                }
+                                else return undefined;
                             }
                         )}
                     </TableRow>
@@ -89,14 +94,16 @@ class SortableTable extends Component {
         </div>;
     }
 
-    sort(column) {
+    sort(column, initialTable, sortArrays) {
+        let thisTable = initialTable ? initialTable : this.state.originalData;
+        sortArrays = sortArrays ? sortArrays : this.state.sortArrays;
         let newData = [];
-        for (let i = 0; i < this.state.sortArrays.length; i++) {
+        for (let i = 0; i < sortArrays.length; i++) {
             newData.push([]);
         }
-        let sortingArray = deepSlice(this.state.sortArrays);
+        let sortingArray = deepSlice(sortArrays);
         sortingArray = sortingArray[column];
-        let shouldReverse = column === this.state.sortByColumn && !this.state.isReversed;
+        let shouldReverse = !initialTable && column === this.state.sortByColumn && !this.state.isReversed;
 
         if (shouldReverse) {
             sortingArray.reverse();
@@ -106,25 +113,28 @@ class SortableTable extends Component {
             let newDataArray = newData[i];
             sortingArray.forEach(
                 (position) => {
-                    let dataSlice = deepSlice(this.state.originalData[i].data);
+                    let dataSlice = deepSlice(thisTable[i].data);
                     newDataArray.push(dataSlice[position]);
                 }
             );
         }
 
 
-        let saveData = deepSlice(this.state.originalData);
+        let saveData = deepSlice(initialTable);
         saveData.forEach(
             (dataPoint, i) => {
                 dataPoint.data = newData[i];
             }
         );
+        if(initialTable) return saveData;
+        else {
+            this.setState({
+                currentTableData: saveData,
+                sortByColumn: column,
+                isReversed: shouldReverse
+            })
+        }
 
-        this.setState({
-            currentTableData: saveData,
-            sortByColumn: column,
-            isReversed: shouldReverse
-        })
     }
 
     goToLink(tableData, i) {
@@ -138,7 +148,12 @@ class SortableTable extends Component {
                 }
             )
         }
+        else if (this.props.linkSuffixFunction) {
+            this.props.linkSuffixFunction(tableData, i);
+            return;
+        }
         this.props.history.push(this.props.link + linkSuffix);
+
     }
 
     /*
@@ -168,7 +183,12 @@ class SortableTable extends Component {
                 return sliceOfOriginalData[a].localeCompare(sliceOfOriginalData[b]);
             });
             return indices;
-
+        }
+        else if (sortFunction === "date") {
+            indices.sort(function (a, b) {
+                return sliceOfOriginalData[b].localeCompare(sliceOfOriginalData[a]);
+            });
+            return indices;
         }
     }
 

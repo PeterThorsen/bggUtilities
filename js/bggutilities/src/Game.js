@@ -143,7 +143,7 @@ class Game extends Component {
             }
         );
         return <div className="main-block">
-            <Table style={{width: 600}}>
+            <Table style={{width: 700}}>
                 <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                     <TableRow>
                         <TableHeaderColumn>Date</TableHeaderColumn>
@@ -211,7 +211,7 @@ class Game extends Component {
         }
 
         return <div className="main-block">
-            <Table style={{width: 600}}>
+            <Table style={{width: 700}}>
                 <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                     <TableRow>
                         <TableHeaderColumn>Name</TableHeaderColumn>

@@ -72,7 +72,7 @@ class GamesView extends Component {
                                 <TableRowColumn style={{width: 60}}>{parseFloat(game.personalRating).toFixed(2)}</TableRowColumn>
                             </TableRow>)
                     });
-                mainBlock = <Table style={{width: 600}}>
+                mainBlock = <Table style={{width: 700}}>
                     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                         <TableRow>
                             <TableHeaderColumn style={{width: 120}}>Name</TableHeaderColumn>
@@ -102,7 +102,7 @@ class GamesView extends Component {
 
                 mainBlock = <GridList cols={4}
                                       style={{
-                                          width: 600,
+                                          width: 700,
                                           overflow: 'hidden',
                                           display: 'flex',
                                           overflowY: 'auto'
