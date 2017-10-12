@@ -15,6 +15,7 @@ class SortableTable extends Component {
 
     constructor(props) {
         super(props);
+        this.sort.bind(this)
 
         let sortArrays = [];
         let tableData = deepSlice(this.props.tableData);
@@ -23,11 +24,11 @@ class SortableTable extends Component {
                 sortArrays.push(this.getSortedArray(dataPoint));
             }
         );
-
+        let currentTableData = this.sort(0, deepSlice(this.props.tableData), sortArrays);
         this.state = {
             isReversed: false,
             sortByColumn: 0,
-            currentTableData: this.sort(0, deepSlice(this.props.tableData), sortArrays),
+            currentTableData: currentTableData,
             sortArrays: sortArrays,
             originalData: deepSlice(this.props.tableData)
         };
@@ -79,7 +80,7 @@ class SortableTable extends Component {
                                                     labelStyle={{textTransform: 'none'}}
                                                     style={buttonStyle}
                                                     hoverColor="none" disableTouchRipple={true}
-                                                    onTouchTap={this.sort.bind(this, i)}/>
+                                                    onTouchTap={() => this.sort(i)}/>
                                     </TableHeaderColumn>
                                 }
                                 else return undefined;
@@ -120,13 +121,13 @@ class SortableTable extends Component {
         }
 
 
-        let saveData = deepSlice(initialTable);
+        let saveData = initialTable ? deepSlice(initialTable) : deepSlice(this.state.originalData);
         saveData.forEach(
             (dataPoint, i) => {
                 dataPoint.data = newData[i];
             }
         );
-        if(initialTable) return saveData;
+        if (initialTable) return saveData;
         else {
             this.setState({
                 currentTableData: saveData,
@@ -163,7 +164,7 @@ class SortableTable extends Component {
     * data (array)
     *
     *
-    * Returns a list of indices pointint to the original order
+    * Returns a list of indices pointing to the original order
     * */
     getSortedArray(dataPoint) {
         let sortFunction = dataPoint.sortFunction;

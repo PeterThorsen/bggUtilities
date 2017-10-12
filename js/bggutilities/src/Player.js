@@ -5,7 +5,7 @@ import Divider from 'material-ui/Divider';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import {Redirect} from "react-router-dom";
 import PlayerInfo from "./PlayerInfo";
-import {deepSlice} from "./util/GeneralUtil";
+import {deepSlice, getPlayersString} from "./util/GeneralUtil";
 import SortableTable from "./util/SortableTable";
 
 class Player extends Component {
@@ -150,7 +150,7 @@ class Player extends Component {
             (play) => {
                 data[0].push(play.date);
                 data[1].push(play.game.name);
-                data[2].push(this.getPlayersString(play.playerNames));
+                data[2].push(getPlayersString(play.playerNames));
                 data[3].push(play.noOfPlays);
                 data[4].push(play.id);
             }
@@ -241,17 +241,6 @@ class Player extends Component {
             }
         }
         return arr;
-    }
-
-    getPlayersString(playerNames) {
-        let players = "";
-        playerNames.forEach(
-            (otherPlayer) => {
-                players += otherPlayer + ", ";
-            }
-        );
-        players = players.substring(0, players.length - 2);
-        return players;
     }
 }
 

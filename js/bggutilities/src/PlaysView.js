@@ -1,15 +1,8 @@
 import React, {Component} from 'react';
-import {
-    Table,
-    TableBody,
-    TableHeader,
-    TableHeaderColumn,
-    TableRow,
-    TableRowColumn,
-} from 'material-ui/Table';
 import LoadingScreen from './util/LoadingScreen';
 import './Main.css';
-import {withRouter} from "react-router-dom";
+import {getPlayersString} from "./util/GeneralUtil";
+import SortableTable from "./util/SortableTable";
 
 class PlaysView extends Component {
 
@@ -17,7 +10,7 @@ class PlaysView extends Component {
         super(props);
         this.state = {
             found: false,
-            result: undefined,
+            tableData: undefined,
         }
     }
 
@@ -29,54 +22,11 @@ class PlaysView extends Component {
             mainBlock = <LoadingScreen/>
         }
         else {
-            let result = [];
-            let rowNumber = 0;
-            this.state.result.forEach(
-                (play) => {
-                    let playerNames = play.playerNames[0];
-                    for (let i = 1; i < play.playerNames.length; i++) {
-                        playerNames += ", " + play.playerNames[i];
-                    }
-                    result.push(
-                        <TableRow key={"row-" + rowNumber} selectable={false} onTouchTap={() => this.goToPlay(play)}>
-                            <TableRowColumn style={{width: 60}}>{play.date}</TableRowColumn>
-                            <TableRowColumn style={{
-                                width: 120,
-                                wordWrap: 'break-word',
-                                whiteSpace: 'normal'
-                            }}>{play.game.name}</TableRowColumn>
-                            <TableRowColumn style={{
-                                width: 150,
-                                wordWrap: 'break-word',
-                                whiteSpace: 'normal'
-                            }}>{playerNames}</TableRowColumn>
-                            <TableRowColumn style={{width: 30}}>{play.noOfPlays}</TableRowColumn>
-                        </TableRow>);
-                    rowNumber++;
-                }
-            );
-
-            mainBlock = <div className="main-block">
-                <Table style={{width: 700}}>
-                    <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-                        <TableRow>
-                            <TableHeaderColumn style={{width: 60}}>Date</TableHeaderColumn>
-                            <TableHeaderColumn style={{width: 120}}>Name</TableHeaderColumn>
-                            <TableHeaderColumn style={{width: 150}}>Players</TableHeaderColumn>
-                            <TableHeaderColumn style={{width: 30}}># Plays</TableHeaderColumn>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody displayRowCheckbox={false}>
-                        {result}
-                    </TableBody>
-                </Table>
-            </div>
+            mainBlock = <SortableTable tableData={this.state.tableData} link="/plays/" linkSuffixHandler="id"/>
         }
-
         return <div>
             {mainBlock}
         </div>
-
     }
 
     getPlays() {
@@ -90,16 +40,58 @@ class PlaysView extends Component {
                 if (type.indexOf("text") !== 1) {
                     let result = request.responseText;
                     let jsonObj = JSON.parse(result);
-                    this.setState({found: true, result: jsonObj});
+                    let tableData = this.buildTableData(jsonObj);
+                    this.setState({found: true, tableData: tableData});
                 }
             }
         }.bind(this);
     }
 
-    goToPlay(play) {
-        this.props.history.push("/plays/" + play.id);
+    buildTableData(allPlays) {
+        let data = [];
+        for (let i = 0; i < 5; i++) {
+            data.push([]);
+        }
+
+        allPlays.forEach(
+            (play) => {
+                data[0].push(play.date);
+                data[1].push(play.game.name);
+                data[2].push(getPlayersString(play.playerNames));
+                data[3].push(play.noOfPlays);
+                data[4].push(play.id);
+            }
+        );
+
+        return [
+            {
+                title: "Date",
+                sortFunction: "date",
+                data: data[0]
+            },
+            {
+                title: "Name",
+                sortFunction: "string",
+                data: data[1]
+            },
+            {
+                title: "Players",
+                sortFunction: "string",
+                data: data[2]
+            },
+            {
+                title: "Plays",
+                sortFunction: "number",
+                data: data[3]
+            },
+            {
+                title: "id",
+                sortFunction: "none",
+                data: data[4]
+            }
+        ];
     }
 }
 
 
-export default withRouter(PlaysView);
+export default PlaysView;

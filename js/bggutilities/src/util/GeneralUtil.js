@@ -6,3 +6,14 @@ export function toTitleCase(str)
 export function deepSlice(items) {
     return JSON.parse(JSON.stringify(items))
 }
+
+export function getPlayersString(playerNames) {
+    let players = "";
+    playerNames.forEach(
+        (otherPlayer) => {
+            players += otherPlayer + ", ";
+        }
+    );
+    players = players.substring(0, players.length - 2);
+    return players;
+}
