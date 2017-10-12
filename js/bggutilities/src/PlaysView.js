@@ -12,13 +12,13 @@ class PlaysView extends Component {
             found: false,
             tableData: undefined,
         }
+        this.getPlays();
     }
 
     render() {
         let mainBlock = <div/>;
 
         if (!this.state.found) {
-            this.getPlays();
             mainBlock = <LoadingScreen/>
         }
         else {

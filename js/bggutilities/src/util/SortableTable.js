@@ -160,7 +160,7 @@ class SortableTable extends Component {
     /*
     * DataPoint should have form:
     * title (string)
-    * sortFunction (string), either "string" or "number"
+    * sortFunction (string), either none, string, number, date or minmax
     * data (array)
     *
     *
@@ -190,6 +190,52 @@ class SortableTable extends Component {
                 return sliceOfOriginalData[b].localeCompare(sliceOfOriginalData[a]);
             });
             return indices;
+        }
+        else if (sortFunction === "minmax") {
+            let indicesMax = indices.slice();
+            indices.sort(
+                (x, y) => {
+                    let firstX = -1;
+                    let firstY = -1;
+                    if (typeof sliceOfOriginalData[x] !== "number") {
+                        firstX = sliceOfOriginalData[x].split(" - ")[0];
+                    }
+                    else {
+                        firstX = sliceOfOriginalData[x];
+                    }
+
+                    if (typeof sliceOfOriginalData[y] !== "number") {
+                        firstY = sliceOfOriginalData[y].split(" - ")[0];
+                    }
+                    else {
+                        firstY = sliceOfOriginalData[y];
+                    }
+                    return firstY - firstX;
+                }
+            );
+            indicesMax.sort(
+                (x, y) => {
+                    let secondX = -1;
+                    let secondY = -1;
+                    if (typeof sliceOfOriginalData[x] !== "number") {
+                        secondX = sliceOfOriginalData[x].split(" - ")[1];
+                    }
+                    else {
+                        secondX = sliceOfOriginalData[x];
+                    }
+
+                    if (typeof sliceOfOriginalData[y] !== "number") {
+                        secondY = sliceOfOriginalData[y].split(" - ")[1];
+                    }
+                    else {
+                        secondY = sliceOfOriginalData[y];
+                    }
+                    return secondY - secondX;
+                }
+            );
+
+            return [indices, indicesMax] // todo! handle this on the sorting end (look at isReverse to decide
+            //todo  between min(0) and max(1)
         }
     }
 

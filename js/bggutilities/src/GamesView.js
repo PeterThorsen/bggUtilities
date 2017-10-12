@@ -1,18 +1,11 @@
 import React, {Component} from 'react';
 import LoadingScreen from './util/LoadingScreen';
 import {GridList, GridTile} from 'material-ui/GridList';
-import {
-    Table,
-    TableBody,
-    TableHeader,
-    TableHeaderColumn,
-    TableRow,
-    TableRowColumn,
-} from 'material-ui/Table';
 import Toggle from 'material-ui/Toggle';
 import "./Main.css";
 import "./GamesView.css";
 import {withRouter} from "react-router-dom";
+import SortableTable from "./util/SortableTable";
 
 class GamesView extends Component {
 
@@ -21,28 +14,16 @@ class GamesView extends Component {
         this.state = {
             found: false,
             result: undefined,
+            tableData: undefined,
             useExpansion: false,
             useDataView: false
-        }
+        };
+        this.downloadGames();
     }
 
     render() {
         let mainBlock = <div/>;
         if (!this.state.found) {
-            var request = new XMLHttpRequest();
-            request.timeout = 60000;
-            request.open('GET', 'http://localhost:8080/getGames?expansions=' + this.state.useExpansion, true);
-            request.send(null);
-            request.onreadystatechange = function () {
-                if (request.readyState === 4 && request.status === 200) {
-                    var type = request.getResponseHeader('Content-Type');
-                    if (type.indexOf("text") !== 1) {
-                        let result = request.responseText;
-                        let jsonObj = JSON.parse(result);
-                        this.setState({found: true, result: jsonObj});
-                    }
-                }
-            }.bind(this);
             mainBlock = <LoadingScreen/>;
         }
 
@@ -50,43 +31,7 @@ class GamesView extends Component {
             let result = [];
 
             if (this.state.useDataView) {
-                this.state.result.forEach(
-                    (game) => {
-
-                        let players = game.minPlayers;
-                        if (game.minPlayers !== game.maxPlayers) players += " - " + game.maxPlayers;
-
-                        let playTime = game.minPlaytime;
-                        if (game.minPlaytime !== game.maxPlaytime) playTime += " - " + game.maxPlaytime;
-
-                        result.push(
-                            <TableRow key={"row-" + game.id} selectable={false} onTouchTap={() => this.goToGame(game)}>
-                                <TableRowColumn style={{
-                                    width: 120,
-                                    wordWrap: 'break-word',
-                                    whiteSpace: 'normal'
-                                }}>{game.name}</TableRowColumn>
-                                <TableRowColumn style={{width: 60}}>{players}</TableRowColumn>
-                                <TableRowColumn style={{width: 60}}>{playTime}</TableRowColumn>
-                                <TableRowColumn style={{width: 60}}>{game.numPlays}</TableRowColumn>
-                                <TableRowColumn style={{width: 60}}>{parseFloat(game.personalRating).toFixed(2)}</TableRowColumn>
-                            </TableRow>)
-                    });
-                mainBlock = <Table style={{width: 700}}>
-                    <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-                        <TableRow>
-                            <TableHeaderColumn style={{width: 120}}>Name</TableHeaderColumn>
-                            <TableHeaderColumn style={{width: 60}}>Players</TableHeaderColumn>
-                            <TableHeaderColumn style={{width: 60}}>Playtime</TableHeaderColumn>
-                            <TableHeaderColumn style={{width: 60}}># Plays</TableHeaderColumn>
-                            <TableHeaderColumn style={{width: 60}}>Rating</TableHeaderColumn>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody displayRowCheckbox={false}>
-                        {result}
-                    </TableBody>
-                </Table>;
-
+                mainBlock = <SortableTable tableData={this.state.tableData} link="/games/" linkSuffixHandler="id"/>
             }
 
             else {
@@ -144,9 +89,93 @@ class GamesView extends Component {
         </div>
     }
 
+    buildTableData(allGames) {
+        let data = [];
+        for (let i = 0; i < 6; i++) {
+            data.push([]);
+        }
+
+        allGames.forEach(
+            (game) => {
+                data[0].push(game.name);
+                let players = game.minPlayers;
+                if(game.minPlayers !== game.maxPlayers) {
+                    players +=  " - " + game.maxPlayers;
+                }
+                data[1].push(players);
+                let playTime = game.minPlaytime;
+                if(game.minPlaytime !== game.maxPlaytime) {
+                    if(playTime === 0) {
+                        playTime = game.maxPlaytime;
+                    }
+                    else {
+                        playTime += " - " + game.maxPlaytime;
+                    }
+                }
+                data[2].push(playTime);
+                data[3].push(game.numPlays);
+                data[4].push(game.personalRating);
+                data[5].push(game.id);
+
+            }
+        );
+
+        return [
+            {
+                title: "Name",
+                sortFunction: "string",
+                data: data[0]
+            },
+            {
+                title: "Players",
+                sortFunction: "minmax",
+                data: data[1]
+            },
+            {
+                title: "Playtime",
+                sortFunction: "minmax",
+                data: data[2]
+            },
+            {
+                title: "Plays",
+                sortFunction: "number",
+                data: data[3]
+            },
+            {
+                title: "Rating",
+                sortFunction: "number",
+                data: data[4]
+            },
+            {
+                title: "id",
+                sortFunction: "none",
+                data: data[5]
+            }
+        ];
+    }
+
     goToGame(game) {
         this.props.history.push("/games/" + game.id);
 
+    }
+
+    downloadGames() {
+        var request = new XMLHttpRequest();
+        request.timeout = 60000;
+        request.open('GET', 'http://localhost:8080/getGames?expansions=' + this.state.useExpansion, true);
+        request.send(null);
+        request.onreadystatechange = function () {
+            if (request.readyState === 4 && request.status === 200) {
+                var type = request.getResponseHeader('Content-Type');
+                if (type.indexOf("text") !== 1) {
+                    let result = request.responseText;
+                    let jsonObj = JSON.parse(result);
+                    let tableData = this.buildTableData(jsonObj);
+
+                    this.setState({found: true, result: jsonObj, tableData: tableData});
+                }
+            }
+        }.bind(this);
     }
 }
 
