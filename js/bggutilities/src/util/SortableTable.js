@@ -104,10 +104,20 @@ class SortableTable extends Component {
         }
         let sortingArray = deepSlice(sortArrays);
         sortingArray = sortingArray[column];
+        let minmax = false;
+        if(Array.isArray(sortingArray[0])) {
+            minmax = true;
+        }
         let shouldReverse = !initialTable && column === this.state.sortByColumn && !this.state.isReversed;
 
         if (shouldReverse) {
+            if(minmax) {
+                sortingArray = sortingArray[1];
+            }
             sortingArray.reverse();
+        }
+        else if (minmax) {
+            sortingArray = sortingArray[0]
         }
 
         for (let i = 0; i < newData.length; i++) {
@@ -210,7 +220,7 @@ class SortableTable extends Component {
                     else {
                         firstY = sliceOfOriginalData[y];
                     }
-                    return firstY - firstX;
+                    return firstX - firstY;
                 }
             );
             indicesMax.sort(
@@ -230,12 +240,11 @@ class SortableTable extends Component {
                     else {
                         secondY = sliceOfOriginalData[y];
                     }
-                    return secondY - secondX;
+                    return secondX - secondY;
                 }
             );
 
-            return [indices, indicesMax] // todo! handle this on the sorting end (look at isReverse to decide
-            //todo  between min(0) and max(1)
+            return [indices, indicesMax];
         }
     }
 

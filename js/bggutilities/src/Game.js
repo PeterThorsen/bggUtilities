@@ -4,26 +4,22 @@ import BestWithBlock from './util/BestWithBlock';
 import LoadingScreen from "./util/LoadingScreen";
 import "./Main.css";
 import {Redirect, withRouter} from "react-router-dom";
-import {
-    Table,
-    TableBody,
-    TableHeader,
-    TableHeaderColumn,
-    TableRow,
-    TableRowColumn,
-} from 'material-ui/Table';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import {pieColors} from "./util/Colors";
 import {PieChart, Pie, Cell, Tooltip, Label} from "recharts";
+import {getPlayersString} from "./util/GeneralUtil";
+import SortableTable from "./util/SortableTable";
 
 class Game extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            plays: undefined,
+            tableDataPlays: undefined,
+            tableDataRatings: undefined,
             loading: true,
-            game: undefined
+            game: undefined,
+            plays: undefined
         };
         this.downloadGame();
     }
@@ -32,11 +28,9 @@ class Game extends Component {
         if (this.state.loading) return <LoadingScreen/>;
         if (!this.state.loading && !this.state.game) return <Redirect to={"/games"}/>;
         if (this.state.plays === undefined) {
-            this.downloadPlays();
+            return <LoadingScreen/>;
         }
         let infoBlock = this.buildInfoBlock();
-        let plays = this.buildPlays();
-        let playerRatings = this.buildPlayerRatings();
         let winnerChart = this.getRecharts();
         return <div className="outer-block">
             <div className="main-width">
@@ -49,21 +43,13 @@ class Game extends Component {
             </div>
             <Tabs>
                 <Tab label="Plays">
-                    {plays}
+                    <SortableTable tableData={this.state.tableDataPlays} link="/plays/" linkSuffixHandler="id"/>
                 </Tab>
                 <Tab label="Player ratings">
-                    {playerRatings}
+                    <SortableTable tableData={this.state.tableDataRatings} link="/players/" linkSuffixHandler="Name"/>
                 </Tab>
             </Tabs>
         </div>
-    }
-
-    goToPlayer(name) {
-        this.props.history.push("/players/" + name);
-    }
-
-    goToPlay(id) {
-        this.props.history.push("/plays/" + id);
     }
 
     buildInfoBlock() {
@@ -105,125 +91,6 @@ class Game extends Component {
                                bestWith={game.bestWith} recommendedWith={game.recommendedWith}/>
             </div>
         </div>
-    }
-
-    buildPlays() {
-        if (!this.state.plays) {
-            return <LoadingScreen/>;
-        }
-
-        let plays = [];
-
-        this.state.plays.forEach(
-            (play, iteration) => {
-                let playerNamesOutput = "";
-                let lastPlayerName = "";
-                for (let inx in play.playerNames) {
-                    let playerName = play.playerNames[inx];
-                    playerNamesOutput += playerName + ", ";
-                    lastPlayerName = playerName;
-                }
-                if (play.playerNames.length > 1) {
-                    playerNamesOutput = playerNamesOutput.substring(0, playerNamesOutput.indexOf(lastPlayerName) - 2) + " and " +
-                        playerNamesOutput.substring(playerNamesOutput.indexOf(lastPlayerName), playerNamesOutput.length - 2);
-                }
-                else if (play.playerNames.length === 1) {
-                    playerNamesOutput = playerNamesOutput.substring(0, playerNamesOutput.length - 2);
-                }
-
-                plays.push(<TableRow onTouchTap={() => this.goToPlay(play.id)} key={"play-" + iteration}
-                                     selectable={false}>
-                    <TableRowColumn>{play.date}</TableRowColumn>
-                    <TableRowColumn style={{
-                        wordWrap: 'break-word',
-                        whiteSpace: 'normal'
-                    }}>{playerNamesOutput}</TableRowColumn>
-                    <TableRowColumn>{play.noOfPlays}</TableRowColumn>
-                </TableRow>);
-            }
-        );
-        return <div className="main-block">
-            <Table style={{width: 700}}>
-                <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-                    <TableRow>
-                        <TableHeaderColumn>Date</TableHeaderColumn>
-                        <TableHeaderColumn>Players</TableHeaderColumn>
-                        <TableHeaderColumn># Plays</TableHeaderColumn>
-                    </TableRow>
-                </TableHeader>
-                <TableBody displayRowCheckbox={false}>
-                    {plays}
-                </TableBody>
-            </Table>
-        </div>;
-    }
-
-    buildPlayerRatings() {
-        if (!this.state.plays) {
-            return <LoadingScreen/>;
-        }
-
-        let playerRatings = {};
-        let playerRatingsArr = [];
-
-        this.state.plays.forEach(
-            (play, iteration) => {
-                for (let inx in play.playerNames) {
-                    let playerName = play.playerNames[inx];
-                    if (play.playerRatings.hasOwnProperty(playerName)) {
-                        let rating = play.playerRatings[playerName];
-                        if (!playerRatings.hasOwnProperty(playerName)) {
-                            playerRatings[playerName] = {};
-                            if (rating > 0) {
-                                playerRatings[playerName].rating = rating;
-                            }
-                            playerRatings[playerName].numberOfPlays = 1;
-                        }
-                        else {
-                            if (rating > 0 && !playerRatings[playerName].hasOwnProperty("rating")) {
-                                playerRatings[playerName].rating = rating;
-                            }
-                            playerRatings[playerName].numberOfPlays = playerRatings[playerName].numberOfPlays + play.noOfPlays;
-                        }
-                    }
-                }
-            }
-        );
-
-        let playerRatingsNamesToSort = [];
-        for (let playerName in playerRatings) {
-            if (playerRatings.hasOwnProperty(playerName)) {
-                playerRatingsNamesToSort.push(playerName);
-            }
-        }
-        playerRatingsNamesToSort.sort();
-        for (let inx in playerRatingsNamesToSort) {
-            let playerName = playerRatingsNamesToSort[inx];
-            playerRatingsArr.push(<TableRow onTouchTap={() => this.goToPlayer(playerName)}
-                                            key={"player-ratings-" + inx} selectable={false}>
-                <TableRowColumn style={{
-                    wordWrap: 'break-word',
-                    whiteSpace: 'normal'
-                }}>{playerName}</TableRowColumn>
-                <TableRowColumn>{playerRatings[playerName].numberOfPlays}</TableRowColumn>
-                <TableRowColumn>{playerRatings[playerName].rating === undefined ? "N/A" : playerRatings[playerName].rating}</TableRowColumn>
-            </TableRow>);
-        }
-
-        return <div className="main-block">
-            <Table style={{width: 700}}>
-                <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-                    <TableRow>
-                        <TableHeaderColumn>Name</TableHeaderColumn>
-                        <TableHeaderColumn># Plays</TableHeaderColumn>
-                        <TableHeaderColumn>Rating</TableHeaderColumn>
-                    </TableRow>
-                </TableHeader>
-                <TableBody displayRowCheckbox={false}>
-                    {playerRatingsArr}
-                </TableBody>
-            </Table>
-        </div>;
     }
 
     getRecharts() {
@@ -281,11 +148,11 @@ class Game extends Component {
             >
                 <Label value="Plays" position="center"/>
                 {
-                    data.map((entry, index) => <Cell key={"cell-"+index} fill={COLORS[index % COLORS.length]}/>)
+                    data.map((entry, index) => <Cell key={"cell-" + index} fill={COLORS[index % COLORS.length]}/>)
 
                 }
             </Pie>
-            <Tooltip />
+            <Tooltip/>
         </PieChart>
     }
 
@@ -305,6 +172,7 @@ class Game extends Component {
                     else {
                         let jsonObj = JSON.parse(result);
                         this.setState({game: jsonObj, loading: false});
+                        this.downloadPlays();
                     }
                 }
             }
@@ -322,11 +190,133 @@ class Game extends Component {
                 if (type.indexOf("text") !== 1) {
                     let result = request.responseText;
                     let jsonObj = JSON.parse(result);
-                    this.setState({plays: jsonObj});
+                    let tableDataPlays = this.buildTableDataPlays(jsonObj);
+                    let tableDataRatings = this.buildTableDataRatings(jsonObj);
+                    this.setState({
+                        plays: jsonObj,
+                        tableDataPlays: tableDataPlays,
+                        tableDataRatings: tableDataRatings
+                    });
                 }
             }
         }.bind(this);
     }
+
+    buildTableDataRatings(allPlays) {
+        let playerRatingsArr = this.buildPlayerRatingAndPlaysArray(allPlays);
+        let data = [];
+        for (let i = 0; i < 3; i++) {
+            data.push([]);
+        }
+
+        playerRatingsArr.forEach(
+            (player) => {
+                data[0].push(player.name);
+                data[1].push(player.plays);
+                data[2].push(player.rating);
+            }
+        );
+
+        return [
+            {
+                title: "Name",
+                sortFunction: "string",
+                data: data[0]
+            },
+            {
+                title: "Plays",
+                sortFunction: "number",
+                data: data[1]
+            },
+            {
+                title: "Rating",
+                sortFunction: "number",
+                data: data[2]
+            }
+        ];
+    }
+
+    buildPlayerRatingAndPlaysArray(allPlays) {
+        let playerRatings = {};
+
+        allPlays.forEach(
+            (play, iteration) => {
+                for (let inx in play.playerNames) {
+                    let playerName = play.playerNames[inx];
+                    if (play.playerRatings.hasOwnProperty(playerName)) {
+                        let rating = play.playerRatings[playerName];
+                        if (!playerRatings.hasOwnProperty(playerName)) {
+                            playerRatings[playerName] = {};
+                            if (rating > 0) {
+                                playerRatings[playerName].rating = rating;
+                            }
+                            playerRatings[playerName].numberOfPlays = 1;
+                        }
+                        else {
+                            if (rating > 0 && !playerRatings[playerName].hasOwnProperty("rating")) {
+                                playerRatings[playerName].rating = rating;
+                            }
+                            playerRatings[playerName].numberOfPlays = playerRatings[playerName].numberOfPlays + play.noOfPlays;
+                        }
+                    }
+                }
+            }
+        );
+
+        let arr = [];
+        for (let playerName in playerRatings) {
+            if (playerRatings.hasOwnProperty(playerName)) {
+                arr.push(
+                    {
+                        name: playerName,
+                        plays: playerRatings[playerName]["numberOfPlays"],
+                        rating: playerRatings[playerName]["rating"],
+                    }
+                )
+            }
+        }
+        return arr;
+    }
+
+    buildTableDataPlays(allPlays) {
+        let data = [];
+        for (let i = 0; i < 4; i++) {
+            data.push([]);
+        }
+
+        allPlays.forEach(
+            (play) => {
+                data[0].push(play.date);
+                data[1].push(getPlayersString(play.playerNames));
+                data[2].push(play.noOfPlays);
+                data[3].push(play.id);
+            }
+        );
+
+        return [
+            {
+                title: "Date",
+                sortFunction: "date",
+                data: data[0]
+            },
+            {
+                title: "Players",
+                sortFunction: "string",
+                data: data[1]
+            },
+            {
+                title: "Plays",
+                sortFunction: "number",
+                data: data[2]
+            },
+            {
+                title: "id",
+                sortFunction: "none",
+                data: data[3]
+            }
+        ];
+    }
+
 }
 
 

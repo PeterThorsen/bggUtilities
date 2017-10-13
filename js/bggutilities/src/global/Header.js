@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 
 import './Header.css';
-import LeftSideBar from "./LeftSideBar";
-import RightSideBar from "./RightSideBar";
 import {withRouter} from "react-router-dom";
 
 class Header extends Component {
