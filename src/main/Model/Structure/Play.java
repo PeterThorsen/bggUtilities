@@ -12,7 +12,7 @@ public class Play {
   public final String date;
   public final int noOfPlays;
   private final HashMap<String, Double> playerRatings;
-  private String[] winners;
+  public String[] winners;
 
   public Play(int id, BoardGame game, String date, String[] playerNames, int noOfPlays,
               HashMap<String, Double> playerRatings, String[] winners) {

@@ -2,6 +2,10 @@ package Model.Structure;
 
 import Model.Structure.Holders.GamePlayHolder;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -18,6 +22,8 @@ public class Player {
   private double maxComplexity;
   private double minComplexity;
   private double magicComplexity;
+  public double winPercentage;
+  public double lossPercentage;
 
   public Player(String name, Play[] allPlays) {
     allPlays = reverseArray(allPlays);
@@ -76,7 +82,7 @@ public class Player {
     for (BoardGame key : gameToPlaysMap.keySet()) {
       double keyComplexity = key.complexity;
       double rating = getPersonalRating(key);
-      if(rating < 5) continue;
+      if (rating < 5) continue;
 
       double power = 1.1;
       power += 1.2 * (rating - 5);
@@ -88,10 +94,9 @@ public class Player {
       accumulator += poweredComplexity;
 
     }
-    if(totalScore != 0 && accumulator != 0) {
+    if (totalScore != 0 && accumulator != 0) {
       magicComplexity = totalScore / accumulator;
-    }
-    else {
+    } else {
       magicComplexity = 0;
     }
   }
@@ -277,7 +282,7 @@ public class Player {
       totalRating += currentRating;
     }
 
-    if(totalRating == 0 || counter == 0) return 0;
+    if (totalRating == 0 || counter == 0) return 0;
 
     return totalRating / counter;
   }
@@ -287,5 +292,39 @@ public class Player {
    */
   public double getMagicComplexity() {
     return magicComplexity;
+  }
+
+  public void calculatePlaysStatistics(String firstDateTrackingWinners) {
+    Date asDate = new Date();
+
+    double games = 0;
+    double wins = 0;
+    try {
+      DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+      asDate = df.parse(firstDateTrackingWinners);
+
+      outer:
+      for (Play play : allPlays) {
+        if (df.parse(play.date).before(asDate)) continue;
+        games++;
+
+        String[] winners = play.winners;
+        for (String winner : winners) {
+          if (winner.equals(name)) {
+            wins+= play.noOfPlays;
+            continue outer;
+          }
+        }
+
+      }
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+
+    if (wins == 0 || games == 0) return;
+    winPercentage = wins / games;
+    lossPercentage = 1 - winPercentage;
+
+
   }
 }

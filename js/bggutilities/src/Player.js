@@ -37,6 +37,7 @@ class Player extends Component {
         if (!this.state.loading && !this.state.player) return <Redirect to={"/players"}/>;
 
         let player = this.state.player;
+        console.log(player)
         return <div className="main-block-play-players">
             <div className="main-width">
                 <PlayerInfo player={player}/>

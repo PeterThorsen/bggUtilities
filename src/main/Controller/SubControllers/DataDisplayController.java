@@ -19,6 +19,18 @@ public class DataDisplayController {
     collection = collectionBuilder.getCollection(username);
     plays = collectionBuilder.getPlays();
     players = collectionBuilder.getPlayers();
+    String firstDateTrackingWinners = findFirstPlayWhereWinnersWereTracked();
+    if(username.toLowerCase().equals("cwaq")) {
+      firstDateTrackingWinners = "2016-01-02";
+    }
+    for (Player player : players) {
+      player.calculatePlaysStatistics(firstDateTrackingWinners);
+    }
+
+  }
+
+  private String findFirstPlayWhereWinnersWereTracked() {
+    return plays.findFirstPlayWhereWinnersWereTracked();
   }
 
   /**

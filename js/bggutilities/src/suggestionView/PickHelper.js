@@ -49,7 +49,7 @@ class PickHelper extends Component {
                                     return otherReason.value - reason.value;
                                 });
                             return <Card
-                                style={{backgroundColor: suggestion.value > 0 ? suggestion.value > averagePositiveValue ? greenColors(i) : 'yellow' : redColors(i)}}
+                                style={{backgroundColor: suggestion.value > 0 ? suggestion.value > averagePositiveValue ? greenColors(i) : '#FFFF46' : redColors(i)}}
                                 key={"card-" + i}>
                                 <CardHeader
                                     title={suggestion.game.name + " (" + suggestion.value.toFixed(2) + ")"}
@@ -60,7 +60,7 @@ class PickHelper extends Component {
                                     {suggestion.reasons.map(
                                         (reason, j) => {
                                             return <Card key={"card-" + i + "-" + j}
-                                                         style={{backgroundColor: suggestion.value > 0 ? greenColors(9999) : redColors(9999)}}>
+                                                         style={{backgroundColor: reason.value > 0 ? '#EDFFBB' : reason.value === 0 ? '#FFC300' : '#FF5050'}}>
                                                 <CardHeader
                                                     title={reason.reason + " (" + reason.value.toFixed(2) + ")"}
                                                 />

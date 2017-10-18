@@ -11,6 +11,10 @@ class PlayerInfo extends Component {
                 <div>{player.totalPlays}</div>
             </div>
             <div className="main-standard-description">
+                <div className="main-description-color" style={{marginRight: 55}}>Win percentage</div>
+                <div>{parseFloat(player.winPercentage*100).toFixed(2) + "%"}</div>
+            </div>
+            <div className="main-standard-description">
                 <div className="main-description-color" style={{marginRight: 57}}>Min. complexity</div>
                 <div>{parseFloat(player.minComplexity).toFixed(2)}</div>
             </div>

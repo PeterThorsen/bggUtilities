@@ -15,6 +15,7 @@ public class Plays {
   private final HashMap<String, Integer> nameToIDMap = new HashMap<>();
   private final HashMap<Integer, ArrayList<Play>> allPlays = new HashMap<>();
   private final HashMap<String, HashMap<String, Integer>> playsByPerson = new HashMap<>();
+  private Play[] sortedPlays;
 
   public String[] getPlayerNames() {
     String[] names = new String[allPlayers.size()];
@@ -33,8 +34,7 @@ public class Plays {
     String gameName = "";
     try {
       gameName = play.game.name;
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       System.out.println("ex, play is: " + play.game);
     }
     for (String name : play.playerNames) {
@@ -85,7 +85,7 @@ public class Plays {
 
   public Play[] getPlays(int uniqueID) {
     if (allPlays.containsKey(uniqueID)) {
-      ArrayList<Play> unsortedPlays =  allPlays.get(uniqueID);
+      ArrayList<Play> unsortedPlays = allPlays.get(uniqueID);
       return sortPlays(unsortedPlays);
 
     }
@@ -102,11 +102,13 @@ public class Plays {
   }
 
   public Play[] getAllPlays() {
+    if (sortedPlays != null) return sortedPlays;
     ArrayList<Play> unsortedPlays = new ArrayList<>();
     for (int key : allPlays.keySet()) {
       unsortedPlays.addAll(allPlays.get(key));
     }
-    return sortPlays(unsortedPlays);
+    sortedPlays = sortPlays(unsortedPlays);
+    return sortedPlays;
   }
 
   private Play[] sortPlays(ArrayList<Play> unsortedPlays) {
@@ -120,4 +122,15 @@ public class Plays {
   }
 
 
+  public String findFirstPlayWhereWinnersWereTracked() {
+    Play[] plays = getAllPlays();
+    for (int i = plays.length - 1; i > 0; i--) {
+      Play play = plays[i];
+      String[] winners = play.winners;
+      if(winners.length > 0) {
+        return play.date;
+      }
+    }
+    return null;
+  }
 }

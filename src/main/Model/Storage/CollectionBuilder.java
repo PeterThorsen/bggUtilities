@@ -246,7 +246,7 @@ public class CollectionBuilder implements ICollectionBuilder {
             }
 
             // Adding the plays
-            Play play = new Play(id, game, date, names, quantity, playerRatings, winners); // todo
+            Play play = new Play(id, game, date, names, quantity, playerRatings, winners);
             plays.addPlay(play);
           }
         }
