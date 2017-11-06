@@ -5,6 +5,8 @@ import Model.Structure.Holders.GamePlayHolder;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -24,6 +26,7 @@ public class Player {
   private double magicComplexity;
   public double winPercentage;
   public double lossPercentage;
+  public ArrayList<GameNight> gameNights;
 
   public Player(String name, Play[] allPlays) {
     allPlays = reverseArray(allPlays);
@@ -31,6 +34,56 @@ public class Player {
     this.allPlays = allPlays;
     interpretPlays();
     calculateComplexity();
+    calculateGameNights();
+  }
+
+  private void calculateGameNights() {
+    ArrayList<GameNight> allGameNights = new ArrayList<>();
+    String lastDate = "";
+    boolean createNewGameNight = true;
+    for (Play currentPlay : allPlays) {
+      boolean datesMatch = currentPlay.date.equals(lastDate);
+      if (!datesMatch) {
+        createNewGameNight = true;
+      }
+
+      if (createNewGameNight) {
+        allGameNights.add(new GameNight());
+        createNewGameNight = false;
+      }
+
+      GameNight gameNight = allGameNights.get(allGameNights.size() - 1);
+      if (gameNight.getNumberOfPlays() == 0) {
+        gameNight.setDate(currentPlay.date);
+      }
+      gameNight.addPlay(currentPlay);
+
+      lastDate = currentPlay.date;
+    }
+
+    gameNights = new ArrayList<>();
+    for (GameNight gameNight : allGameNights) {
+      boolean withinSixMonths = isWithinSixMonths(gameNight.getDate());
+      if (gameNight.getNumberOfPlays() > 2 && withinSixMonths) {
+        gameNights.add(gameNight);
+      }
+    }
+    Collections.reverse(gameNights);
+
+  }
+
+  private boolean isWithinSixMonths(String date) {
+    try {
+      SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+      Date asDate = format.parse(date);
+      long sixMonths = 24 * 60 * 60 * 1000L * 183;
+      Date currentDate = new Date();
+      return (asDate.getTime() + sixMonths) > currentDate.getTime();
+
+    } catch (ParseException e) {
+      e.printStackTrace();
+      return false;
+    }
   }
 
   private Play[] reverseArray(Play[] allPlays) {
@@ -311,7 +364,7 @@ public class Player {
         String[] winners = play.winners;
         for (String winner : winners) {
           if (winner.equals(name)) {
-            wins+= play.noOfPlays;
+            wins += play.noOfPlays;
             continue outer;
           }
         }

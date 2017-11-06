@@ -1,12 +1,16 @@
 import React, {Component} from 'react';
 import LoadingScreen from './util/LoadingScreen';
 import "./Main.css";
+import "./Player.css";
 import Divider from 'material-ui/Divider';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import {Redirect} from "react-router-dom";
 import PlayerInfo from "./PlayerInfo";
 import {deepSlice, getPlayersString} from "./util/GeneralUtil";
 import SortableTable from "./util/SortableTable";
+import {pieColors} from "./util/Colors";
+import {Cell, Label, Pie, PieChart, Tooltip} from "recharts";
+import {List, ListItem} from 'material-ui/List';
 
 class Player extends Component {
 
@@ -37,7 +41,8 @@ class Player extends Component {
         if (!this.state.loading && !this.state.player) return <Redirect to={"/players"}/>;
 
         let player = this.state.player;
-        console.log(player)
+        let gameNights = this.renderGameNights();
+
         return <div className="main-block-play-players">
             <div className="main-width">
                 <PlayerInfo player={player}/>
@@ -53,6 +58,9 @@ class Player extends Component {
                     <Tab label="Players">
                         <SortableTable tableData={this.state.tableDataPlayers} link="/players/"
                                        linkSuffixHandler="Name"/>
+                    </Tab>
+                    <Tab label="Game nights">
+                        {gameNights}
                     </Tab>
                 </Tabs>
             </div>
@@ -242,6 +250,149 @@ class Player extends Component {
             }
         }
         return arr;
+    }
+
+    renderGameNights() {
+        return this.state.player.gameNights.map(
+            (gameNight) => {
+                let date = gameNight.date;
+                let winners = {};
+                winners["No winner"] = 0;
+                let allGames = [];
+                let allPlayers = [];
+                gameNight.plays.forEach(
+                    (play) => {
+                        let gameName = play.game.name;
+                        let found = false;
+                        allGames.forEach(
+                            (game) => {
+                                if (game.game === gameName) {
+                                    game.plays += play.noOfPlays;
+                                    found = true;
+                                }
+                            }
+                        );
+                        if (!found) {
+                            allGames.push({game: play.game.name, plays: play.noOfPlays});
+                        }
+
+                        play.playerNames.forEach(
+                            (newPlayer) => {
+                                let found = false;
+                                allPlayers.forEach(
+                                    (oldPlayer) => {
+                                        if(newPlayer === oldPlayer) found = true;
+                                    }
+                                );
+                                if(!found) {
+                                    allPlayers.push(newPlayer);
+                                }
+                            }
+                        );
+                        if (!this.isACooperativeGame(play)) {
+                            let playerNames = play.playerNames;
+                            let currentWinners = play.winners;
+                            let noOfPlays = play.noOfPlays;
+                            playerNames.forEach(
+                                (playerName) => {
+                                    if (!winners.hasOwnProperty(playerName)) {
+                                        winners[playerName] = 0;
+                                    }
+                                }
+                            );
+                            if (currentWinners.length === 0) {
+                                winners["No winner"] = winners["No winner"] + noOfPlays;
+                            }
+                            else {
+                                currentWinners.forEach(
+                                    (playerName) => {
+                                        winners[playerName] += noOfPlays;
+                                    }
+                                )
+                            }
+                        }
+                    }
+                );
+                allPlayers.push("Peter");
+
+                let chart = this.convertWinnersToChart(winners);
+                return <div className="game-night-outer" key={date}>
+                    {chart}
+                    {date}
+                    <List>
+                        {allGames.map(
+                            (gameAndPlays) => {
+                                return <ListItem key={gameAndPlays.game + "-listitem-" + date}
+                                                  primaryText={gameAndPlays.game + ": " + gameAndPlays.plays}/>;
+                            }
+                        )}
+                    </List>
+                    <List>
+                        {allPlayers.map(
+                            (playerName) => {
+                                return <ListItem key={"list-item-" + playerName}
+                                          primaryText={playerName}/>                            }
+                        )}
+                    </List>
+                </div>
+            }
+        )
+    }
+
+    isACooperativeGame(play) {
+        let found = false;
+        play.game.mechanisms.forEach(
+            (mechanism) => {
+                if (mechanism.mechanism === 'Co-operative Play') {
+                    found = true;
+                }
+            }
+        );
+        return found;
+    }
+
+    convertWinnersToChart(winners) {
+        let data = [];
+        for (let playerName in winners) {
+            if (winners.hasOwnProperty(playerName)) {
+                let wins = winners[playerName];
+                let name = playerName === "No winner" ? 'Peter' : playerName;
+                data.push({name: name, wins: wins})
+            }
+        }
+
+        let totalWins = 0;
+        data.forEach(
+            (dataPoint) => {
+                totalWins += dataPoint.wins;
+            }
+        );
+        const COLORS = pieColors;
+
+        let chart = <PieChart width={300} height={200}>
+            <Pie
+                data={data}
+                dataKey={"wins"}
+                cx={150}
+                cy={100}
+                innerRadius={30}
+                outerRadius={50}
+                fill="#8884d8"
+                labelLine={false}
+                label={(dataPoint) => {
+                    return dataPoint.wins > totalWins / 10 ? dataPoint.name : "";
+                }}
+            >
+                <Label value="Wins" position="center"/>
+                {
+                    data.map((entry, index) => <Cell key={"cell-" + index}
+                                                     fill={COLORS[index % COLORS.length]}/>)
+
+                }
+            </Pie>
+            <Tooltip/>
+        </PieChart>;
+        return chart;
     }
 }
 
