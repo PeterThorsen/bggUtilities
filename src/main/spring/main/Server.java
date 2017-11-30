@@ -158,6 +158,21 @@ public class Server {
     return gson.toJson(options);
   }
 
+  @CrossOrigin
+  @RequestMapping("/updatePickedGameNight")
+  public String helpPickGameNight(@RequestParam(value = "playTime") int playTime,
+                                  @RequestParam(value = "players") String[] players,
+                                  @RequestParam(value = "gameIds") int[] gamesToExclude) {
+
+    Player[] asPlayers = controller.getCorrespondingPlayers(players);
+    if(asPlayers == null) return "";
+
+    BoardGameCounter[] options = controller.helpPickGameNight(asPlayers, playTime, gamesToExclude);
+
+    Gson gson = new Gson();
+    return gson.toJson(options);
+  }
+
 
   private FacadeController tryLogin(String givenUsername) {
     return loginController.verifyUser(givenUsername, null);

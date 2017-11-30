@@ -300,7 +300,17 @@ public class GameNightRecommender implements IGameNightRecommender {
     // Can we easily play this game within time limit
     int currentMinTime = currentGame.minPlaytime;
     int currentMaxTime = currentGame.maxPlaytime;
-
+    if (currentGame.name.equals("Sequence")) {
+      currentMinTime += 15;
+      currentMaxTime += 15;
+    }
+    if(currentGame.name.equals("Bohnanza")) {
+      currentMinTime += 60;
+      currentMaxTime += 60;
+    }
+    if(currentMinTime <= 10) {
+      currentMinTime = currentMaxTime;
+    }
     double approximationTime;
     if (currentMinTime == currentMaxTime) {
       approximationTime = currentMaxTime;
@@ -308,24 +318,26 @@ public class GameNightRecommender implements IGameNightRecommender {
       approximationTime = currentMaxTime;
 
     } else {
-      if (currentGame.name.equals("Sequence") || currentGame.name.equals("Fluxx")) currentMinTime += 15;
-
       double difference = currentMaxTime - currentMinTime;
       difference = difference / (currentGame.maxPlayers - currentGame.minPlayers);
       approximationTime = currentMinTime + (difference * (allPlayers.length + 1 - currentGame.minPlayers));
     }
+    approximationTime *= 1.2;
+
+    boolean allPlayersHavePlayedTheGame = true;
 
     // Add time to approximation if someone has to learn the game
     for (Player player : allPlayers) {
       if (!player.hasPlayed(currentGame)) {
-        approximationTime += 10;
+        approximationTime += currentGame.minPlaytime * 0.8;
+        allPlayersHavePlayedTheGame = false;
         break;
       }
     }
     current.approximateTime = approximationTime;
 
     if (approximationTime <= maxTime && approximationTime >= maxTime - 30) {
-      double value = gameNightValues.thisGameWouldWorkAsSoleGameForGameNight();
+      double value = gameNightValues.scoreBasedOnDifferenceToMaxTime(maxTime, approximationTime);
       current.value += value;
       current.reasons.add(new Reason(current.game.name + " would work well as sole game for your game night requiring approximately " + approximationTime + " minutes.", value));
     }
@@ -341,13 +353,14 @@ public class GameNightRecommender implements IGameNightRecommender {
     }
 
     // How fitting is the complexity
-    double currentComplexity = currentGame.complexity;
-    double value = gameNightValues.complexityDifference(currentComplexity, averageComplexityGivingAllPlayersEqualWeight, magicComplexity);
-    current.value += value;
-    current.reasons.add(new Reason("These players would prefer games around " + decimalFormatter.format(magicComplexity) + "/5 in complexity. This game has a rating of " + decimalFormatter.format(currentComplexity) + "/5.", value));
-
+    if(!allPlayersHavePlayedTheGame) {
+      double currentComplexity = currentGame.complexity;
+      double value = gameNightValues.complexityDifference(currentComplexity, averageComplexityGivingAllPlayersEqualWeight, magicComplexity);
+      current.value += value;
+      current.reasons.add(new Reason("These players would prefer games around " + decimalFormatter.format(magicComplexity) + "/5 in complexity. This game has a rating of " + decimalFormatter.format(currentComplexity) + "/5.", value));
+    }
     if (!suggestAllGames) {
-      value = gameNightValues.timeSpentOnGame(approximationTime);
+      double value = gameNightValues.timeSpentOnGame(approximationTime);
       current.value += value;
       current.reasons.add(new Reason("Score based on time spent.", value));
     }
@@ -361,7 +374,7 @@ public class GameNightRecommender implements IGameNightRecommender {
         isGood = 1;
         if (i != 2) {
 
-          value = gameNightValues.gameBestWithCurrentNumberOfPlayers();
+          double value = gameNightValues.gameBestWithCurrentNumberOfPlayers();
           current.value += value;
           current.reasons.add(new Reason("Game is best with " + i + " players.", value));
           break;
@@ -375,7 +388,7 @@ public class GameNightRecommender implements IGameNightRecommender {
         if (i == allPlayers.length + 1) {
           isGood = 2;
           if (i != 2) {
-            value = gameNightValues.gameRecommendedWithCurrentNumberOfPlayers();
+            double value = gameNightValues.gameRecommendedWithCurrentNumberOfPlayers();
             current.value += value;
             current.reasons.add(new Reason("Game is recommended with " + i + " players.", value));
             break;
@@ -385,7 +398,7 @@ public class GameNightRecommender implements IGameNightRecommender {
     }
 
     if (isGood == 0) {
-      value = gameNightValues.gameBadWithCurrentNumberOfPlayers();
+      double value = gameNightValues.gameBadWithCurrentNumberOfPlayers();
       current.value += value;
       current.reasons.add(new Reason("Game is bad with " + (allPlayers.length + 1) + " players.", value));
     }

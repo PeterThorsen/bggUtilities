@@ -171,7 +171,7 @@ class MachineLearningGameNightValues implements IGameNightValues {
   }
 
   @Override
-  public double thisGameWouldWorkAsSoleGameForGameNight() {
+  public double scoreBasedOnDifferenceToMaxTime(int maxTime, double approximationTime) {
     return values[1];
   }
 

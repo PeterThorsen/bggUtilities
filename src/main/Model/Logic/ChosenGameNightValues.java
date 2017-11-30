@@ -191,8 +191,14 @@ public class ChosenGameNightValues implements IGameNightValues {
   }
 
   @Override
-  public double thisGameWouldWorkAsSoleGameForGameNight() {
-    return 12;
+  public double scoreBasedOnDifferenceToMaxTime(int maxTime, double approximationTime) {
+    double difference = maxTime - approximationTime;
+    if(difference < 5) return 30;
+    if(difference < 10) return 25;
+    if(difference < 15) return 20;
+    if(difference < 20) return 15;
+    if(difference < 25) return 10;
+    return 5;
   }
 
   @Override

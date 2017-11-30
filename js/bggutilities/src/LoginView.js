@@ -29,7 +29,7 @@ class LoginView extends Component {
         return <div className="login-view">
             <div className="login-view-main-content">
                 <TextField id={"login-text-field"} onChange={(event, text) => this.saveText(text)}
-                           defaultValue={"cwaq"}/>
+                           value={this.state.userName}/>
                 <RaisedButton label="Start the app"
                               primary={true}
                               style={{marginTop: '40px'}}

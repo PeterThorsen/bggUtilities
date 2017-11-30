@@ -49,7 +49,7 @@ public interface IGameNightValues {
 
   double comparablePlayersLikesThisGame(double othersAverageRating);
 
-  double thisGameWouldWorkAsSoleGameForGameNight();
+  double scoreBasedOnDifferenceToMaxTime(int maxTime, double approximationTime);
 
   double cantPlayGameWithinTimeLimit();
 }

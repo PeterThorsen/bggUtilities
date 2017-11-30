@@ -1,0 +1,17 @@
+.pick-helper-outer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+}
+.suggestions-block {
+    width:600px;
+}
+.chosen-games-sidebar {
+    width:400px;
+    background: lightgrey;
+}
+.wide-chosen-games-sidebar {
+    width: 600px;
+    background: greenyellow;
+}

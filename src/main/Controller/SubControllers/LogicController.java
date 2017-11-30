@@ -8,6 +8,8 @@ import Model.Structure.BoardGameCounter;
 import Model.Structure.BoardGameSuggestion;
 import Model.Structure.Player;
 
+import java.util.ArrayList;
+
 public class LogicController {
   private final IGameNightRecommender gameNightRecommender;
   private final GameNightUtil gameNightUtil;
@@ -52,29 +54,29 @@ public class LogicController {
 
   public BoardGameCounter[] helpPickGameNight(Player[] players, int playTime, BoardGame[] allGames, int[] gamesToExclude, Player[] allPlayersEver) {
 
-    BoardGame[] withoutExcludedGames = new BoardGame[allGames.length - gamesToExclude.length];
-    int iteration = 0;
-
     double[] complexities = gameNightUtil.calculateComplexities(players);
     double minComplexity = complexities[0];
     double maxComplexity = complexities[1];
     double magicComplexity = complexities[2];
     double averageComplexityGivingAllPlayersEqualWeight = complexities[3];
 
+    BoardGame[] allValid = gameNightUtil.getAllValidBoardgames(players, playTime, allGames);
+
+    BoardGameCounter[] recommendations =  gameNightRecommender.buildBestGameNight(allValid, players, playTime, magicComplexity, averageComplexityGivingAllPlayersEqualWeight, true, allPlayersEver);
+    ArrayList<BoardGameCounter> withoutExcludedGamesArray = new ArrayList<>();
+
     outer:
-    for (int i = 0; i < allGames.length; i++) {
-      for (int j = 0; j < gamesToExclude.length; j++) {
-        if (allGames[i].id == gamesToExclude[j]) {
-          continue outer;
-        }
+    for (BoardGameCounter recommendation : recommendations) {
+      for (int idOfGameToExclude : gamesToExclude) {
+        if(recommendation.game.id == idOfGameToExclude) continue outer;
       }
-      withoutExcludedGames[iteration] = allGames[i];
-      iteration++;
+      withoutExcludedGamesArray.add(recommendation);
     }
-    BoardGame[] allValid = gameNightUtil.getAllValidBoardgames(players, playTime, withoutExcludedGames);
 
-    return gameNightRecommender.buildBestGameNight(allValid, players, playTime, magicComplexity, averageComplexityGivingAllPlayersEqualWeight, true, allPlayersEver);
-
-    //return gameNightUtil.suggestReasonsForAllGames(allValid, players, playTime);
+    BoardGameCounter[] withoutExcludedGames = new BoardGameCounter[withoutExcludedGamesArray.size()];
+    for (int i = 0; i < withoutExcludedGames.length; i++) {
+      withoutExcludedGames[i] = withoutExcludedGamesArray.get(i);
+    }
+    return withoutExcludedGames;
   }
 }
