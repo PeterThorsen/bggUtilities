@@ -82,7 +82,6 @@ class LoginView extends Component {
         this.setState({
             tryLogin: false,
             loginFailed: true,
-            userName: "",
             result: undefined,
         })
     }

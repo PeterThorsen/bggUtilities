@@ -169,7 +169,6 @@ class PickHelper extends Component {
 
             averagePositiveValue = counter !== 0 ? averagePositiveValue / counter : 0;
         }
-        console.log("calculated", averagePositiveValue)
         return averagePositiveValue;
     }
 

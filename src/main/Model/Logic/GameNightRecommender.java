@@ -147,7 +147,7 @@ public class GameNightRecommender implements IGameNightRecommender {
         if (!hasPlayedSimilarGames) value *= 2;
         value = value / currentPlayersLength;
         gameCounter.value += value;
-        gameCounter.reasons.add(new Reason("While " + player.name + " hasn't played this game, comparable players rated it " + decimalFormatter.format((othersRatings / counter))+ "/10 on average.", value));
+        gameCounter.reasons.add(new Reason("While " + player.name + " hasn't played this game, comparable players rated it " + decimalFormatter.format((othersRatings / counter)) + "/10 on average.", value));
       }
 
 
@@ -304,11 +304,11 @@ public class GameNightRecommender implements IGameNightRecommender {
       currentMinTime += 15;
       currentMaxTime += 15;
     }
-    if(currentGame.name.equals("Bohnanza")) {
+    if (currentGame.name.equals("Bohnanza")) {
       currentMinTime += 60;
       currentMaxTime += 60;
     }
-    if(currentMinTime <= 10) {
+    if (currentMinTime <= 10) {
       currentMinTime = currentMaxTime;
     }
     double approximationTime;
@@ -322,38 +322,37 @@ public class GameNightRecommender implements IGameNightRecommender {
       difference = difference / (currentGame.maxPlayers - currentGame.minPlayers);
       approximationTime = currentMinTime + (difference * (allPlayers.length + 1 - currentGame.minPlayers));
     }
-    approximationTime *= 1.2;
 
     boolean allPlayersHavePlayedTheGame = true;
 
     // Add time to approximation if someone has to learn the game
     for (Player player : allPlayers) {
       if (!player.hasPlayed(currentGame)) {
-        approximationTime += currentGame.minPlaytime * 0.8;
+        approximationTime += currentGame.minPlaytime * 0.2;
         allPlayersHavePlayedTheGame = false;
         break;
       }
     }
+    approximationTime *= 1.2;
+    approximationTime = roundToNearestFiveMinutes(approximationTime);
     current.approximateTime = approximationTime;
 
     if (approximationTime <= maxTime && approximationTime >= maxTime - 30) {
       double value = gameNightValues.scoreBasedOnDifferenceToMaxTime(maxTime, approximationTime);
       current.value += value;
       current.reasons.add(new Reason(current.game.name + " would work well as sole game for your game night requiring approximately " + approximationTime + " minutes.", value));
-    }
-    else if (approximationTime <= maxTime) {
+    } else if (approximationTime <= maxTime) {
       double value = gameNightValues.canEasilyPlayGameWithinTimeLimit();
       current.value += value;
       current.reasons.add(new Reason("The game should take approximately " + approximationTime + " minutes.", value));
-    }
-    else {
+    } else {
       double value = gameNightValues.cantPlayGameWithinTimeLimit();
       current.value += value;
       current.reasons.add(new Reason("As " + current.game.name + " takes approximately " + approximationTime + " minutes to play, you shouldn't play this game today.", value));
     }
 
     // How fitting is the complexity
-    if(!allPlayersHavePlayedTheGame) {
+    if (!allPlayersHavePlayedTheGame) {
       double currentComplexity = currentGame.complexity;
       double value = gameNightValues.complexityDifference(currentComplexity, averageComplexityGivingAllPlayersEqualWeight, magicComplexity);
       current.value += value;
@@ -404,6 +403,11 @@ public class GameNightRecommender implements IGameNightRecommender {
     }
 
 
+  }
+
+  private double roundToNearestFiveMinutes(double approximationTime) {
+    approximationTime = approximationTime / 10;
+    return (int) Math.round(approximationTime) * 10;
   }
 
   private BoardGameCounter[] calculateSuggestedGames(BoardGameCounter[] gamesWithCounter, int maxTime, boolean suggestAllGames) {

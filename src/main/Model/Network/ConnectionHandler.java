@@ -132,16 +132,15 @@ public class ConnectionHandler implements IConnectionHandler {
    * @return a document containing xml
    */
   private Document sendRequest(String urlString) {
-    Document document = null;
     try {
       DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
       DocumentBuilder db = dbf.newDocumentBuilder();
       URL url = new URL(urlString);
-      document = db.parse(url.openStream());
+      Document document = db.parse(url.openStream());
       return document;
 
     } catch (Exception e) {
+      return null;
     }
-    return document;
   }
 }
